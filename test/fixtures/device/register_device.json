@@ -1,0 +1,30 @@
+{
+  "response": {
+    "result": "success",
+    "message": null,
+    "data": {
+      "pms_identifier": "abc123def456",
+      "pms_ip": "192.168.1.10",
+      "pms_is_remote": 0,
+      "pms_name": "My Plex Server",
+      "pms_platform": "Linux",
+      "pms_plexpass": 1,
+      "pms_port": 32400,
+      "pms_ssl": 0,
+      "pms_url": "http://192.168.1.10:32400",
+      "pms_url_manual": 0,
+      "pms_version": "1.32.5.7516",
+      "server_id": "abc123def456",
+      "tautulli_install_type": "docker",
+      "tautulli_branch": "master",
+      "tautulli_commit": "deadbeef",
+      "tautulli_platform": "Linux",
+      "tautulli_platform_device_name": "myserver",
+      "tautulli_platform_linux_distro": "Ubuntu 22.04",
+      "tautulli_platform_release": "22.04",
+      "tautulli_platform_version": "5.15.0",
+      "tautulli_python_version": "3.11.0",
+      "tautulli_version": "v2.17.0"
+    }
+  }
+}

@@ -1,0 +1,57 @@
+{
+  "response": {
+    "result": "success",
+    "message": null,
+    "data": {
+      "draw": 1,
+      "recordsTotal": 250,
+      "recordsFiltered": 250,
+      "total_duration": "42 days 5 hrs 18 mins",
+      "filter_duration": "10 hrs 12 mins",
+      "data": [
+        {
+          "id": 1,
+          "row_id": 1,
+          "date": 1704067200,
+          "started": 1704067200,
+          "stopped": 1704070800,
+          "duration": 3600,
+          "paused_counter": 0,
+          "user_id": 7,
+          "user": "johndoe",
+          "friendly_name": "JohnDoe",
+          "user_thumb": "https://plex.tv/users/abc/avatar",
+          "platform": "Plex Web",
+          "player": "Chrome",
+          "product": "Plex Web",
+          "ip_address": "192.168.1.100",
+          "live": 0,
+          "media_type": "movie",
+          "rating_key": 1001,
+          "parent_rating_key": null,
+          "grandparent_rating_key": null,
+          "title": "The Matrix",
+          "parent_title": null,
+          "grandparent_title": null,
+          "full_title": "The Matrix",
+          "thumb": "/library/metadata/1001/thumb/1000000",
+          "year": 1999,
+          "media_index": null,
+          "parent_media_index": null,
+          "transcode_decision": "direct play",
+          "percent_complete": 98,
+          "watched_status": 1,
+          "group_count": 1,
+          "group_ids": "1",
+          "state": null,
+          "session_key": null,
+          "location": "lan",
+          "secure": 1,
+          "relayed": 0,
+          "reference_id": 1,
+          "machine_id": "abc123"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "response": {
+    "result": "success",
+    "message": null,
+    "data": {
+      "section_id": 1,
+      "section_name": "Movies",
+      "section_type": "movie",
+      "count": 887,
+      "parent_count": null,
+      "child_count": null,
+      "deleted_section": 0,
+      "do_notify": 1,
+      "do_notify_created": 1,
+      "is_active": 1,
+      "keep_history": 1,
+      "last_accessed": 1462693216,
+      "library_art": "/:/resources/movie-fanart.jpg",
+      "library_thumb": "/:/resources/movie.png",
+      "row_id": 1,
+      "server_id": "ds48g4r354a8v9byrrtr697g3g79w"
+    }
+  }
+}

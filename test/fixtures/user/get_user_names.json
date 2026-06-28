@@ -1,0 +1,18 @@
+{
+  "response": {
+    "result": "success",
+    "message": null,
+    "data": [
+      {
+        "user_id": 1,
+        "username": "admin",
+        "friendly_name": "Admin"
+      },
+      {
+        "user_id": 7,
+        "username": "johndoe",
+        "friendly_name": "JohnDoe"
+      }
+    ]
+  }
+}

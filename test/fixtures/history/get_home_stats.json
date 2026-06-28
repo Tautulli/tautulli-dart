@@ -1,0 +1,50 @@
+{
+  "response": {
+    "result": "success",
+    "message": null,
+    "data": [
+      {
+        "stat_id": "top_movies",
+        "stat_type": "plays",
+        "rows": [
+          {
+            "rating_key": 1001,
+            "title": "The Matrix",
+            "year": 1999,
+            "thumb": "/library/metadata/1001/thumb/1000000",
+            "art": "/library/metadata/1001/art/1000000",
+            "media_type": "movie",
+            "section_id": 1,
+            "section_name": "Movies",
+            "section_type": "movie",
+            "total_plays": 42,
+            "total_duration": 151200,
+            "last_play": 1704067200,
+            "users_watched": 5,
+            "row_id": 1,
+            "guid": "plex://movie/5d776828880197001ec9671c",
+            "content_rating": "R",
+            "rating": 8.7,
+            "labels": ["Action", "Sci-Fi"],
+            "live": 0,
+            "user_id": null,
+            "user": null,
+            "friendly_name": null,
+            "user_thumb": null,
+            "platform": null,
+            "platform_name": null,
+            "media_index": null,
+            "parent_media_index": null,
+            "grandparent_rating_key": null,
+            "grandparent_thumb": null,
+            "grandparent_title": null,
+            "grandchild_title": null,
+            "started": null,
+            "last_watch": null,
+            "count": null
+          }
+        ]
+      }
+    ]
+  }
+}

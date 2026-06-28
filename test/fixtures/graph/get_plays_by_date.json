@@ -1,0 +1,15 @@
+{
+  "response": {
+    "result": "success",
+    "message": null,
+    "data": {
+      "categories": ["2024-01-01", "2024-01-02", "2024-01-03"],
+      "series": [
+        { "name": "Movies", "data": [2, 4, 1] },
+        { "name": "TV", "data": [5, 3, 8] },
+        { "name": "Music", "data": [0, 1, 0] },
+        { "name": "Live TV", "data": [1, 0, 2] }
+      ]
+    }
+  }
+}

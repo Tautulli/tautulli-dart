@@ -1,0 +1,46 @@
+{
+  "response": {
+    "result": "success",
+    "message": null,
+    "data": {
+      "draw": 1,
+      "recordsTotal": 3,
+      "recordsFiltered": 3,
+      "data": [
+        {
+          "section_id": 1,
+          "section_name": "Movies",
+          "section_type": "movie",
+          "library_thumb": "/library/sections/1/composite/1000000",
+          "library_art": "/library/sections/1/art/1000000",
+          "count": 500,
+          "parent_count": null,
+          "child_count": null,
+          "plays": 1234,
+          "duration": 4500000,
+          "last_accessed": 1704067200,
+          "last_played": "The Matrix",
+          "is_active": 1,
+          "do_notify": 1,
+          "do_notify_created": 1,
+          "keep_history": 1,
+          "thumb": null,
+          "row_id": 1,
+          "rating_key": null,
+          "media_type": null,
+          "media_index": null,
+          "parent_media_index": null,
+          "parent_title": null,
+          "live": 0,
+          "originally_available_at": null,
+          "year": null,
+          "guid": null,
+          "labels": [],
+          "content_rating": null,
+          "history_row": 100,
+          "server_id": "abc123"
+        }
+      ]
+    }
+  }
+}

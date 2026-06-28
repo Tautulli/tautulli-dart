@@ -1,0 +1,16 @@
+{
+  "response": {
+    "result": "success",
+    "message": null,
+    "data": [
+      {
+        "platform": "Linux",
+        "platform_name": "linux",
+        "player_name": "Plex for Linux",
+        "result_id": 1,
+        "total_plays": 120,
+        "total_time": 432000
+      }
+    ]
+  }
+}

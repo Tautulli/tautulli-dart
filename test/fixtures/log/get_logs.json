@@ -1,0 +1,1 @@
+{"response":{"result":"success","message":null,"data":[{"loglevel":"INFO","msg":"Tautulli started","thread":"MainThread","time":"2024-01-01 12:00:00"},{"loglevel":"DEBUG","msg":"Loading database","thread":"MainThread","time":"2024-01-01 12:00:01"}]}}

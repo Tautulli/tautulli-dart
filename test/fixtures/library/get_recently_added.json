@@ -1,0 +1,53 @@
+{
+  "response": {
+    "result": "success",
+    "message": null,
+    "data": {
+      "recently_added": [
+        {
+          "rating_key": 1002,
+          "title": "Inception",
+          "full_title": "Inception",
+          "media_type": "movie",
+          "year": 2010,
+          "thumb": "/library/metadata/1002/thumb/1000000",
+          "art": "/library/metadata/1002/art/1000000",
+          "added_at": "1704067200",
+          "section_id": 1,
+          "summary": "A thief who steals corporate secrets.",
+          "parent_rating_key": null,
+          "parent_title": null,
+          "parent_thumb": null,
+          "parent_media_index": null,
+          "grandparent_rating_key": null,
+          "grandparent_title": null,
+          "grandparent_thumb": null,
+          "media_index": null,
+          "originally_available_at": "2010-07-16",
+          "sort_title": "Inception",
+          "studio": "Warner Bros.",
+          "tagline": "Your mind is the scene of the crime.",
+          "rating": 8.8,
+          "audience_rating": 9.0,
+          "rating_image": "rottentomatoes://image.rating.ripe",
+          "audience_rating_image": "rottentomatoes://image.rating.upright",
+          "user_rating": null,
+          "guid": "plex://movie/abc123",
+          "guids": ["imdb://tt1375666"],
+          "labels": [],
+          "genres": ["Action", "Adventure", "Sci-Fi"],
+          "actors": ["Leonardo DiCaprio"],
+          "directors": ["Christopher Nolan"],
+          "writers": ["Christopher Nolan"],
+          "duration": "8880",
+          "banner": null,
+          "child_count": null,
+          "library_name": "Movies",
+          "original_title": null,
+          "last_viewed_at": null,
+          "updated_at": "1704067200"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "response": {
+    "result": "success",
+    "message": null,
+    "data": {
+      "user_id": 7,
+      "username": "johndoe",
+      "friendly_name": "JohnDoe",
+      "email": "john@example.com",
+      "user_thumb": "https://plex.tv/users/abc/avatar",
+      "is_active": 1,
+      "is_admin": 0,
+      "is_home_user": 1,
+      "is_allow_sync": 1,
+      "is_restricted": 0,
+      "allow_guest": 0,
+      "keep_history": 1,
+      "do_notify": 1,
+      "filter_all": "",
+      "filter_movies": "",
+      "filter_tv": "",
+      "filter_music": "",
+      "filter_photos": "",
+      "last_seen": 1704067200,
+      "row_id": 3,
+      "shared_libraries": [1, 2, 3]
+    }
+  }
+}

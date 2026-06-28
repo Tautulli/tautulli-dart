@@ -1,0 +1,16 @@
+{
+  "response": {
+    "result": "success",
+    "message": null,
+    "data": [
+      {
+        "user_id": 7,
+        "username": "johndoe",
+        "friendly_name": "JohnDoe",
+        "user_thumb": "https://plex.tv/users/abc/avatar",
+        "total_plays": 42,
+        "total_time": 151200
+      }
+    ]
+  }
+}

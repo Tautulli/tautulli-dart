@@ -1,0 +1,53 @@
+{
+  "response": {
+    "result": "success",
+    "message": null,
+    "data": {
+      "title": "Breaking Bad",
+      "children_count": 1,
+      "children_type": "season",
+      "children_list": [
+        {
+          "rating_key": 2001,
+          "title": "Season 1",
+          "media_type": "season",
+          "media_index": 1,
+          "thumb": "/library/metadata/2001/thumb/1000000",
+          "year": 2008,
+          "section_id": 2,
+          "parent_rating_key": 2000,
+          "parent_title": "Breaking Bad",
+          "grandparent_rating_key": null,
+          "grandparent_title": null,
+          "sort_title": "Season 1",
+          "studio": null,
+          "summary": null,
+          "content_rating": null,
+          "rating": null,
+          "audience_rating": null,
+          "user_rating": null,
+          "duration": null,
+          "added_at": "1704067200",
+          "updated_at": "1704067200",
+          "last_viewed_at": null,
+          "library_name": "TV Shows",
+          "live": 0,
+          "original_title": null,
+          "originally_available_at": null,
+          "parent_thumb": null,
+          "parent_media_index": null,
+          "parent_year": null,
+          "grandparent_thumb": null,
+          "media_index": 1,
+          "genres": [],
+          "actors": [],
+          "directors": [],
+          "writers": [],
+          "collections": [],
+          "labels": [],
+          "media_info": []
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "response": {
+    "result": "success",
+    "message": null,
+    "data": {
+      "pms_identifier": "abc123def456",
+      "pms_ip": "192.168.1.10",
+      "pms_is_remote": 0,
+      "pms_name": "My Plex Server",
+      "pms_platform": "Linux",
+      "pms_plexpass": 1,
+      "pms_port": 32400,
+      "pms_ssl": 0,
+      "pms_url": "http://192.168.1.10:32400",
+      "pms_url_manual": 0,
+      "pms_version": "1.32.5.7516"
+    }
+  }
+}
