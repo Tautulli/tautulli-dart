@@ -13,7 +13,10 @@ class GraphService {
   GraphService(TautulliExecutor client) : _client = client;
 
   /// Returns concurrent stream counts broken down by stream type over [timeRange] days.
-  Future<GraphData> getConcurrentStreamsByStreamType({required int timeRange, int? userId}) async {
+  Future<GraphData> getConcurrentStreamsByStreamType({
+    required int timeRange,
+    int? userId,
+  }) async {
     final params = <String, dynamic>{'time_range': timeRange};
     if (userId != null) params['user_id'] = userId;
     return _graphData('get_concurrent_streams_by_stream_type', params);
@@ -25,8 +28,13 @@ class GraphService {
     required int timeRange,
     int? userId,
     bool? grouping,
-  }) =>
-      _graphMethodWithYAxis('get_plays_by_date', yAxis, timeRange, userId, grouping);
+  }) => _graphMethodWithYAxis(
+    'get_plays_by_date',
+    yAxis,
+    timeRange,
+    userId,
+    grouping,
+  );
 
   /// Returns play counts or durations grouped by day of the week over [timeRange] days.
   Future<GraphData> getPlaysByDayOfWeek({
@@ -34,8 +42,13 @@ class GraphService {
     required int timeRange,
     int? userId,
     bool? grouping,
-  }) =>
-      _graphMethodWithYAxis('get_plays_by_dayofweek', yAxis, timeRange, userId, grouping);
+  }) => _graphMethodWithYAxis(
+    'get_plays_by_dayofweek',
+    yAxis,
+    timeRange,
+    userId,
+    grouping,
+  );
 
   /// Returns play counts or durations grouped by hour of the day over [timeRange] days.
   Future<GraphData> getPlaysByHourOfDay({
@@ -43,8 +56,13 @@ class GraphService {
     required int timeRange,
     int? userId,
     bool? grouping,
-  }) =>
-      _graphMethodWithYAxis('get_plays_by_hourofday', yAxis, timeRange, userId, grouping);
+  }) => _graphMethodWithYAxis(
+    'get_plays_by_hourofday',
+    yAxis,
+    timeRange,
+    userId,
+    grouping,
+  );
 
   /// Returns play counts or durations grouped by source video resolution over [timeRange] days.
   Future<GraphData> getPlaysBySourceResolution({
@@ -52,8 +70,13 @@ class GraphService {
     required int timeRange,
     int? userId,
     bool? grouping,
-  }) =>
-      _graphMethodWithYAxis('get_plays_by_source_resolution', yAxis, timeRange, userId, grouping);
+  }) => _graphMethodWithYAxis(
+    'get_plays_by_source_resolution',
+    yAxis,
+    timeRange,
+    userId,
+    grouping,
+  );
 
   /// Returns play counts or durations grouped by stream video resolution over [timeRange] days.
   Future<GraphData> getPlaysByStreamResolution({
@@ -61,8 +84,13 @@ class GraphService {
     required int timeRange,
     int? userId,
     bool? grouping,
-  }) =>
-      _graphMethodWithYAxis('get_plays_by_stream_resolution', yAxis, timeRange, userId, grouping);
+  }) => _graphMethodWithYAxis(
+    'get_plays_by_stream_resolution',
+    yAxis,
+    timeRange,
+    userId,
+    grouping,
+  );
 
   /// Returns play counts or durations grouped by stream type (direct play, transcode, etc.) over [timeRange] days.
   Future<GraphData> getPlaysByStreamType({
@@ -70,8 +98,13 @@ class GraphService {
     required int timeRange,
     int? userId,
     bool? grouping,
-  }) =>
-      _graphMethodWithYAxis('get_plays_by_stream_type', yAxis, timeRange, userId, grouping);
+  }) => _graphMethodWithYAxis(
+    'get_plays_by_stream_type',
+    yAxis,
+    timeRange,
+    userId,
+    grouping,
+  );
 
   /// Returns play counts or durations for the top 10 client platforms over [timeRange] days.
   Future<GraphData> getPlaysByTop10Platforms({
@@ -79,8 +112,13 @@ class GraphService {
     required int timeRange,
     int? userId,
     bool? grouping,
-  }) =>
-      _graphMethodWithYAxis('get_plays_by_top_10_platforms', yAxis, timeRange, userId, grouping);
+  }) => _graphMethodWithYAxis(
+    'get_plays_by_top_10_platforms',
+    yAxis,
+    timeRange,
+    userId,
+    grouping,
+  );
 
   /// Returns play counts or durations for the top 10 users over [timeRange] days.
   Future<GraphData> getPlaysByTop10Users({
@@ -88,8 +126,13 @@ class GraphService {
     required int timeRange,
     int? userId,
     bool? grouping,
-  }) =>
-      _graphMethodWithYAxis('get_plays_by_top_10_users', yAxis, timeRange, userId, grouping);
+  }) => _graphMethodWithYAxis(
+    'get_plays_by_top_10_users',
+    yAxis,
+    timeRange,
+    userId,
+    grouping,
+  );
 
   /// Returns play counts or durations grouped by month over [timeRange] months.
   Future<GraphData> getPlaysByMonth({
@@ -97,8 +140,13 @@ class GraphService {
     required int timeRange,
     int? userId,
     bool? grouping,
-  }) =>
-      _graphMethodWithYAxis('get_plays_per_month', yAxis, timeRange, userId, grouping);
+  }) => _graphMethodWithYAxis(
+    'get_plays_per_month',
+    yAxis,
+    timeRange,
+    userId,
+    grouping,
+  );
 
   /// Returns stream type breakdown for the top 10 platforms over [timeRange] days.
   Future<GraphData> getStreamTypeByTop10Platforms({
@@ -106,8 +154,13 @@ class GraphService {
     required int timeRange,
     int? userId,
     bool? grouping,
-  }) =>
-      _graphMethodWithYAxis('get_stream_type_by_top_10_platforms', yAxis, timeRange, userId, grouping);
+  }) => _graphMethodWithYAxis(
+    'get_stream_type_by_top_10_platforms',
+    yAxis,
+    timeRange,
+    userId,
+    grouping,
+  );
 
   /// Returns stream type breakdown for the top 10 users over [timeRange] days.
   Future<GraphData> getStreamTypeByTop10Users({
@@ -115,8 +168,13 @@ class GraphService {
     required int timeRange,
     int? userId,
     bool? grouping,
-  }) =>
-      _graphMethodWithYAxis('get_stream_type_by_top_10_users', yAxis, timeRange, userId, grouping);
+  }) => _graphMethodWithYAxis(
+    'get_stream_type_by_top_10_users',
+    yAxis,
+    timeRange,
+    userId,
+    grouping,
+  );
 
   Future<GraphData> _graphMethodWithYAxis(
     String cmd,
@@ -125,7 +183,10 @@ class GraphService {
     int? userId,
     bool? grouping,
   ) {
-    final params = <String, dynamic>{'y_axis': yAxis.value, 'time_range': timeRange};
+    final params = <String, dynamic>{
+      'y_axis': yAxis.value,
+      'time_range': timeRange,
+    };
     if (userId != null) params['user_id'] = userId;
     if (grouping != null) params['grouping'] = grouping;
     return _graphData(cmd, params);

@@ -10,7 +10,10 @@ class DeviceService {
   ///
   /// [mobileDeviceId] identifies the device; [friendlyName] overrides
   /// the display name shown in Tautulli's mobile devices list.
-  Future<void> setMobileDeviceConfig({required int mobileDeviceId, String? friendlyName}) async {
+  Future<void> setMobileDeviceConfig({
+    required int mobileDeviceId,
+    String? friendlyName,
+  }) async {
     final params = <String, dynamic>{'mobile_device_id': mobileDeviceId};
     if (friendlyName != null) params['friendly_name'] = friendlyName;
     await _client.execute('set_mobile_device_config', params: params);
@@ -18,7 +21,10 @@ class DeviceService {
 
   /// Removes a mobile device registration from Tautulli.
   Future<void> deleteMobileDevice({required int mobileDeviceId}) async {
-    await _client.execute('delete_mobile_device', params: {'mobile_device_id': mobileDeviceId});
+    await _client.execute(
+      'delete_mobile_device',
+      params: {'mobile_device_id': mobileDeviceId},
+    );
   }
 
   /// Registers a mobile device with Tautulli and returns server info.
@@ -43,6 +49,8 @@ class DeviceService {
     if (minVersion != null) params['min_version'] = minVersion;
 
     final response = await _client.execute('register_device', params: params);
-    return RegisterDeviceResult.fromJson(response['data'] as Map<String, dynamic>? ?? {});
+    return RegisterDeviceResult.fromJson(
+      response['data'] as Map<String, dynamic>? ?? {},
+    );
   }
 }

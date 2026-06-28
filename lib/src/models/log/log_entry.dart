@@ -20,22 +20,28 @@ class LogEntry {
   /// The log message text.
   final String? message;
 
-  const LogEntry({this.rowId, this.timestamp, this.level, this.thread, this.message});
+  const LogEntry({
+    this.rowId,
+    this.timestamp,
+    this.level,
+    this.thread,
+    this.message,
+  });
 
   /// Parses a [LogEntry] from a Tautulli API JSON map.
   factory LogEntry.fromJson(Map<String, dynamic> json) => LogEntry(
-        timestamp: Cast.castToString(json['time']),
-        level: Cast.castToString(json['loglevel']),
-        thread: Cast.castToString(json['thread']),
-        message: Cast.castToString(json['msg']),
-      );
+    timestamp: Cast.castToString(json['time']),
+    level: Cast.castToString(json['loglevel']),
+    thread: Cast.castToString(json['thread']),
+    message: Cast.castToString(json['msg']),
+  );
 
   /// Parses a [LogEntry] from a positional list `[rowId, timestamp, level, thread, message]`.
   static LogEntry fromList(List<dynamic> list) => LogEntry(
-        rowId: list.isNotEmpty ? Cast.castToInt(list[0]) : null,
-        timestamp: list.length > 1 ? Cast.castToString(list[1]) : null,
-        level: list.length > 2 ? Cast.castToString(list[2]) : null,
-        thread: list.length > 3 ? Cast.castToString(list[3]) : null,
-        message: list.length > 4 ? Cast.castToString(list[4]) : null,
-      );
+    rowId: list.isNotEmpty ? Cast.castToInt(list[0]) : null,
+    timestamp: list.length > 1 ? Cast.castToString(list[1]) : null,
+    level: list.length > 2 ? Cast.castToString(list[2]) : null,
+    thread: list.length > 3 ? Cast.castToString(list[3]) : null,
+    message: list.length > 4 ? Cast.castToString(list[4]) : null,
+  );
 }

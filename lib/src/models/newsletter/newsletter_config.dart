@@ -32,7 +32,8 @@ class NewsletterConfig {
   });
 
   /// Parses a [NewsletterConfig] from a Tautulli API JSON map.
-  factory NewsletterConfig.fromJson(Map<String, dynamic> json) => NewsletterConfig(
+  factory NewsletterConfig.fromJson(Map<String, dynamic> json) =>
+      NewsletterConfig(
         newsletterId: Cast.castToInt(json['id']),
         agentId: Cast.castToInt(json['agent_id']),
         agentName: Cast.castToString(json['agent_name']),

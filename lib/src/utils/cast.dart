@@ -1,7 +1,7 @@
 /// Coercion helpers for raw Tautulli API values.
 ///
 /// The Tautulli API frequently returns integers as strings and booleans as
-/// numbers. All [fromJson] coercions go through static methods here rather than
+/// numbers. All `fromJson` coercions go through static methods here rather than
 /// ad-hoc inline logic in model constructors.
 class Cast {
   Cast._();

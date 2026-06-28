@@ -26,7 +26,10 @@ void main() {
   group('GraphService.getPlaysByDate()', () {
     test('sends correct cmd and y_axis param', () async {
       makeClient('graph/get_plays_by_date.json');
-      await client.graphs.getPlaysByDate(yAxis: PlayMetricType.plays, timeRange: 30);
+      await client.graphs.getPlaysByDate(
+        yAxis: PlayMetricType.plays,
+        timeRange: 30,
+      );
       expect(lastRequestUri.queryParameters['cmd'], 'get_plays_by_date');
       expect(lastRequestUri.queryParameters['y_axis'], 'plays');
       expect(lastRequestUri.queryParameters['time_range'], '30');
@@ -34,7 +37,10 @@ void main() {
 
     test('parses categories and series', () async {
       makeClient('graph/get_plays_by_date.json');
-      final data = await client.graphs.getPlaysByDate(yAxis: PlayMetricType.plays, timeRange: 30);
+      final data = await client.graphs.getPlaysByDate(
+        yAxis: PlayMetricType.plays,
+        timeRange: 30,
+      );
       expect(data.categories, hasLength(3));
       expect(data.categories.first, '2024-01-01');
       expect(data.series, hasLength(4));
@@ -49,7 +55,10 @@ void main() {
     test('sends correct cmd', () async {
       makeClient('graph/get_concurrent_streams.json');
       await client.graphs.getConcurrentStreamsByStreamType(timeRange: 14);
-      expect(lastRequestUri.queryParameters['cmd'], 'get_concurrent_streams_by_stream_type');
+      expect(
+        lastRequestUri.queryParameters['cmd'],
+        'get_concurrent_streams_by_stream_type',
+      );
       expect(lastRequestUri.queryParameters['time_range'], '14');
     });
   });
@@ -57,7 +66,10 @@ void main() {
   group('GraphService.getPlaysByDayOfWeek()', () {
     test('sends correct cmd', () async {
       makeClient('graph/get_plays_by_date.json');
-      await client.graphs.getPlaysByDayOfWeek(yAxis: PlayMetricType.time, timeRange: 30);
+      await client.graphs.getPlaysByDayOfWeek(
+        yAxis: PlayMetricType.time,
+        timeRange: 30,
+      );
       expect(lastRequestUri.queryParameters['cmd'], 'get_plays_by_dayofweek');
       expect(lastRequestUri.queryParameters['y_axis'], 'duration');
     });

@@ -47,9 +47,14 @@ void main() {
           domain: 'tautulli.local',
           apiKey: 'bad',
         ),
-        httpClient: MockClient((_) async => http.Response(fixture('error_invalid_apikey.json'), 200)),
+        httpClient: MockClient(
+          (_) async => http.Response(fixture('error_invalid_apikey.json'), 200),
+        ),
       );
-      expect(() => client.plex.getServerInfo(), throwsA(isA<TautulliInvalidApiKeyException>()));
+      expect(
+        () => client.plex.getServerInfo(),
+        throwsA(isA<TautulliInvalidApiKeyException>()),
+      );
     });
   });
 

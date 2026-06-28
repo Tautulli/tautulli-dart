@@ -194,11 +194,15 @@ class HomeStat {
       rowId: Cast.castToInt(json['row_id']),
       sectionId: Cast.castToInt(json['section_id']),
       sectionName: Cast.castToString(json['section_name']),
-      sectionType: SectionType.fromString(Cast.castToString(json['section_type'])),
+      sectionType: SectionType.fromString(
+        Cast.castToString(json['section_type']),
+      ),
       started: _dateTimeFromEpochSeconds(json['started']),
       thumb: Cast.castToString(json['thumb']),
       title: Cast.castToString(json['title']),
-      totalDuration: _durationFromSeconds(Cast.castToInt(json['total_duration'])),
+      totalDuration: _durationFromSeconds(
+        Cast.castToInt(json['total_duration']),
+      ),
       totalPlays: Cast.castToInt(json['total_plays']),
       user: Cast.castToString(json['user']),
       userId: Cast.castToInt(json['user_id']),

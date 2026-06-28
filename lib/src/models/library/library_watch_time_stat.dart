@@ -13,11 +13,7 @@ class LibraryWatchTimeStat {
   /// Total watch time in seconds in this time window.
   final int? totalTime;
 
-  const LibraryWatchTimeStat({
-    this.queryDays,
-    this.totalPlays,
-    this.totalTime,
-  });
+  const LibraryWatchTimeStat({this.queryDays, this.totalPlays, this.totalTime});
 
   /// Parses a [LibraryWatchTimeStat] from a Tautulli API JSON map.
   factory LibraryWatchTimeStat.fromJson(Map<String, dynamic> json) {

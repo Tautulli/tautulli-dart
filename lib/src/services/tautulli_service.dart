@@ -20,7 +20,9 @@ class TautulliService {
     final params = <String, dynamic>{};
     if (key != null) params['key'] = key;
     final response = await _client.execute('get_settings', params: params);
-    return TautulliSettings.fromJson(response['data'] as Map<String, dynamic>? ?? {});
+    return TautulliSettings.fromJson(
+      response['data'] as Map<String, dynamic>? ?? {},
+    );
   }
 
   /// Returns Tautulli version, branch, and installation metadata.
@@ -56,7 +58,9 @@ class TautulliService {
   /// Use with caution — no safety checks are applied.
   Future<List<Map<String, dynamic>>> sql({required String query}) async {
     final response = await _client.execute('sql', params: {'query': query});
-    return (response['data'] as List? ?? []).whereType<Map<String, dynamic>>().toList();
+    return (response['data'] as List? ?? [])
+        .whereType<Map<String, dynamic>>()
+        .toList();
   }
 
   /// Downloads the Tautulli configuration file as raw bytes.
@@ -111,11 +115,15 @@ class TautulliService {
 
   // ignore: avoid_returning_null_for_void
   Future<void> importConfig() => Future.error(
-        UnimplementedError('importConfig requires multipart POST — not yet implemented'),
-      );
+    UnimplementedError(
+      'importConfig requires multipart POST — not yet implemented',
+    ),
+  );
 
   // ignore: avoid_returning_null_for_void
   Future<void> importDatabase() => Future.error(
-        UnimplementedError('importDatabase requires multipart POST — not yet implemented'),
-      );
+    UnimplementedError(
+      'importDatabase requires multipart POST — not yet implemented',
+    ),
+  );
 }

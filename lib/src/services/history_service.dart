@@ -43,13 +43,17 @@ class HistoryService {
     if (userId != null) params['user_id'] = userId;
     if (ratingKey != null) params['rating_key'] = ratingKey;
     if (parentRatingKey != null) params['parent_rating_key'] = parentRatingKey;
-    if (grandparentRatingKey != null) params['grandparent_rating_key'] = grandparentRatingKey;
+    if (grandparentRatingKey != null) {
+      params['grandparent_rating_key'] = grandparentRatingKey;
+    }
     if (startDate != null) params['start_date'] = _formatDate(startDate);
     if (before != null) params['before'] = _formatDate(before);
     if (after != null) params['after'] = _formatDate(after);
     if (sectionId != null) params['section_id'] = sectionId;
     if (mediaType != null) params['media_type'] = mediaType;
-    if (transcodeDecision != null) params['transcode_decision'] = transcodeDecision;
+    if (transcodeDecision != null) {
+      params['transcode_decision'] = transcodeDecision;
+    }
     if (guid != null) params['guid'] = guid;
     if (orderColumn != null) params['order_column'] = orderColumn;
     if (orderDir != null) params['order_dir'] = orderDir;
@@ -100,7 +104,10 @@ class HistoryService {
     final response = await _client.execute('get_home_stats', params: params);
     final data = response['data'];
     if (data is! List) return [];
-    return data.whereType<Map<String, dynamic>>().map(HomeStatGroup.fromJson).toList();
+    return data
+        .whereType<Map<String, dynamic>>()
+        .map(HomeStatGroup.fromJson)
+        .toList();
   }
 
   /// Deletes watch history entries matching the given filters.
@@ -119,7 +126,9 @@ class HistoryService {
     if (sectionId != null) params['section_id'] = sectionId;
     if (ratingKey != null) params['rating_key'] = ratingKey;
     if (parentRatingKey != null) params['parent_rating_key'] = parentRatingKey;
-    if (grandparentRatingKey != null) params['grandparent_rating_key'] = grandparentRatingKey;
+    if (grandparentRatingKey != null) {
+      params['grandparent_rating_key'] = grandparentRatingKey;
+    }
     if (rowIds != null) params['row_ids'] = rowIds;
     await _client.execute('delete_history', params: params);
   }

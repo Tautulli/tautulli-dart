@@ -39,13 +39,13 @@ class ExportEntry {
 
   /// Parses an [ExportEntry] from a Tautulli API JSON map.
   factory ExportEntry.fromJson(Map<String, dynamic> json) => ExportEntry(
-        exportId: Cast.castToInt(json['export_id']),
-        timestamp: Cast.castToInt(json['timestamp']),
-        title: Cast.castToString(json['title']),
-        fileName: Cast.castToString(json['file_name']),
-        mediaType: Cast.castToString(json['media_type']),
-        fileFormat: Cast.castToString(json['file_format']),
-        totalItems: Cast.castToInt(json['total_items']),
-        complete: Cast.castToBool(json['complete']),
-      );
+    exportId: Cast.castToInt(json['export_id']),
+    timestamp: Cast.castToInt(json['timestamp']),
+    title: Cast.castToString(json['title']),
+    fileName: Cast.castToString(json['file_name']),
+    mediaType: Cast.castToString(json['media_type']),
+    fileFormat: Cast.castToString(json['file_format']),
+    totalItems: Cast.castToInt(json['total_items']),
+    complete: Cast.castToBool(json['complete']),
+  );
 }

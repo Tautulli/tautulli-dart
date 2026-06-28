@@ -84,7 +84,10 @@ void main() {
     test('sends correct cmd', () async {
       makeClient('user/get_user_watch_time_stats.json');
       await client.users.getUserWatchTimeStats(userId: 7);
-      expect(lastRequestUri.queryParameters['cmd'], 'get_user_watch_time_stats');
+      expect(
+        lastRequestUri.queryParameters['cmd'],
+        'get_user_watch_time_stats',
+      );
     });
 
     test('parses watch time stats', () async {

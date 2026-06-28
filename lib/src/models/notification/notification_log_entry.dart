@@ -36,7 +36,8 @@ class NotificationLogEntry {
   });
 
   /// Parses a [NotificationLogEntry] from a Tautulli API JSON map.
-  factory NotificationLogEntry.fromJson(Map<String, dynamic> json) => NotificationLogEntry(
+  factory NotificationLogEntry.fromJson(Map<String, dynamic> json) =>
+      NotificationLogEntry(
         id: Cast.castToInt(json['id']),
         timestamp: Cast.castToInt(json['timestamp']),
         notifierType: Cast.castToString(json['notifier_type']),

@@ -1,5 +1,11 @@
 # Changelog
 
+## 3.0.1
+
+- Fix unresolved dartdoc reference in `Cast`
+- Apply `dart format` to all source files
+- Expand `pubspec.yaml` description to meet pub.dev guidelines
+
 ## 3.0.0
 
 - Ownership of this package was transferred to the Tautulli team and v3.0.0 is a complete rewrite

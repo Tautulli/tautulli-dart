@@ -59,7 +59,9 @@ void main() {
 
     test('parses media info fields', () async {
       makeClient('library/get_library_media_info.json');
-      final item = (await client.libraries.getLibraryMediaInfo(sectionId: 1)).data.first;
+      final item = (await client.libraries.getLibraryMediaInfo(
+        sectionId: 1,
+      )).data.first;
       expect(item.bitrate, 8000);
       expect(item.container, 'mkv');
       expect(item.videoCodec, 'h264');
@@ -91,12 +93,17 @@ void main() {
     test('sends correct cmd', () async {
       makeClient('library/get_library_watch_time_stats.json');
       await client.libraries.getLibraryWatchTimeStats(sectionId: 1);
-      expect(lastRequestUri.queryParameters['cmd'], 'get_library_watch_time_stats');
+      expect(
+        lastRequestUri.queryParameters['cmd'],
+        'get_library_watch_time_stats',
+      );
     });
 
     test('parses watch time stat list', () async {
       makeClient('library/get_library_watch_time_stats.json');
-      final result = await client.libraries.getLibraryWatchTimeStats(sectionId: 1);
+      final result = await client.libraries.getLibraryWatchTimeStats(
+        sectionId: 1,
+      );
       expect(result, hasLength(4));
       expect(result.first.queryDays, 1);
       expect(result.last.queryDays, 0);
@@ -104,7 +111,10 @@ void main() {
 
     test('sends query_days param', () async {
       makeClient('library/get_library_watch_time_stats.json');
-      await client.libraries.getLibraryWatchTimeStats(sectionId: 1, queryDays: '1,7,30');
+      await client.libraries.getLibraryWatchTimeStats(
+        sectionId: 1,
+        queryDays: '1,7,30',
+      );
       expect(lastRequestUri.queryParameters['query_days'], '1,7,30');
     });
   });
@@ -171,7 +181,10 @@ void main() {
 
     test('sends include_last_accessed param', () async {
       makeClient('library/get_library.json');
-      await client.libraries.getLibrary(sectionId: 1, includeLastAccessed: true);
+      await client.libraries.getLibrary(
+        sectionId: 1,
+        includeLastAccessed: true,
+      );
       expect(lastRequestUri.queryParameters['include_last_accessed'], 'true');
     });
   });

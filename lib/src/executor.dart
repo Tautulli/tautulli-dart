@@ -18,8 +18,5 @@ abstract class TautulliExecutor {
   ///
   /// Used for binary-download endpoints such as `download_log` and
   /// `download_config` where the response body is a file rather than JSON.
-  Future<Uint8List> executeDownload(
-    String cmd, {
-    Map<String, dynamic> params,
-  });
+  Future<Uint8List> executeDownload(String cmd, {Map<String, dynamic> params});
 }

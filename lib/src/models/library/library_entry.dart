@@ -79,25 +79,27 @@ class LibraryEntry {
 
   /// Parses a [LibraryEntry] from a Tautulli API JSON map.
   factory LibraryEntry.fromJson(Map<String, dynamic> json) => LibraryEntry(
-        art: Cast.castToString(json['art']),
-        childCount: Cast.castToInt(json['child_count']),
-        count: Cast.castToInt(json['count']),
-        deletedSection: Cast.castToBool(json['deleted_section']),
-        doNotify: Cast.castToBool(json['do_notify']),
-        doNotifyCreated: Cast.castToBool(json['do_notify_created']),
-        isActive: Cast.castToBool(json['is_active']),
-        keepHistory: Cast.castToBool(json['keep_history']),
-        lastAccessed: _dateTimeFromEpochSeconds(Cast.castToInt(json['last_accessed'])),
-        libraryArt: Cast.castToString(json['library_art']),
-        libraryThumb: Cast.castToString(json['library_thumb']),
-        parentCount: Cast.castToInt(json['parent_count']),
-        rowId: Cast.castToInt(json['row_id']),
-        sectionId: Cast.castToInt(json['section_id']),
-        sectionName: Cast.castToString(json['section_name']),
-        sectionType: Cast.castToString(json['section_type']),
-        serverId: Cast.castToString(json['server_id']),
-        thumb: Cast.castToString(json['thumb']),
-      );
+    art: Cast.castToString(json['art']),
+    childCount: Cast.castToInt(json['child_count']),
+    count: Cast.castToInt(json['count']),
+    deletedSection: Cast.castToBool(json['deleted_section']),
+    doNotify: Cast.castToBool(json['do_notify']),
+    doNotifyCreated: Cast.castToBool(json['do_notify_created']),
+    isActive: Cast.castToBool(json['is_active']),
+    keepHistory: Cast.castToBool(json['keep_history']),
+    lastAccessed: _dateTimeFromEpochSeconds(
+      Cast.castToInt(json['last_accessed']),
+    ),
+    libraryArt: Cast.castToString(json['library_art']),
+    libraryThumb: Cast.castToString(json['library_thumb']),
+    parentCount: Cast.castToInt(json['parent_count']),
+    rowId: Cast.castToInt(json['row_id']),
+    sectionId: Cast.castToInt(json['section_id']),
+    sectionName: Cast.castToString(json['section_name']),
+    sectionType: Cast.castToString(json['section_type']),
+    serverId: Cast.castToString(json['server_id']),
+    thumb: Cast.castToString(json['thumb']),
+  );
 
   static DateTime? _dateTimeFromEpochSeconds(int? seconds) {
     if (seconds == null) return null;

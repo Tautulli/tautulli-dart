@@ -17,7 +17,9 @@ class GraphData {
   /// Parses [GraphData] from a Tautulli API JSON map.
   factory GraphData.fromJson(Map<String, dynamic> json) {
     return GraphData(
-      categories: (json['categories'] as List? ?? []).map((e) => e.toString()).toList(),
+      categories: (json['categories'] as List? ?? [])
+          .map((e) => e.toString())
+          .toList(),
       series: (json['series'] as List? ?? [])
           .whereType<Map<String, dynamic>>()
           .map(GraphSeries.fromJson)

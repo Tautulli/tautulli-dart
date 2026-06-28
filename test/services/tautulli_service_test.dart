@@ -63,7 +63,9 @@ void main() {
         httpClient: MockClient((request) async {
           lastRequestUri = request.url;
           return http.Response(
-            jsonEncode({'response': {'result': 'success', 'message': null, 'data': null}}),
+            jsonEncode({
+              'response': {'result': 'success', 'message': null, 'data': null},
+            }),
             200,
           );
         }),

@@ -11,7 +11,9 @@ class PlexService {
   /// Returns information about the connected Plex Media Server.
   Future<PlexServerInfo> getServerInfo() async {
     final response = await _client.execute('get_server_info');
-    return PlexServerInfo.fromJson(response['data'] as Map<String, dynamic>? ?? {});
+    return PlexServerInfo.fromJson(
+      response['data'] as Map<String, dynamic>? ?? {},
+    );
   }
 
   /// Returns identity information (machine identifier) for the connected Plex server.
@@ -27,7 +29,12 @@ class PlexService {
   }
 
   /// Returns the Plex server ID (machine identifier) for the given [hostname] and [port].
-  Future<String> getServerId({required String hostname, required int port, bool? ssl, bool? remote}) async {
+  Future<String> getServerId({
+    required String hostname,
+    required int port,
+    bool? ssl,
+    bool? remote,
+  }) async {
     final params = <String, dynamic>{'hostname': hostname, 'port': port};
     if (ssl != null) params['ssl'] = ssl;
     if (remote != null) params['remote'] = remote;
@@ -38,19 +45,26 @@ class PlexService {
   /// Returns all Plex servers accessible to the account as a list of raw maps.
   Future<List<Map<String, dynamic>>> getServerList() async {
     final response = await _client.execute('get_server_list');
-    return (response['data'] as List? ?? []).whereType<Map<String, dynamic>>().toList();
+    return (response['data'] as List? ?? [])
+        .whereType<Map<String, dynamic>>()
+        .toList();
   }
 
   /// Returns the value of a single Plex server preference by its key [pref].
   Future<String> getServerPref({required String pref}) async {
-    final response = await _client.execute('get_server_pref', params: {'pref': pref});
+    final response = await _client.execute(
+      'get_server_pref',
+      params: {'pref': pref},
+    );
     return (response['data'] as String?) ?? '';
   }
 
   /// Returns detailed information about all servers as a list of raw maps.
   Future<List<Map<String, dynamic>>> getServersInfo() async {
     final response = await _client.execute('get_servers_info');
-    return (response['data'] as List? ?? []).whereType<Map<String, dynamic>>().toList();
+    return (response['data'] as List? ?? [])
+        .whereType<Map<String, dynamic>>()
+        .toList();
   }
 
   /// Returns available Plex Media Server update information.
@@ -62,7 +76,10 @@ class PlexService {
   /// Returns the current status of the Plex Media Server.
   ///
   /// Optionally filter to a specific session with [sessionKey] or [sessionId].
-  Future<Map<String, dynamic>> serverStatus({int? sessionKey, String? sessionId}) async {
+  Future<Map<String, dynamic>> serverStatus({
+    int? sessionKey,
+    String? sessionId,
+  }) async {
     final params = <String, dynamic>{};
     if (sessionKey != null) params['session_key'] = sessionKey;
     if (sessionId != null) params['session_id'] = sessionId;
@@ -71,16 +88,27 @@ class PlexService {
   }
 
   /// Returns synced items for a Plex client device.
-  Future<List<Map<String, dynamic>>> getSyncedItems({String? machineId, int? userId}) async {
+  Future<List<Map<String, dynamic>>> getSyncedItems({
+    String? machineId,
+    int? userId,
+  }) async {
     final params = <String, dynamic>{};
     if (machineId != null) params['machine_id'] = machineId;
     if (userId != null) params['user_id'] = userId;
     final response = await _client.execute('get_synced_items', params: params);
-    return (response['data'] as List? ?? []).whereType<Map<String, dynamic>>().toList();
+    return (response['data'] as List? ?? [])
+        .whereType<Map<String, dynamic>>()
+        .toList();
   }
 
   /// Deletes a synced item from Plex.
-  Future<void> deleteSyncedItem({required String machineId, required int syncId}) async {
-    await _client.execute('delete_synced_item', params: {'machine_id': machineId, 'sync_id': syncId});
+  Future<void> deleteSyncedItem({
+    required String machineId,
+    required int syncId,
+  }) async {
+    await _client.execute(
+      'delete_synced_item',
+      params: {'machine_id': machineId, 'sync_id': syncId},
+    );
   }
 }

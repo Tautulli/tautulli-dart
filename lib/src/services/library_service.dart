@@ -38,7 +38,10 @@ class LibraryService {
     if (length != null) params['length'] = length;
     if (search != null) params['search'] = search;
 
-    final response = await _client.execute('get_libraries_table', params: params);
+    final response = await _client.execute(
+      'get_libraries_table',
+      params: params,
+    );
     final data = response['data'] as Map<String, dynamic>? ?? {};
     final entries = (data['data'] as List? ?? [])
         .whereType<Map<String, dynamic>>()
@@ -76,7 +79,10 @@ class LibraryService {
     if (search != null) params['search'] = search;
     if (refresh != null) params['refresh'] = refresh;
 
-    final response = await _client.execute('get_library_media_info', params: params);
+    final response = await _client.execute(
+      'get_library_media_info',
+      params: params,
+    );
     final data = response['data'] as Map<String, dynamic>? ?? {};
     final items = (data['data'] as List? ?? [])
         .whereType<Map<String, dynamic>>()
@@ -97,10 +103,16 @@ class LibraryService {
     final params = <String, dynamic>{'section_id': sectionId};
     if (grouping != null) params['grouping'] = grouping;
 
-    final response = await _client.execute('get_library_user_stats', params: params);
+    final response = await _client.execute(
+      'get_library_user_stats',
+      params: params,
+    );
     final data = response['data'];
     if (data is! List) return [];
-    return data.whereType<Map<String, dynamic>>().map(LibraryUserStat.fromJson).toList();
+    return data
+        .whereType<Map<String, dynamic>>()
+        .map(LibraryUserStat.fromJson)
+        .toList();
   }
 
   /// Returns watch time statistics for a library section over configurable time periods.
@@ -113,10 +125,16 @@ class LibraryService {
     if (grouping != null) params['grouping'] = grouping;
     if (queryDays != null) params['query_days'] = queryDays;
 
-    final response = await _client.execute('get_library_watch_time_stats', params: params);
+    final response = await _client.execute(
+      'get_library_watch_time_stats',
+      params: params,
+    );
     final data = response['data'];
     if (data is! List) return [];
-    return data.whereType<Map<String, dynamic>>().map(LibraryWatchTimeStat.fromJson).toList();
+    return data
+        .whereType<Map<String, dynamic>>()
+        .map(LibraryWatchTimeStat.fromJson)
+        .toList();
   }
 
   /// Returns the [count] most recently added items, optionally filtered by section or type.
@@ -131,33 +149,52 @@ class LibraryService {
     if (mediaType != null) params['media_type'] = mediaType.value;
     if (sectionId != null) params['section_id'] = sectionId;
 
-    final response = await _client.execute('get_recently_added', params: params);
+    final response = await _client.execute(
+      'get_recently_added',
+      params: params,
+    );
     final data = response['data'];
     if (data is! Map<String, dynamic>) return [];
     final list = data['recently_added'] as List? ?? [];
-    return list.whereType<Map<String, dynamic>>().map(RecentlyAddedItem.fromJson).toList();
+    return list
+        .whereType<Map<String, dynamic>>()
+        .map(RecentlyAddedItem.fromJson)
+        .toList();
   }
 
   /// Returns summary information for all Plex library sections.
   Future<List<LibraryEntry>> getLibraries() async {
     final response = await _client.execute('get_libraries');
-    return (response['data'] as List? ?? []).whereType<Map<String, dynamic>>().map(LibraryEntry.fromJson).toList();
+    return (response['data'] as List? ?? [])
+        .whereType<Map<String, dynamic>>()
+        .map(LibraryEntry.fromJson)
+        .toList();
   }
 
   /// Returns summary information for a single library section by [sectionId].
   ///
   /// Pass `includeLastAccessed: true` to include the last-accessed timestamp.
-  Future<LibraryEntry> getLibrary({required int sectionId, bool? includeLastAccessed}) async {
+  Future<LibraryEntry> getLibrary({
+    required int sectionId,
+    bool? includeLastAccessed,
+  }) async {
     final params = <String, dynamic>{'section_id': sectionId};
-    if (includeLastAccessed != null) params['include_last_accessed'] = includeLastAccessed;
+    if (includeLastAccessed != null) {
+      params['include_last_accessed'] = includeLastAccessed;
+    }
     final response = await _client.execute('get_library', params: params);
-    return LibraryEntry.fromJson(response['data'] as Map<String, dynamic>? ?? {});
+    return LibraryEntry.fromJson(
+      response['data'] as Map<String, dynamic>? ?? {},
+    );
   }
 
   /// Returns a lightweight list of library section IDs, names, and types.
   Future<List<LibraryName>> getLibraryNames() async {
     final response = await _client.execute('get_library_names');
-    return (response['data'] as List? ?? []).whereType<Map<String, dynamic>>().map(LibraryName.fromJson).toList();
+    return (response['data'] as List? ?? [])
+        .whereType<Map<String, dynamic>>()
+        .map(LibraryName.fromJson)
+        .toList();
   }
 
   /// Returns a paginated table of Plex collections.
@@ -177,10 +214,15 @@ class LibraryService {
     if (length != null) params['length'] = length;
     if (search != null) params['search'] = search;
 
-    final response = await _client.execute('get_collections_table', params: params);
+    final response = await _client.execute(
+      'get_collections_table',
+      params: params,
+    );
     final data = response['data'] as Map<String, dynamic>? ?? {};
     return PagedResult(
-      data: (data['data'] as List? ?? []).whereType<Map<String, dynamic>>().toList(),
+      data: (data['data'] as List? ?? [])
+          .whereType<Map<String, dynamic>>()
+          .toList(),
       recordsTotal: Cast.castToInt(data['recordsTotal']),
       recordsFiltered: Cast.castToInt(data['recordsFiltered']),
     );
@@ -203,10 +245,15 @@ class LibraryService {
     if (length != null) params['length'] = length;
     if (search != null) params['search'] = search;
 
-    final response = await _client.execute('get_playlists_table', params: params);
+    final response = await _client.execute(
+      'get_playlists_table',
+      params: params,
+    );
     final data = response['data'] as Map<String, dynamic>? ?? {};
     return PagedResult(
-      data: (data['data'] as List? ?? []).whereType<Map<String, dynamic>>().toList(),
+      data: (data['data'] as List? ?? [])
+          .whereType<Map<String, dynamic>>()
+          .toList(),
       recordsTotal: Cast.castToInt(data['recordsTotal']),
       recordsFiltered: Cast.castToInt(data['recordsFiltered']),
     );
@@ -237,8 +284,14 @@ class LibraryService {
   }
 
   /// Marks a library section as deleted in Tautulli's database.
-  Future<void> deleteLibrary({required int sectionId, required String sectionName}) async {
-    await _client.execute('delete_library', params: {'section_id': sectionId, 'section_name': sectionName});
+  Future<void> deleteLibrary({
+    required int sectionId,
+    required String sectionName,
+  }) async {
+    await _client.execute(
+      'delete_library',
+      params: {'section_id': sectionId, 'section_name': sectionName},
+    );
   }
 
   /// Deletes all watch history for the library identified by [sectionId].
@@ -247,18 +300,30 @@ class LibraryService {
     required String sectionName,
     String? rowIds,
   }) async {
-    final params = <String, dynamic>{'section_id': sectionId, 'section_name': sectionName};
+    final params = <String, dynamic>{
+      'section_id': sectionId,
+      'section_name': sectionName,
+    };
     if (rowIds != null) params['row_ids'] = rowIds;
     await _client.execute('delete_all_library_history', params: params);
   }
 
   /// Restores a previously deleted library section.
-  Future<void> undeleteLibrary({required int sectionId, required String sectionName}) async {
-    await _client.execute('undelete_library', params: {'section_id': sectionId, 'section_name': sectionName});
+  Future<void> undeleteLibrary({
+    required int sectionId,
+    required String sectionName,
+  }) async {
+    await _client.execute(
+      'undelete_library',
+      params: {'section_id': sectionId, 'section_name': sectionName},
+    );
   }
 
   /// Clears Tautulli's cached media info for the given library section.
   Future<void> deleteMediaInfoCache({required int sectionId}) async {
-    await _client.execute('delete_media_info_cache', params: {'section_id': sectionId});
+    await _client.execute(
+      'delete_media_info_cache',
+      params: {'section_id': sectionId},
+    );
   }
 }

@@ -201,12 +201,16 @@ class HistoryEntry {
       machineId: Cast.castToString(json['machine_id']),
       mediaIndex: Cast.castToInt(json['media_index']),
       mediaType: MediaType.fromString(Cast.castToString(json['media_type'])),
-      originallyAvailableAt: _dateTimeFromString(Cast.castToString(json['originally_available_at'])),
+      originallyAvailableAt: _dateTimeFromString(
+        Cast.castToString(json['originally_available_at']),
+      ),
       originalTitle: Cast.castToString(json['original_title']),
       parentMediaIndex: Cast.castToInt(json['parent_media_index']),
       parentRatingKey: Cast.castToInt(json['parent_rating_key']),
       parentTitle: Cast.castToString(json['parent_title']),
-      pausedCounter: _durationFromSeconds(Cast.castToInt(json['paused_counter'])),
+      pausedCounter: _durationFromSeconds(
+        Cast.castToInt(json['paused_counter']),
+      ),
       percentComplete: Cast.castToInt(json['percent_complete']),
       platform: Cast.castToString(json['platform']),
       player: Cast.castToString(json['player']),
@@ -222,11 +226,15 @@ class HistoryEntry {
       stopped: _dateTimeFromEpochSeconds(Cast.castToInt(json['stopped'])),
       thumb: Cast.castToString(json['thumb']),
       title: Cast.castToString(json['title']),
-      transcodeDecision: StreamDecision.fromString(Cast.castToString(json['transcode_decision'])),
+      transcodeDecision: StreamDecision.fromString(
+        Cast.castToString(json['transcode_decision']),
+      ),
       user: Cast.castToString(json['user']),
       userId: Cast.castToInt(json['user_id']),
       userThumb: Cast.castToString(json['user_thumb']),
-      watchedStatus: _watchedStatusFromNum(Cast.castToNum(json['watched_status'])),
+      watchedStatus: _watchedStatusFromNum(
+        Cast.castToNum(json['watched_status']),
+      ),
       year: Cast.castToInt(json['year']),
     );
   }
@@ -248,7 +256,11 @@ class HistoryEntry {
 
   static List<int>? _groupIdsFromString(String? groupIds) {
     if (groupIds == null) return null;
-    return groupIds.split(',').map((s) => int.tryParse(s.trim())).whereType<int>().toList();
+    return groupIds
+        .split(',')
+        .map((s) => int.tryParse(s.trim()))
+        .whereType<int>()
+        .toList();
   }
 
   static WatchedStatus? _watchedStatusFromNum(num? value) {

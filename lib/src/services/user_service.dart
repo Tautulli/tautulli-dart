@@ -32,18 +32,30 @@ class UserService {
     final response = await _client.execute('get_user_names');
     final data = response['data'];
     if (data is! List) return [];
-    return data.whereType<Map<String, dynamic>>().map(UserName.fromJson).toList();
+    return data
+        .whereType<Map<String, dynamic>>()
+        .map(UserName.fromJson)
+        .toList();
   }
 
   /// Returns per-player-platform statistics for the user identified by [userId].
-  Future<List<UserPlayerStat>> getUserPlayerStats({required int userId, bool? grouping}) async {
+  Future<List<UserPlayerStat>> getUserPlayerStats({
+    required int userId,
+    bool? grouping,
+  }) async {
     final params = <String, dynamic>{'user_id': userId};
     if (grouping != null) params['grouping'] = grouping;
 
-    final response = await _client.execute('get_user_player_stats', params: params);
+    final response = await _client.execute(
+      'get_user_player_stats',
+      params: params,
+    );
     final data = response['data'];
     if (data is! List) return [];
-    return data.whereType<Map<String, dynamic>>().map(UserPlayerStat.fromJson).toList();
+    return data
+        .whereType<Map<String, dynamic>>()
+        .map(UserPlayerStat.fromJson)
+        .toList();
   }
 
   /// Returns watch time statistics for the user identified by [userId] over time periods.
@@ -56,10 +68,16 @@ class UserService {
     if (grouping != null) params['grouping'] = grouping;
     if (queryDays != null) params['query_days'] = queryDays;
 
-    final response = await _client.execute('get_user_watch_time_stats', params: params);
+    final response = await _client.execute(
+      'get_user_watch_time_stats',
+      params: params,
+    );
     final data = response['data'];
     if (data is! List) return [];
-    return data.whereType<Map<String, dynamic>>().map(UserWatchTimeStat.fromJson).toList();
+    return data
+        .whereType<Map<String, dynamic>>()
+        .map(UserWatchTimeStat.fromJson)
+        .toList();
   }
 
   /// Returns profile data for all Tautulli users.
@@ -67,7 +85,10 @@ class UserService {
     final params = <String, dynamic>{};
     if (grouping != null) params['grouping'] = grouping;
     final response = await _client.execute('get_users', params: params);
-    return (response['data'] as List? ?? []).whereType<Map<String, dynamic>>().map(UserData.fromJson).toList();
+    return (response['data'] as List? ?? [])
+        .whereType<Map<String, dynamic>>()
+        .map(UserData.fromJson)
+        .toList();
   }
 
   /// Returns a paginated list of IP addresses used by the given user.
@@ -89,7 +110,9 @@ class UserService {
     final response = await _client.execute('get_user_ips', params: params);
     final data = response['data'] as Map<String, dynamic>? ?? {};
     return PagedResult(
-      data: (data['data'] as List? ?? []).whereType<Map<String, dynamic>>().toList(),
+      data: (data['data'] as List? ?? [])
+          .whereType<Map<String, dynamic>>()
+          .toList(),
       recordsTotal: Cast.castToInt(data['recordsTotal']),
       recordsFiltered: Cast.castToInt(data['recordsFiltered']),
     );
@@ -115,7 +138,9 @@ class UserService {
     final response = await _client.execute('get_user_logins', params: params);
     final data = response['data'] as Map<String, dynamic>? ?? {};
     return PagedResult(
-      data: (data['data'] as List? ?? []).whereType<Map<String, dynamic>>().toList(),
+      data: (data['data'] as List? ?? [])
+          .whereType<Map<String, dynamic>>()
+          .toList(),
       recordsTotal: Cast.castToInt(data['recordsTotal']),
       recordsFiltered: Cast.castToInt(data['recordsFiltered']),
     );
@@ -138,17 +163,33 @@ class UserService {
   }
 
   /// Marks the user as deleted in Tautulli's database.
-  Future<void> deleteUser({required int userId, required String username}) async {
-    await _client.execute('delete_user', params: {'user_id': userId, 'username': username});
+  Future<void> deleteUser({
+    required int userId,
+    required String username,
+  }) async {
+    await _client.execute(
+      'delete_user',
+      params: {'user_id': userId, 'username': username},
+    );
   }
 
   /// Restores a previously deleted user.
-  Future<void> undeleteUser({required int userId, required String username}) async {
-    await _client.execute('undelete_user', params: {'user_id': userId, 'username': username});
+  Future<void> undeleteUser({
+    required int userId,
+    required String username,
+  }) async {
+    await _client.execute(
+      'undelete_user',
+      params: {'user_id': userId, 'username': username},
+    );
   }
 
   /// Deletes all watch history entries for the given user.
-  Future<void> deleteAllUserHistory({required int userId, required String username, String? rowIds}) async {
+  Future<void> deleteAllUserHistory({
+    required int userId,
+    required String username,
+    String? rowIds,
+  }) async {
     final params = <String, dynamic>{'user_id': userId, 'username': username};
     if (rowIds != null) params['row_ids'] = rowIds;
     await _client.execute('delete_all_user_history', params: params);

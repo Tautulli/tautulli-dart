@@ -115,10 +115,18 @@ class RegisterDeviceResult {
       tautulliBranch: Cast.castToString(json['tautulli_branch']),
       tautulliCommit: Cast.castToString(json['tautulli_commit']),
       tautulliPlatform: Cast.castToString(json['tautulli_platform']),
-      tautulliPlatformDeviceName: Cast.castToString(json['tautulli_platform_device_name']),
-      tautulliPlatformLinuxDistro: Cast.castToString(json['tautulli_platform_linux_distro']),
-      tautulliPlatformRelease: Cast.castToString(json['tautulli_platform_release']),
-      tautulliPlatformVersion: Cast.castToString(json['tautulli_platform_version']),
+      tautulliPlatformDeviceName: Cast.castToString(
+        json['tautulli_platform_device_name'],
+      ),
+      tautulliPlatformLinuxDistro: Cast.castToString(
+        json['tautulli_platform_linux_distro'],
+      ),
+      tautulliPlatformRelease: Cast.castToString(
+        json['tautulli_platform_release'],
+      ),
+      tautulliPlatformVersion: Cast.castToString(
+        json['tautulli_platform_version'],
+      ),
       tautulliPythonVersion: Cast.castToString(json['tautulli_python_version']),
       tautulliVersion: Cast.castToString(json['tautulli_version']),
     );

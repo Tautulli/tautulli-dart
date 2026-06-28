@@ -36,7 +36,8 @@ class NewsletterLogEntry {
   });
 
   /// Parses a [NewsletterLogEntry] from a Tautulli API JSON map.
-  factory NewsletterLogEntry.fromJson(Map<String, dynamic> json) => NewsletterLogEntry(
+  factory NewsletterLogEntry.fromJson(Map<String, dynamic> json) =>
+      NewsletterLogEntry(
         id: Cast.castToInt(json['id']),
         timestamp: Cast.castToInt(json['timestamp']),
         newsletterId: Cast.castToInt(json['newsletter_id']),

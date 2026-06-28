@@ -36,21 +36,32 @@ class ExportService {
     final response = await _client.execute('get_exports_table', params: params);
     final data = response['data'] as Map<String, dynamic>? ?? {};
     return PagedResult(
-      data: (data['data'] as List? ?? []).whereType<Map<String, dynamic>>().map(ExportEntry.fromJson).toList(),
+      data: (data['data'] as List? ?? [])
+          .whereType<Map<String, dynamic>>()
+          .map(ExportEntry.fromJson)
+          .toList(),
       recordsTotal: Cast.castToInt(data['recordsTotal']),
       recordsFiltered: Cast.castToInt(data['recordsFiltered']),
     );
   }
 
   /// Returns the available export fields for the given [mediaType].
-  Future<Map<String, dynamic>> getExportFields({required String mediaType}) async {
-    final response = await _client.execute('get_export_fields', params: {'media_type': mediaType});
+  Future<Map<String, dynamic>> getExportFields({
+    required String mediaType,
+  }) async {
+    final response = await _client.execute(
+      'get_export_fields',
+      params: {'media_type': mediaType},
+    );
     return response['data'] as Map<String, dynamic>? ?? {};
   }
 
   /// Downloads a completed export file by its [exportId].
   Future<Uint8List> downloadExport({required int exportId}) async {
-    return _client.executeDownload('download_export', params: {'export_id': exportId});
+    return _client.executeDownload(
+      'download_export',
+      params: {'export_id': exportId},
+    );
   }
 
   /// Queues a metadata export job for the item identified by [ratingKey].
@@ -62,8 +73,13 @@ class ExportService {
     bool? removeSurplus,
     bool? includeImages,
   }) async {
-    final params = <String, dynamic>{'rating_key': ratingKey, 'media_type': mediaType};
-    if (directoryRatingKey != null) params['directory_rating_key'] = directoryRatingKey;
+    final params = <String, dynamic>{
+      'rating_key': ratingKey,
+      'media_type': mediaType,
+    };
+    if (directoryRatingKey != null) {
+      params['directory_rating_key'] = directoryRatingKey;
+    }
     if (fileFormat != null) params['file_format'] = fileFormat;
     if (removeSurplus != null) params['remove_surplus'] = removeSurplus;
     if (includeImages != null) params['include_images'] = includeImages;

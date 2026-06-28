@@ -25,9 +25,16 @@ class NewsletterService {
   }
 
   /// Returns the full configuration for a single newsletter.
-  Future<NewsletterConfig> getNewsletterConfig({required int newsletterId}) async {
-    final response = await _client.execute('get_newsletter_config', params: {'newsletter_id': newsletterId});
-    return NewsletterConfig.fromJson(response['data'] as Map<String, dynamic>? ?? {});
+  Future<NewsletterConfig> getNewsletterConfig({
+    required int newsletterId,
+  }) async {
+    final response = await _client.execute(
+      'get_newsletter_config',
+      params: {'newsletter_id': newsletterId},
+    );
+    return NewsletterConfig.fromJson(
+      response['data'] as Map<String, dynamic>? ?? {},
+    );
   }
 
   /// Returns a paginated list of newsletter send log entries.
@@ -47,7 +54,10 @@ class NewsletterService {
     if (orderColumn != null) params['order_column'] = orderColumn;
     if (orderDir != null) params['order_dir'] = orderDir;
 
-    final response = await _client.execute('get_newsletter_log', params: params);
+    final response = await _client.execute(
+      'get_newsletter_log',
+      params: params,
+    );
     final data = response['data'] as Map<String, dynamic>? ?? {};
     return PagedResult(
       data: (data['data'] as List? ?? [])
@@ -61,7 +71,10 @@ class NewsletterService {
 
   /// Adds a new newsletter configuration for the given [agentId].
   Future<void> addNewsletterConfig({required int agentId}) async {
-    await _client.execute('add_newsletter_config', params: {'agent_id': agentId});
+    await _client.execute(
+      'add_newsletter_config',
+      params: {'agent_id': agentId},
+    );
   }
 
   /// Updates the configuration for the newsletter identified by [newsletterId].
@@ -72,13 +85,20 @@ class NewsletterService {
     required int agentId,
     Map<String, dynamic> extraParams = const {},
   }) async {
-    final params = <String, dynamic>{'newsletter_id': newsletterId, 'agent_id': agentId, ...extraParams};
+    final params = <String, dynamic>{
+      'newsletter_id': newsletterId,
+      'agent_id': agentId,
+      ...extraParams,
+    };
     await _client.execute('set_newsletter_config', params: params);
   }
 
   /// Deletes the newsletter identified by [newsletterId].
   Future<void> deleteNewsletter({required int newsletterId}) async {
-    await _client.execute('delete_newsletter', params: {'newsletter_id': newsletterId});
+    await _client.execute(
+      'delete_newsletter',
+      params: {'newsletter_id': newsletterId},
+    );
   }
 
   /// Deletes all newsletter log entries.
@@ -90,7 +110,12 @@ class NewsletterService {
   ///
   /// [newsletterId] identifies which newsletter to send. Optional [subject],
   /// [body], and [message] override the newsletter's configured content.
-  Future<void> notifyNewsletter({required int newsletterId, String? subject, String? body, String? message}) async {
+  Future<void> notifyNewsletter({
+    required int newsletterId,
+    String? subject,
+    String? body,
+    String? message,
+  }) async {
     final params = <String, dynamic>{'newsletter_id': newsletterId};
     if (subject != null) params['subject'] = subject;
     if (body != null) params['body'] = body;
@@ -99,7 +124,11 @@ class NewsletterService {
   }
 
   /// Deletes images hosted externally by a newsletter service.
-  Future<void> deleteHostedImages({int? ratingKey, String? service, bool? deleteAll}) async {
+  Future<void> deleteHostedImages({
+    int? ratingKey,
+    String? service,
+    bool? deleteAll,
+  }) async {
     final params = <String, dynamic>{};
     if (ratingKey != null) params['rating_key'] = ratingKey;
     if (service != null) params['service'] = service;

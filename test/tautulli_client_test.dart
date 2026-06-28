@@ -17,26 +17,29 @@ void main() {
   );
 
   group('TautulliClient.execute() — URI construction', () {
-    test('builds correct URL with protocol, domain, path, and required params', () async {
-      late Uri captured;
-      final client = TautulliClient(
-        connection: connection,
-        httpClient: MockClient((request) async {
-          captured = request.url;
-          return http.Response(fixture('success_response.json'), 200);
-        }),
-      );
+    test(
+      'builds correct URL with protocol, domain, path, and required params',
+      () async {
+        late Uri captured;
+        final client = TautulliClient(
+          connection: connection,
+          httpClient: MockClient((request) async {
+            captured = request.url;
+            return http.Response(fixture('success_response.json'), 200);
+          }),
+        );
 
-      await client.execute('get_server_info');
+        await client.execute('get_server_info');
 
-      expect(captured.scheme, equals('http'));
-      expect(captured.host, equals('localhost'));
-      expect(captured.port, equals(8181));
-      expect(captured.path, equals('/tautulli/api/v2'));
-      expect(captured.queryParameters['cmd'], equals('get_server_info'));
-      expect(captured.queryParameters['apikey'], equals('test_api_key'));
-      expect(captured.queryParameters['app'], equals('true'));
-    });
+        expect(captured.scheme, equals('http'));
+        expect(captured.host, equals('localhost'));
+        expect(captured.port, equals(8181));
+        expect(captured.path, equals('/tautulli/api/v2'));
+        expect(captured.queryParameters['cmd'], equals('get_server_info'));
+        expect(captured.queryParameters['apikey'], equals('test_api_key'));
+        expect(captured.queryParameters['app'], equals('true'));
+      },
+    );
 
     test('includes additional params as query string', () async {
       late Uri captured;
@@ -106,7 +109,10 @@ void main() {
         }),
       );
 
-      await client.execute('get_history', params: {'user_id': null, 'length': 25});
+      await client.execute(
+        'get_history',
+        params: {'user_id': null, 'length': 25},
+      );
 
       expect(captured.queryParameters.containsKey('user_id'), isFalse);
       expect(captured.queryParameters['length'], equals('25'));
@@ -117,8 +123,9 @@ void main() {
     test('returns the "response" object from the body', () async {
       final client = TautulliClient(
         connection: connection,
-        httpClient: MockClient((_) async =>
-            http.Response(fixture('success_response.json'), 200)),
+        httpClient: MockClient(
+          (_) async => http.Response(fixture('success_response.json'), 200),
+        ),
       );
 
       final result = await client.execute('get_server_info');
@@ -151,8 +158,9 @@ void main() {
     test('throws TautulliAuthException for 401 response', () {
       final client = TautulliClient(
         connection: connection,
-        httpClient: MockClient((_) async =>
-            http.Response('Authorization Required', 401)),
+        httpClient: MockClient(
+          (_) async => http.Response('Authorization Required', 401),
+        ),
       );
 
       expect(
@@ -161,49 +169,64 @@ void main() {
       );
     });
 
-    test('throws TautulliAuthException when body contains "authorization required"', () {
-      final client = TautulliClient(
-        connection: connection,
-        httpClient: MockClient((_) async => http.Response(
-              '<html>Authorization Required</html>',
-              200,
-            )),
-      );
+    test(
+      'throws TautulliAuthException when body contains "authorization required"',
+      () {
+        final client = TautulliClient(
+          connection: connection,
+          httpClient: MockClient(
+            (_) async =>
+                http.Response('<html>Authorization Required</html>', 200),
+          ),
+        );
 
-      expect(
-        () => client.execute('get_server_info'),
-        throwsA(isA<TautulliAuthException>()),
-      );
-    });
+        expect(
+          () => client.execute('get_server_info'),
+          throwsA(isA<TautulliAuthException>()),
+        );
+      },
+    );
 
     test('throws TautulliServerException for non-200, non-401 status', () {
       final client = TautulliClient(
         connection: connection,
-        httpClient: MockClient((_) async =>
-            http.Response('{"response":{"result":"error","message":"oops"}}', 500)),
+        httpClient: MockClient(
+          (_) async => http.Response(
+            '{"response":{"result":"error","message":"oops"}}',
+            500,
+          ),
+        ),
       );
 
       expect(
         () => client.execute('get_server_info'),
         throwsA(
-          isA<TautulliServerException>()
-              .having((e) => e.statusCode, 'statusCode', equals(500)),
+          isA<TautulliServerException>().having(
+            (e) => e.statusCode,
+            'statusCode',
+            equals(500),
+          ),
         ),
       );
     });
 
-    test('throws TautulliVersionException on version mismatch 400 response', () {
-      final client = TautulliClient(
-        connection: connection,
-        httpClient: MockClient((_) async =>
-            http.Response(fixture('error_version_mismatch.json'), 400)),
-      );
+    test(
+      'throws TautulliVersionException on version mismatch 400 response',
+      () {
+        final client = TautulliClient(
+          connection: connection,
+          httpClient: MockClient(
+            (_) async =>
+                http.Response(fixture('error_version_mismatch.json'), 400),
+          ),
+        );
 
-      expect(
-        () => client.execute('register_device'),
-        throwsA(isA<TautulliVersionException>()),
-      );
-    });
+        expect(
+          () => client.execute('register_device'),
+          throwsA(isA<TautulliVersionException>()),
+        );
+      },
+    );
 
     test('throws TautulliTimeoutException on timeout', () {
       const timeoutConnection = TautulliConnection(
@@ -231,8 +254,9 @@ void main() {
     test('throws TautulliBadResponseException for non-JSON body', () {
       final client = TautulliClient(
         connection: connection,
-        httpClient: MockClient((_) async =>
-            http.Response('<html>not json</html>', 200)),
+        httpClient: MockClient(
+          (_) async => http.Response('<html>not json</html>', 200),
+        ),
       );
 
       expect(
@@ -246,8 +270,9 @@ void main() {
     test('throws TautulliInvalidApiKeyException for invalid apikey', () {
       final client = TautulliClient(
         connection: connection,
-        httpClient: MockClient((_) async =>
-            http.Response(fixture('error_invalid_apikey.json'), 200)),
+        httpClient: MockClient(
+          (_) async => http.Response(fixture('error_invalid_apikey.json'), 200),
+        ),
       );
 
       expect(
@@ -256,26 +281,33 @@ void main() {
       );
     });
 
-    test('throws TautulliTerminateStreamException on terminate stream failure', () {
-      final client = TautulliClient(
-        connection: connection,
-        httpClient: MockClient((_) async =>
-            http.Response(fixture('error_terminate_session.json'), 200)),
-      );
+    test(
+      'throws TautulliTerminateStreamException on terminate stream failure',
+      () {
+        final client = TautulliClient(
+          connection: connection,
+          httpClient: MockClient(
+            (_) async =>
+                http.Response(fixture('error_terminate_session.json'), 200),
+          ),
+        );
 
-      expect(
-        () => client.execute('terminate_session'),
-        throwsA(isA<TautulliTerminateStreamException>()),
-      );
-    });
+        expect(
+          () => client.execute('terminate_session'),
+          throwsA(isA<TautulliTerminateStreamException>()),
+        );
+      },
+    );
 
     test('throws TautulliBadResponseException for generic error result', () {
       final client = TautulliClient(
         connection: connection,
-        httpClient: MockClient((_) async => http.Response(
-              '{"response":{"result":"error","message":"Something went wrong"}}',
-              200,
-            )),
+        httpClient: MockClient(
+          (_) async => http.Response(
+            '{"response":{"result":"error","message":"Something went wrong"}}',
+            200,
+          ),
+        ),
       );
 
       expect(
@@ -292,7 +324,9 @@ void main() {
         httpClient: MockClient((_) async => http.Response('', 200)),
       );
 
-      final uri = client.images.buildImageUrl(img: '/library/metadata/123/thumb');
+      final uri = client.images.buildImageUrl(
+        img: '/library/metadata/123/thumb',
+      );
 
       expect(uri.scheme, equals('http'));
       expect(uri.host, equals('localhost'));
@@ -308,7 +342,11 @@ void main() {
         httpClient: MockClient((_) async => http.Response('', 200)),
       );
 
-      final uri = client.images.buildImageUrl(ratingKey: 456, width: 300, height: 450);
+      final uri = client.images.buildImageUrl(
+        ratingKey: 456,
+        width: 300,
+        height: 450,
+      );
 
       expect(uri.queryParameters['rating_key'], equals('456'));
       expect(uri.queryParameters['width'], equals('300'));

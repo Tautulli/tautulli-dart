@@ -185,10 +185,14 @@ class UserTableEntry {
       plays: Cast.castToInt(json['plays']),
       ratingKey: Cast.castToInt(json['rating_key']),
       rowId: Cast.castToInt(json['row_id']),
-      sharedLibraries: _sharedLibrariesFromList(json['shared_libraries'] as List?),
+      sharedLibraries: _sharedLibrariesFromList(
+        json['shared_libraries'] as List?,
+      ),
       thumb: Cast.castToString(json['thumb']),
       title: Cast.castToString(json['title']),
-      transcodeDecision: StreamDecision.fromString(Cast.castToString(json['transcode_decision'])),
+      transcodeDecision: StreamDecision.fromString(
+        Cast.castToString(json['transcode_decision']),
+      ),
       userId: Cast.castToInt(json['user_id']),
       userThumb: Cast.castToString(json['user_thumb']),
       username: Cast.castToString(json['username']),

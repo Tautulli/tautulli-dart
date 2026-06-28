@@ -114,7 +114,9 @@ class UserData {
       keepHistory: Cast.castToBool(json['keep_history']),
       lastSeen: _dateTimeFromEpochSeconds(Cast.castToInt(json['last_seen'])),
       rowId: Cast.castToInt(json['row_id']),
-      sharedLibraries: _sharedLibrariesFromList(json['shared_libraries'] as List?),
+      sharedLibraries: _sharedLibrariesFromList(
+        json['shared_libraries'] as List?,
+      ),
       userThumb: Cast.castToString(json['user_thumb']),
       userId: Cast.castToInt(json['user_id']),
       username: Cast.castToString(json['username']),

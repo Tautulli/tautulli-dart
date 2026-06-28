@@ -187,7 +187,9 @@ class MediaItem {
       mediaInfo: _mediaInfoFromList(json['media_info'] as List?),
       mediaType: MediaType.fromString(Cast.castToString(json['media_type'])),
       originalTitle: Cast.castToString(json['original_title']),
-      originallyAvailableAt: _dateTimeFromString(Cast.castToString(json['originally_available_at'])),
+      originallyAvailableAt: _dateTimeFromString(
+        Cast.castToString(json['originally_available_at']),
+      ),
       parentMediaIndex: Cast.castToInt(json['parent_media_index']),
       parentRatingKey: Cast.castToInt(json['parent_rating_key']),
       parentThumb: Cast.castToString(json['parent_thumb']),

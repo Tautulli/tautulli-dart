@@ -59,7 +59,10 @@ void main() {
   group('MediaService.getChildrenMetadata()', () {
     test('sends correct cmd', () async {
       makeClient('media/get_children_metadata.json');
-      await client.media.getChildrenMetadata(ratingKey: 2000, mediaType: 'show');
+      await client.media.getChildrenMetadata(
+        ratingKey: 2000,
+        mediaType: 'show',
+      );
       expect(lastRequestUri.queryParameters['cmd'], 'get_children_metadata');
       expect(lastRequestUri.queryParameters['rating_key'], '2000');
       expect(lastRequestUri.queryParameters['media_type'], 'show');
@@ -67,7 +70,10 @@ void main() {
 
     test('parses children list', () async {
       makeClient('media/get_children_metadata.json');
-      final items = await client.media.getChildrenMetadata(ratingKey: 2000, mediaType: 'show');
+      final items = await client.media.getChildrenMetadata(
+        ratingKey: 2000,
+        mediaType: 'show',
+      );
       expect(items, hasLength(1));
       expect(items.first.title, 'Season 1');
       expect(items.first.mediaType, MediaType.season);
@@ -78,7 +84,10 @@ void main() {
   group('MediaService.getNewRatingKeys()', () {
     test('sends correct cmd with rating_key and media_type', () async {
       makeClient('media/get_new_rating_keys.json');
-      final result = await client.media.getNewRatingKeys(ratingKey: 1001, mediaType: 'movie');
+      final result = await client.media.getNewRatingKeys(
+        ratingKey: 1001,
+        mediaType: 'movie',
+      );
       expect(lastRequestUri.queryParameters['cmd'], 'get_new_rating_keys');
       expect(lastRequestUri.queryParameters['rating_key'], '1001');
       expect(lastRequestUri.queryParameters['media_type'], 'movie');

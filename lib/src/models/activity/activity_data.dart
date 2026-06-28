@@ -47,7 +47,9 @@ class ActivityData {
     return ActivityData(
       streamCount: Cast.castToInt(json['stream_count']),
       streamCountDirectPlay: Cast.castToInt(json['stream_count_direct_play']),
-      streamCountDirectStream: Cast.castToInt(json['stream_count_direct_stream']),
+      streamCountDirectStream: Cast.castToInt(
+        json['stream_count_direct_stream'],
+      ),
       streamCountTranscode: Cast.castToInt(json['stream_count_transcode']),
       totalBandwidth: Cast.castToInt(json['total_bandwidth']),
       lanBandwidth: Cast.castToInt(json['lan_bandwidth']),
@@ -693,7 +695,9 @@ class ActivitySession {
       audioBitrate: Cast.castToInt(json['audio_bitrate']),
       audioChannels: Cast.castToInt(json['audio_channels']),
       audioCodec: Cast.castToString(json['audio_codec']),
-      audioDecision: StreamDecision.fromString(Cast.castToString(json['audio_decision'])),
+      audioDecision: StreamDecision.fromString(
+        Cast.castToString(json['audio_decision']),
+      ),
       audioLanguage: Cast.castToString(json['audio_language']),
       audioProfile: Cast.castToString(json['audio_profile']),
       audioSampleRate: Cast.castToInt(json['audio_sample_rate']),
@@ -701,7 +705,9 @@ class ActivitySession {
       bandwidth: Cast.castToInt(json['bandwidth']),
       channelCallSign: Cast.castToString(json['channel_call_sign']),
       container: Cast.castToString(json['container']),
-      containerDecision: StreamDecision.fromString(Cast.castToString(json['container_decision'])),
+      containerDecision: StreamDecision.fromString(
+        Cast.castToString(json['container_decision']),
+      ),
 
       // Duration / progress
       duration: _durationFromMillisString(json['duration']),
@@ -741,9 +747,13 @@ class ActivitySession {
       mediaIndex: Cast.castToInt(json['media_index']),
       mediaType: MediaType.fromString(Cast.castToString(json['media_type'])),
       optimizedVersion: Cast.castToBool(json['optimized_version']),
-      optimizedVersionProfile: Cast.castToString(json['optimized_version_profile']),
+      optimizedVersionProfile: Cast.castToString(
+        json['optimized_version_profile'],
+      ),
       optimizedVersionTitle: Cast.castToString(json['optimized_version_title']),
-      originallyAvailableAt: _dateTimeFromString(json['originally_available_at']),
+      originallyAvailableAt: _dateTimeFromString(
+        json['originally_available_at'],
+      ),
       originalTitle: Cast.castToString(json['original_title']),
       parentMediaIndex: Cast.castToInt(json['parent_media_index']),
       parentRatingKey: Cast.castToInt(json['parent_rating_key']),
@@ -766,46 +776,82 @@ class ActivitySession {
       streamAspectRatio: Cast.castToString(json['stream_aspect_ratio']),
       streamBitrate: Cast.castToInt(json['stream_bitrate']),
       streamContainer: Cast.castToString(json['stream_container']),
-      streamContainerDecision: StreamDecision.fromString(Cast.castToString(json['stream_container_decision'])),
+      streamContainerDecision: StreamDecision.fromString(
+        Cast.castToString(json['stream_container_decision']),
+      ),
       streamDuration: _durationFromMillisString(json['stream_duration']),
 
       // Stream audio
       streamAudioBitrate: Cast.castToInt(json['stream_audio_bitrate']),
-      streamAudioChannelLayout: Cast.castToString(json['stream_audio_channel_layout']),
+      streamAudioChannelLayout: Cast.castToString(
+        json['stream_audio_channel_layout'],
+      ),
       streamAudioChannels: Cast.castToInt(json['stream_audio_channels']),
       streamAudioCodec: Cast.castToString(json['stream_audio_codec']),
-      streamAudioDecision: StreamDecision.fromString(Cast.castToString(json['stream_audio_decision'])),
+      streamAudioDecision: StreamDecision.fromString(
+        Cast.castToString(json['stream_audio_decision']),
+      ),
       streamAudioLanguage: Cast.castToString(json['stream_audio_language']),
-      streamAudioLanguageCode: Cast.castToString(json['stream_audio_language_code']),
+      streamAudioLanguageCode: Cast.castToString(
+        json['stream_audio_language_code'],
+      ),
       streamAudioProfile: Cast.castToString(json['stream_audio_profile']),
       streamAudioSampleRate: Cast.castToInt(json['stream_audio_sample_rate']),
 
       // Stream subtitle
       streamSubtitleCodec: Cast.castToString(json['stream_subtitle_codec']),
-      streamSubtitleContainer: Cast.castToString(json['stream_subtitle_container']),
-      streamSubtitleDecision: SubtitleDecision.fromString(Cast.castToString(json['stream_subtitle_decision'])),
+      streamSubtitleContainer: Cast.castToString(
+        json['stream_subtitle_container'],
+      ),
+      streamSubtitleDecision: SubtitleDecision.fromString(
+        Cast.castToString(json['stream_subtitle_decision']),
+      ),
       streamSubtitleForced: Cast.castToBool(json['stream_subtitle_forced']),
       streamSubtitleFormat: Cast.castToString(json['stream_subtitle_format']),
-      streamSubtitleLanguage: Cast.castToString(json['stream_subtitle_language']),
-      streamSubtitleLanguageCode: Cast.castToString(json['stream_subtitle_language_code']),
-      streamSubtitleLocation: Cast.castToString(json['stream_subtitle_location']),
+      streamSubtitleLanguage: Cast.castToString(
+        json['stream_subtitle_language'],
+      ),
+      streamSubtitleLanguageCode: Cast.castToString(
+        json['stream_subtitle_language_code'],
+      ),
+      streamSubtitleLocation: Cast.castToString(
+        json['stream_subtitle_location'],
+      ),
 
       // Stream video
       streamVideoBitDepth: Cast.castToInt(json['stream_video_bit_depth']),
-      streamVideoChromaSubsampling: Cast.castToString(json['stream_video_chroma_subsampling']),
+      streamVideoChromaSubsampling: Cast.castToString(
+        json['stream_video_chroma_subsampling'],
+      ),
       streamVideoCodec: Cast.castToString(json['stream_video_codec']),
-      streamVideoCodecLevel: Cast.castToString(json['stream_video_codec_level']),
-      streamVideoColorPrimaries: Cast.castToString(json['stream_video_color_primaries']),
-      streamVideoColorRange: Cast.castToString(json['stream_video_color_range']),
-      streamVideoColorSpace: Cast.castToString(json['stream_video_color_space']),
+      streamVideoCodecLevel: Cast.castToString(
+        json['stream_video_codec_level'],
+      ),
+      streamVideoColorPrimaries: Cast.castToString(
+        json['stream_video_color_primaries'],
+      ),
+      streamVideoColorRange: Cast.castToString(
+        json['stream_video_color_range'],
+      ),
+      streamVideoColorSpace: Cast.castToString(
+        json['stream_video_color_space'],
+      ),
       streamVideoColorTrc: Cast.castToString(json['stream_video_color_trc']),
-      streamVideoDecision: StreamDecision.fromString(Cast.castToString(json['stream_video_decision'])),
-      streamVideoDynamicRange: Cast.castToString(json['stream_video_dynamic_range']),
+      streamVideoDecision: StreamDecision.fromString(
+        Cast.castToString(json['stream_video_decision']),
+      ),
+      streamVideoDynamicRange: Cast.castToString(
+        json['stream_video_dynamic_range'],
+      ),
       streamVideoFramerate: Cast.castToString(json['stream_video_framerate']),
-      streamVideoFullResolution: Cast.castToString(json['stream_video_full_resolution']),
+      streamVideoFullResolution: Cast.castToString(
+        json['stream_video_full_resolution'],
+      ),
       streamVideoHeight: Cast.castToInt(json['stream_video_height']),
       streamVideoLanguage: Cast.castToString(json['stream_video_language']),
-      streamVideoLanguageCode: Cast.castToString(json['stream_video_language_code']),
+      streamVideoLanguageCode: Cast.castToString(
+        json['stream_video_language_code'],
+      ),
       streamVideoRefFrames: Cast.castToInt(json['stream_video_ref_frames']),
       streamVideoResolution: Cast.castToString(json['stream_video_resolution']),
       streamVideoScanType: Cast.castToString(json['stream_video_scan_type']),
@@ -823,7 +869,9 @@ class ActivitySession {
 
       // Source video
       videoCodec: Cast.castToString(json['video_codec']),
-      videoDecision: StreamDecision.fromString(Cast.castToString(json['video_decision'])),
+      videoDecision: StreamDecision.fromString(
+        Cast.castToString(json['video_decision']),
+      ),
       videoBitDepth: Cast.castToInt(json['video_bit_depth']),
       videoCodecLevel: Cast.castToString(json['video_codec_level']),
       videoColorPrimaries: Cast.castToString(json['video_color_primaries']),
@@ -841,18 +889,28 @@ class ActivitySession {
       videoScanType: Cast.castToString(json['video_scan_type']),
 
       // Transcode
-      transcodeDecision: StreamDecision.fromString(Cast.castToString(json['transcode_decision'])),
+      transcodeDecision: StreamDecision.fromString(
+        Cast.castToString(json['transcode_decision']),
+      ),
       transcodeContainer: Cast.castToString(json['transcode_container']),
       transcodeHeight: Cast.castToInt(json['transcode_height']),
       transcodeHwDecoding: Cast.castToBool(json['transcode_hw_decoding']),
       transcodeHwDecode: Cast.castToString(json['transcode_hw_decode']),
-      transcodeHwDecodeTitle: Cast.castToString(json['transcode_hw_decode_title']),
+      transcodeHwDecodeTitle: Cast.castToString(
+        json['transcode_hw_decode_title'],
+      ),
       transcodeHwEncoding: Cast.castToBool(json['transcode_hw_encoding']),
-      transcodeHwFullPipeline: Cast.castToBool(json['transcode_hw_full_pipeline']),
+      transcodeHwFullPipeline: Cast.castToBool(
+        json['transcode_hw_full_pipeline'],
+      ),
       transcodeHwRequested: Cast.castToBool(json['transcode_hw_requested']),
       transcodeKey: Cast.castToString(json['transcode_key']),
-      transcodeMaxOffsetAvailable: Cast.castToInt(json['transcode_max_offset_available']),
-      transcodeMinOffsetAvailable: Cast.castToInt(json['transcode_min_offset_available']),
+      transcodeMaxOffsetAvailable: Cast.castToInt(
+        json['transcode_max_offset_available'],
+      ),
+      transcodeMinOffsetAvailable: Cast.castToInt(
+        json['transcode_min_offset_available'],
+      ),
       transcodeProgress: Cast.castToInt(json['transcode_progress']),
       transcodeProtocol: Cast.castToString(json['transcode_protocol']),
       transcodeSpeed: Cast.castToDouble(json['transcode_speed']),

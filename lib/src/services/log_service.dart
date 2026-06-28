@@ -36,7 +36,12 @@ class LogService {
   }
 
   /// Returns Plex Media Server log entries, optionally filtered and paginated.
-  Future<List<LogEntry>> getPlexLog({String? sort, String? search, int? start, int? end}) async {
+  Future<List<LogEntry>> getPlexLog({
+    String? sort,
+    String? search,
+    int? start,
+    int? end,
+  }) async {
     final params = <String, dynamic>{};
     if (sort != null) params['sort'] = sort;
     if (search != null) params['search'] = search;

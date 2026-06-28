@@ -50,10 +50,8 @@ class TautulliClient implements TautulliExecutor {
   ///
   /// An optional [httpClient] can be supplied for testing or to configure
   /// SSL/TLS behaviour (e.g. to allow self-signed certificates).
-  TautulliClient({
-    required this.connection,
-    http.Client? httpClient,
-  }) : _httpClient = httpClient ?? http.Client();
+  TautulliClient({required this.connection, http.Client? httpClient})
+    : _httpClient = httpClient ?? http.Client();
 
   /// Service for `get_activity`, `get_stream_data`, and `terminate_session`.
   late final ActivityService activity = ActivityService(this);
@@ -210,8 +208,12 @@ class TautulliClient implements TautulliExecutor {
       try {
         final decoded = jsonDecode(response.body);
         if (decoded is Map<String, dynamic>) {
-          final msg = (decoded['response'] as Map<String, dynamic>?)?['message'] as String?;
-          if (msg == 'Invalid apikey') throw const TautulliInvalidApiKeyException();
+          final msg =
+              (decoded['response'] as Map<String, dynamic>?)?['message']
+                  as String?;
+          if (msg == 'Invalid apikey') {
+            throw const TautulliInvalidApiKeyException();
+          }
         }
       } catch (e) {
         if (e is TautulliException) rethrow;
@@ -238,9 +240,12 @@ class TautulliClient implements TautulliExecutor {
 
     // Non-200 with valid JSON body
     if (response.statusCode != 200) {
-      final message = (body['response'] as Map<String, dynamic>?)?['message'] as String?;
+      final message =
+          (body['response'] as Map<String, dynamic>?)?['message'] as String?;
 
-      if (message == 'Invalid apikey') throw const TautulliInvalidApiKeyException();
+      if (message == 'Invalid apikey') {
+        throw const TautulliInvalidApiKeyException();
+      }
 
       final versionMismatch = RegExp(
         r'^Device registration failed: Tautulli version v\d+\.\d+\.\d+ does not meet the minimum requirement of v\d+\.\d+\.\d+\.',
@@ -267,13 +272,13 @@ class TautulliClient implements TautulliExecutor {
     final message = apiResponse['message'] as String?;
 
     if (result != 'success') {
-      if (message == 'Invalid apikey') throw const TautulliInvalidApiKeyException();
+      if (message == 'Invalid apikey') {
+        throw const TautulliInvalidApiKeyException();
+      }
       if (message != null && message.contains('Failed to terminate session')) {
         throw TautulliTerminateStreamException(message: message);
       }
-      throw TautulliBadResponseException(
-        message: message ?? 'result: $result',
-      );
+      throw TautulliBadResponseException(message: message ?? 'result: $result');
     }
 
     return apiResponse;

@@ -8,13 +8,21 @@ class NetworkService {
 
   /// Returns geographic location data for the given [ipAddress].
   Future<GeoIpData> getGeoIpLookup({required String ipAddress}) async {
-    final response = await _client.execute('get_geoip_lookup', params: {'ip_address': ipAddress});
+    final response = await _client.execute(
+      'get_geoip_lookup',
+      params: {'ip_address': ipAddress},
+    );
     return GeoIpData.fromJson(response['data'] as Map<String, dynamic>? ?? {});
   }
 
   /// Returns WHOIS registration data for the given [ipAddress] as a raw map.
-  Future<Map<String, dynamic>> getWhoisLookup({required String ipAddress}) async {
-    final response = await _client.execute('get_whois_lookup', params: {'ip_address': ipAddress});
+  Future<Map<String, dynamic>> getWhoisLookup({
+    required String ipAddress,
+  }) async {
+    final response = await _client.execute(
+      'get_whois_lookup',
+      params: {'ip_address': ipAddress},
+    );
     return response['data'] as Map<String, dynamic>? ?? {};
   }
 }

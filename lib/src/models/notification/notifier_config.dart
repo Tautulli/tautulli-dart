@@ -33,11 +33,11 @@ class NotifierConfig {
 
   /// Parses a [NotifierConfig] from a Tautulli API JSON map.
   factory NotifierConfig.fromJson(Map<String, dynamic> json) => NotifierConfig(
-        notifierId: Cast.castToInt(json['id']),
-        agentId: Cast.castToInt(json['agent_id']),
-        agentName: Cast.castToString(json['agent_name']),
-        agentLabel: Cast.castToString(json['agent_label']),
-        friendlyName: Cast.castToString(json['friendly_name']),
-        active: Cast.castToBool(json['active']),
-      );
+    notifierId: Cast.castToInt(json['id']),
+    agentId: Cast.castToInt(json['agent_id']),
+    agentName: Cast.castToString(json['agent_name']),
+    agentLabel: Cast.castToString(json['agent_label']),
+    friendlyName: Cast.castToString(json['friendly_name']),
+    active: Cast.castToBool(json['active']),
+  );
 }

@@ -18,13 +18,21 @@ class NotificationService {
     final params = <String, dynamic>{};
     if (notifyAction != null) params['notify_action'] = notifyAction;
     final response = await _client.execute('get_notifiers', params: params);
-    return (response['data'] as List? ?? []).whereType<Map<String, dynamic>>().map(NotifierConfig.fromJson).toList();
+    return (response['data'] as List? ?? [])
+        .whereType<Map<String, dynamic>>()
+        .map(NotifierConfig.fromJson)
+        .toList();
   }
 
   /// Returns the full configuration for a single notifier.
   Future<NotifierConfig> getNotifierConfig({required int notifierId}) async {
-    final response = await _client.execute('get_notifier_config', params: {'notifier_id': notifierId});
-    return NotifierConfig.fromJson(response['data'] as Map<String, dynamic>? ?? {});
+    final response = await _client.execute(
+      'get_notifier_config',
+      params: {'notifier_id': notifierId},
+    );
+    return NotifierConfig.fromJson(
+      response['data'] as Map<String, dynamic>? ?? {},
+    );
   }
 
   /// Returns the available notification parameters and their descriptions.
@@ -52,7 +60,10 @@ class NotificationService {
     if (orderColumn != null) params['order_column'] = orderColumn;
     if (orderDir != null) params['order_dir'] = orderDir;
 
-    final response = await _client.execute('get_notification_log', params: params);
+    final response = await _client.execute(
+      'get_notification_log',
+      params: params,
+    );
     final data = response['data'] as Map<String, dynamic>? ?? {};
     return PagedResult(
       data: (data['data'] as List? ?? [])
@@ -77,13 +88,20 @@ class NotificationService {
     required int agentId,
     Map<String, dynamic> extraParams = const {},
   }) async {
-    final params = <String, dynamic>{'notifier_id': notifierId, 'agent_id': agentId, ...extraParams};
+    final params = <String, dynamic>{
+      'notifier_id': notifierId,
+      'agent_id': agentId,
+      ...extraParams,
+    };
     await _client.execute('set_notifier_config', params: params);
   }
 
   /// Deletes the notifier identified by [notifierId].
   Future<void> deleteNotifier({required int notifierId}) async {
-    await _client.execute('delete_notifier', params: {'notifier_id': notifierId});
+    await _client.execute(
+      'delete_notifier',
+      params: {'notifier_id': notifierId},
+    );
   }
 
   /// Deletes all notification log entries.
@@ -101,7 +119,10 @@ class NotificationService {
     int? ratingKey,
     int? userId,
   }) async {
-    final params = <String, dynamic>{'notifier_id': notifierId, 'notify_action': notifyAction};
+    final params = <String, dynamic>{
+      'notifier_id': notifierId,
+      'notify_action': notifyAction,
+    };
     if (ratingKey != null) params['rating_key'] = ratingKey;
     if (userId != null) params['user_id'] = userId;
     await _client.execute('notify', params: params);
@@ -110,7 +131,10 @@ class NotificationService {
   /// Sends a recently-added notification for the item identified by [ratingKey].
   ///
   /// If [notifierId] is omitted, all notifiers with recently-added enabled are used.
-  Future<void> notifyRecentlyAdded({required int ratingKey, int? notifierId}) async {
+  Future<void> notifyRecentlyAdded({
+    required int ratingKey,
+    int? notifierId,
+  }) async {
     final params = <String, dynamic>{'rating_key': ratingKey};
     if (notifierId != null) params['notifier_id'] = notifierId;
     await _client.execute('notify_recently_added', params: params);
