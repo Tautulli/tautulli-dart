@@ -165,5 +165,14 @@ void main() {
       expect(lastRequestUri.queryParameters['session_key'], '42');
       expect(data['title'], 'Frozen');
     });
+
+    test('sends row_id for a historical entry, no phantom params', () async {
+      makeClient('activity/get_stream_data.json');
+      await client.activity.getStreamData(rowId: 2597);
+      final q = lastRequestUri.queryParameters;
+      expect(q['row_id'], '2597');
+      expect(q.containsKey('session_id'), isFalse);
+      expect(q.containsKey('user_id'), isFalse);
+    });
   });
 }
