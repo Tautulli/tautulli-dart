@@ -146,20 +146,32 @@ class UserService {
     );
   }
 
-  /// Updates Tautulli settings for the user identified by [userId].
+  /// Updates the Tautulli settings for the user identified by [userId].
+  ///
+  /// `edit_user` is a **full overwrite**: the server resets any field it does
+  /// not receive to its default, so every setting is required here. Read the
+  /// current values with [getUser] first and pass them all back, changing only
+  /// what you intend to. Pass an empty [friendlyName] or [customThumb] to clear
+  /// it (an empty friendly name reverts to the Plex username).
   Future<void> editUser({
     required int userId,
-    String? friendlyName,
-    String? customThumb,
-    bool? keepHistory,
-    bool? allowGuest,
+    required String friendlyName,
+    required String customThumb,
+    required bool keepHistory,
+    required bool allowGuest,
+    required bool doNotify,
   }) async {
-    final params = <String, dynamic>{'user_id': userId};
-    if (friendlyName != null) params['friendly_name'] = friendlyName;
-    if (customThumb != null) params['custom_thumb'] = customThumb;
-    if (keepHistory != null) params['keep_history'] = keepHistory;
-    if (allowGuest != null) params['allow_guest'] = allowGuest;
-    await _client.execute('edit_user', params: params);
+    await _client.execute(
+      'edit_user',
+      params: {
+        'user_id': userId,
+        'friendly_name': friendlyName,
+        'custom_thumb': customThumb,
+        'keep_history': keepHistory,
+        'allow_guest': allowGuest,
+        'do_notify': doNotify,
+      },
+    );
   }
 
   /// Marks the user as deleted in Tautulli's database.

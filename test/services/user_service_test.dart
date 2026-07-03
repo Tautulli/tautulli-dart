@@ -150,4 +150,26 @@ void main() {
       expect(lastRequestUri.queryParameters['grouping'], '1');
     });
   });
+
+  group('UserService.editUser()', () {
+    test('sends all fields with bools as 1/0', () async {
+      makeClient('success_response.json');
+      await client.users.editUser(
+        userId: 7,
+        friendlyName: 'Jon Snow',
+        customThumb: '',
+        keepHistory: true,
+        allowGuest: false,
+        doNotify: true,
+      );
+      final q = lastRequestUri.queryParameters;
+      expect(q['cmd'], 'edit_user');
+      expect(q['user_id'], '7');
+      expect(q['friendly_name'], 'Jon Snow');
+      expect(q['custom_thumb'], '');
+      expect(q['keep_history'], '1');
+      expect(q['allow_guest'], '0');
+      expect(q['do_notify'], '1');
+    });
+  });
 }

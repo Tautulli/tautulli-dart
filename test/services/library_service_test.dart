@@ -199,4 +199,26 @@ void main() {
       expect(result.first.sectionType, 'movie');
     });
   });
+
+  group('LibraryService.editLibrary()', () {
+    test('sends all fields with bools as 1/0', () async {
+      makeClient('success_response.json');
+      await client.libraries.editLibrary(
+        sectionId: 3,
+        customThumb: '',
+        customArt: '',
+        keepHistory: true,
+        doNotify: false,
+        doNotifyCreated: true,
+      );
+      final q = lastRequestUri.queryParameters;
+      expect(q['cmd'], 'edit_library');
+      expect(q['section_id'], '3');
+      expect(q['custom_thumb'], '');
+      expect(q['custom_art'], '');
+      expect(q['keep_history'], '1');
+      expect(q['do_notify'], '0');
+      expect(q['do_notify_created'], '1');
+    });
+  });
 }

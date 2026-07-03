@@ -269,18 +269,32 @@ class LibraryService {
     await _client.execute('refresh_libraries_list');
   }
 
-  /// Updates Tautulli settings for the library identified by [sectionId].
+  /// Updates the Tautulli settings for the library identified by [sectionId].
+  ///
+  /// `edit_library` is a **full overwrite**: the server resets any field it does
+  /// not receive to its default, so every setting is required here. Read the
+  /// current values with [getLibrary] first and pass them all back, changing
+  /// only what you intend to. Pass an empty [customThumb] or [customArt] to
+  /// clear it.
   Future<void> editLibrary({
     required int sectionId,
-    String? customThumb,
-    String? customArt,
-    int? keepHistory,
+    required String customThumb,
+    required String customArt,
+    required bool keepHistory,
+    required bool doNotify,
+    required bool doNotifyCreated,
   }) async {
-    final params = <String, dynamic>{'section_id': sectionId};
-    if (customThumb != null) params['custom_thumb'] = customThumb;
-    if (customArt != null) params['custom_art'] = customArt;
-    if (keepHistory != null) params['keep_history'] = keepHistory;
-    await _client.execute('edit_library', params: params);
+    await _client.execute(
+      'edit_library',
+      params: {
+        'section_id': sectionId,
+        'custom_thumb': customThumb,
+        'custom_art': customArt,
+        'keep_history': keepHistory,
+        'do_notify': doNotify,
+        'do_notify_created': doNotifyCreated,
+      },
+    );
   }
 
   /// Marks a library section as deleted in Tautulli's database.
