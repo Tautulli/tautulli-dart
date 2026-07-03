@@ -34,4 +34,35 @@ void main() {
       expect(result.first.active, true);
     });
   });
+
+  group('NotificationService.notify()', () {
+    test('sends notifier_id, subject and body (no notify_action)', () async {
+      makeClient('success_response.json');
+      await client.notifications.notify(
+        notifierId: 1,
+        subject: 'Hello',
+        body: 'Test body',
+      );
+      final q = lastRequestUri.queryParameters;
+      expect(q['cmd'], 'notify');
+      expect(q['notifier_id'], '1');
+      expect(q['subject'], 'Hello');
+      expect(q['body'], 'Test body');
+      expect(q.containsKey('notify_action'), isFalse);
+    });
+
+    test('sends optional headers and script_args when provided', () async {
+      makeClient('success_response.json');
+      await client.notifications.notify(
+        notifierId: 2,
+        subject: 's',
+        body: 'b',
+        headers: '{"X-Test":"1"}',
+        scriptArgs: '--flag',
+      );
+      final q = lastRequestUri.queryParameters;
+      expect(q['headers'], '{"X-Test":"1"}');
+      expect(q['script_args'], '--flag');
+    });
+  });
 }

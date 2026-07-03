@@ -109,22 +109,26 @@ class NotificationService {
     await _client.execute('delete_notification_log');
   }
 
-  /// Sends a test notification via the given notifier.
+  /// Sends a notification with the given [subject] and [body] via the notifier
+  /// identified by [notifierId].
   ///
-  /// [notifyAction] is a Tautulli action string (e.g. `'test'`).
-  /// Optionally associate the notification with a [ratingKey] or [userId].
+  /// [headers] supplies JSON headers for webhook notifiers; [scriptArgs]
+  /// supplies arguments for script notifiers. Tautulli fixes the notify action
+  /// to `api` for this command, so it is not a parameter.
   Future<void> notify({
     required int notifierId,
-    required String notifyAction,
-    int? ratingKey,
-    int? userId,
+    required String subject,
+    required String body,
+    String? headers,
+    String? scriptArgs,
   }) async {
     final params = <String, dynamic>{
       'notifier_id': notifierId,
-      'notify_action': notifyAction,
+      'subject': subject,
+      'body': body,
     };
-    if (ratingKey != null) params['rating_key'] = ratingKey;
-    if (userId != null) params['user_id'] = userId;
+    if (headers != null) params['headers'] = headers;
+    if (scriptArgs != null) params['script_args'] = scriptArgs;
     await _client.execute('notify', params: params);
   }
 
