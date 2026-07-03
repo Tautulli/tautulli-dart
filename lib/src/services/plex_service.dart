@@ -101,14 +101,14 @@ class PlexService {
         .toList();
   }
 
-  /// Deletes a synced item from Plex.
+  /// Deletes the synced item [syncId] from the device identified by [clientId].
   Future<void> deleteSyncedItem({
-    required String machineId,
+    required String clientId,
     required int syncId,
   }) async {
     await _client.execute(
       'delete_synced_item',
-      params: {'machine_id': machineId, 'sync_id': syncId},
+      params: {'client_id': clientId, 'sync_id': syncId},
     );
   }
 }

@@ -66,4 +66,16 @@ void main() {
       expect(result['machineIdentifier'], 'abc123xyz');
     });
   });
+
+  group('PlexService.deleteSyncedItem()', () {
+    test('sends client_id and sync_id (not machine_id)', () async {
+      makeClient('success_response.json');
+      await client.plex.deleteSyncedItem(clientId: 'device-abc', syncId: 42);
+      final q = lastRequestUri.queryParameters;
+      expect(q['cmd'], 'delete_synced_item');
+      expect(q['client_id'], 'device-abc');
+      expect(q['sync_id'], '42');
+      expect(q.containsKey('machine_id'), isFalse);
+    });
+  });
 }
