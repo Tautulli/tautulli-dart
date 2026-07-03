@@ -147,7 +147,7 @@ void main() {
     test('sends grouping param', () async {
       makeClient('user/get_users.json');
       await client.users.getUsers(grouping: true);
-      expect(lastRequestUri.queryParameters['grouping'], 'true');
+      expect(lastRequestUri.queryParameters['grouping'], '1');
     });
   });
 }

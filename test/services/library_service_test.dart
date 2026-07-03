@@ -185,7 +185,7 @@ void main() {
         sectionId: 1,
         includeLastAccessed: true,
       );
-      expect(lastRequestUri.queryParameters['include_last_accessed'], 'true');
+      expect(lastRequestUri.queryParameters['include_last_accessed'], '1');
     });
   });
 

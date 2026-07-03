@@ -117,6 +117,45 @@ void main() {
       expect(captured.queryParameters.containsKey('user_id'), isFalse);
       expect(captured.queryParameters['length'], equals('25'));
     });
+
+    test('serializes bool params as 1/0', () async {
+      late Uri captured;
+      final client = TautulliClient(
+        connection: connection,
+        httpClient: MockClient((request) async {
+          captured = request.url;
+          return http.Response(fixture('success_response.json'), 200);
+        }),
+      );
+
+      await client.execute(
+        'get_history',
+        params: {'grouping': true, 'include_activity': false},
+      );
+
+      expect(captured.queryParameters['grouping'], equals('1'));
+      expect(captured.queryParameters['include_activity'], equals('0'));
+    });
+
+    test('serializes List params as comma-separated values', () async {
+      late Uri captured;
+      final client = TautulliClient(
+        connection: connection,
+        httpClient: MockClient((request) async {
+          captured = request.url;
+          return http.Response(fixture('success_response.json'), 200);
+        }),
+      );
+
+      await client.execute(
+        'delete_history',
+        params: {
+          'row_ids': [65, 110, 2, 3645],
+        },
+      );
+
+      expect(captured.queryParameters['row_ids'], equals('65,110,2,3645'));
+    });
   });
 
   group('TautulliClient.execute() — success', () {

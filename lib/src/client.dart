@@ -155,9 +155,16 @@ class TautulliClient implements TautulliExecutor {
       if (connection.useDeviceToken) 'app': 'true',
     };
     for (final entry in params.entries) {
-      if (entry.value != null) {
-        queryParams[entry.key] = entry.value.toString();
-      }
+      final value = entry.value;
+      if (value == null) continue;
+      // Tautulli documents boolean params as 0/1. Some handlers (edit_user,
+      // edit_library) store the raw value verbatim, so 'true'/'false' strings
+      // would corrupt config. List params (row_ids etc.) are comma-separated.
+      queryParams[entry.key] = switch (value) {
+        bool b => b ? '1' : '0',
+        List list => list.join(','),
+        _ => value.toString(),
+      };
     }
 
     final pathPrefix = connection.path ?? '';
