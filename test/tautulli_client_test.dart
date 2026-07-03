@@ -391,5 +391,20 @@ void main() {
       expect(uri.queryParameters['width'], equals('300'));
       expect(uri.queryParameters['height'], equals('450'));
     });
+
+    test('emits fallback (not image_fallback) query param', () {
+      final client = TautulliClient(
+        connection: connection,
+        httpClient: MockClient((_) async => http.Response('', 200)),
+      );
+
+      final uri = client.images.buildImageUrl(
+        ratingKey: 456,
+        fallback: ImageFallback.poster,
+      );
+
+      expect(uri.queryParameters['fallback'], equals('poster'));
+      expect(uri.queryParameters.containsKey('image_fallback'), isFalse);
+    });
   });
 }

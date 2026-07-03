@@ -40,7 +40,7 @@ class ImageService {
     if (background != null) params['background'] = background.toString();
     if (blur != null) params['blur'] = blur.toString();
     if (imgFormat != null) params['img_format'] = imgFormat;
-    if (fallback != null) params['image_fallback'] = fallback.value;
+    if (fallback != null) params['fallback'] = fallback.value;
     if (refresh != null) params['refresh'] = refresh ? '1' : '0';
     if (returnHash != null) params['return_hash'] = returnHash ? '1' : '0';
 
