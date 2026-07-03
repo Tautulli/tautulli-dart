@@ -109,4 +109,17 @@ void main() {
       expect(lastRequestUri.queryParameters['after'], '2024-01-01');
     });
   });
+
+  group('HistoryService.deleteHistory()', () {
+    test('sends row_ids as a comma-separated list only', () async {
+      makeClient('success_response.json');
+      await client.history.deleteHistory(rowIds: [65, 110, 2]);
+      final q = lastRequestUri.queryParameters;
+      expect(q['cmd'], 'delete_history');
+      expect(q['row_ids'], '65,110,2');
+      expect(q.containsKey('user_id'), isFalse);
+      expect(q.containsKey('section_id'), isFalse);
+      expect(q.containsKey('rating_key'), isFalse);
+    });
+  });
 }

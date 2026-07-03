@@ -110,27 +110,11 @@ class HistoryService {
         .toList();
   }
 
-  /// Deletes watch history entries matching the given filters.
+  /// Permanently deletes the history entries with the given [rowIds].
   ///
-  /// At least one filter should be provided to avoid deleting all history.
-  Future<void> deleteHistory({
-    int? userId,
-    int? sectionId,
-    int? ratingKey,
-    int? parentRatingKey,
-    int? grandparentRatingKey,
-    int? rowIds,
-  }) async {
-    final params = <String, dynamic>{};
-    if (userId != null) params['user_id'] = userId;
-    if (sectionId != null) params['section_id'] = sectionId;
-    if (ratingKey != null) params['rating_key'] = ratingKey;
-    if (parentRatingKey != null) params['parent_rating_key'] = parentRatingKey;
-    if (grandparentRatingKey != null) {
-      params['grandparent_rating_key'] = grandparentRatingKey;
-    }
-    if (rowIds != null) params['row_ids'] = rowIds;
-    await _client.execute('delete_history', params: params);
+  /// [rowIds] are history row IDs (see [HistoryEntry.rowId]); pass at least one.
+  Future<void> deleteHistory({required List<int> rowIds}) async {
+    await _client.execute('delete_history', params: {'row_ids': rowIds});
   }
 
   /// Regroups watch history entries that may have been split incorrectly.
