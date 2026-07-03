@@ -108,9 +108,12 @@ class TautulliService {
     await _client.execute('delete_temp_sessions');
   }
 
-  /// Invalidates the login session for the row identified by [rowId].
-  Future<void> logoutUserSession({required int rowId}) async {
-    await _client.execute('logout_user_session', params: {'row_id': rowId});
+  /// Invalidates the login sessions with the given [rowIds].
+  ///
+  /// [rowIds] are login-log row IDs (see `UserService.getUserLogins`); pass at
+  /// least one.
+  Future<void> logoutUserSession({required List<int> rowIds}) async {
+    await _client.execute('logout_user_session', params: {'row_ids': rowIds});
   }
 
   // ignore: avoid_returning_null_for_void

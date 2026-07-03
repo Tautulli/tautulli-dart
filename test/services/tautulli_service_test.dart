@@ -94,4 +94,15 @@ void main() {
       expect(result['date_format'], 'YYYY-MM-DD');
     });
   });
+
+  group('TautulliService.logoutUserSession()', () {
+    test('sends row_ids (plural) as a comma-separated list', () async {
+      makeClient('success_response.json');
+      await client.tautulli.logoutUserSession(rowIds: [2, 3]);
+      final q = lastRequestUri.queryParameters;
+      expect(q['cmd'], 'logout_user_session');
+      expect(q['row_ids'], '2,3');
+      expect(q.containsKey('row_id'), isFalse);
+    });
+  });
 }
