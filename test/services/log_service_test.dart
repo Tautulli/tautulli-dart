@@ -42,4 +42,27 @@ void main() {
       expect(lastRequestUri.queryParameters['regex'], 'error');
     });
   });
+
+  group('LogService.getPlexLog()', () {
+    test('sends window/logfile and parses nested positional rows', () async {
+      makeClient('log/get_plex_log.json');
+      final result = await client.logs.getPlexLog(
+        window: 50,
+        logfile: 'Plex Media Server',
+      );
+      final q = lastRequestUri.queryParameters;
+      expect(q['cmd'], 'get_plex_log');
+      expect(q['window'], '50');
+      expect(q['logfile'], 'Plex Media Server');
+      // Rows are [timestamp, level, message] nested under data.data.
+      expect(result, hasLength(2));
+      expect(result.first.timestamp, 'May 08, 2016 09:35:37');
+      expect(result.first.level, 'DEBUG');
+      expect(
+        result.first.message,
+        'Auth: Came in with a super-token, authorization succeeded.',
+      );
+      expect(result.first.thread, isNull);
+    });
+  });
 }

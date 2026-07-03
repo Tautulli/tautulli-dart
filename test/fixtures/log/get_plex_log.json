@@ -1,0 +1,20 @@
+{
+  "response": {
+    "result": "success",
+    "message": null,
+    "data": {
+      "data": [
+        [
+          "May 08, 2016 09:35:37",
+          "DEBUG",
+          "Auth: Came in with a super-token, authorization succeeded."
+        ],
+        [
+          "May 08, 2016 09:36:10",
+          "INFO",
+          "Completed scanning the Movies library."
+        ]
+      ]
+    }
+  }
+}

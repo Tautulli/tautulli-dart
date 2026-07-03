@@ -35,21 +35,21 @@ class LogService {
     return _parseLogs(response['data']);
   }
 
-  /// Returns Plex Media Server log entries, optionally filtered and paginated.
-  Future<List<LogEntry>> getPlexLog({
-    String? sort,
-    String? search,
-    int? start,
-    int? end,
-  }) async {
+  /// Returns Plex Media Server log entries.
+  ///
+  /// [window] limits the number of tail lines returned. [logfile] selects the
+  /// Plex log file by name (e.g. `'Plex Media Server'`, `'Plex Media Scanner'`).
+  Future<List<LogEntry>> getPlexLog({int? window, String? logfile}) async {
     final params = <String, dynamic>{};
-    if (sort != null) params['sort'] = sort;
-    if (search != null) params['search'] = search;
-    if (start != null) params['start'] = start;
-    if (end != null) params['end'] = end;
+    if (window != null) params['window'] = window;
+    if (logfile != null) params['logfile'] = logfile;
 
     final response = await _client.execute('get_plex_log', params: params);
-    return _parseLogs(response['data']);
+    // get_plex_log nests its rows under data.data as [timestamp, level, message].
+    final data = response['data'];
+    final rows = data is Map<String, dynamic> ? data['data'] : data;
+    if (rows is! List) return [];
+    return rows.whereType<List>().map(LogEntry.fromPlexLogList).toList();
   }
 
   /// Downloads the Tautulli log file as raw bytes.
@@ -69,10 +69,9 @@ class LogService {
 
   List<LogEntry> _parseLogs(dynamic data) {
     if (data is! List) return [];
-    return data.map((item) {
-      if (item is Map<String, dynamic>) return LogEntry.fromJson(item);
-      if (item is List) return LogEntry.fromList(item);
-      return const LogEntry();
-    }).toList();
+    return data
+        .whereType<Map<String, dynamic>>()
+        .map(LogEntry.fromJson)
+        .toList();
   }
 }

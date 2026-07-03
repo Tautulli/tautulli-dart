@@ -2,33 +2,25 @@ import '../../utils/cast.dart';
 
 /// A single entry from the Tautulli or Plex log.
 ///
-/// Log responses can arrive as JSON objects (via `get_logs`) or positional
-/// arrays (from some endpoints). Use [fromJson] or [fromList] accordingly.
+/// Tautulli logs (`get_logs`) arrive as JSON objects — use [fromJson]. Plex
+/// logs (`get_plex_log`) arrive as positional `[timestamp, level, message]`
+/// arrays — use [fromPlexLogList].
 class LogEntry {
-  /// Row ID (only populated when parsed from a positional list via [fromList]).
-  final int? rowId;
-
   /// Formatted timestamp string for this log entry.
   final String? timestamp;
 
   /// Severity level (e.g. `'INFO'`, `'WARNING'`, `'ERROR'`).
   final String? level;
 
-  /// Thread or module name that produced this entry.
+  /// Thread or module name that produced this entry (Tautulli logs only).
   final String? thread;
 
   /// The log message text.
   final String? message;
 
-  const LogEntry({
-    this.rowId,
-    this.timestamp,
-    this.level,
-    this.thread,
-    this.message,
-  });
+  const LogEntry({this.timestamp, this.level, this.thread, this.message});
 
-  /// Parses a [LogEntry] from a Tautulli API JSON map.
+  /// Parses a [LogEntry] from a Tautulli `get_logs` JSON map.
   factory LogEntry.fromJson(Map<String, dynamic> json) => LogEntry(
     timestamp: Cast.castToString(json['time']),
     level: Cast.castToString(json['loglevel']),
@@ -36,12 +28,11 @@ class LogEntry {
     message: Cast.castToString(json['msg']),
   );
 
-  /// Parses a [LogEntry] from a positional list `[rowId, timestamp, level, thread, message]`.
-  static LogEntry fromList(List<dynamic> list) => LogEntry(
-    rowId: list.isNotEmpty ? Cast.castToInt(list[0]) : null,
-    timestamp: list.length > 1 ? Cast.castToString(list[1]) : null,
-    level: list.length > 2 ? Cast.castToString(list[2]) : null,
-    thread: list.length > 3 ? Cast.castToString(list[3]) : null,
-    message: list.length > 4 ? Cast.castToString(list[4]) : null,
+  /// Parses a [LogEntry] from a Plex `get_plex_log` positional row
+  /// `[timestamp, level, message]`.
+  static LogEntry fromPlexLogList(List<dynamic> list) => LogEntry(
+    timestamp: list.isNotEmpty ? Cast.castToString(list[0]) : null,
+    level: list.length > 1 ? Cast.castToString(list[1]) : null,
+    message: list.length > 2 ? Cast.castToString(list[2]) : null,
   );
 }
