@@ -374,6 +374,64 @@ void main() {
     });
   });
 
+  group('TautulliClient.execute() — auth false-positive guard', () {
+    test(
+      'does not treat a valid 200 envelope containing the phrase as auth',
+      () async {
+        final client = TautulliClient(
+          connection: connection,
+          httpClient: MockClient(
+            (_) async => http.Response(
+              '{"response":{"result":"success","data":['
+              '{"loglevel":"INFO","msg":"Authorization Required","thread":"x",'
+              '"time":"2026-01-01 00:00:00"}]}}',
+              200,
+            ),
+          ),
+        );
+
+        final result = await client.execute('get_logs');
+        expect(result['result'], equals('success'));
+      },
+    );
+  });
+
+  group('TautulliClient.executeDownload() — auth handling', () {
+    test('returns bytes when a non-HTML file contains the phrase', () async {
+      final client = TautulliClient(
+        connection: connection,
+        httpClient: MockClient(
+          (_) async => http.Response(
+            'log line: Authorization Required for /admin',
+            200,
+            headers: {'content-type': 'text/plain'},
+          ),
+        ),
+      );
+
+      final bytes = await client.executeDownload('download_log');
+      expect(bytes, isNotEmpty);
+    });
+
+    test('throws TautulliAuthException for an HTML auth page', () {
+      final client = TautulliClient(
+        connection: connection,
+        httpClient: MockClient(
+          (_) async => http.Response(
+            '<html><body>Authorization Required</body></html>',
+            200,
+            headers: {'content-type': 'text/html'},
+          ),
+        ),
+      );
+
+      expect(
+        () => client.executeDownload('download_log'),
+        throwsA(isA<TautulliAuthException>()),
+      );
+    });
+  });
+
   group('ImageService.buildImageUrl()', () {
     test('builds correct http URI with img param', () {
       final client = TautulliClient(

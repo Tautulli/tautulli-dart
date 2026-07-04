@@ -126,8 +126,13 @@ class TautulliClient implements TautulliExecutor {
     final uri = _buildUri(cmd, params);
     final response = await _get(uri);
 
+    // A 401, or an HTML reverse-proxy auth page, is an auth failure. Do not
+    // scan the file bytes for the phrase — a log file may legitimately contain
+    // "authorization required".
+    final contentType = response.headers['content-type'] ?? '';
     if (response.statusCode == 401 ||
-        response.body.toLowerCase().contains('authorization required')) {
+        (contentType.contains('text/html') &&
+            response.body.toLowerCase().contains('authorization required'))) {
       throw const TautulliAuthException();
     }
 
@@ -208,31 +213,35 @@ class TautulliClient implements TautulliExecutor {
   }
 
   Map<String, dynamic> _parseResponse(http.Response response) {
-    // Detect reverse-proxy basic-auth rejections before JSON parsing.
-    // Still attempt JSON decode so an "Invalid apikey" 401 is identified correctly.
+    // Parse the body up front. A valid Tautulli response is a JSON object with
+    // a "response" object; anything else may be a reverse-proxy auth page.
+    Object? decoded;
+    try {
+      decoded = jsonDecode(response.body);
+    } catch (_) {
+      decoded = null;
+    }
+    final envelope = decoded is Map<String, dynamic> ? decoded : null;
+    final hasEnvelope = envelope?['response'] is Map<String, dynamic>;
+
+    // Auth failure: a 401, or a non-Tautulli body that looks like a
+    // reverse-proxy "Authorization Required" page. The substring is only
+    // applied to bodies that are NOT a valid Tautulli envelope, so a log line
+    // containing the phrase is not mistaken for an auth error.
     if (response.statusCode == 401 ||
-        response.body.toLowerCase().contains('authorization required')) {
-      try {
-        final decoded = jsonDecode(response.body);
-        if (decoded is Map<String, dynamic>) {
-          final msg =
-              (decoded['response'] as Map<String, dynamic>?)?['message']
-                  as String?;
-          if (msg == 'Invalid apikey') {
-            throw const TautulliInvalidApiKeyException();
-          }
-        }
-      } catch (e) {
-        if (e is TautulliException) rethrow;
+        (!hasEnvelope &&
+            response.body.toLowerCase().contains('authorization required'))) {
+      final msg =
+          (envelope?['response'] as Map<String, dynamic>?)?['message']
+              as String?;
+      if (msg == 'Invalid apikey') {
+        throw const TautulliInvalidApiKeyException();
       }
       throw const TautulliAuthException();
     }
 
-    // Parse body — if not JSON, fail fast
-    final Object? decoded;
-    try {
-      decoded = jsonDecode(response.body);
-    } catch (_) {
+    // Not JSON at all — fail fast.
+    if (decoded == null) {
       throw TautulliBadResponseException(
         message: 'Response is not valid JSON (HTTP ${response.statusCode})',
       );
