@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:io';
 
 import 'package:http/http.dart' as http;
 import 'package:http/testing.dart';
@@ -429,6 +430,92 @@ void main() {
         () => client.executeDownload('download_log'),
         throwsA(isA<TautulliAuthException>()),
       );
+    });
+  });
+
+  group('TautulliClient.execute() — network error handling', () {
+    test('redacts the API key from connection error messages', () async {
+      final client = TautulliClient(
+        connection: connection,
+        httpClient: MockClient(
+          (_) async => throw http.ClientException(
+            'Connection failed: '
+            'http://localhost:8181/tautulli/api/v2?apikey=test_api_key&cmd=x',
+          ),
+        ),
+      );
+
+      try {
+        await client.execute('get_server_info');
+        fail('expected a TautulliConnectionException');
+      } on TautulliConnectionException catch (e) {
+        expect(e.message, isNot(contains('test_api_key')));
+        expect(e.message, contains('apikey=<redacted>'));
+      }
+    });
+
+    test('lets Error subtypes propagate (not disguised as connection)', () {
+      final client = TautulliClient(
+        connection: connection,
+        httpClient: MockClient((_) async => throw StateError('boom')),
+      );
+
+      expect(
+        () => client.execute('get_server_info'),
+        throwsA(isA<StateError>()),
+      );
+    });
+
+    test('maps SocketException to TautulliConnectionException', () {
+      final client = TautulliClient(
+        connection: connection,
+        httpClient: MockClient(
+          (_) async => throw const SocketException('down'),
+        ),
+      );
+
+      expect(
+        () => client.execute('get_server_info'),
+        throwsA(isA<TautulliConnectionException>()),
+      );
+    });
+
+    test('maps a cert-verify HandshakeException to cert exception', () {
+      final client = TautulliClient(
+        connection: connection,
+        httpClient: MockClient(
+          (_) async => throw const HandshakeException(
+            'Handshake error: CERTIFICATE_VERIFY_FAILED',
+          ),
+        ),
+      );
+
+      expect(
+        () => client.execute('get_server_info'),
+        throwsA(isA<TautulliCertVerificationException>()),
+      );
+    });
+
+    test('sends no Content-Type header; passes connection.headers', () async {
+      late Map<String, String> captured;
+      const withHeaders = TautulliConnection(
+        protocol: 'http',
+        domain: 'localhost:8181',
+        apiKey: 'key',
+        headers: {'X-Custom': 'v'},
+      );
+      final client = TautulliClient(
+        connection: withHeaders,
+        httpClient: MockClient((request) async {
+          captured = request.headers;
+          return http.Response(fixture('success_response.json'), 200);
+        }),
+      );
+
+      await client.execute('get_server_info');
+
+      expect(captured.containsKey('content-type'), isFalse);
+      expect(captured['X-Custom'], equals('v'));
     });
   });
 

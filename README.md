@@ -82,7 +82,7 @@ Pass a custom `http.Client` for SSL certificate handling or testing:
 import 'dart:io';
 import 'package:http/io_client.dart';
 
-// Self-signed certificate support
+// Self-signed certificate support (native platforms only)
 final httpClient = HttpClient()
   ..badCertificateCallback = (cert, host, port) => allowedHosts.contains(host);
 
@@ -95,6 +95,26 @@ final client = TautulliClient(
   httpClient: IOClient(httpClient),
 );
 ```
+
+> **Native only.** This example uses `dart:io` and `IOClient`, which don't exist
+> on the web — see [Platform Support](#platform-support) below.
+
+## Platform Support
+
+Runs on the Dart VM, Flutter (Android/iOS/desktop), server, **and Flutter web /
+WASM**. Two things differ on the web:
+
+- **Custom HTTP clients and self-signed certificates are native-only.**
+  `dart:io`, `IOClient`, and `badCertificateCallback` are unavailable on the web
+  (the browser controls TLS), so self-signed certificates cannot be accepted and
+  the default `BrowserClient` is used. Connection failures surface as
+  `TautulliConnectionException` — the finer `TautulliCertVerificationException`
+  mapping is native-only.
+- **CORS.** The client sends plain GET requests, which Tautulli answers with
+  `Access-Control-Allow-Origin`, so cross-origin calls work by default. However,
+  setting custom `headers` on `TautulliConnection` (e.g. reverse-proxy auth)
+  makes requests non-simple and triggers a CORS preflight that current Tautulli
+  does not fully satisfy — so custom headers are effectively native-only.
 
 ## Exception Handling
 

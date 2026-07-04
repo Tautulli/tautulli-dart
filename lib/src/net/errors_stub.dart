@@ -1,0 +1,11 @@
+import '../exceptions.dart';
+import '../utils/redact.dart';
+
+/// Maps a network-layer [Exception] to a [TautulliException].
+///
+/// Default (non-`dart:io`) implementation used on web/WASM, where TLS and
+/// socket errors are not distinguishable — they surface as generic client
+/// exceptions. See `errors_io.dart` for the native implementation that refines
+/// certificate and socket failures.
+TautulliException mapNetworkException(Exception e) =>
+    TautulliConnectionException(message: redactApiKey(e.toString()));

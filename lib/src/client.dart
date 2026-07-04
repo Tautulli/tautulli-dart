@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'dart:convert';
-import 'dart:io';
 import 'dart:typed_data';
 
 import 'package:http/http.dart' as http;
@@ -8,6 +7,7 @@ import 'package:http/http.dart' as http;
 import 'connection.dart';
 import 'exceptions.dart';
 import 'executor.dart';
+import 'net/errors_stub.dart' if (dart.library.io) 'net/errors_io.dart';
 import 'services/activity_service.dart';
 import 'services/api_service.dart';
 import 'services/device_service.dart';
@@ -187,28 +187,19 @@ class TautulliClient implements TautulliExecutor {
 
   Future<http.Response> _get(Uri uri) async {
     try {
+      // No Content-Type header: these are bodyless GETs, so it is meaningless
+      // and would turn every request into a non-simple CORS request on web.
       return await _httpClient
-          .get(
-            uri,
-            headers: {
-              'Content-Type': 'application/json',
-              ...connection.headers,
-            },
-          )
+          .get(uri, headers: connection.headers)
           .timeout(connection.timeout);
     } on TautulliException {
       rethrow;
-    } on SocketException catch (e) {
-      throw TautulliConnectionException(message: e.message);
     } on TimeoutException {
       throw const TautulliTimeoutException();
-    } on HandshakeException catch (e) {
-      if (e.toString().contains('CERTIFICATE_VERIFY_FAILED')) {
-        throw TautulliCertVerificationException(message: e.toString());
-      }
-      throw TautulliConnectionException(message: e.message);
-    } catch (e) {
-      throw TautulliConnectionException(message: e.toString());
+    } on Exception catch (e) {
+      // Platform mapper refines socket/TLS errors (native) or redacts (web).
+      // Errors (e.g. TypeError, StateError) are left to propagate.
+      throw mapNetworkException(e);
     }
   }
 
