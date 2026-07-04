@@ -5,7 +5,7 @@
     "data": {
       "pms_identifier": "abc123def456",
       "pms_ip": "192.168.1.10",
-      "pms_is_remote": 0,
+      "pms_is_cloud": 0,
       "pms_name": "My Plex Server",
       "pms_platform": "Linux",
       "pms_plexpass": 1,

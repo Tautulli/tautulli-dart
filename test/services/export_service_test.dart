@@ -29,8 +29,15 @@ void main() {
       final result = await client.exports.getExportsTable();
       expect(lastRequestUri.queryParameters['cmd'], 'get_exports_table');
       expect(result.data, hasLength(1));
-      expect(result.data.first.title, 'Movies');
-      expect(result.data.first.complete, true);
+      final entry = result.data.first;
+      expect(entry.title, 'The Matrix');
+      expect(entry.filename, 'Movie - The Matrix [4017].csv');
+      expect(entry.complete, true);
+      expect(entry.sectionId, 3);
+      expect(entry.ratingKey, 4017);
+      expect(entry.fileSize, 1195);
+      expect(entry.thumbLevel, 0);
+      expect(entry.exists, true);
       expect(result.recordsTotal, 1);
     });
   });

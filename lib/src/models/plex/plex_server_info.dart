@@ -11,9 +11,6 @@ class PlexServerInfo {
   /// IP address of the Plex Media Server.
   final String? pmsIp;
 
-  /// Whether the Plex server is accessed remotely (not on LAN).
-  final bool? pmsIsRemote;
-
   /// Friendly name of the Plex Media Server.
   final String? pmsName;
 
@@ -41,7 +38,6 @@ class PlexServerInfo {
   const PlexServerInfo({
     this.pmsIdentifier,
     this.pmsIp,
-    this.pmsIsRemote,
     this.pmsName,
     this.pmsPlatform,
     this.pmsPlexpass,
@@ -57,7 +53,6 @@ class PlexServerInfo {
     return PlexServerInfo(
       pmsIdentifier: Cast.castToString(json['pms_identifier']),
       pmsIp: Cast.castToString(json['pms_ip']),
-      pmsIsRemote: Cast.castToBool(json['pms_is_remote']),
       pmsName: Cast.castToString(json['pms_name']),
       pmsPlatform: Cast.castToString(json['pms_platform']),
       pmsPlexpass: Cast.castToBool(json['pms_plexpass']),
