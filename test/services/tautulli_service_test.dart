@@ -32,23 +32,26 @@ void main() {
       expect(lastRequestUri.queryParameters['cmd'], 'get_settings');
     });
 
-    test('parses date and time format', () async {
+    test('parses date and time format from the General section', () async {
       makeClient('tautulli/get_settings.json');
       final settings = await client.tautulli.getSettings();
       expect(settings.dateFormat, 'YYYY-MM-DD');
       expect(settings.timeFormat, 'HH:mm');
     });
 
-    test('provides rawData escape hatch', () async {
+    test('provides rawData escape hatch with full sectioned map', () async {
       makeClient('tautulli/get_settings.json');
       final settings = await client.tautulli.getSettings();
-      expect(settings.rawData['cache_dir'], '/config/cache');
+      final pms = settings.rawData['PMS'] as Map<String, dynamic>;
+      expect(pms['pms_name'], 'Margarita');
     });
 
-    test('sends key param when specified', () async {
-      makeClient('tautulli/get_settings.json');
-      await client.tautulli.getSettings(key: 'date_format');
-      expect(lastRequestUri.queryParameters['key'], 'date_format');
+    test('falls back to root keys for a single-section response', () async {
+      makeClient('tautulli/get_settings_general_section.json');
+      final settings = await client.tautulli.getSettings(key: 'General');
+      expect(lastRequestUri.queryParameters['key'], 'General');
+      expect(settings.dateFormat, 'YYYY-MM-DD');
+      expect(settings.timeFormat, 'HH:mm');
     });
   });
 

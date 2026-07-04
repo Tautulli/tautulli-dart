@@ -3,10 +3,17 @@
     "result": "success",
     "message": null,
     "data": {
-      "date_format": "YYYY-MM-DD",
-      "time_format": "HH:mm",
-      "cache_dir": "/config/cache",
-      "config_dir": "/config"
+      "General": {
+        "date_format": "YYYY-MM-DD",
+        "time_format": "HH:mm",
+        "week_start_monday": 0,
+        "history_table_activity": 1
+      },
+      "PMS": {
+        "pms_name": "Margarita",
+        "pms_port": 32400,
+        "pms_ssl": 0
+      }
     }
   }
 }

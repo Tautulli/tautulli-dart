@@ -12,10 +12,11 @@ class TautulliService {
   final TautulliExecutor _client;
   TautulliService(TautulliExecutor client) : _client = client;
 
-  /// Returns Tautulli's current settings.
+  /// Returns Tautulli's current settings, grouped into config sections.
   ///
-  /// Optionally pass [key] to retrieve a single setting value.
-  /// All raw settings are available via [TautulliSettings.rawData].
+  /// Optionally pass [key] to retrieve a single config *section* (e.g.
+  /// `'General'`), not an individual setting. All raw settings are available
+  /// via [TautulliSettings.rawData].
   Future<TautulliSettings> getSettings({String? key}) async {
     final params = <String, dynamic>{};
     if (key != null) params['key'] = key;
