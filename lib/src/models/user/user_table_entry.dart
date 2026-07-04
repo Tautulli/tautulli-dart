@@ -10,9 +10,6 @@ class UserTableEntry {
   /// Whether this user is allowed to access Plex as a guest.
   final bool? allowGuest;
 
-  /// Whether this user has been deleted from Plex.
-  final bool? deletedUser;
-
   /// Whether Tautulli sends notifications for this user's activity.
   final bool? doNotify;
 
@@ -36,18 +33,6 @@ class UserTableEntry {
 
   /// Whether this user is currently active in Plex.
   final bool? isActive;
-
-  /// Whether this user has Plex admin privileges.
-  final bool? isAdmin;
-
-  /// Whether this user is allowed to sync content offline.
-  final bool? isAllowSync;
-
-  /// Whether this is a Plex Home user.
-  final bool? isHomeUser;
-
-  /// Whether content restrictions are applied to this user.
-  final bool? isRestricted;
 
   /// Whether Tautulli records watch history for this user.
   final bool? keepHistory;
@@ -91,9 +76,6 @@ class UserTableEntry {
   /// Database row ID for this user record.
   final int? rowId;
 
-  /// Section IDs of libraries shared with this user.
-  final List<int>? sharedLibraries;
-
   /// Thumbnail URL path for the most recently played item.
   final String? thumb;
 
@@ -117,7 +99,6 @@ class UserTableEntry {
 
   const UserTableEntry({
     this.allowGuest,
-    this.deletedUser,
     this.doNotify,
     this.duration,
     this.email,
@@ -126,10 +107,6 @@ class UserTableEntry {
     this.historyRowId,
     this.ipAddress,
     this.isActive,
-    this.isAdmin,
-    this.isAllowSync,
-    this.isHomeUser,
-    this.isRestricted,
     this.keepHistory,
     this.lastPlayed,
     this.lastSeen,
@@ -144,7 +121,6 @@ class UserTableEntry {
     this.plays,
     this.ratingKey,
     this.rowId,
-    this.sharedLibraries,
     this.thumb,
     this.title,
     this.transcodeDecision,
@@ -158,7 +134,6 @@ class UserTableEntry {
   factory UserTableEntry.fromJson(Map<String, dynamic> json) {
     return UserTableEntry(
       allowGuest: Cast.castToBool(json['allow_guest']),
-      deletedUser: Cast.castToBool(json['deleted_user']),
       doNotify: Cast.castToBool(json['do_notify']),
       duration: Cast.castToInt(json['duration']),
       email: Cast.castToString(json['email']),
@@ -167,10 +142,6 @@ class UserTableEntry {
       historyRowId: Cast.castToInt(json['history_row_id']),
       ipAddress: Cast.castToString(json['ip_address']),
       isActive: Cast.castToBool(json['is_active']),
-      isAdmin: Cast.castToBool(json['is_admin']),
-      isAllowSync: Cast.castToBool(json['is_allow_sync']),
-      isHomeUser: Cast.castToBool(json['is_home_user']),
-      isRestricted: Cast.castToBool(json['is_restricted']),
       keepHistory: Cast.castToBool(json['keep_history']),
       lastPlayed: Cast.castToString(json['last_played']),
       lastSeen: _dateTimeFromEpochSeconds(Cast.castToInt(json['last_seen'])),
@@ -185,9 +156,6 @@ class UserTableEntry {
       plays: Cast.castToInt(json['plays']),
       ratingKey: Cast.castToInt(json['rating_key']),
       rowId: Cast.castToInt(json['row_id']),
-      sharedLibraries: _sharedLibrariesFromList(
-        json['shared_libraries'] as List?,
-      ),
       thumb: Cast.castToString(json['thumb']),
       title: Cast.castToString(json['title']),
       transcodeDecision: StreamDecision.fromString(
@@ -203,10 +171,5 @@ class UserTableEntry {
   static DateTime? _dateTimeFromEpochSeconds(int? seconds) {
     if (seconds == null) return null;
     return DateTime.fromMillisecondsSinceEpoch(seconds * 1000);
-  }
-
-  static List<int>? _sharedLibrariesFromList(List? libraries) {
-    if (libraries == null || libraries.isEmpty) return null;
-    return libraries.map((item) => int.parse(item.toString())).toList();
   }
 }

@@ -33,7 +33,6 @@
           "video_resolution": "1080",
           "audio_codec": "aac",
           "audio_channels": 2,
-          "audio_bitrate": 256,
           "file_size": 4831838208
         }
       ]

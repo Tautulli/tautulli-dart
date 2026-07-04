@@ -58,8 +58,9 @@ void main() {
       makeClient('user/get_user_names.json');
       final names = await client.users.getUserNames();
       expect(names, hasLength(2));
-      expect(names.first.username, 'admin');
-      expect(names.last.friendlyName, 'JohnDoe');
+      expect(names.first.userId, 0);
+      expect(names.first.friendlyName, 'Local');
+      expect(names.last.friendlyName, 'TestUser1');
     });
   });
 
@@ -120,17 +121,7 @@ void main() {
       expect(result.data, hasLength(1));
       expect(result.data.first.username, 'johndoe');
       expect(result.data.first.plays, 42);
-    });
-
-    test('parses admin and permission fields', () async {
-      makeClient('user/get_users_table.json');
-      final entry = (await client.users.getUsersTable()).data.first;
-      expect(entry.isAdmin, false);
-      expect(entry.isAllowSync, true);
-      expect(entry.isHomeUser, true);
-      expect(entry.isRestricted, false);
-      expect(entry.deletedUser, false);
-      expect(entry.sharedLibraries, [1, 2]);
+      expect(result.data.first.historyRowId, 1);
     });
   });
 

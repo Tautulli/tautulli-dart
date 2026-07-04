@@ -37,7 +37,7 @@
           "guid": null,
           "labels": [],
           "content_rating": null,
-          "history_row": 100,
+          "history_row_id": 100,
           "server_id": "abc123"
         }
       ]

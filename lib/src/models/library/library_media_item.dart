@@ -7,9 +7,6 @@ class LibraryMediaItem {
   /// Date and time the item was added to the Plex library.
   final DateTime? addedAt;
 
-  /// Audio track bitrate in kbps.
-  final int? audioBitrate;
-
   /// Number of audio channels.
   final int? audioChannels;
 
@@ -78,7 +75,6 @@ class LibraryMediaItem {
 
   const LibraryMediaItem({
     this.addedAt,
-    this.audioBitrate,
     this.audioChannels,
     this.audioCodec,
     this.bitrate,
@@ -107,7 +103,6 @@ class LibraryMediaItem {
   factory LibraryMediaItem.fromJson(Map<String, dynamic> json) {
     return LibraryMediaItem(
       addedAt: _dateTimeFromStringEpochSeconds(json['added_at']),
-      audioBitrate: Cast.castToInt(json['audio_bitrate']),
       audioChannels: Cast.castToInt(json['audio_channels']),
       audioCodec: Cast.castToString(json['audio_codec']),
       bitrate: Cast.castToInt(json['bitrate']),

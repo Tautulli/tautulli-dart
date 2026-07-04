@@ -28,7 +28,7 @@ class LibraryTableEntry {
   final String? guid;
 
   /// History row ID for the most recent play in this library.
-  final int? historyRow;
+  final int? historyRowId;
 
   /// Whether this library is currently active in Plex.
   final bool? isActive;
@@ -107,7 +107,7 @@ class LibraryTableEntry {
     this.doNotifyCreated,
     this.duration,
     this.guid,
-    this.historyRow,
+    this.historyRowId,
     this.isActive,
     this.keepHistory,
     this.labels,
@@ -143,7 +143,7 @@ class LibraryTableEntry {
       doNotifyCreated: Cast.castToBool(json['do_notify_created']),
       duration: _durationFromSeconds(Cast.castToInt(json['duration'])),
       guid: Cast.castToString(json['guid']),
-      historyRow: Cast.castToInt(json['history_row']),
+      historyRowId: Cast.castToInt(json['history_row_id']),
       isActive: Cast.castToBool(json['is_active']),
       keepHistory: Cast.castToBool(json['keep_history']),
       labels: (json['labels'] as List?)?.map((e) => e.toString()).toList(),
