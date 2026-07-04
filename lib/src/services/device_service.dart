@@ -1,5 +1,6 @@
 import '../executor.dart';
 import '../models/tautulli/register_device_result.dart';
+import '../utils/cast.dart';
 
 /// Commands: register_device, set_mobile_device_config, delete_mobile_device
 class DeviceService {
@@ -59,7 +60,7 @@ class DeviceService {
 
     final response = await _client.execute('register_device', params: params);
     return RegisterDeviceResult.fromJson(
-      response['data'] as Map<String, dynamic>? ?? {},
+      Cast.dataMap(response['data'], 'register_device'),
     );
   }
 }

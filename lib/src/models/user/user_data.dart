@@ -112,7 +112,7 @@ class UserData {
       isHomeUser: Cast.castToBool(json['is_home_user']),
       isRestricted: Cast.castToBool(json['is_restricted']),
       keepHistory: Cast.castToBool(json['keep_history']),
-      lastSeen: _dateTimeFromEpochSeconds(Cast.castToInt(json['last_seen'])),
+      lastSeen: Cast.dateTimeFromEpochSeconds(json['last_seen']),
       rowId: Cast.castToInt(json['row_id']),
       sharedLibraries: _sharedLibrariesFromList(
         json['shared_libraries'] as List?,
@@ -121,11 +121,6 @@ class UserData {
       userId: Cast.castToInt(json['user_id']),
       username: Cast.castToString(json['username']),
     );
-  }
-
-  static DateTime? _dateTimeFromEpochSeconds(int? seconds) {
-    if (seconds == null) return null;
-    return DateTime.fromMillisecondsSinceEpoch(seconds * 1000);
   }
 
   static List<int>? _sharedLibrariesFromList(List? libraries) {

@@ -19,10 +19,10 @@ class NotificationService {
     final params = <String, dynamic>{};
     if (notifyAction != null) params['notify_action'] = notifyAction;
     final response = await _client.execute('get_notifiers', params: params);
-    return (response['data'] as List? ?? [])
-        .whereType<Map<String, dynamic>>()
-        .map(NotifierConfig.fromJson)
-        .toList();
+    return Cast.dataList(
+      response['data'],
+      'get_notifiers',
+    ).whereType<Map<String, dynamic>>().map(NotifierConfig.fromJson).toList();
   }
 
   /// Returns the full configuration for a single notifier.
@@ -32,16 +32,14 @@ class NotificationService {
       params: {'notifier_id': notifierId},
     );
     return NotifierConfig.fromJson(
-      response['data'] as Map<String, dynamic>? ?? {},
+      Cast.dataMap(response['data'], 'get_notifier_config'),
     );
   }
 
   /// Returns the notification template parameters available for message text.
   Future<List<NotifierParameter>> getNotifierParameters() async {
     final response = await _client.execute('get_notifier_parameters');
-    final data = response['data'];
-    if (data is! List) return [];
-    return data
+    return Cast.dataList(response['data'], 'get_notifier_parameters')
         .whereType<Map<String, dynamic>>()
         .map(NotifierParameter.fromJson)
         .toList();
@@ -70,9 +68,9 @@ class NotificationService {
       'get_notification_log',
       params: params,
     );
-    final data = response['data'] as Map<String, dynamic>? ?? {};
+    final data = Cast.dataMap(response['data'], 'get_notification_log');
     return PagedResult(
-      data: (data['data'] as List? ?? [])
+      data: Cast.dataList(data['data'], 'get_notification_log')
           .whereType<Map<String, dynamic>>()
           .map(NotificationLogEntry.fromJson)
           .toList(),

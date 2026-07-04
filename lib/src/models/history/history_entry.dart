@@ -7,7 +7,8 @@ import '../../utils/cast.dart';
 
 /// A single watch history entry returned by `get_history`.
 class HistoryEntry {
-  /// The calendar date of the watch event (midnight UTC).
+  /// The date of the watch event, as a UTC [DateTime] (call `.toLocal()` for
+  /// display).
   final DateTime? date;
 
   /// Total duration of the media item.
@@ -185,7 +186,7 @@ class HistoryEntry {
   /// Parses a [HistoryEntry] from a Tautulli API JSON map.
   factory HistoryEntry.fromJson(Map<String, dynamic> json) {
     return HistoryEntry(
-      date: _dateTimeFromEpochSeconds(Cast.castToInt(json['date'])),
+      date: Cast.dateTimeFromEpochSeconds(json['date']),
       duration: _durationFromSeconds(Cast.castToInt(json['duration'])),
       friendlyName: Cast.castToString(json['friendly_name']),
       fullTitle: Cast.castToString(json['full_title']),
@@ -221,9 +222,9 @@ class HistoryEntry {
       rowId: Cast.castToInt(json['row_id']),
       secure: Cast.castToBool(json['secure']),
       sessionKey: Cast.castToInt(json['session_key']),
-      started: _dateTimeFromEpochSeconds(Cast.castToInt(json['started'])),
+      started: Cast.dateTimeFromEpochSeconds(json['started']),
       state: PlaybackState.fromString(Cast.castToString(json['state'])),
-      stopped: _dateTimeFromEpochSeconds(Cast.castToInt(json['stopped'])),
+      stopped: Cast.dateTimeFromEpochSeconds(json['stopped']),
       thumb: Cast.castToString(json['thumb']),
       title: Cast.castToString(json['title']),
       transcodeDecision: StreamDecision.fromString(
@@ -237,11 +238,6 @@ class HistoryEntry {
       ),
       year: Cast.castToInt(json['year']),
     );
-  }
-
-  static DateTime? _dateTimeFromEpochSeconds(int? seconds) {
-    if (seconds == null) return null;
-    return DateTime.fromMillisecondsSinceEpoch(seconds * 1000);
   }
 
   static DateTime? _dateTimeFromString(String? date) {

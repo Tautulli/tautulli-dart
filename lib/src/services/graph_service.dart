@@ -1,6 +1,7 @@
 import '../executor.dart';
 import '../models/graph/graph_data.dart';
 import '../types/play_metric_type.dart';
+import '../utils/cast.dart';
 
 /// Commands: get_concurrent_streams_by_stream_type, get_plays_by_date,
 /// get_plays_by_dayofweek, get_plays_by_hourofday, get_plays_by_source_resolution,
@@ -194,6 +195,6 @@ class GraphService {
 
   Future<GraphData> _graphData(String cmd, Map<String, dynamic> params) async {
     final response = await _client.execute(cmd, params: params);
-    return GraphData.fromJson(response['data'] as Map<String, dynamic>? ?? {});
+    return GraphData.fromJson(Cast.dataMap(response['data'], cmd));
   }
 }

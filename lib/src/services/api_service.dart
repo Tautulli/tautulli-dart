@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import '../executor.dart';
+import '../utils/cast.dart';
 
 /// Commands: docs, docs_md, arnold
 class ApiService {
@@ -10,7 +11,7 @@ class ApiService {
   /// Returns the full Tautulli API documentation as a structured map.
   Future<Map<String, dynamic>> docs() async {
     final response = await _client.execute('docs');
-    return response['data'] as Map<String, dynamic>? ?? {};
+    return Cast.dataMap(response['data'], 'docs');
   }
 
   /// Returns the Tautulli API documentation as Markdown text.

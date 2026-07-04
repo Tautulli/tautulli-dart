@@ -18,10 +18,10 @@ class NewsletterService {
     final params = <String, dynamic>{};
     if (includeDisabled != null) params['include_disabled'] = includeDisabled;
     final response = await _client.execute('get_newsletters', params: params);
-    return (response['data'] as List? ?? [])
-        .whereType<Map<String, dynamic>>()
-        .map(NewsletterConfig.fromJson)
-        .toList();
+    return Cast.dataList(
+      response['data'],
+      'get_newsletters',
+    ).whereType<Map<String, dynamic>>().map(NewsletterConfig.fromJson).toList();
   }
 
   /// Returns the full configuration for a single newsletter.
@@ -33,7 +33,7 @@ class NewsletterService {
       params: {'newsletter_id': newsletterId},
     );
     return NewsletterConfig.fromJson(
-      response['data'] as Map<String, dynamic>? ?? {},
+      Cast.dataMap(response['data'], 'get_newsletter_config'),
     );
   }
 
@@ -58,9 +58,9 @@ class NewsletterService {
       'get_newsletter_log',
       params: params,
     );
-    final data = response['data'] as Map<String, dynamic>? ?? {};
+    final data = Cast.dataMap(response['data'], 'get_newsletter_log');
     return PagedResult(
-      data: (data['data'] as List? ?? [])
+      data: Cast.dataList(data['data'], 'get_newsletter_log')
           .whereType<Map<String, dynamic>>()
           .map(NewsletterLogEntry.fromJson)
           .toList(),

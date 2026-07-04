@@ -2,6 +2,7 @@ import 'dart:typed_data';
 
 import '../executor.dart';
 import '../models/log/log_entry.dart';
+import '../utils/cast.dart';
 
 /// Commands: get_logs, get_plex_log, download_log, download_plex_log,
 /// delete_login_log
@@ -32,7 +33,10 @@ class LogService {
     if (ms != null) params['ms'] = ms;
 
     final response = await _client.execute('get_logs', params: params);
-    return _parseLogs(response['data']);
+    return Cast.dataList(
+      response['data'],
+      'get_logs',
+    ).whereType<Map<String, dynamic>>().map(LogEntry.fromJson).toList();
   }
 
   /// Returns Plex Media Server log entries.
@@ -76,13 +80,5 @@ class LogService {
   /// Deletes all entries from the Tautulli login log.
   Future<void> deleteLoginLog() async {
     await _client.execute('delete_login_log');
-  }
-
-  List<LogEntry> _parseLogs(dynamic data) {
-    if (data is! List) return [];
-    return data
-        .whereType<Map<String, dynamic>>()
-        .map(LogEntry.fromJson)
-        .toList();
   }
 }

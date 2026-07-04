@@ -36,9 +36,12 @@ class ExportService {
     if (search != null) params['search'] = search;
 
     final response = await _client.execute('get_exports_table', params: params);
-    final data = response['data'] as Map<String, dynamic>? ?? {};
+    final data = Cast.dataMap(response['data'], 'get_exports_table');
     return PagedResult(
-      data: (data['data'] as List? ?? []).whereType<Map<String, dynamic>>().map(ExportEntry.fromJson).toList(),
+      data: Cast.dataList(
+        data['data'],
+        'get_exports_table',
+      ).whereType<Map<String, dynamic>>().map(ExportEntry.fromJson).toList(),
       recordsTotal: Cast.castToInt(data['recordsTotal']),
       recordsFiltered: Cast.castToInt(data['recordsFiltered']),
     );
@@ -47,16 +50,22 @@ class ExportService {
   /// Returns the available export fields for the given [mediaType].
   ///
   /// [subMediaType] narrows collection/playlist fields (e.g. `'movie'`, `'video'`).
-  Future<Map<String, dynamic>> getExportFields({required String mediaType, String? subMediaType}) async {
+  Future<Map<String, dynamic>> getExportFields({
+    required String mediaType,
+    String? subMediaType,
+  }) async {
     final params = <String, dynamic>{'media_type': mediaType};
     if (subMediaType != null) params['sub_media_type'] = subMediaType;
     final response = await _client.execute('get_export_fields', params: params);
-    return response['data'] as Map<String, dynamic>? ?? {};
+    return Cast.dataMap(response['data'], 'get_export_fields');
   }
 
   /// Downloads a completed export file by its [exportId].
   Future<Uint8List> downloadExport({required int exportId}) async {
-    return _client.executeDownload('download_export', params: {'export_id': exportId});
+    return _client.executeDownload(
+      'download_export',
+      params: {'export_id': exportId},
+    );
   }
 
   /// Queues a metadata export job.

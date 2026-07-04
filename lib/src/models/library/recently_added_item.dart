@@ -174,7 +174,7 @@ class RecentlyAddedItem {
   factory RecentlyAddedItem.fromJson(Map<String, dynamic> json) {
     return RecentlyAddedItem(
       actors: _stringListFromList(json['actors'] as List?),
-      addedAt: _dateTimeFromStringEpochSeconds(json['added_at']),
+      addedAt: Cast.dateTimeFromEpochSeconds(json['added_at']),
       art: Cast.castToString(json['art']),
       audienceRating: Cast.castToNum(json['audience_rating']),
       audienceRatingImage: Cast.castToString(json['audience_rating_image']),
@@ -190,7 +190,7 @@ class RecentlyAddedItem {
       guid: Cast.castToString(json['guid']),
       guids: _stringListFromList(json['guids'] as List?),
       labels: _stringListFromList(json['labels'] as List?),
-      lastViewedAt: _dateTimeFromStringEpochSeconds(json['last_viewed_at']),
+      lastViewedAt: Cast.dateTimeFromEpochSeconds(json['last_viewed_at']),
       libraryName: Cast.castToString(json['library_name']),
       mediaIndex: Cast.castToInt(json['media_index']),
       mediaType: MediaType.fromString(Cast.castToString(json['media_type'])),
@@ -213,7 +213,7 @@ class RecentlyAddedItem {
       thumb: Cast.castToString(json['thumb']),
       title: Cast.castToString(json['title']),
       userRating: Cast.castToNum(json['user_rating']),
-      updatedAt: _dateTimeFromStringEpochSeconds(json['updated_at']),
+      updatedAt: Cast.dateTimeFromEpochSeconds(json['updated_at']),
       writers: _stringListFromList(json['writers'] as List?),
       year: Cast.castToInt(json['year']),
     );
@@ -227,12 +227,6 @@ class RecentlyAddedItem {
   static DateTime? _dateTimeFromString(String? date) {
     if (date == null) return null;
     return DateTime.tryParse(date);
-  }
-
-  static DateTime? _dateTimeFromStringEpochSeconds(dynamic value) {
-    final seconds = Cast.castToInt(value);
-    if (seconds == null) return null;
-    return DateTime.fromMillisecondsSinceEpoch(seconds * 1000);
   }
 
   static Duration? _durationFromSecondsString(dynamic value) {

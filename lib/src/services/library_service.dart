@@ -42,8 +42,8 @@ class LibraryService {
       'get_libraries_table',
       params: params,
     );
-    final data = response['data'] as Map<String, dynamic>? ?? {};
-    final entries = (data['data'] as List? ?? [])
+    final data = Cast.dataMap(response['data'], 'get_libraries_table');
+    final entries = Cast.dataList(data['data'], 'get_libraries_table')
         .whereType<Map<String, dynamic>>()
         .map(LibraryTableEntry.fromJson)
         .toList();
@@ -83,11 +83,11 @@ class LibraryService {
       'get_library_media_info',
       params: params,
     );
-    final data = response['data'] as Map<String, dynamic>? ?? {};
-    final items = (data['data'] as List? ?? [])
-        .whereType<Map<String, dynamic>>()
-        .map(LibraryMediaItem.fromJson)
-        .toList();
+    final data = Cast.dataMap(response['data'], 'get_library_media_info');
+    final items = Cast.dataList(
+      data['data'],
+      'get_library_media_info',
+    ).whereType<Map<String, dynamic>>().map(LibraryMediaItem.fromJson).toList();
     return PagedResult(
       data: items,
       recordsTotal: Cast.castToInt(data['recordsTotal']),
@@ -107,12 +107,10 @@ class LibraryService {
       'get_library_user_stats',
       params: params,
     );
-    final data = response['data'];
-    if (data is! List) return [];
-    return data
-        .whereType<Map<String, dynamic>>()
-        .map(LibraryUserStat.fromJson)
-        .toList();
+    return Cast.dataList(
+      response['data'],
+      'get_library_user_stats',
+    ).whereType<Map<String, dynamic>>().map(LibraryUserStat.fromJson).toList();
   }
 
   /// Returns watch time statistics for a library section over configurable time periods.
@@ -129,9 +127,7 @@ class LibraryService {
       'get_library_watch_time_stats',
       params: params,
     );
-    final data = response['data'];
-    if (data is! List) return [];
-    return data
+    return Cast.dataList(response['data'], 'get_library_watch_time_stats')
         .whereType<Map<String, dynamic>>()
         .map(LibraryWatchTimeStat.fromJson)
         .toList();
@@ -153,10 +149,8 @@ class LibraryService {
       'get_recently_added',
       params: params,
     );
-    final data = response['data'];
-    if (data is! Map<String, dynamic>) return [];
-    final list = data['recently_added'] as List? ?? [];
-    return list
+    final data = Cast.dataMap(response['data'], 'get_recently_added');
+    return Cast.dataList(data['recently_added'], 'get_recently_added')
         .whereType<Map<String, dynamic>>()
         .map(RecentlyAddedItem.fromJson)
         .toList();
@@ -165,10 +159,10 @@ class LibraryService {
   /// Returns summary information for all Plex library sections.
   Future<List<LibraryEntry>> getLibraries() async {
     final response = await _client.execute('get_libraries');
-    return (response['data'] as List? ?? [])
-        .whereType<Map<String, dynamic>>()
-        .map(LibraryEntry.fromJson)
-        .toList();
+    return Cast.dataList(
+      response['data'],
+      'get_libraries',
+    ).whereType<Map<String, dynamic>>().map(LibraryEntry.fromJson).toList();
   }
 
   /// Returns summary information for a single library section by [sectionId].
@@ -183,18 +177,16 @@ class LibraryService {
       params['include_last_accessed'] = includeLastAccessed;
     }
     final response = await _client.execute('get_library', params: params);
-    return LibraryEntry.fromJson(
-      response['data'] as Map<String, dynamic>? ?? {},
-    );
+    return LibraryEntry.fromJson(Cast.dataMap(response['data'], 'get_library'));
   }
 
   /// Returns a lightweight list of library section IDs, names, and types.
   Future<List<LibraryName>> getLibraryNames() async {
     final response = await _client.execute('get_library_names');
-    return (response['data'] as List? ?? [])
-        .whereType<Map<String, dynamic>>()
-        .map(LibraryName.fromJson)
-        .toList();
+    return Cast.dataList(
+      response['data'],
+      'get_library_names',
+    ).whereType<Map<String, dynamic>>().map(LibraryName.fromJson).toList();
   }
 
   /// Returns a paginated table of Plex collections.
@@ -218,11 +210,12 @@ class LibraryService {
       'get_collections_table',
       params: params,
     );
-    final data = response['data'] as Map<String, dynamic>? ?? {};
+    final data = Cast.dataMap(response['data'], 'get_collections_table');
     return PagedResult(
-      data: (data['data'] as List? ?? [])
-          .whereType<Map<String, dynamic>>()
-          .toList(),
+      data: Cast.dataList(
+        data['data'],
+        'get_collections_table',
+      ).whereType<Map<String, dynamic>>().toList(),
       recordsTotal: Cast.castToInt(data['recordsTotal']),
       recordsFiltered: Cast.castToInt(data['recordsFiltered']),
     );
@@ -251,11 +244,12 @@ class LibraryService {
       'get_playlists_table',
       params: params,
     );
-    final data = response['data'] as Map<String, dynamic>? ?? {};
+    final data = Cast.dataMap(response['data'], 'get_playlists_table');
     return PagedResult(
-      data: (data['data'] as List? ?? [])
-          .whereType<Map<String, dynamic>>()
-          .toList(),
+      data: Cast.dataList(
+        data['data'],
+        'get_playlists_table',
+      ).whereType<Map<String, dynamic>>().toList(),
       recordsTotal: Cast.castToInt(data['recordsTotal']),
       recordsFiltered: Cast.castToInt(data['recordsFiltered']),
     );

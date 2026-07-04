@@ -62,11 +62,11 @@ class HistoryService {
     if (search != null) params['search'] = search;
 
     final response = await _client.execute('get_history', params: params);
-    final data = response['data'] as Map<String, dynamic>? ?? {};
-    final entries = (data['data'] as List? ?? [])
-        .whereType<Map<String, dynamic>>()
-        .map(HistoryEntry.fromJson)
-        .toList();
+    final data = Cast.dataMap(response['data'], 'get_history');
+    final entries = Cast.dataList(
+      data['data'],
+      'get_history',
+    ).whereType<Map<String, dynamic>>().map(HistoryEntry.fromJson).toList();
     return PagedResult(
       data: entries,
       recordsTotal: Cast.castToInt(data['recordsTotal']),
@@ -102,12 +102,10 @@ class HistoryService {
     if (after != null) params['after'] = _formatDate(after);
 
     final response = await _client.execute('get_home_stats', params: params);
-    final data = response['data'];
-    if (data is! List) return [];
-    return data
-        .whereType<Map<String, dynamic>>()
-        .map(HomeStatGroup.fromJson)
-        .toList();
+    return Cast.dataList(
+      response['data'],
+      'get_home_stats',
+    ).whereType<Map<String, dynamic>>().map(HomeStatGroup.fromJson).toList();
   }
 
   /// Permanently deletes the history entries with the given [rowIds].

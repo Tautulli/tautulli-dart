@@ -144,7 +144,7 @@ class UserTableEntry {
       isActive: Cast.castToBool(json['is_active']),
       keepHistory: Cast.castToBool(json['keep_history']),
       lastPlayed: Cast.castToString(json['last_played']),
-      lastSeen: _dateTimeFromEpochSeconds(Cast.castToInt(json['last_seen'])),
+      lastSeen: Cast.dateTimeFromEpochSeconds(json['last_seen']),
       live: Cast.castToBool(json['live']),
       mediaIndex: Cast.castToInt(json['media_index']),
       mediaType: MediaType.fromString(Cast.castToString(json['media_type'])),
@@ -166,10 +166,5 @@ class UserTableEntry {
       username: Cast.castToString(json['username']),
       year: Cast.castToInt(json['year']),
     );
-  }
-
-  static DateTime? _dateTimeFromEpochSeconds(int? seconds) {
-    if (seconds == null) return null;
-    return DateTime.fromMillisecondsSinceEpoch(seconds * 1000);
   }
 }

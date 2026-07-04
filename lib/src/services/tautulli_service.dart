@@ -2,6 +2,7 @@ import 'dart:typed_data';
 
 import '../executor.dart';
 import '../models/tautulli/tautulli_settings.dart';
+import '../utils/cast.dart';
 
 /// Commands: get_tautulli_info, get_date_formats, get_settings, status,
 /// update_check, update, restart, backup_config, backup_db,
@@ -22,20 +23,20 @@ class TautulliService {
     if (key != null) params['key'] = key;
     final response = await _client.execute('get_settings', params: params);
     return TautulliSettings.fromJson(
-      response['data'] as Map<String, dynamic>? ?? {},
+      Cast.dataMap(response['data'], 'get_settings'),
     );
   }
 
   /// Returns Tautulli version, branch, and installation metadata.
   Future<Map<String, dynamic>> getTautulliInfo() async {
     final response = await _client.execute('get_tautulli_info');
-    return response['data'] as Map<String, dynamic>? ?? {};
+    return Cast.dataMap(response['data'], 'get_tautulli_info');
   }
 
   /// Returns the date and time format strings configured in Tautulli.
   Future<Map<String, dynamic>> getDateFormats() async {
     final response = await _client.execute('get_date_formats');
-    return response['data'] as Map<String, dynamic>? ?? {};
+    return Cast.dataMap(response['data'], 'get_date_formats');
   }
 
   /// Returns the current operational status of Tautulli.
@@ -45,13 +46,13 @@ class TautulliService {
     final params = <String, dynamic>{};
     if (check != null) params['check'] = check;
     final response = await _client.execute('status', params: params);
-    return response['data'] as Map<String, dynamic>? ?? {};
+    return Cast.dataMap(response['data'], 'status');
   }
 
   /// Checks for available Tautulli updates.
   Future<Map<String, dynamic>> updateCheck() async {
     final response = await _client.execute('update_check');
-    return response['data'] as Map<String, dynamic>? ?? {};
+    return Cast.dataMap(response['data'], 'update_check');
   }
 
   /// Executes a raw SQL [query] against the Tautulli database.
@@ -59,9 +60,10 @@ class TautulliService {
   /// Use with caution — no safety checks are applied.
   Future<List<Map<String, dynamic>>> sql({required String query}) async {
     final response = await _client.execute('sql', params: {'query': query});
-    return (response['data'] as List? ?? [])
-        .whereType<Map<String, dynamic>>()
-        .toList();
+    return Cast.dataList(
+      response['data'],
+      'sql',
+    ).whereType<Map<String, dynamic>>().toList();
   }
 
   /// Downloads the Tautulli configuration file as raw bytes.

@@ -168,7 +168,7 @@ class MediaItem {
   factory MediaItem.fromJson(Map<String, dynamic> json) {
     return MediaItem(
       actors: _stringListFromList(json['actors'] as List?),
-      addedAt: _dateTimeFromStringEpochSeconds(json['added_at']),
+      addedAt: Cast.dateTimeFromEpochSeconds(json['added_at']),
       audienceRating: Cast.castToDouble(json['audience_rating']),
       collections: _stringListFromList(json['collections'] as List?),
       contentRating: Cast.castToString(json['content_rating']),
@@ -180,7 +180,7 @@ class MediaItem {
       grandparentThumb: Cast.castToString(json['grandparent_thumb']),
       grandparentTitle: Cast.castToString(json['grandparent_title']),
       labels: _stringListFromList(json['labels'] as List?),
-      lastViewedAt: _dateTimeFromStringEpochSeconds(json['last_viewed_at']),
+      lastViewedAt: Cast.dateTimeFromEpochSeconds(json['last_viewed_at']),
       libraryName: Cast.castToString(json['library_name']),
       live: Cast.castToBool(json['live']),
       mediaIndex: Cast.castToInt(json['media_index']),
@@ -204,7 +204,7 @@ class MediaItem {
       tagline: Cast.castToString(json['tagline']),
       thumb: Cast.castToString(json['thumb']),
       title: Cast.castToString(json['title']),
-      updatedAt: _dateTimeFromStringEpochSeconds(json['updated_at']),
+      updatedAt: Cast.dateTimeFromEpochSeconds(json['updated_at']),
       userRating: Cast.castToDouble(json['user_rating']),
       writers: _stringListFromList(json['writers'] as List?),
       year: Cast.castToInt(json['year']),
@@ -219,14 +219,6 @@ class MediaItem {
   static DateTime? _dateTimeFromString(String? date) {
     if (date == null) return null;
     return DateTime.tryParse(date);
-  }
-
-  static DateTime? _dateTimeFromStringEpochSeconds(dynamic value) {
-    final s = Cast.castToString(value);
-    if (s == null) return null;
-    final seconds = int.tryParse(s);
-    if (seconds == null) return null;
-    return DateTime.fromMillisecondsSinceEpoch(seconds * 1000);
   }
 
   static Duration? _durationFromMillisString(dynamic value) {

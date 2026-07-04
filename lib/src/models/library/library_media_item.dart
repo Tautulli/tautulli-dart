@@ -102,16 +102,14 @@ class LibraryMediaItem {
   /// Parses a [LibraryMediaItem] from a Tautulli API JSON map.
   factory LibraryMediaItem.fromJson(Map<String, dynamic> json) {
     return LibraryMediaItem(
-      addedAt: _dateTimeFromStringEpochSeconds(json['added_at']),
+      addedAt: Cast.dateTimeFromEpochSeconds(json['added_at']),
       audioChannels: Cast.castToInt(json['audio_channels']),
       audioCodec: Cast.castToString(json['audio_codec']),
       bitrate: Cast.castToInt(json['bitrate']),
       container: Cast.castToString(json['container']),
       fileSize: Cast.castToInt(json['file_size']),
       grandparentRatingKey: Cast.castToInt(json['grandparent_rating_key']),
-      lastPlayed: _dateTimeFromEpochSeconds(
-        Cast.castToInt(json['last_played']),
-      ),
+      lastPlayed: Cast.dateTimeFromEpochSeconds(json['last_played']),
       mediaIndex: Cast.castToInt(json['media_index']),
       mediaType: MediaType.fromString(Cast.castToString(json['media_type'])),
       parentMediaIndex: Cast.castToInt(json['parent_media_index']),
@@ -130,16 +128,5 @@ class LibraryMediaItem {
       videoResolution: Cast.castToString(json['video_resolution']),
       year: Cast.castToInt(json['year']),
     );
-  }
-
-  static DateTime? _dateTimeFromStringEpochSeconds(dynamic value) {
-    final seconds = Cast.castToInt(value);
-    if (seconds == null) return null;
-    return DateTime.fromMillisecondsSinceEpoch(seconds * 1000);
-  }
-
-  static DateTime? _dateTimeFromEpochSeconds(int? seconds) {
-    if (seconds == null) return null;
-    return DateTime.fromMillisecondsSinceEpoch(seconds * 1000);
   }
 }

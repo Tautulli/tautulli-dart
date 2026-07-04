@@ -181,8 +181,8 @@ class HomeStat {
       grandparentTitle: Cast.castToString(json['grandparent_title']),
       guid: Cast.castToString(json['guid']),
       labels: (json['labels'] as List?)?.whereType<String>().toList(),
-      lastPlay: _dateTimeFromEpochSeconds(json['last_play']),
-      lastWatch: _dateTimeFromEpochSeconds(json['last_watch']),
+      lastPlay: Cast.dateTimeFromEpochSeconds(json['last_play']),
+      lastWatch: Cast.dateTimeFromEpochSeconds(json['last_watch']),
       live: Cast.castToBool(json['live']),
       mediaIndex: Cast.castToInt(json['media_index']),
       mediaType: MediaType.fromString(Cast.castToString(json['media_type'])),
@@ -197,7 +197,7 @@ class HomeStat {
       sectionType: SectionType.fromString(
         Cast.castToString(json['section_type']),
       ),
-      started: _dateTimeFromEpochSeconds(json['started']),
+      started: Cast.dateTimeFromEpochSeconds(json['started']),
       thumb: Cast.castToString(json['thumb']),
       title: Cast.castToString(json['title']),
       totalDuration: _durationFromSeconds(
@@ -210,12 +210,6 @@ class HomeStat {
       userThumb: Cast.castToString(json['user_thumb']),
       year: Cast.castToInt(json['year']),
     );
-  }
-
-  static DateTime? _dateTimeFromEpochSeconds(dynamic value) {
-    final seconds = Cast.castToInt(value);
-    if (seconds == null) return null;
-    return DateTime.fromMillisecondsSinceEpoch(seconds * 1000);
   }
 
   static Duration? _durationFromSeconds(int? seconds) {

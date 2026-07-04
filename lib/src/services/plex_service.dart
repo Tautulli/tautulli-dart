@@ -1,5 +1,6 @@
 import '../executor.dart';
 import '../models/plex/plex_server_info.dart';
+import '../utils/cast.dart';
 
 /// Commands: get_server_info, get_server_identity, get_server_friendly_name,
 /// get_server_id, get_server_list, get_server_pref, get_servers_info,
@@ -12,14 +13,14 @@ class PlexService {
   Future<PlexServerInfo> getServerInfo() async {
     final response = await _client.execute('get_server_info');
     return PlexServerInfo.fromJson(
-      response['data'] as Map<String, dynamic>? ?? {},
+      Cast.dataMap(response['data'], 'get_server_info'),
     );
   }
 
   /// Returns identity information (machine identifier) for the connected Plex server.
   Future<Map<String, dynamic>> getServerIdentity() async {
     final response = await _client.execute('get_server_identity');
-    return response['data'] as Map<String, dynamic>? ?? {};
+    return Cast.dataMap(response['data'], 'get_server_identity');
   }
 
   /// Returns the friendly name of the connected Plex Media Server.
@@ -57,9 +58,10 @@ class PlexService {
     if (includeCloud != null) params['include_cloud'] = includeCloud;
     if (allServers != null) params['all_servers'] = allServers;
     final response = await _client.execute('get_server_list', params: params);
-    return (response['data'] as List? ?? [])
-        .whereType<Map<String, dynamic>>()
-        .toList();
+    return Cast.dataList(
+      response['data'],
+      'get_server_list',
+    ).whereType<Map<String, dynamic>>().toList();
   }
 
   /// Returns the value of a single Plex server preference by its key [pref].
@@ -74,15 +76,16 @@ class PlexService {
   /// Returns detailed information about all servers as a list of raw maps.
   Future<List<Map<String, dynamic>>> getServersInfo() async {
     final response = await _client.execute('get_servers_info');
-    return (response['data'] as List? ?? [])
-        .whereType<Map<String, dynamic>>()
-        .toList();
+    return Cast.dataList(
+      response['data'],
+      'get_servers_info',
+    ).whereType<Map<String, dynamic>>().toList();
   }
 
   /// Returns available Plex Media Server update information.
   Future<Map<String, dynamic>> getPmsUpdate() async {
     final response = await _client.execute('get_pms_update');
-    return response['data'] as Map<String, dynamic>? ?? {};
+    return Cast.dataMap(response['data'], 'get_pms_update');
   }
 
   /// Returns the current status of the Plex Media Server.
@@ -96,7 +99,7 @@ class PlexService {
     if (sessionKey != null) params['session_key'] = sessionKey;
     if (sessionId != null) params['session_id'] = sessionId;
     final response = await _client.execute('server_status', params: params);
-    return response['data'] as Map<String, dynamic>? ?? {};
+    return Cast.dataMap(response['data'], 'server_status');
   }
 
   /// Returns synced items for a Plex client device.

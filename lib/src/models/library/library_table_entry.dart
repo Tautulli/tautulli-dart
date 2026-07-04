@@ -147,9 +147,7 @@ class LibraryTableEntry {
       isActive: Cast.castToBool(json['is_active']),
       keepHistory: Cast.castToBool(json['keep_history']),
       labels: (json['labels'] as List?)?.map((e) => e.toString()).toList(),
-      lastAccessed: _dateTimeFromEpochSeconds(
-        Cast.castToInt(json['last_accessed']),
-      ),
+      lastAccessed: Cast.dateTimeFromEpochSeconds(json['last_accessed']),
       lastPlayed: Cast.castToString(json['last_played']),
       libraryArt: Cast.castToString(json['library_art']),
       libraryThumb: Cast.castToString(json['library_thumb']),
@@ -174,11 +172,6 @@ class LibraryTableEntry {
       thumb: Cast.castToString(json['thumb']),
       year: Cast.castToInt(json['year']),
     );
-  }
-
-  static DateTime? _dateTimeFromEpochSeconds(int? seconds) {
-    if (seconds == null) return null;
-    return DateTime.fromMillisecondsSinceEpoch(seconds * 1000);
   }
 
   static DateTime? _dateTimeFromString(String? date) {

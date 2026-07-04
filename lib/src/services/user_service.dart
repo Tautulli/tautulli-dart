@@ -24,18 +24,16 @@ class UserService {
       'include_last_seen': includeLastSeen ?? true,
     };
     final response = await _client.execute('get_user', params: params);
-    return UserData.fromJson(response['data'] as Map<String, dynamic>? ?? {});
+    return UserData.fromJson(Cast.dataMap(response['data'], 'get_user'));
   }
 
   /// Returns a lightweight list of all user IDs, usernames, and friendly names.
   Future<List<UserName>> getUserNames() async {
     final response = await _client.execute('get_user_names');
-    final data = response['data'];
-    if (data is! List) return [];
-    return data
-        .whereType<Map<String, dynamic>>()
-        .map(UserName.fromJson)
-        .toList();
+    return Cast.dataList(
+      response['data'],
+      'get_user_names',
+    ).whereType<Map<String, dynamic>>().map(UserName.fromJson).toList();
   }
 
   /// Returns per-player-platform statistics for the user identified by [userId].
@@ -50,12 +48,10 @@ class UserService {
       'get_user_player_stats',
       params: params,
     );
-    final data = response['data'];
-    if (data is! List) return [];
-    return data
-        .whereType<Map<String, dynamic>>()
-        .map(UserPlayerStat.fromJson)
-        .toList();
+    return Cast.dataList(
+      response['data'],
+      'get_user_player_stats',
+    ).whereType<Map<String, dynamic>>().map(UserPlayerStat.fromJson).toList();
   }
 
   /// Returns watch time statistics for the user identified by [userId] over time periods.
@@ -72,9 +68,7 @@ class UserService {
       'get_user_watch_time_stats',
       params: params,
     );
-    final data = response['data'];
-    if (data is! List) return [];
-    return data
+    return Cast.dataList(response['data'], 'get_user_watch_time_stats')
         .whereType<Map<String, dynamic>>()
         .map(UserWatchTimeStat.fromJson)
         .toList();
@@ -85,10 +79,10 @@ class UserService {
     final params = <String, dynamic>{};
     if (grouping != null) params['grouping'] = grouping;
     final response = await _client.execute('get_users', params: params);
-    return (response['data'] as List? ?? [])
-        .whereType<Map<String, dynamic>>()
-        .map(UserData.fromJson)
-        .toList();
+    return Cast.dataList(
+      response['data'],
+      'get_users',
+    ).whereType<Map<String, dynamic>>().map(UserData.fromJson).toList();
   }
 
   /// Returns a paginated list of IP addresses used by the given user.
@@ -108,11 +102,12 @@ class UserService {
     if (search != null) params['search'] = search;
 
     final response = await _client.execute('get_user_ips', params: params);
-    final data = response['data'] as Map<String, dynamic>? ?? {};
+    final data = Cast.dataMap(response['data'], 'get_user_ips');
     return PagedResult(
-      data: (data['data'] as List? ?? [])
-          .whereType<Map<String, dynamic>>()
-          .toList(),
+      data: Cast.dataList(
+        data['data'],
+        'get_user_ips',
+      ).whereType<Map<String, dynamic>>().toList(),
       recordsTotal: Cast.castToInt(data['recordsTotal']),
       recordsFiltered: Cast.castToInt(data['recordsFiltered']),
     );
@@ -136,11 +131,12 @@ class UserService {
     if (search != null) params['search'] = search;
 
     final response = await _client.execute('get_user_logins', params: params);
-    final data = response['data'] as Map<String, dynamic>? ?? {};
+    final data = Cast.dataMap(response['data'], 'get_user_logins');
     return PagedResult(
-      data: (data['data'] as List? ?? [])
-          .whereType<Map<String, dynamic>>()
-          .toList(),
+      data: Cast.dataList(
+        data['data'],
+        'get_user_logins',
+      ).whereType<Map<String, dynamic>>().toList(),
       recordsTotal: Cast.castToInt(data['recordsTotal']),
       recordsFiltered: Cast.castToInt(data['recordsFiltered']),
     );
@@ -228,11 +224,11 @@ class UserService {
     if (search != null) params['search'] = search;
 
     final response = await _client.execute('get_users_table', params: params);
-    final data = response['data'] as Map<String, dynamic>? ?? {};
-    final entries = (data['data'] as List? ?? [])
-        .whereType<Map<String, dynamic>>()
-        .map(UserTableEntry.fromJson)
-        .toList();
+    final data = Cast.dataMap(response['data'], 'get_users_table');
+    final entries = Cast.dataList(
+      data['data'],
+      'get_users_table',
+    ).whereType<Map<String, dynamic>>().map(UserTableEntry.fromJson).toList();
     return PagedResult(
       data: entries,
       recordsTotal: Cast.castToInt(data['recordsTotal']),

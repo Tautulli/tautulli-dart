@@ -87,9 +87,7 @@ class LibraryEntry {
     doNotifyCreated: Cast.castToBool(json['do_notify_created']),
     isActive: Cast.castToBool(json['is_active']),
     keepHistory: Cast.castToBool(json['keep_history']),
-    lastAccessed: _dateTimeFromEpochSeconds(
-      Cast.castToInt(json['last_accessed']),
-    ),
+    lastAccessed: Cast.dateTimeFromEpochSeconds(json['last_accessed']),
     libraryArt: Cast.castToString(json['library_art']),
     libraryThumb: Cast.castToString(json['library_thumb']),
     parentCount: Cast.castToInt(json['parent_count']),
@@ -100,9 +98,4 @@ class LibraryEntry {
     serverId: Cast.castToString(json['server_id']),
     thumb: Cast.castToString(json['thumb']),
   );
-
-  static DateTime? _dateTimeFromEpochSeconds(int? seconds) {
-    if (seconds == null) return null;
-    return DateTime.fromMillisecondsSinceEpoch(seconds * 1000);
-  }
 }

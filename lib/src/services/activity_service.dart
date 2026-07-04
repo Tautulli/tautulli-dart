@@ -1,5 +1,6 @@
 import '../executor.dart';
 import '../models/activity/activity_data.dart';
+import '../utils/cast.dart';
 
 /// Commands: get_activity, get_stream_data, terminate_session
 class ActivityService {
@@ -15,7 +16,7 @@ class ActivityService {
     if (sessionId != null) params['session_id'] = sessionId;
 
     final response = await _client.execute('get_activity', params: params);
-    final data = response['data'] as Map<String, dynamic>? ?? {};
+    final data = Cast.dataMap(response['data'], 'get_activity');
 
     // A single-session query returns the bare session object as `data`
     // (no stream counts / sessions wrapper) rather than the full snapshot.
@@ -41,7 +42,7 @@ class ActivityService {
     if (rowId != null) params['row_id'] = rowId;
 
     final response = await _client.execute('get_stream_data', params: params);
-    return response['data'] as Map<String, dynamic>? ?? {};
+    return Cast.dataMap(response['data'], 'get_stream_data');
   }
 
   /// Terminates an active Plex session.

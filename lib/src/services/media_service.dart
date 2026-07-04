@@ -1,5 +1,6 @@
 import '../executor.dart';
 import '../models/media/media_item.dart';
+import '../utils/cast.dart';
 
 /// Commands: get_metadata, get_children_metadata, get_new_rating_keys,
 /// get_old_rating_keys, update_metadata_details, search,
@@ -15,7 +16,7 @@ class MediaService {
     final params = <String, dynamic>{'rating_key': ratingKey};
     if (syncId != null) params['sync_id'] = syncId;
     final response = await _client.execute('get_metadata', params: params);
-    return MediaItem.fromJson(response['data'] as Map<String, dynamic>? ?? {});
+    return MediaItem.fromJson(Cast.dataMap(response['data'], 'get_metadata'));
   }
 
   /// Returns the children of a Plex item (e.g. episodes of a season).
@@ -29,12 +30,11 @@ class MediaService {
       'get_children_metadata',
       params: {'rating_key': ratingKey, 'media_type': mediaType},
     );
-    final data = response['data'] as Map<String, dynamic>? ?? {};
-    final list = data['children_list'] as List? ?? [];
-    return list
-        .whereType<Map<String, dynamic>>()
-        .map(MediaItem.fromJson)
-        .toList();
+    final data = Cast.dataMap(response['data'], 'get_children_metadata');
+    return Cast.dataList(
+      data['children_list'],
+      'get_children_metadata',
+    ).whereType<Map<String, dynamic>>().map(MediaItem.fromJson).toList();
   }
 
   /// Returns the new Plex rating key hierarchy for an item, used after library refreshes.
@@ -46,7 +46,7 @@ class MediaService {
       'get_new_rating_keys',
       params: {'rating_key': ratingKey, 'media_type': mediaType},
     );
-    return response['data'] as Map<String, dynamic>? ?? {};
+    return Cast.dataMap(response['data'], 'get_new_rating_keys');
   }
 
   /// Returns the old Plex rating key hierarchy for an item, used for history migration.
@@ -58,7 +58,7 @@ class MediaService {
       'get_old_rating_keys',
       params: {'rating_key': ratingKey, 'media_type': mediaType},
     );
-    return response['data'] as Map<String, dynamic>? ?? {};
+    return Cast.dataMap(response['data'], 'get_old_rating_keys');
   }
 
   /// Searches Plex for items matching [query], with an optional result [limit].
@@ -69,7 +69,7 @@ class MediaService {
     final params = <String, dynamic>{'query': query};
     if (limit != null) params['limit'] = limit;
     final response = await _client.execute('search', params: params);
-    return response['data'] as Map<String, dynamic>? ?? {};
+    return Cast.dataMap(response['data'], 'search');
   }
 
   /// Returns per-user watch statistics for the item identified by [ratingKey].
@@ -83,9 +83,10 @@ class MediaService {
       'get_item_user_stats',
       params: params,
     );
-    return (response['data'] as List? ?? [])
-        .whereType<Map<String, dynamic>>()
-        .toList();
+    return Cast.dataList(
+      response['data'],
+      'get_item_user_stats',
+    ).whereType<Map<String, dynamic>>().toList();
   }
 
   /// Returns watch time statistics for the item identified by [ratingKey] over time periods.
@@ -101,9 +102,10 @@ class MediaService {
       'get_item_watch_time_stats',
       params: params,
     );
-    return (response['data'] as List? ?? [])
-        .whereType<Map<String, dynamic>>()
-        .toList();
+    return Cast.dataList(
+      response['data'],
+      'get_item_watch_time_stats',
+    ).whereType<Map<String, dynamic>>().toList();
   }
 
   /// Updates Tautulli's stored metadata by replacing [oldRatingKey] with [newRatingKey].
