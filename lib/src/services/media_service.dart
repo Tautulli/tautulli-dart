@@ -62,6 +62,11 @@ class MediaService {
   }
 
   /// Searches Plex for items matching [query], with an optional result [limit].
+  ///
+  /// Note: on current Plex Media Server versions, omitting [limit] makes the
+  /// Tautulli server's PMS query fail and the result is always empty (the
+  /// server sends `&limit=` with no value, which the PMS rejects) — pass a
+  /// [limit] to get results.
   Future<Map<String, dynamic>> search({
     required String query,
     int? limit,
@@ -69,7 +74,11 @@ class MediaService {
     final params = <String, dynamic>{'query': query};
     if (limit != null) params['limit'] = limit;
     final response = await _client.execute('search', params: params);
-    return Cast.dataMap(response['data'], 'search');
+    // When the PMS search fails upstream, the server returns `[]` instead of
+    // the usual results object — treat that as an empty result set.
+    final data = response['data'];
+    if (data is List) return {};
+    return Cast.dataMap(data, 'search');
   }
 
   /// Returns per-user watch statistics for the item identified by [ratingKey].
