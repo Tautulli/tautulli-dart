@@ -138,6 +138,7 @@ class TautulliClient implements TautulliExecutor {
     final response = await _get(
       uri,
       timeout: timeout ?? connection.downloadTimeout,
+      extraHeaders: downloadHeaders,
     );
 
     // A 401, or an HTML reverse-proxy auth page, is an auth failure. Do not
@@ -208,12 +209,16 @@ class TautulliClient implements TautulliExecutor {
     return buildTautulliUri(connection, queryParams);
   }
 
-  Future<http.Response> _get(Uri uri, {Duration? timeout}) async {
+  Future<http.Response> _get(
+    Uri uri, {
+    Duration? timeout,
+    Map<String, String> extraHeaders = const {},
+  }) async {
     try {
       // No Content-Type header: these are bodyless GETs, so it is meaningless
       // and would turn every request into a non-simple CORS request on web.
       return await _httpClient
-          .get(uri, headers: connection.headers)
+          .get(uri, headers: {...connection.headers, ...extraHeaders})
           .timeout(timeout ?? connection.timeout);
     } on TautulliException {
       rethrow;

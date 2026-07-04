@@ -9,3 +9,9 @@ import '../utils/redact.dart';
 /// certificate and socket failures.
 TautulliException mapNetworkException(Exception e) =>
     TautulliConnectionException(message: redactApiKey(e.toString()));
+
+/// Extra headers for download requests.
+///
+/// Empty on web: browsers forbid setting the `Connection` header (the
+/// user agent manages the connection itself).
+const Map<String, String> downloadHeaders = {};

@@ -29,3 +29,12 @@ TautulliException mapNetworkException(Exception e) {
   }
   return TautulliConnectionException(message: redactApiKey(e.toString()));
 }
+
+/// Extra headers for download requests.
+///
+/// Downloads close the connection instead of returning it to the keep-alive
+/// pool: Tautulli serves live files (config, database, logs) whose size can
+/// change between the Content-Length header and the body write, and the
+/// surplus bytes would otherwise arrive on the pooled connection as an
+/// unhandled "unsolicited response" HttpException.
+const Map<String, String> downloadHeaders = {'connection': 'close'};
