@@ -34,4 +34,25 @@ void main() {
       expect(result.first.active, true);
     });
   });
+
+  group('NewsletterService.getNewsletterLog()', () {
+    test('parses real row fields from the newsletter log', () async {
+      makeClient('newsletter/get_newsletter_log.json');
+      final result = await client.newsletters.getNewsletterLog();
+      expect(lastRequestUri.queryParameters['cmd'], 'get_newsletter_log');
+      expect(result.recordsTotal, 1);
+      final entry = result.data.first;
+      expect(entry.id, 1);
+      expect(entry.newsletterId, 1);
+      expect(entry.agentId, 0);
+      expect(entry.agentName, 'recently_added');
+      expect(entry.notifyAction, 'api');
+      expect(entry.subjectText, 'Recently Added to Margarita! (2026-07-03)');
+      expect(entry.bodyText, contains('newsletter/860db87f'));
+      expect(entry.startDate, '2026-06-26');
+      expect(entry.endDate, '2026-07-03');
+      expect(entry.uuid, '860db87f');
+      expect(entry.success, isFalse);
+    });
+  });
 }

@@ -10,17 +10,35 @@ class NotificationLogEntry {
   /// Unix epoch timestamp when this notification was sent.
   final int? timestamp;
 
-  /// Type identifier for the notifier agent (e.g. `'email'`, `'pushover'`).
-  final String? notifierType;
+  /// Session key of the stream that triggered this notification, if any.
+  final int? sessionKey;
 
-  /// User-configured display name of the notifier.
-  final String? friendlyName;
+  /// Rating key of the item the notification was about, if any.
+  final int? ratingKey;
+
+  /// Plex user ID associated with the notification, if any.
+  final int? userId;
+
+  /// Plex username associated with the notification, if any.
+  final String? user;
+
+  /// ID of the notifier instance that sent this notification.
+  final int? notifierId;
+
+  /// ID of the notification agent type (e.g. `17` for the browser agent).
+  final int? agentId;
+
+  /// Name of the notification agent (e.g. `'browser'`, `'email'`).
+  final String? agentName;
 
   /// The Tautulli action that triggered this notification (e.g. `'on_play'`).
   final String? notifyAction;
 
   /// Subject line of the notification that was sent.
-  final String? subject;
+  final String? subjectText;
+
+  /// Body text of the notification that was sent.
+  final String? bodyText;
 
   /// Whether the notification was delivered successfully.
   final bool? success;
@@ -28,10 +46,16 @@ class NotificationLogEntry {
   const NotificationLogEntry({
     this.id,
     this.timestamp,
-    this.notifierType,
-    this.friendlyName,
+    this.sessionKey,
+    this.ratingKey,
+    this.userId,
+    this.user,
+    this.notifierId,
+    this.agentId,
+    this.agentName,
     this.notifyAction,
-    this.subject,
+    this.subjectText,
+    this.bodyText,
     this.success,
   });
 
@@ -40,10 +64,16 @@ class NotificationLogEntry {
       NotificationLogEntry(
         id: Cast.castToInt(json['id']),
         timestamp: Cast.castToInt(json['timestamp']),
-        notifierType: Cast.castToString(json['notifier_type']),
-        friendlyName: Cast.castToString(json['friendly_name']),
+        sessionKey: Cast.castToInt(json['session_key']),
+        ratingKey: Cast.castToInt(json['rating_key']),
+        userId: Cast.castToInt(json['user_id']),
+        user: Cast.castToString(json['user']),
+        notifierId: Cast.castToInt(json['notifier_id']),
+        agentId: Cast.castToInt(json['agent_id']),
+        agentName: Cast.castToString(json['agent_name']),
         notifyAction: Cast.castToString(json['notify_action']),
-        subject: Cast.castToString(json['subject']),
+        subjectText: Cast.castToString(json['subject_text']),
+        bodyText: Cast.castToString(json['body_text']),
         success: Cast.castToBool(json['success']),
       );
 }

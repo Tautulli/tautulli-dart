@@ -65,4 +65,22 @@ void main() {
       expect(q['script_args'], '--flag');
     });
   });
+
+  group('NotificationService.getNotificationLog()', () {
+    test('parses real row fields from the notification log', () async {
+      makeClient('notification/get_notification_log.json');
+      final result = await client.notifications.getNotificationLog();
+      expect(lastRequestUri.queryParameters['cmd'], 'get_notification_log');
+      expect(result.recordsTotal, 47);
+      final entry = result.data.first;
+      expect(entry.id, 48);
+      expect(entry.notifierId, 3);
+      expect(entry.agentId, 17);
+      expect(entry.agentName, 'browser');
+      expect(entry.notifyAction, 'api');
+      expect(entry.subjectText, 'Live test');
+      expect(entry.bodyText, 'Raw notify with subject/body');
+      expect(entry.success, isTrue);
+    });
+  });
 }
