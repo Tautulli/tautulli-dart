@@ -18,6 +18,11 @@ class TautulliConnection {
   /// Per-request timeout applied to every HTTP call.
   final Duration timeout;
 
+  /// Timeout applied to binary download commands (`download_database`,
+  /// `download_log`, etc.). Large transfers can exceed [timeout], so set a
+  /// longer value here. Falls back to [timeout] when null.
+  final Duration? downloadTimeout;
+
   /// When true, adds `app=true` to every request, which instructs Tautulli to
   /// require a Device Token instead of a plain API Key. Set this when the
   /// apiKey is a device-scoped token obtained via `register_device`.
@@ -30,6 +35,7 @@ class TautulliConnection {
     required this.apiKey,
     this.headers = const {},
     this.timeout = const Duration(seconds: 30),
+    this.downloadTimeout,
     this.useDeviceToken = false,
   });
 }

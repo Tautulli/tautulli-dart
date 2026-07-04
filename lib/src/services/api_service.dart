@@ -15,9 +15,13 @@ class ApiService {
 
   /// Returns the Tautulli API documentation as Markdown text.
   ///
-  /// `docs_md` returns a raw (non-JSON) body, so it is fetched as bytes.
+  /// `docs_md` returns a raw (non-JSON) body, so it is fetched as bytes with
+  /// [allowNonBinary] set (its `text/html` body is expected, not an error).
   Future<String> docsMd() async {
-    final bytes = await _client.executeDownload('docs_md');
+    final bytes = await _client.executeDownload(
+      'docs_md',
+      allowNonBinary: true,
+    );
     return utf8.decode(bytes, allowMalformed: true);
   }
 

@@ -1,5 +1,5 @@
 import '../connection.dart';
-import '../exceptions.dart';
+import '../net/uri.dart';
 import '../types/image_fallback.dart';
 
 /// Synchronous URI builder for pms_image_proxy.
@@ -44,16 +44,6 @@ class ImageService {
     if (refresh != null) params['refresh'] = refresh ? '1' : '0';
     if (returnHash != null) params['return_hash'] = returnHash ? '1' : '0';
 
-    final pathPrefix = _connection.path ?? '';
-    switch (_connection.protocol.toLowerCase()) {
-      case 'http':
-        return Uri.http(_connection.domain, '$pathPrefix/api/v2', params);
-      case 'https':
-        return Uri.https(_connection.domain, '$pathPrefix/api/v2', params);
-      default:
-        throw TautulliProtocolException(
-          message: 'Unsupported protocol: ${_connection.protocol}',
-        );
-    }
+    return buildTautulliUri(_connection, params);
   }
 }

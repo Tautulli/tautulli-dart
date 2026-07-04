@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:http/http.dart' as http;
@@ -156,6 +157,166 @@ void main() {
       );
 
       expect(captured.queryParameters['row_ids'], equals('65,110,2,3645'));
+    });
+
+    test('normalizes a trailing-slash path (no double slash)', () async {
+      late Uri captured;
+      const trailing = TautulliConnection(
+        protocol: 'http',
+        domain: 'localhost:8181',
+        path: '/tautulli/',
+        apiKey: 'k',
+      );
+      final client = TautulliClient(
+        connection: trailing,
+        httpClient: MockClient((request) async {
+          captured = request.url;
+          return http.Response(fixture('success_response.json'), 200);
+        }),
+      );
+
+      await client.execute('get_server_info');
+
+      expect(captured.path, equals('/tautulli/api/v2'));
+    });
+
+    test('throws TautulliProtocolException for a scheme in domain', () {
+      const schemeInDomain = TautulliConnection(
+        protocol: 'http',
+        domain: 'http://localhost:8181',
+        apiKey: 'k',
+      );
+      final client = TautulliClient(
+        connection: schemeInDomain,
+        httpClient: MockClient((_) async => http.Response('', 200)),
+      );
+
+      expect(
+        () => client.execute('get_server_info'),
+        throwsA(isA<TautulliProtocolException>()),
+      );
+    });
+
+    test('per-call timeout overrides the connection timeout', () {
+      const longTimeout = TautulliConnection(
+        protocol: 'http',
+        domain: 'localhost:8181',
+        apiKey: 'k',
+        timeout: Duration(seconds: 30),
+      );
+      final client = TautulliClient(
+        connection: longTimeout,
+        httpClient: MockClient(
+          (_) => Future.delayed(
+            const Duration(seconds: 5),
+            () => http.Response('', 200),
+          ),
+        ),
+      );
+
+      expect(
+        () => client.execute(
+          'get_server_info',
+          timeout: const Duration(milliseconds: 1),
+        ),
+        throwsA(isA<TautulliTimeoutException>()),
+      );
+    });
+  });
+
+  group('TautulliClient.executeDownload() — content handling', () {
+    test('returns bytes for a binary (application/x-download) body', () async {
+      final client = TautulliClient(
+        connection: connection,
+        httpClient: MockClient(
+          (_) async => http.Response.bytes(
+            [1, 2, 3],
+            200,
+            headers: {'content-type': 'application/x-download'},
+          ),
+        ),
+      );
+
+      expect(await client.executeDownload('download_log'), equals([1, 2, 3]));
+    });
+
+    test('throws on a JSON error envelope at HTTP 200', () {
+      final client = TautulliClient(
+        connection: connection,
+        httpClient: MockClient(
+          (_) async => http.Response(
+            '{"response":{"result":"error","message":"boom"}}',
+            200,
+            headers: {'content-type': 'application/json'},
+          ),
+        ),
+      );
+
+      expect(
+        () => client.executeDownload('download_export'),
+        throwsA(isA<TautulliBadResponseException>()),
+      );
+    });
+
+    test('throws on a text/html error body at HTTP 200', () {
+      final client = TautulliClient(
+        connection: connection,
+        httpClient: MockClient(
+          (_) async => http.Response(
+            "Plex log file 'Plex Media Server.log' not found.",
+            200,
+            headers: {'content-type': 'text/html'},
+          ),
+        ),
+      );
+
+      expect(
+        () => client.executeDownload('download_plex_log'),
+        throwsA(isA<TautulliBadResponseException>()),
+      );
+    });
+
+    test('allowNonBinary returns a text/html body as bytes', () async {
+      final client = TautulliClient(
+        connection: connection,
+        httpClient: MockClient(
+          (_) async => http.Response(
+            '# Tautulli API',
+            200,
+            headers: {'content-type': 'text/html'},
+          ),
+        ),
+      );
+
+      final bytes = await client.executeDownload(
+        'docs_md',
+        allowNonBinary: true,
+      );
+      expect(utf8.decode(bytes), equals('# Tautulli API'));
+    });
+
+    test('connection.downloadTimeout applies to downloads', () {
+      const shortDownload = TautulliConnection(
+        protocol: 'http',
+        domain: 'localhost:8181',
+        apiKey: 'k',
+        timeout: Duration(seconds: 30),
+        downloadTimeout: Duration(milliseconds: 1),
+      );
+      final client = TautulliClient(
+        connection: shortDownload,
+        httpClient: MockClient(
+          (_) => Future.delayed(
+            const Duration(seconds: 5),
+            () => http.Response.bytes([1], 200),
+          ),
+        ),
+      );
+
+      expect(
+        () => client.executeDownload('download_database'),
+        throwsA(isA<TautulliTimeoutException>()),
+      );
     });
   });
 

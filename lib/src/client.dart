@@ -8,6 +8,7 @@ import 'connection.dart';
 import 'exceptions.dart';
 import 'executor.dart';
 import 'net/errors_stub.dart' if (dart.library.io) 'net/errors_io.dart';
+import 'net/uri.dart';
 import 'services/activity_service.dart';
 import 'services/api_service.dart';
 import 'services/device_service.dart';
@@ -108,9 +109,10 @@ class TautulliClient implements TautulliExecutor {
   Future<Map<String, dynamic>> execute(
     String cmd, {
     Map<String, dynamic> params = const {},
+    Duration? timeout,
   }) async {
     final uri = _buildUri(cmd, params);
-    final response = await _get(uri);
+    final response = await _get(uri, timeout: timeout);
     return _parseResponse(response);
   }
 
@@ -122,14 +124,19 @@ class TautulliClient implements TautulliExecutor {
   Future<Uint8List> executeDownload(
     String cmd, {
     Map<String, dynamic> params = const {},
+    Duration? timeout,
+    bool allowNonBinary = false,
   }) async {
     final uri = _buildUri(cmd, params);
-    final response = await _get(uri);
+    final response = await _get(
+      uri,
+      timeout: timeout ?? connection.downloadTimeout,
+    );
 
     // A 401, or an HTML reverse-proxy auth page, is an auth failure. Do not
     // scan the file bytes for the phrase — a log file may legitimately contain
     // "authorization required".
-    final contentType = response.headers['content-type'] ?? '';
+    final contentType = (response.headers['content-type'] ?? '').toLowerCase();
     if (response.statusCode == 401 ||
         (contentType.contains('text/html') &&
             response.body.toLowerCase().contains('authorization required'))) {
@@ -141,6 +148,21 @@ class TautulliClient implements TautulliExecutor {
         statusCode: response.statusCode,
         message: 'HTTP ${response.statusCode}',
       );
+    }
+
+    // A file download expects binary content; a JSON or HTML body at 200 is an
+    // error page (e.g. "log file not found"), not a file. Endpoints that
+    // legitimately return text (docs_md) opt out via [allowNonBinary].
+    if (!allowNonBinary) {
+      if (contentType.contains('application/json')) {
+        _parseResponse(response); // throws the typed error for the envelope
+        throw const TautulliBadResponseException(
+          message: 'Expected a file but received a JSON response',
+        );
+      }
+      if (contentType.contains('text/html')) {
+        throw TautulliBadResponseException(message: response.body.trim());
+      }
     }
 
     return response.bodyBytes;
@@ -172,26 +194,16 @@ class TautulliClient implements TautulliExecutor {
       };
     }
 
-    final pathPrefix = connection.path ?? '';
-    switch (connection.protocol.toLowerCase()) {
-      case 'http':
-        return Uri.http(connection.domain, '$pathPrefix/api/v2', queryParams);
-      case 'https':
-        return Uri.https(connection.domain, '$pathPrefix/api/v2', queryParams);
-      default:
-        throw TautulliProtocolException(
-          message: 'Unsupported protocol: ${connection.protocol}',
-        );
-    }
+    return buildTautulliUri(connection, queryParams);
   }
 
-  Future<http.Response> _get(Uri uri) async {
+  Future<http.Response> _get(Uri uri, {Duration? timeout}) async {
     try {
       // No Content-Type header: these are bodyless GETs, so it is meaningless
       // and would turn every request into a non-simple CORS request on web.
       return await _httpClient
           .get(uri, headers: connection.headers)
-          .timeout(connection.timeout);
+          .timeout(timeout ?? connection.timeout);
     } on TautulliException {
       rethrow;
     } on TimeoutException {
