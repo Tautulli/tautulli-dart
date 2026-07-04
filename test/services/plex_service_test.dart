@@ -87,4 +87,23 @@ void main() {
       expect(result, isEmpty);
     });
   });
+
+  group('PlexService.getServerId()', () {
+    test('sends hostname/port/ssl (no phantom remote), parses id', () async {
+      makeClient('plex/get_server_id.json');
+      final id = await client.plex.getServerId(
+        hostname: 'localhost',
+        port: 32400,
+        ssl: true,
+      );
+      final q = lastRequestUri.queryParameters;
+      expect(q['cmd'], 'get_server_id');
+      expect(q['hostname'], 'localhost');
+      expect(q['port'], '32400');
+      expect(q['ssl'], '1');
+      expect(q.containsKey('remote'), isFalse);
+      // The identifier is nested under data.identifier, not a bare string.
+      expect(id, '3502fd8796ee5a72045f020a30cf6f10');
+    });
+  });
 }

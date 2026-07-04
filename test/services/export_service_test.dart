@@ -41,4 +41,27 @@ void main() {
       expect(result.recordsTotal, 1);
     });
   });
+
+  group('ExportService.exportMetadata()', () {
+    test('sends real params (levels), no phantom mediaType', () async {
+      makeClient('success_response.json');
+      await client.exports.exportMetadata(
+        ratingKey: 4017,
+        fileFormat: 'json',
+        thumbLevel: 1,
+        artLevel: 2,
+        exportType: 'all',
+        individualFiles: true,
+      );
+      final q = lastRequestUri.queryParameters;
+      expect(q['cmd'], 'export_metadata');
+      expect(q['rating_key'], '4017');
+      expect(q['file_format'], 'json');
+      expect(q['thumb_level'], '1');
+      expect(q['art_level'], '2');
+      expect(q['individual_files'], '1');
+      expect(q.containsKey('media_type'), isFalse);
+      expect(q.containsKey('include_images'), isFalse);
+    });
+  });
 }

@@ -29,23 +29,26 @@ class DeviceService {
 
   /// Registers a mobile device with Tautulli and returns server info.
   ///
-  /// Returns a [RegisterDeviceResult] containing Plex Media Server details
-  /// and Tautulli version information for the connected server.
+  /// Only [deviceId] and [deviceName] are required. Returns a
+  /// [RegisterDeviceResult] containing Plex Media Server details and Tautulli
+  /// version information for the connected server.
   Future<RegisterDeviceResult> registerDevice({
-    required String deviceName,
     required String deviceId,
-    required String onesignalId,
-    required String platform,
-    required String version,
+    required String deviceName,
+    String? platform,
+    String? version,
+    String? friendlyName,
+    String? onesignalId,
     String? minVersion,
   }) async {
     final params = <String, dynamic>{
-      'device_name': deviceName,
       'device_id': deviceId,
-      'onesignal_id': onesignalId,
-      'platform': platform,
-      'version': version,
+      'device_name': deviceName,
     };
+    if (platform != null) params['platform'] = platform;
+    if (version != null) params['version'] = version;
+    if (friendlyName != null) params['friendly_name'] = friendlyName;
+    if (onesignalId != null) params['onesignal_id'] = onesignalId;
     if (minVersion != null) params['min_version'] = minVersion;
 
     final response = await _client.execute('register_device', params: params);

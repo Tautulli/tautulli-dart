@@ -33,13 +33,16 @@ class PlexService {
     required String hostname,
     required int port,
     bool? ssl,
-    bool? remote,
   }) async {
     final params = <String, dynamic>{'hostname': hostname, 'port': port};
     if (ssl != null) params['ssl'] = ssl;
-    if (remote != null) params['remote'] = remote;
     final response = await _client.execute('get_server_id', params: params);
-    return (response['data'] as String?) ?? '';
+    // The server returns {"identifier": "..."}, not a bare string.
+    final data = response['data'];
+    if (data is Map<String, dynamic>) {
+      return data['identifier']?.toString() ?? '';
+    }
+    return (data as String?) ?? '';
   }
 
   /// Returns all Plex servers accessible to the account as a list of raw maps.

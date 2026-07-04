@@ -163,4 +163,16 @@ void main() {
       expect(q['do_notify'], '1');
     });
   });
+
+  group('UserService.deleteUser()', () {
+    test('sends user_id (+ optional row_ids), not username', () async {
+      makeClient('success_response.json');
+      await client.users.deleteUser(userId: 7, rowIds: [2, 3]);
+      final q = lastRequestUri.queryParameters;
+      expect(q['cmd'], 'delete_user');
+      expect(q['user_id'], '7');
+      expect(q['row_ids'], '2,3');
+      expect(q.containsKey('username'), isFalse);
+    });
+  });
 }

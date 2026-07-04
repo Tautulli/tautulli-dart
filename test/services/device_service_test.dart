@@ -67,5 +67,21 @@ void main() {
       );
       expect(lastRequestUri.queryParameters['min_version'], 'v2.10.5');
     });
+
+    test('requires only deviceId/deviceName; sends friendlyName', () async {
+      makeClient('device/register_device.json');
+      await client.devices.registerDevice(
+        deviceId: 'id',
+        deviceName: 'TestPhone',
+        friendlyName: 'My Phone',
+      );
+      final q = lastRequestUri.queryParameters;
+      expect(q['device_id'], 'id');
+      expect(q['device_name'], 'TestPhone');
+      expect(q['friendly_name'], 'My Phone');
+      // optional now — not sent when omitted
+      expect(q.containsKey('platform'), isFalse);
+      expect(q.containsKey('onesignal_id'), isFalse);
+    });
   });
 }

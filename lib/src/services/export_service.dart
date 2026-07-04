@@ -64,25 +64,44 @@ class ExportService {
     );
   }
 
-  /// Queues a metadata export job for the item identified by [ratingKey].
+  /// Queues a metadata export job.
+  ///
+  /// Provide exactly one target: [sectionId] (a library), [userId] (a user's
+  /// playlists), or [ratingKey] (a single item). [fileFormat] is `csv`
+  /// (default), `json`, `xml`, or `m3u`. The `*Level` parameters control how
+  /// much metadata / media info / imagery is exported (0 disables); pass
+  /// [exportType] `'collection'` or `'playlist'` for library/user exports.
   Future<void> exportMetadata({
-    required int ratingKey,
-    required String mediaType,
-    int? directoryRatingKey,
+    int? sectionId,
+    int? userId,
+    int? ratingKey,
     String? fileFormat,
-    bool? removeSurplus,
-    bool? includeImages,
+    int? metadataLevel,
+    int? mediaInfoLevel,
+    int? thumbLevel,
+    int? artLevel,
+    int? logoLevel,
+    int? squareArtLevel,
+    int? themeLevel,
+    String? customFields,
+    String? exportType,
+    bool? individualFiles,
   }) async {
-    final params = <String, dynamic>{
-      'rating_key': ratingKey,
-      'media_type': mediaType,
-    };
-    if (directoryRatingKey != null) {
-      params['directory_rating_key'] = directoryRatingKey;
-    }
+    final params = <String, dynamic>{};
+    if (sectionId != null) params['section_id'] = sectionId;
+    if (userId != null) params['user_id'] = userId;
+    if (ratingKey != null) params['rating_key'] = ratingKey;
     if (fileFormat != null) params['file_format'] = fileFormat;
-    if (removeSurplus != null) params['remove_surplus'] = removeSurplus;
-    if (includeImages != null) params['include_images'] = includeImages;
+    if (metadataLevel != null) params['metadata_level'] = metadataLevel;
+    if (mediaInfoLevel != null) params['media_info_level'] = mediaInfoLevel;
+    if (thumbLevel != null) params['thumb_level'] = thumbLevel;
+    if (artLevel != null) params['art_level'] = artLevel;
+    if (logoLevel != null) params['logo_level'] = logoLevel;
+    if (squareArtLevel != null) params['squareArt_level'] = squareArtLevel;
+    if (themeLevel != null) params['theme_level'] = themeLevel;
+    if (customFields != null) params['custom_fields'] = customFields;
+    if (exportType != null) params['export_type'] = exportType;
+    if (individualFiles != null) params['individual_files'] = individualFiles;
     await _client.execute('export_metadata', params: params);
   }
 

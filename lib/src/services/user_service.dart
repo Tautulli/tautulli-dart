@@ -174,15 +174,13 @@ class UserService {
     );
   }
 
-  /// Marks the user as deleted in Tautulli's database.
-  Future<void> deleteUser({
-    required int userId,
-    required String username,
-  }) async {
-    await _client.execute(
-      'delete_user',
-      params: {'user_id': userId, 'username': username},
-    );
+  /// Marks the user identified by [userId] as deleted in Tautulli's database.
+  ///
+  /// Optionally limit the deletion to specific history [rowIds].
+  Future<void> deleteUser({required int userId, List<int>? rowIds}) async {
+    final params = <String, dynamic>{'user_id': userId};
+    if (rowIds != null) params['row_ids'] = rowIds;
+    await _client.execute('delete_user', params: params);
   }
 
   /// Restores a previously deleted user.
