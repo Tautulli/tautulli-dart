@@ -1,0 +1,7 @@
+{
+  "response": {
+    "result": "error",
+    "message": "Failed to delete hosted images.",
+    "data": {}
+  }
+}

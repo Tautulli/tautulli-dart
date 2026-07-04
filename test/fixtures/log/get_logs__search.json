@@ -1,0 +1,20 @@
+{
+  "response": {
+    "result": "success",
+    "message": null,
+    "data": [
+      {
+        "time": "2026-07-04 10:34:44 ",
+        "loglevel": "WARNING",
+        "msg": "Tautulli Pmsconnect :: Unable to parse XML for get_search_result: 'NoneType' object has no attribute 'getElementsByTagName'.",
+        "thread": "CP Server Thread-8"
+      },
+      {
+        "time": "2026-07-04 10:33:28 ",
+        "loglevel": "WARNING",
+        "msg": "Tautulli Pmsconnect :: Unable to parse XML for get_search_result: 'NoneType' object has no attribute 'getElementsByTagName'.",
+        "thread": "CP Server Thread-6"
+      }
+    ]
+  }
+}

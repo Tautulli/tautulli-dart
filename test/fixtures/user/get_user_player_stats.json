@@ -4,12 +4,84 @@
     "message": null,
     "data": [
       {
-        "platform": "Linux",
-        "platform_name": "linux",
-        "player_name": "Plex for Linux",
-        "result_id": 1,
-        "total_plays": 120,
-        "total_time": 432000
+        "player_name": "SHIELD Android TV",
+        "platform": "Android",
+        "platform_name": "android",
+        "total_plays": 13414,
+        "total_time": 24347257,
+        "result_id": 0
+      },
+      {
+        "player_name": "Apple TV",
+        "platform": "tvOS",
+        "platform_name": "atv",
+        "total_plays": 2147,
+        "total_time": 5146586,
+        "result_id": 1
+      },
+      {
+        "player_name": "iPhone",
+        "platform": "iOS",
+        "platform_name": "ios",
+        "total_plays": 798,
+        "total_time": 4208971,
+        "result_id": 2
+      },
+      {
+        "player_name": "4K TV",
+        "platform": "Android",
+        "platform_name": "android",
+        "total_plays": 96,
+        "total_time": 141603,
+        "result_id": 3
+      },
+      {
+        "player_name": "Chrome",
+        "platform": "Chrome",
+        "platform_name": "chrome",
+        "total_plays": 85,
+        "total_time": 311765,
+        "result_id": 4
+      },
+      {
+        "player_name": "BRAVIA 2015",
+        "platform": "Android",
+        "platform_name": "android",
+        "total_plays": 16,
+        "total_time": 41627,
+        "result_id": 5
+      },
+      {
+        "player_name": "HisenseRoku TV - X00100N2VJVN",
+        "platform": "Roku",
+        "platform_name": "roku",
+        "total_plays": 4,
+        "total_time": 13499,
+        "result_id": 6
+      },
+      {
+        "player_name": "Chromecast Google TV (HD)",
+        "platform": "Android",
+        "platform_name": "android",
+        "total_plays": 4,
+        "total_time": 11719,
+        "result_id": 7
+      },
+      {
+        "player_name": "TV 2020",
+        "platform": "Tizen",
+        "platform_name": "samsung",
+        "total_plays": 2,
+        "total_time": 9800,
+        "result_id": 8
+      },
+      {
+        "player_name": "APAC",
+        "platform": "Android",
+        "platform_name": "android",
+        "total_plays": 1,
+        "total_time": 114,
+        "result_id": 9
       }
     ]
   }

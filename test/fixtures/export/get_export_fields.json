@@ -3,8 +3,950 @@
     "result": "success",
     "message": null,
     "data": {
-      "metadata_fields": [{"field": "addedAt", "level": 1}],
-      "media_info_fields": [{"field": "media.aspectRatio", "level": 1}]
+      "metadata_fields": [
+        {
+          "field": "addedAt",
+          "level": 1
+        },
+        {
+          "field": "art",
+          "level": 3
+        },
+        {
+          "field": "artBlurHash",
+          "level": 9
+        },
+        {
+          "field": "artFile",
+          "level": 9
+        },
+        {
+          "field": "artProvider",
+          "level": 9
+        },
+        {
+          "field": "audienceRating",
+          "level": 1
+        },
+        {
+          "field": "audienceRatingImage",
+          "level": 1
+        },
+        {
+          "field": "chapterSource",
+          "level": 3
+        },
+        {
+          "field": "chapters.end",
+          "level": 3
+        },
+        {
+          "field": "chapters.id",
+          "level": 9
+        },
+        {
+          "field": "chapters.index",
+          "level": 3
+        },
+        {
+          "field": "chapters.start",
+          "level": 3
+        },
+        {
+          "field": "chapters.tag",
+          "level": 3
+        },
+        {
+          "field": "chapters.thumb",
+          "level": 3
+        },
+        {
+          "field": "collections.id",
+          "level": 9
+        },
+        {
+          "field": "collections.tag",
+          "level": 2
+        },
+        {
+          "field": "contentRating",
+          "level": 1
+        },
+        {
+          "field": "countries.id",
+          "level": 9
+        },
+        {
+          "field": "countries.tag",
+          "level": 2
+        },
+        {
+          "field": "directors.id",
+          "level": 9
+        },
+        {
+          "field": "directors.tag",
+          "level": 2
+        },
+        {
+          "field": "duration",
+          "level": 1
+        },
+        {
+          "field": "durationHuman",
+          "level": 1
+        },
+        {
+          "field": "editionTitle",
+          "level": 1
+        },
+        {
+          "field": "enableCreditsMarkerGeneration",
+          "level": 9
+        },
+        {
+          "field": "fields.locked",
+          "level": 2
+        },
+        {
+          "field": "fields.name",
+          "level": 2
+        },
+        {
+          "field": "genres.id",
+          "level": 9
+        },
+        {
+          "field": "genres.tag",
+          "level": 2
+        },
+        {
+          "field": "guid",
+          "level": 1
+        },
+        {
+          "field": "guids.id",
+          "level": 2
+        },
+        {
+          "field": "hasCreditsMarker",
+          "level": 1
+        },
+        {
+          "field": "hasPreviewThumbnails",
+          "level": 3
+        },
+        {
+          "field": "hasVoiceActivity",
+          "level": 3
+        },
+        {
+          "field": "key",
+          "level": 3
+        },
+        {
+          "field": "labels.id",
+          "level": 9
+        },
+        {
+          "field": "labels.tag",
+          "level": 2
+        },
+        {
+          "field": "languageOverride",
+          "level": 9
+        },
+        {
+          "field": "lastRatedAt",
+          "level": 3
+        },
+        {
+          "field": "lastViewedAt",
+          "level": 3
+        },
+        {
+          "field": "librarySectionID",
+          "level": 9
+        },
+        {
+          "field": "librarySectionKey",
+          "level": 9
+        },
+        {
+          "field": "librarySectionTitle",
+          "level": 9
+        },
+        {
+          "field": "logo",
+          "level": 9
+        },
+        {
+          "field": "logoFile",
+          "level": 9
+        },
+        {
+          "field": "logoProvider",
+          "level": 9
+        },
+        {
+          "field": "markers.end",
+          "level": 2
+        },
+        {
+          "field": "markers.final",
+          "level": 2
+        },
+        {
+          "field": "markers.first",
+          "level": 2
+        },
+        {
+          "field": "markers.id",
+          "level": 9
+        },
+        {
+          "field": "markers.start",
+          "level": 2
+        },
+        {
+          "field": "markers.type",
+          "level": 2
+        },
+        {
+          "field": "metadataDirectory",
+          "level": 9
+        },
+        {
+          "field": "originalTitle",
+          "level": 1
+        },
+        {
+          "field": "originallyAvailableAt",
+          "level": 1
+        },
+        {
+          "field": "producers.id",
+          "level": 9
+        },
+        {
+          "field": "producers.tag",
+          "level": 2
+        },
+        {
+          "field": "rating",
+          "level": 1
+        },
+        {
+          "field": "ratingImage",
+          "level": 1
+        },
+        {
+          "field": "ratingKey",
+          "level": 1
+        },
+        {
+          "field": "roles.id",
+          "level": 9
+        },
+        {
+          "field": "roles.role",
+          "level": 2
+        },
+        {
+          "field": "roles.tag",
+          "level": 2
+        },
+        {
+          "field": "roles.thumb",
+          "level": 9
+        },
+        {
+          "field": "slug",
+          "level": 9
+        },
+        {
+          "field": "squareArt",
+          "level": 9
+        },
+        {
+          "field": "squareArtFile",
+          "level": 9
+        },
+        {
+          "field": "squareArtProvider",
+          "level": 9
+        },
+        {
+          "field": "studio",
+          "level": 1
+        },
+        {
+          "field": "summary",
+          "level": 1
+        },
+        {
+          "field": "tagline",
+          "level": 1
+        },
+        {
+          "field": "theme",
+          "level": 9
+        },
+        {
+          "field": "themeFile",
+          "level": 9
+        },
+        {
+          "field": "themeProvider",
+          "level": 9
+        },
+        {
+          "field": "thumb",
+          "level": 3
+        },
+        {
+          "field": "thumbBlurHash",
+          "level": 9
+        },
+        {
+          "field": "thumbFile",
+          "level": 9
+        },
+        {
+          "field": "thumbProvider",
+          "level": 9
+        },
+        {
+          "field": "title",
+          "level": 1
+        },
+        {
+          "field": "titleSort",
+          "level": 1
+        },
+        {
+          "field": "type",
+          "level": 1
+        },
+        {
+          "field": "updatedAt",
+          "level": 3
+        },
+        {
+          "field": "useOriginalTitle",
+          "level": 9
+        },
+        {
+          "field": "userRating",
+          "level": 1
+        },
+        {
+          "field": "viewCount",
+          "level": 3
+        },
+        {
+          "field": "viewOffset",
+          "level": 9
+        },
+        {
+          "field": "writers.id",
+          "level": 9
+        },
+        {
+          "field": "writers.tag",
+          "level": 2
+        },
+        {
+          "field": "year",
+          "level": 1
+        }
+      ],
+      "media_info_fields": [
+        {
+          "field": "locations",
+          "level": 1
+        },
+        {
+          "field": "media.aspectRatio",
+          "level": 1
+        },
+        {
+          "field": "media.audioChannels",
+          "level": 1
+        },
+        {
+          "field": "media.audioCodec",
+          "level": 1
+        },
+        {
+          "field": "media.audioProfile",
+          "level": 1
+        },
+        {
+          "field": "media.bitrate",
+          "level": 1
+        },
+        {
+          "field": "media.container",
+          "level": 1
+        },
+        {
+          "field": "media.duration",
+          "level": 1
+        },
+        {
+          "field": "media.has64bitOffsets",
+          "level": 9
+        },
+        {
+          "field": "media.hasVoiceActivity",
+          "level": 9
+        },
+        {
+          "field": "media.hdr",
+          "level": 1
+        },
+        {
+          "field": "media.height",
+          "level": 1
+        },
+        {
+          "field": "media.id",
+          "level": 9
+        },
+        {
+          "field": "media.isOptimizedVersion",
+          "level": 1
+        },
+        {
+          "field": "media.optimizedForStreaming",
+          "level": 9
+        },
+        {
+          "field": "media.parts.accessible",
+          "level": 9
+        },
+        {
+          "field": "media.parts.audioProfile",
+          "level": 2
+        },
+        {
+          "field": "media.parts.audioStreams.audioChannelLayout",
+          "level": 3
+        },
+        {
+          "field": "media.parts.audioStreams.bitDepth",
+          "level": 3
+        },
+        {
+          "field": "media.parts.audioStreams.bitrate",
+          "level": 3
+        },
+        {
+          "field": "media.parts.audioStreams.bitrateMode",
+          "level": 9
+        },
+        {
+          "field": "media.parts.audioStreams.channels",
+          "level": 3
+        },
+        {
+          "field": "media.parts.audioStreams.codec",
+          "level": 3
+        },
+        {
+          "field": "media.parts.audioStreams.default",
+          "level": 3
+        },
+        {
+          "field": "media.parts.audioStreams.displayTitle",
+          "level": 3
+        },
+        {
+          "field": "media.parts.audioStreams.duration",
+          "level": 9
+        },
+        {
+          "field": "media.parts.audioStreams.extendedDisplayTitle",
+          "level": 3
+        },
+        {
+          "field": "media.parts.audioStreams.id",
+          "level": 9
+        },
+        {
+          "field": "media.parts.audioStreams.index",
+          "level": 9
+        },
+        {
+          "field": "media.parts.audioStreams.key",
+          "level": 9
+        },
+        {
+          "field": "media.parts.audioStreams.language",
+          "level": 3
+        },
+        {
+          "field": "media.parts.audioStreams.languageCode",
+          "level": 3
+        },
+        {
+          "field": "media.parts.audioStreams.languageTag",
+          "level": 9
+        },
+        {
+          "field": "media.parts.audioStreams.profile",
+          "level": 3
+        },
+        {
+          "field": "media.parts.audioStreams.requiredBandwidths",
+          "level": 9
+        },
+        {
+          "field": "media.parts.audioStreams.samplingRate",
+          "level": 3
+        },
+        {
+          "field": "media.parts.audioStreams.selected",
+          "level": 9
+        },
+        {
+          "field": "media.parts.audioStreams.streamIdentifier",
+          "level": 9
+        },
+        {
+          "field": "media.parts.audioStreams.streamType",
+          "level": 9
+        },
+        {
+          "field": "media.parts.audioStreams.title",
+          "level": 3
+        },
+        {
+          "field": "media.parts.audioStreams.type",
+          "level": 9
+        },
+        {
+          "field": "media.parts.audioStreams.visualImpaired",
+          "level": 9
+        },
+        {
+          "field": "media.parts.container",
+          "level": 2
+        },
+        {
+          "field": "media.parts.deepAnalysisVersion",
+          "level": 2
+        },
+        {
+          "field": "media.parts.duration",
+          "level": 2
+        },
+        {
+          "field": "media.parts.exists",
+          "level": 9
+        },
+        {
+          "field": "media.parts.file",
+          "level": 2
+        },
+        {
+          "field": "media.parts.has64bitOffsets",
+          "level": 9
+        },
+        {
+          "field": "media.parts.hasPreviewThumbnails",
+          "level": 2
+        },
+        {
+          "field": "media.parts.hasThumbnail",
+          "level": 9
+        },
+        {
+          "field": "media.parts.id",
+          "level": 9
+        },
+        {
+          "field": "media.parts.indexes",
+          "level": 2
+        },
+        {
+          "field": "media.parts.key",
+          "level": 9
+        },
+        {
+          "field": "media.parts.optimizedForStreaming",
+          "level": 2
+        },
+        {
+          "field": "media.parts.packetLength",
+          "level": 9
+        },
+        {
+          "field": "media.parts.requiredBandwidths",
+          "level": 9
+        },
+        {
+          "field": "media.parts.size",
+          "level": 2
+        },
+        {
+          "field": "media.parts.sizeHuman",
+          "level": 2
+        },
+        {
+          "field": "media.parts.subtitleStreams.canAutoSync",
+          "level": 9
+        },
+        {
+          "field": "media.parts.subtitleStreams.codec",
+          "level": 3
+        },
+        {
+          "field": "media.parts.subtitleStreams.container",
+          "level": 3
+        },
+        {
+          "field": "media.parts.subtitleStreams.default",
+          "level": 3
+        },
+        {
+          "field": "media.parts.subtitleStreams.displayTitle",
+          "level": 3
+        },
+        {
+          "field": "media.parts.subtitleStreams.extendedDisplayTitle",
+          "level": 3
+        },
+        {
+          "field": "media.parts.subtitleStreams.forced",
+          "level": 3
+        },
+        {
+          "field": "media.parts.subtitleStreams.format",
+          "level": 3
+        },
+        {
+          "field": "media.parts.subtitleStreams.headerCompression",
+          "level": 9
+        },
+        {
+          "field": "media.parts.subtitleStreams.hearingImpaired",
+          "level": 9
+        },
+        {
+          "field": "media.parts.subtitleStreams.id",
+          "level": 9
+        },
+        {
+          "field": "media.parts.subtitleStreams.index",
+          "level": 9
+        },
+        {
+          "field": "media.parts.subtitleStreams.key",
+          "level": 9
+        },
+        {
+          "field": "media.parts.subtitleStreams.language",
+          "level": 3
+        },
+        {
+          "field": "media.parts.subtitleStreams.languageCode",
+          "level": 3
+        },
+        {
+          "field": "media.parts.subtitleStreams.languageTag",
+          "level": 9
+        },
+        {
+          "field": "media.parts.subtitleStreams.perfectMatch",
+          "level": 9
+        },
+        {
+          "field": "media.parts.subtitleStreams.providerTitle",
+          "level": 9
+        },
+        {
+          "field": "media.parts.subtitleStreams.requiredBandwidths",
+          "level": 9
+        },
+        {
+          "field": "media.parts.subtitleStreams.score",
+          "level": 9
+        },
+        {
+          "field": "media.parts.subtitleStreams.selected",
+          "level": 9
+        },
+        {
+          "field": "media.parts.subtitleStreams.sourceKey",
+          "level": 9
+        },
+        {
+          "field": "media.parts.subtitleStreams.streamType",
+          "level": 9
+        },
+        {
+          "field": "media.parts.subtitleStreams.title",
+          "level": 3
+        },
+        {
+          "field": "media.parts.subtitleStreams.transient",
+          "level": 9
+        },
+        {
+          "field": "media.parts.subtitleStreams.type",
+          "level": 9
+        },
+        {
+          "field": "media.parts.subtitleStreams.userID",
+          "level": 9
+        },
+        {
+          "field": "media.parts.syncItemId",
+          "level": 9
+        },
+        {
+          "field": "media.parts.syncState",
+          "level": 9
+        },
+        {
+          "field": "media.parts.videoProfile",
+          "level": 2
+        },
+        {
+          "field": "media.parts.videoStreams.DOVIBLCompatID",
+          "level": 9
+        },
+        {
+          "field": "media.parts.videoStreams.DOVIBLPresent",
+          "level": 9
+        },
+        {
+          "field": "media.parts.videoStreams.DOVIELPresent",
+          "level": 9
+        },
+        {
+          "field": "media.parts.videoStreams.DOVILevel",
+          "level": 9
+        },
+        {
+          "field": "media.parts.videoStreams.DOVIPresent",
+          "level": 9
+        },
+        {
+          "field": "media.parts.videoStreams.DOVIProfile",
+          "level": 9
+        },
+        {
+          "field": "media.parts.videoStreams.DOVIRPUPresent",
+          "level": 9
+        },
+        {
+          "field": "media.parts.videoStreams.DOVIVersion",
+          "level": 9
+        },
+        {
+          "field": "media.parts.videoStreams.anamorphic",
+          "level": 9
+        },
+        {
+          "field": "media.parts.videoStreams.bitDepth",
+          "level": 3
+        },
+        {
+          "field": "media.parts.videoStreams.bitrate",
+          "level": 3
+        },
+        {
+          "field": "media.parts.videoStreams.cabac",
+          "level": 9
+        },
+        {
+          "field": "media.parts.videoStreams.chromaLocation",
+          "level": 9
+        },
+        {
+          "field": "media.parts.videoStreams.chromaSubsampling",
+          "level": 9
+        },
+        {
+          "field": "media.parts.videoStreams.codec",
+          "level": 3
+        },
+        {
+          "field": "media.parts.videoStreams.codecID",
+          "level": 9
+        },
+        {
+          "field": "media.parts.videoStreams.codedHeight",
+          "level": 9
+        },
+        {
+          "field": "media.parts.videoStreams.codedWidth",
+          "level": 9
+        },
+        {
+          "field": "media.parts.videoStreams.colorPrimaries",
+          "level": 9
+        },
+        {
+          "field": "media.parts.videoStreams.colorRange",
+          "level": 9
+        },
+        {
+          "field": "media.parts.videoStreams.colorSpace",
+          "level": 3
+        },
+        {
+          "field": "media.parts.videoStreams.colorTrc",
+          "level": 9
+        },
+        {
+          "field": "media.parts.videoStreams.default",
+          "level": 3
+        },
+        {
+          "field": "media.parts.videoStreams.displayTitle",
+          "level": 3
+        },
+        {
+          "field": "media.parts.videoStreams.duration",
+          "level": 9
+        },
+        {
+          "field": "media.parts.videoStreams.extendedDisplayTitle",
+          "level": 3
+        },
+        {
+          "field": "media.parts.videoStreams.frameRate",
+          "level": 3
+        },
+        {
+          "field": "media.parts.videoStreams.frameRateMode",
+          "level": 9
+        },
+        {
+          "field": "media.parts.videoStreams.hasScalingMatrix",
+          "level": 9
+        },
+        {
+          "field": "media.parts.videoStreams.hdr",
+          "level": 3
+        },
+        {
+          "field": "media.parts.videoStreams.height",
+          "level": 3
+        },
+        {
+          "field": "media.parts.videoStreams.id",
+          "level": 9
+        },
+        {
+          "field": "media.parts.videoStreams.index",
+          "level": 9
+        },
+        {
+          "field": "media.parts.videoStreams.key",
+          "level": 9
+        },
+        {
+          "field": "media.parts.videoStreams.language",
+          "level": 3
+        },
+        {
+          "field": "media.parts.videoStreams.languageCode",
+          "level": 3
+        },
+        {
+          "field": "media.parts.videoStreams.languageTag",
+          "level": 9
+        },
+        {
+          "field": "media.parts.videoStreams.level",
+          "level": 3
+        },
+        {
+          "field": "media.parts.videoStreams.pixelAspectRatio",
+          "level": 9
+        },
+        {
+          "field": "media.parts.videoStreams.pixelFormat",
+          "level": 9
+        },
+        {
+          "field": "media.parts.videoStreams.profile",
+          "level": 3
+        },
+        {
+          "field": "media.parts.videoStreams.refFrames",
+          "level": 3
+        },
+        {
+          "field": "media.parts.videoStreams.requiredBandwidths",
+          "level": 9
+        },
+        {
+          "field": "media.parts.videoStreams.scanType",
+          "level": 3
+        },
+        {
+          "field": "media.parts.videoStreams.selected",
+          "level": 9
+        },
+        {
+          "field": "media.parts.videoStreams.streamIdentifier",
+          "level": 9
+        },
+        {
+          "field": "media.parts.videoStreams.streamType",
+          "level": 9
+        },
+        {
+          "field": "media.parts.videoStreams.title",
+          "level": 3
+        },
+        {
+          "field": "media.parts.videoStreams.type",
+          "level": 9
+        },
+        {
+          "field": "media.parts.videoStreams.width",
+          "level": 3
+        },
+        {
+          "field": "media.proxyType",
+          "level": 9
+        },
+        {
+          "field": "media.target",
+          "level": 9
+        },
+        {
+          "field": "media.title",
+          "level": 9
+        },
+        {
+          "field": "media.videoCodec",
+          "level": 1
+        },
+        {
+          "field": "media.videoFrameRate",
+          "level": 1
+        },
+        {
+          "field": "media.videoProfile",
+          "level": 1
+        },
+        {
+          "field": "media.videoResolution",
+          "level": 1
+        },
+        {
+          "field": "media.width",
+          "level": 1
+        }
+      ]
     }
   }
 }

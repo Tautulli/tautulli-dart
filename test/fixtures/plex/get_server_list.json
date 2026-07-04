@@ -3,7 +3,72 @@
     "result": "success",
     "message": null,
     "data": [
-      {"name": "Margarita", "clientIdentifier": "0000", "local": 1}
+      {
+        "httpsRequired": "1",
+        "clientIdentifier": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee09",
+        "label": "TestServer",
+        "ip": "192.0.2.13",
+        "port": "32400",
+        "uri": "https://192-0-2-10.00000000000000000000000000000000.plex.direct:32400",
+        "local": "1",
+        "value": "192.0.2.13:32400",
+        "is_cloud": false
+      },
+      {
+        "httpsRequired": "1",
+        "clientIdentifier": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee09",
+        "label": "TestServer",
+        "ip": "192.0.2.14",
+        "port": "32400",
+        "uri": "https://192-0-2-10.00000000000000000000000000000000.plex.direct:32400",
+        "local": "1",
+        "value": "192.0.2.14:32400",
+        "is_cloud": false
+      },
+      {
+        "httpsRequired": "1",
+        "clientIdentifier": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee09",
+        "label": "TestServer",
+        "ip": "203.0.113.9",
+        "port": "32400",
+        "uri": "https://192-0-2-10.00000000000000000000000000000000.plex.direct:32400",
+        "local": "1",
+        "value": "203.0.113.9:32400",
+        "is_cloud": false
+      },
+      {
+        "httpsRequired": "1",
+        "clientIdentifier": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee09",
+        "label": "TestServer",
+        "ip": "203.0.113.58",
+        "port": "32400",
+        "uri": "https://192-0-2-10.00000000000000000000000000000000.plex.direct:32400",
+        "local": "0",
+        "value": "203.0.113.58:32400",
+        "is_cloud": false
+      },
+      {
+        "httpsRequired": "0",
+        "clientIdentifier": "1aeccc51c7da37c48f3b18634d81d476d1ad256a",
+        "label": "tautulli-remote-demo",
+        "ip": "192.0.2.17",
+        "port": "32400",
+        "uri": "https://192-0-2-10.00000000000000000000000000000000.plex.direct:32400",
+        "local": "1",
+        "value": "192.0.2.17:32400",
+        "is_cloud": false
+      },
+      {
+        "httpsRequired": "0",
+        "clientIdentifier": "1aeccc51c7da37c48f3b18634d81d476d1ad256a",
+        "label": "tautulli-remote-demo",
+        "ip": "203.0.113.58",
+        "port": "32401",
+        "uri": "https://192-0-2-10.00000000000000000000000000000000.plex.direct:32401",
+        "local": "0",
+        "value": "203.0.113.58:32401",
+        "is_cloud": false
+      }
     ]
   }
 }

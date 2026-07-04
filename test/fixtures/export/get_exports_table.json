@@ -3,37 +3,10 @@
     "result": "success",
     "message": null,
     "data": {
-      "draw": 1,
-      "recordsTotal": 1,
-      "recordsFiltered": 1,
-      "data": [
-        {
-          "export_id": 1,
-          "timestamp": 1783109687,
-          "section_id": 3,
-          "user_id": null,
-          "rating_key": 4017,
-          "media_type": "movie",
-          "media_type_title": "Movie",
-          "title": "The Matrix",
-          "filename": "Movie - The Matrix [4017].csv",
-          "file_format": "csv",
-          "metadata_level": 1,
-          "media_info_level": 1,
-          "thumb_level": 0,
-          "art_level": 0,
-          "logo_level": 0,
-          "squareArt_level": 0,
-          "theme_level": 0,
-          "custom_fields": "",
-          "individual_files": 0,
-          "file_size": 1195,
-          "complete": 1,
-          "exported_items": 1,
-          "total_items": 1,
-          "exists": true
-        }
-      ]
+      "recordsFiltered": 0,
+      "recordsTotal": 0,
+      "draw": 0,
+      "data": []
     }
   }
 }

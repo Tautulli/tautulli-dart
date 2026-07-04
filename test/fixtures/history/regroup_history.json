@@ -1,0 +1,7 @@
+{
+  "response": {
+    "result": "success",
+    "message": "Regrouping play history started. Check the logs to monitor any problems.",
+    "data": {}
+  }
+}

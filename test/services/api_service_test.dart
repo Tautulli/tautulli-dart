@@ -18,7 +18,7 @@ void main() {
       ),
       httpClient: MockClient((request) async {
         lastRequestUri = request.url;
-        return http.Response(fixture(fixtureFile), 200);
+        return fixtureResponse(fixtureFile);
       }),
     );
   }
@@ -37,7 +37,7 @@ void main() {
       makeClient('api/arnold.json');
       final result = await client.api.arnold();
       expect(lastRequestUri.queryParameters['cmd'], 'arnold');
-      expect(result, contains('crush'));
+      expect(result, contains('Take your toy back to the carpet!'));
     });
   });
 

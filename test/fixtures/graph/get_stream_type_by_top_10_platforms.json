@@ -1,0 +1,63 @@
+{
+  "response": {
+    "result": "success",
+    "message": null,
+    "data": {
+      "categories": [
+        "Android",
+        "tvOS",
+        "Firefox",
+        "Chrome",
+        "org.freedesktop.platform",
+        "webOS",
+        "iOS",
+        "Roku",
+        "Tizen"
+      ],
+      "series": [
+        {
+          "name": "Direct Play",
+          "data": [
+            136,
+            90,
+            2,
+            0,
+            25,
+            20,
+            18,
+            1,
+            1
+          ]
+        },
+        {
+          "name": "Direct Stream",
+          "data": [
+            0,
+            2,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "name": "Transcode",
+          "data": [
+            557,
+            7,
+            53,
+            44,
+            0,
+            1,
+            0,
+            6,
+            3
+          ]
+        }
+      ]
+    }
+  }
+}

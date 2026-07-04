@@ -1,0 +1,36 @@
+{
+  "response": {
+    "result": "success",
+    "message": null,
+    "data": {
+      "stat_id": "most_concurrent",
+      "stat_title": "Most Concurrent Streams",
+      "rows": [
+        {
+          "title": "Concurrent Streams",
+          "count": 5,
+          "started": "1782706507",
+          "stopped": "1782707124"
+        },
+        {
+          "title": "Concurrent Transcodes",
+          "count": 4,
+          "started": "1781580966",
+          "stopped": "1781581093"
+        },
+        {
+          "title": "Concurrent Direct Streams",
+          "count": 1,
+          "started": "1781177281",
+          "stopped": "1781178465"
+        },
+        {
+          "title": "Concurrent Direct Plays",
+          "count": 3,
+          "started": "1782706507",
+          "stopped": "1782707926"
+        }
+      ]
+    }
+  }
+}

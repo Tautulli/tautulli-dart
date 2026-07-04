@@ -3,16 +3,16 @@
     "result": "success",
     "message": null,
     "data": {
-      "pms_identifier": "abc123def456",
-      "pms_ip": "192.168.1.10",
-      "pms_name": "My Plex Server",
+      "pms_name": "TestServer",
+      "pms_version": "1.43.3.10793-cd55560bb",
       "pms_platform": "Linux",
-      "pms_plexpass": 1,
+      "pms_ip": "203.0.113.9",
       "pms_port": 32400,
-      "pms_ssl": 0,
-      "pms_url": "http://192.168.1.10:32400",
+      "pms_ssl": 1,
+      "pms_url": "https://192-0-2-10.00000000000000000000000000000000.plex.direct:32400",
       "pms_url_manual": 0,
-      "pms_version": "1.32.5.7516"
+      "pms_identifier": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee09",
+      "pms_plexpass": 1
     }
   }
 }

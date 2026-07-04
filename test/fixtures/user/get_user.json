@@ -3,27 +3,32 @@
     "result": "success",
     "message": null,
     "data": {
-      "user_id": 7,
-      "username": "johndoe",
-      "friendly_name": "JohnDoe",
-      "email": "john@example.com",
-      "user_thumb": "https://plex.tv/users/abc/avatar",
+      "row_id": 47,
+      "user_id": 65059356,
+      "username": "user27",
+      "friendly_name": "user26",
+      "user_thumb": "https://plex.tv/users/0000000000000000/avatar?c=1782906602",
+      "email": "jack@example.com",
       "is_active": 1,
       "is_admin": 0,
-      "is_home_user": 1,
+      "is_home_user": 0,
       "is_allow_sync": 1,
       "is_restricted": 0,
-      "allow_guest": 0,
+      "do_notify": 0,
       "keep_history": 1,
-      "do_notify": 1,
-      "filter_all": "",
-      "filter_movies": "",
-      "filter_tv": "",
-      "filter_music": "",
-      "filter_photos": "",
-      "last_seen": 1704067200,
-      "row_id": 3,
-      "shared_libraries": [1, 2, 3]
+      "deleted_user": 0,
+      "allow_guest": 0,
+      "shared_libraries": [
+        "28",
+        "30",
+        "6",
+        "13",
+        "31",
+        "12",
+        "7",
+        "1"
+      ],
+      "last_seen": null
     }
   }
 }

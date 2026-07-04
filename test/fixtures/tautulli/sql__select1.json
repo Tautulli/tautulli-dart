@@ -1,0 +1,11 @@
+{
+  "response": {
+    "result": "success",
+    "message": null,
+    "data": [
+      {
+        "one": 1
+      }
+    ]
+  }
+}

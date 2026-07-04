@@ -1,0 +1,15 @@
+{
+  "response": {
+    "result": "success",
+    "message": null,
+    "data": [
+      {
+        "name": "TestServer",
+        "machine_identifier": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee09",
+        "host": "203.0.113.9",
+        "port": "32400",
+        "version": "1.43.3.10793-cd55560bb"
+      }
+    ]
+  }
+}

@@ -1,4 +1,3 @@
-import 'package:http/http.dart' as http;
 import 'package:http/testing.dart';
 import 'package:test/test.dart';
 import 'package:tautulli/tautulli.dart';
@@ -18,7 +17,7 @@ void main() {
       ),
       httpClient: MockClient((request) async {
         lastRequestUri = request.url;
-        return http.Response(fixture(fixtureFile), 200);
+        return fixtureResponse(fixtureFile);
       }),
     );
   }
@@ -34,16 +33,16 @@ void main() {
     test('parses user data', () async {
       makeClient('user/get_user.json');
       final user = await client.users.getUser(userId: 7);
-      expect(user.username, 'johndoe');
-      expect(user.friendlyName, 'JohnDoe');
+      expect(user.username, 'user27');
+      expect(user.friendlyName, 'user26');
       expect(user.isActive, isTrue);
-      expect(user.userId, 7);
+      expect(user.userId, 65059356);
     });
 
     test('parses shared_libraries list', () async {
       makeClient('user/get_user.json');
       final user = await client.users.getUser(userId: 7);
-      expect(user.sharedLibraries, containsAll([1, 2, 3]));
+      expect(user.sharedLibraries, containsAll([28, 30, 6, 13]));
     });
   });
 
@@ -57,10 +56,10 @@ void main() {
     test('parses user name list', () async {
       makeClient('user/get_user_names.json');
       final names = await client.users.getUserNames();
-      expect(names, hasLength(2));
+      expect(names, hasLength(52));
       expect(names.first.userId, 0);
-      expect(names.first.friendlyName, 'Local');
-      expect(names.last.friendlyName, 'TestUser1');
+      expect(names.first.friendlyName, 'user52');
+      expect(names.last.friendlyName, 'nina');
     });
   });
 
@@ -75,9 +74,9 @@ void main() {
     test('parses player stats', () async {
       makeClient('user/get_user_player_stats.json');
       final stats = await client.users.getUserPlayerStats(userId: 7);
-      expect(stats, hasLength(1));
-      expect(stats.first.platform, 'Linux');
-      expect(stats.first.totalPlays, 120);
+      expect(stats, hasLength(10));
+      expect(stats.first.platform, 'Android');
+      expect(stats.first.totalPlays, 13414);
     });
   });
 
@@ -96,7 +95,6 @@ void main() {
       final stats = await client.users.getUserWatchTimeStats(userId: 7);
       expect(stats, hasLength(4));
       expect(stats.first.queryDays, 1);
-      expect(stats[2].totalPlays, 45);
       expect(stats.last.queryDays, 0);
     });
 
@@ -117,11 +115,11 @@ void main() {
     test('parses paged result', () async {
       makeClient('user/get_users_table.json');
       final result = await client.users.getUsersTable();
-      expect(result.recordsTotal, 5);
-      expect(result.data, hasLength(1));
-      expect(result.data.first.username, 'johndoe');
-      expect(result.data.first.plays, 42);
-      expect(result.data.first.historyRowId, 1);
+      expect(result.recordsTotal, 64);
+      expect(result.data, hasLength(25));
+      expect(result.data.first.username, 'user105');
+      expect(result.data.first.plays, 157);
+      expect(result.data.first.historyRowId, 81224);
     });
   });
 
@@ -130,9 +128,9 @@ void main() {
       makeClient('user/get_users.json');
       final result = await client.users.getUsers();
       expect(lastRequestUri.queryParameters['cmd'], 'get_users');
-      expect(result, hasLength(1));
-      expect(result.first.userId, 5);
-      expect(result.first.deletedUser, false);
+      expect(result, hasLength(52));
+      expect(result.first.userId, 0);
+      expect(result.first.deletedUser, isNull); // not sent by get_users
     });
 
     test('sends grouping param', () async {

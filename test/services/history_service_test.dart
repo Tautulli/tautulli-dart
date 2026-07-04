@@ -1,4 +1,3 @@
-import 'package:http/http.dart' as http;
 import 'package:http/testing.dart';
 import 'package:test/test.dart';
 import 'package:tautulli/tautulli.dart';
@@ -18,7 +17,7 @@ void main() {
       ),
       httpClient: MockClient((request) async {
         lastRequestUri = request.url;
-        return http.Response(fixture(fixtureFile), 200);
+        return fixtureResponse(fixtureFile);
       }),
     );
   }
@@ -33,22 +32,33 @@ void main() {
     test('parses paged result', () async {
       makeClient('history/get_history.json');
       final result = await client.history.getHistory();
-      expect(result.recordsTotal, 250);
-      expect(result.data, hasLength(1));
-      expect(result.data.first.title, 'The Matrix');
-      expect(result.data.first.mediaType, MediaType.movie);
+      expect(result.recordsTotal, 82489);
+      expect(result.recordsFiltered, 64884);
+      expect(result.data, hasLength(10));
+      final first = result.data.first;
+      expect(first.title, 'Episode 31');
+      expect(first.fullTitle, 'Love Island - Episode 31');
+      expect(first.mediaType, MediaType.episode);
+      expect(first.rowId, 83192);
+      expect(first.transcodeDecision, StreamDecision.directPlay);
+      expect(first.location, Location.wan);
+      expect(first.live, isFalse);
+      expect(first.secure, isTrue);
     });
 
-    test('parses watched_status to WatchedStatus.full', () async {
+    test('parses watched_status thresholds', () async {
       makeClient('history/get_history.json');
       final result = await client.history.getHistory();
-      expect(result.data.first.watchedStatus, WatchedStatus.full);
+      expect(result.data.first.watchedStatus, WatchedStatus.quarter);
+      expect(result.data.last.watchedStatus, WatchedStatus.full);
     });
 
-    test('parses dates from epoch seconds', () async {
+    test('parses dates from epoch seconds as UTC', () async {
       makeClient('history/get_history.json');
       final result = await client.history.getHistory();
-      expect(result.data.first.date, isA<DateTime>());
+      final date = result.data.first.date;
+      expect(date, isA<DateTime>());
+      expect(date!.isUtc, isTrue);
     });
 
     test('sends optional params', () async {
@@ -75,20 +85,31 @@ void main() {
     test('parses stat groups', () async {
       makeClient('history/get_home_stats.json');
       final result = await client.history.getHomeStats();
+      expect(result, hasLength(11));
+      final topMovies = result.firstWhere(
+        (g) => g.statId == StatIdType.topMovies,
+      );
+      expect(topMovies.rows, isNotEmpty);
+      expect(topMovies.rows.first.title, 'Marty Supreme');
+      expect(topMovies.rows.first.totalPlays, 3);
+    });
+
+    test('parses a single-stat (bare object) response', () async {
+      makeClient('history/get_home_stats__top_movies.json');
+      final result = await client.history.getHomeStats(
+        statId: StatIdType.topMovies,
+      );
+      expect(lastRequestUri.queryParameters['stat_id'], 'top_movies');
       expect(result, hasLength(1));
       expect(result.first.statId, StatIdType.topMovies);
-      expect(result.first.rows, hasLength(1));
-      expect(result.first.rows.first.title, 'The Matrix');
-      expect(result.first.rows.first.totalPlays, 42);
+      expect(result.first.rows, hasLength(10));
     });
 
     test('parses new metadata fields', () async {
-      makeClient('history/get_home_stats.json');
+      makeClient('history/get_home_stats__top_movies.json');
       final row = (await client.history.getHomeStats()).first.rows.first;
-      expect(row.guid, 'plex://movie/5d776828880197001ec9671c');
+      expect(row.guid, 'plex://movie/669748dc85be974cd2ab194c');
       expect(row.contentRating, 'R');
-      expect(row.rating, 8.7);
-      expect(row.labels, contains('Action'));
       expect(row.live, false);
     });
 

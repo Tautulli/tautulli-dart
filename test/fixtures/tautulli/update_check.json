@@ -1,0 +1,15 @@
+{
+  "response": {
+    "result": "success",
+    "message": "A newer version of Tautulli is available.",
+    "data": {
+      "update": true,
+      "release": false,
+      "current_version": "5a39bac6f524a23ab79cef8b08f8126f5134a99e",
+      "latest_version": "676cf1092f22cab0e41c612b7c584d0d44f08516",
+      "commits_behind": 3,
+      "compare_url": "https://github.com/Tautulli/Tautulli/compare/5a39bac6f524a23ab79cef8b08f8126f5134a99e...676cf1092f22cab0e41c612b7c584d0d44f08516",
+      "install_type": "docker"
+    }
+  }
+}

@@ -3,16 +3,16 @@
     "result": "success",
     "message": null,
     "data": {
-      "code": "CA",
-      "country": "Canada",
-      "region": "Ontario",
-      "city": "Toronto",
-      "postal_code": "M5H",
-      "timezone": "America/Toronto",
-      "latitude": 43.6532,
-      "longitude": -79.3832,
-      "accuracy": 10,
-      "continent": "NA"
+      "city": "Springfield",
+      "code": "US",
+      "continent": "NA",
+      "country": "United States",
+      "latitude": 39.78,
+      "longitude": -89.65,
+      "postal_code": "62701",
+      "region": "Illinois",
+      "timezone": "Etc/UTC",
+      "accuracy": null
     }
   }
 }

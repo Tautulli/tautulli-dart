@@ -4,12 +4,12 @@
     "message": null,
     "data": [
       {
-        "user_id": 7,
-        "username": "johndoe",
-        "friendly_name": "JohnDoe",
-        "user_thumb": "https://plex.tv/users/abc/avatar",
-        "total_plays": 42,
-        "total_time": 151200
+        "friendly_name": "user25",
+        "user_id": 1526265,
+        "user_thumb": "https://plex.tv/users/0000000000000000/avatar?c=1782951613",
+        "username": "user70",
+        "total_plays": 4,
+        "total_time": 8684
       }
     ]
   }

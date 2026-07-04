@@ -1,0 +1,88 @@
+{
+  "response": {
+    "result": "success",
+    "message": null,
+    "data": {
+      "recordsFiltered": 95845,
+      "recordsTotal": 95845,
+      "data": [
+        {
+          "id": 95843,
+          "timestamp": 1783180038,
+          "session_key": null,
+          "rating_key": null,
+          "user_id": null,
+          "user": null,
+          "notifier_id": 19,
+          "agent_id": 17,
+          "agent_name": "browser",
+          "notify_action": "api",
+          "subject_text": "tautulli-dart live capture",
+          "body_text": "notify() through the fixed package",
+          "success": 1
+        },
+        {
+          "id": 95844,
+          "timestamp": 1783180038,
+          "session_key": null,
+          "rating_key": null,
+          "user_id": null,
+          "user": null,
+          "notifier_id": 19,
+          "agent_id": 17,
+          "agent_name": "browser",
+          "notify_action": "api",
+          "subject_text": "tautulli-dart raw notify",
+          "body_text": "raw capture",
+          "success": 1
+        },
+        {
+          "id": 95842,
+          "timestamp": 1783179845,
+          "session_key": null,
+          "rating_key": null,
+          "user_id": null,
+          "user": null,
+          "notifier_id": 18,
+          "agent_id": 17,
+          "agent_name": "browser",
+          "notify_action": "api",
+          "subject_text": "dart-test",
+          "body_text": "browser-sink-test",
+          "success": 1
+        },
+        {
+          "id": 95840,
+          "timestamp": 1783179643,
+          "session_key": null,
+          "rating_key": null,
+          "user_id": null,
+          "user": null,
+          "notifier_id": 17,
+          "agent_id": 15,
+          "agent_name": "scripts",
+          "notify_action": "api",
+          "subject_text": "tautulli-dart live capture",
+          "body_text": "notify() through the fixed package",
+          "success": 0
+        },
+        {
+          "id": 95841,
+          "timestamp": 1783179643,
+          "session_key": null,
+          "rating_key": null,
+          "user_id": null,
+          "user": null,
+          "notifier_id": 17,
+          "agent_id": 15,
+          "agent_name": "scripts",
+          "notify_action": "api",
+          "subject_text": "tautulli-dart raw notify",
+          "body_text": "raw capture",
+          "success": 0
+        }
+      ],
+      "draw": 1
+    }
+  }
+}

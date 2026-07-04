@@ -1,4 +1,3 @@
-import 'package:http/http.dart' as http;
 import 'package:http/testing.dart';
 import 'package:test/test.dart';
 import 'package:tautulli/tautulli.dart';
@@ -18,7 +17,7 @@ void main() {
       ),
       httpClient: MockClient((request) async {
         lastRequestUri = request.url;
-        return http.Response(fixture(fixtureFile), 200);
+        return fixtureResponse(fixtureFile);
       }),
     );
   }
@@ -48,9 +47,9 @@ void main() {
         platform: 'android',
         version: '3.5.1',
       );
-      expect(result.pmsName, 'My Plex Server');
-      expect(result.serverId, 'abc123def456');
-      expect(result.tautulliVersion, 'v2.17.0');
+      expect(result.pmsName, 'TestServer');
+      expect(result.serverId, 'eeeeeeeeeeeeeeeeeeeeeeeeeeeeee08');
+      expect(result.tautulliVersion, 'v2.17.2');
       expect(result.pmsPlexpass, isTrue);
       expect(result.pmsIsCloud, isFalse);
     });

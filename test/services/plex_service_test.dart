@@ -1,4 +1,3 @@
-import 'package:http/http.dart' as http;
 import 'package:http/testing.dart';
 import 'package:test/test.dart';
 import 'package:tautulli/tautulli.dart';
@@ -18,7 +17,7 @@ void main() {
       ),
       httpClient: MockClient((request) async {
         lastRequestUri = request.url;
-        return http.Response(fixture(fixtureFile), 200);
+        return fixtureResponse(fixtureFile);
       }),
     );
   }
@@ -33,11 +32,11 @@ void main() {
     test('parses server info', () async {
       makeClient('plex/get_server_info.json');
       final info = await client.plex.getServerInfo();
-      expect(info.pmsName, 'My Plex Server');
-      expect(info.pmsIdentifier, 'abc123def456');
+      expect(info.pmsName, 'TestServer');
+      expect(info.pmsIdentifier, 'eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee09');
       expect(info.pmsPlexpass, isTrue);
       expect(info.pmsPort, 32400);
-      expect(info.pmsVersion, '1.32.5.7516');
+      expect(info.pmsVersion, '1.43.3.10793-cd55560bb');
     });
 
     test('throws TautulliInvalidApiKeyException for bad key', () async {
@@ -48,7 +47,7 @@ void main() {
           apiKey: 'bad',
         ),
         httpClient: MockClient(
-          (_) async => http.Response(fixture('error_invalid_apikey.json'), 200),
+          (_) async => fixtureResponse('auth/auth__bad_key.json'),
         ),
       );
       expect(
@@ -63,7 +62,10 @@ void main() {
       makeClient('plex/get_server_identity.json');
       final result = await client.plex.getServerIdentity();
       expect(lastRequestUri.queryParameters['cmd'], 'get_server_identity');
-      expect(result['machineIdentifier'], 'abc123xyz');
+      expect(
+        result['machine_identifier'],
+        'eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee09',
+      );
     });
   });
 
@@ -103,7 +105,7 @@ void main() {
       expect(q['ssl'], '1');
       expect(q.containsKey('remote'), isFalse);
       // The identifier is nested under data.identifier, not a bare string.
-      expect(id, '3502fd8796ee5a72045f020a30cf6f10');
+      expect(id, 'eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee09');
     });
   });
 

@@ -1,0 +1,67 @@
+{
+  "response": {
+    "result": "success",
+    "message": null,
+    "data": {
+      "categories": [
+        "user26",
+        "liam",
+        "user63",
+        "user25",
+        "nina",
+        "user19",
+        "user49",
+        "pete",
+        "kara",
+        "oscar"
+      ],
+      "series": [
+        {
+          "name": "Direct Play",
+          "data": [
+            149,
+            15,
+            21,
+            38,
+            32,
+            2,
+            6,
+            0,
+            4,
+            10
+          ]
+        },
+        {
+          "name": "Direct Stream",
+          "data": [
+            2,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "name": "Transcode",
+          "data": [
+            514,
+            47,
+            26,
+            0,
+            0,
+            27,
+            20,
+            18,
+            7,
+            0
+          ]
+        }
+      ]
+    }
+  }
+}

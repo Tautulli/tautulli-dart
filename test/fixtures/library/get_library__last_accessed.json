@@ -1,0 +1,24 @@
+{
+  "response": {
+    "result": "success",
+    "message": null,
+    "data": {
+      "row_id": 20,
+      "server_id": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee09",
+      "section_id": 24,
+      "section_name": "4K Movies",
+      "section_type": "movie",
+      "library_thumb": "interfaces/default/images/cover.png",
+      "library_art": "",
+      "count": 4,
+      "parent_count": null,
+      "child_count": null,
+      "is_active": 1,
+      "do_notify": 1,
+      "do_notify_created": 1,
+      "keep_history": 1,
+      "deleted_section": 0,
+      "last_accessed": 1658688527
+    }
+  }
+}

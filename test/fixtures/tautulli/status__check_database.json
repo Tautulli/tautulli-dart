@@ -1,0 +1,9 @@
+{
+  "response": {
+    "result": "success",
+    "message": "Database ok",
+    "data": {
+      "integrity_check": "ok"
+    }
+  }
+}

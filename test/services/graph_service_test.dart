@@ -1,4 +1,3 @@
-import 'package:http/http.dart' as http;
 import 'package:http/testing.dart';
 import 'package:test/test.dart';
 import 'package:tautulli/tautulli.dart';
@@ -18,7 +17,7 @@ void main() {
       ),
       httpClient: MockClient((request) async {
         lastRequestUri = request.url;
-        return http.Response(fixture(fixtureFile), 200);
+        return fixtureResponse(fixtureFile);
       }),
     );
   }
@@ -41,19 +40,20 @@ void main() {
         yAxis: PlayMetricType.plays,
         timeRange: 30,
       );
-      expect(data.categories, hasLength(3));
-      expect(data.categories.first, '2024-01-01');
+      expect(data.categories, hasLength(30));
+      expect(data.categories.first, '2026-06-05');
       expect(data.series, hasLength(4));
-      expect(data.series.first.seriesType, GraphSeriesType.movies);
-      expect(data.series.first.data, [2, 4, 1]);
-      expect(data.series[1].seriesType, GraphSeriesType.tv);
-      expect(data.series[1].data, [5, 3, 8]);
+      expect(data.series.first.seriesType, GraphSeriesType.tv);
+      expect(data.series.first.data, hasLength(30));
+      expect(data.series.first.data.take(3), [37, 33, 25]);
+      expect(data.series[1].seriesType, GraphSeriesType.movies);
+      expect(data.series[1].data.take(3), [3, 4, 2]);
     });
   });
 
   group('GraphService.getConcurrentStreamsByStreamType()', () {
     test('sends correct cmd', () async {
-      makeClient('graph/get_concurrent_streams.json');
+      makeClient('graph/get_concurrent_streams_by_stream_type.json');
       await client.graphs.getConcurrentStreamsByStreamType(timeRange: 14);
       expect(
         lastRequestUri.queryParameters['cmd'],

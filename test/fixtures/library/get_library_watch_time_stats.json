@@ -3,10 +3,26 @@
     "result": "success",
     "message": null,
     "data": [
-      { "query_days": 1, "total_plays": 3, "total_time": 7200 },
-      { "query_days": 7, "total_plays": 18, "total_time": 43200 },
-      { "query_days": 30, "total_plays": 65, "total_time": 172800 },
-      { "query_days": 0, "total_plays": 508, "total_time": 1183080 }
+      {
+        "query_days": 1,
+        "total_time": 0,
+        "total_plays": 0
+      },
+      {
+        "query_days": 7,
+        "total_time": 0,
+        "total_plays": 0
+      },
+      {
+        "query_days": 30,
+        "total_time": 0,
+        "total_plays": 0
+      },
+      {
+        "query_days": 0,
+        "total_time": 8684,
+        "total_plays": 4
+      }
     ]
   }
 }

@@ -1,4 +1,3 @@
-import 'package:http/http.dart' as http;
 import 'package:http/testing.dart';
 import 'package:test/test.dart';
 import 'package:tautulli/tautulli.dart';
@@ -18,7 +17,7 @@ void main() {
       ),
       httpClient: MockClient((request) async {
         lastRequestUri = request.url;
-        return http.Response(fixture(fixtureFile), 200);
+        return fixtureResponse(fixtureFile);
       }),
     );
   }
@@ -28,7 +27,7 @@ void main() {
       makeClient('newsletter/get_newsletters.json');
       final result = await client.newsletters.getNewsletters();
       expect(lastRequestUri.queryParameters['cmd'], 'get_newsletters');
-      expect(result, hasLength(1));
+      expect(result, hasLength(2));
       expect(result.first.agentName, 'recently_added');
       expect(result.first.newsletterId, 1);
       expect(result.first.active, true);
@@ -40,19 +39,19 @@ void main() {
       makeClient('newsletter/get_newsletter_log.json');
       final result = await client.newsletters.getNewsletterLog();
       expect(lastRequestUri.queryParameters['cmd'], 'get_newsletter_log');
-      expect(result.recordsTotal, 1);
+      expect(result.recordsTotal, 67938);
       final entry = result.data.first;
-      expect(entry.id, 1);
+      expect(entry.id, 67938);
       expect(entry.newsletterId, 1);
       expect(entry.agentId, 0);
       expect(entry.agentName, 'recently_added');
-      expect(entry.notifyAction, 'api');
-      expect(entry.subjectText, 'Recently Added to Margarita! (2026-07-03)');
-      expect(entry.bodyText, contains('newsletter/860db87f'));
-      expect(entry.startDate, '2026-06-26');
-      expect(entry.endDate, '2026-07-03');
-      expect(entry.uuid, '860db87f');
-      expect(entry.success, isFalse);
+      expect(entry.notifyAction, 'on_cron');
+      expect(entry.subjectText, 'Recently Added to TestServer! (2026-07-04)');
+      expect(entry.bodyText, contains('newsletter/6fda8ba5'));
+      expect(entry.startDate, '2026-06-27');
+      expect(entry.endDate, '2026-07-04');
+      expect(entry.uuid, '6fda8ba5');
+      expect(entry.success, isTrue);
     });
   });
 }

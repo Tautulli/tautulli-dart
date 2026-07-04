@@ -1,0 +1,7 @@
+{
+  "response": {
+    "result": "success",
+    "message": "Temporary sessions flushed.",
+    "data": {}
+  }
+}

@@ -1,7 +1,0 @@
-{
-  "response": {
-    "result": "error",
-    "message": "Failed to terminate session: no active session",
-    "data": null
-  }
-}

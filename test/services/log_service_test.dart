@@ -18,7 +18,7 @@ void main() {
       ),
       httpClient: MockClient((request) async {
         lastRequestUri = request.url;
-        return http.Response(fixture(fixtureFile), 200);
+        return fixtureResponse(fixtureFile);
       }),
     );
   }
@@ -28,11 +28,15 @@ void main() {
       makeClient('log/get_logs.json');
       final result = await client.logs.getLogs();
       expect(lastRequestUri.queryParameters['cmd'], 'get_logs');
-      expect(result, hasLength(2));
-      expect(result.first.level, 'INFO');
-      expect(result.first.message, 'Tautulli started');
-      expect(result.first.thread, 'MainThread');
-      expect(result.first.timestamp, '2024-01-01 12:00:00');
+      expect(result, hasLength(10));
+      expect(result.first.level, 'WARNING');
+      expect(
+        result.first.message,
+        'Tautulli Pmsconnect :: Failed to terminate session: '
+        'Invalid session_key (999999) or session_id ().',
+      );
+      expect(result.first.thread, 'CP Server Thread-11');
+      expect(result.first.timestamp, '2026-07-04 10:29:28 ');
     });
 
     test('sends order and regex params', () async {
@@ -55,20 +59,31 @@ void main() {
       expect(q['window'], '50');
       expect(q['logfile'], 'Plex Media Server');
       // Rows are [timestamp, level, message] nested under data.data.
-      expect(result, hasLength(2));
-      expect(result.first.timestamp, 'May 08, 2016 09:35:37');
-      expect(result.first.level, 'DEBUG');
-      expect(
-        result.first.message,
-        'Auth: Came in with a super-token, authorization succeeded.',
-      );
+      expect(result, hasLength(10));
+      expect(result.first.timestamp, 'Jul 04, 2026 10:29:28.406');
+      expect(result.first.level, 'ERROR');
+      expect(result.first.message, contains('error reading output'));
       expect(result.first.thread, isNull);
     });
   });
 
   group('LogService download logfile param', () {
     test('downloadPlexLog sends logfile', () async {
-      makeClient('log/get_logs.json');
+      client = TautulliClient(
+        connection: const TautulliConnection(
+          protocol: 'http',
+          domain: 'tautulli.local',
+          apiKey: 'abc123',
+        ),
+        httpClient: MockClient((request) async {
+          lastRequestUri = request.url;
+          return http.Response.bytes(
+            [1, 2, 3],
+            200,
+            headers: {'content-type': 'application/x-download'},
+          );
+        }),
+      );
       await client.logs.downloadPlexLog(logfile: 'Plex Media Server');
       expect(lastRequestUri.queryParameters['logfile'], 'Plex Media Server');
     });

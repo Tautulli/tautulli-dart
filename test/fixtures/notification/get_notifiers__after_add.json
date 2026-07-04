@@ -1,0 +1,118 @@
+{
+  "response": {
+    "result": "success",
+    "message": null,
+    "data": [
+      {
+        "id": 3,
+        "agent_id": 15,
+        "agent_name": "scripts",
+        "agent_label": "Script",
+        "friendly_name": "user66",
+        "last_triggered": 1584683786,
+        "last_success": 1,
+        "active": 0
+      },
+      {
+        "id": 4,
+        "agent_id": 15,
+        "agent_name": "scripts",
+        "agent_label": "Script",
+        "friendly_name": "user47",
+        "last_triggered": 1770445752,
+        "last_success": 1,
+        "active": 1
+      },
+      {
+        "id": 6,
+        "agent_id": 10,
+        "agent_name": "email",
+        "agent_label": "Email",
+        "friendly_name": "",
+        "last_triggered": 1520956480,
+        "last_success": 1,
+        "active": 0
+      },
+      {
+        "id": 7,
+        "agent_id": 7,
+        "agent_name": "pushover",
+        "agent_label": "Pushover",
+        "friendly_name": "",
+        "last_triggered": 1676681457,
+        "last_success": 1,
+        "active": 0
+      },
+      {
+        "id": 8,
+        "agent_id": 20,
+        "agent_name": "discord",
+        "agent_label": "Discord",
+        "friendly_name": "",
+        "last_triggered": null,
+        "last_success": null,
+        "active": 0
+      },
+      {
+        "id": 10,
+        "agent_id": 15,
+        "agent_name": "scripts",
+        "agent_label": "Script",
+        "friendly_name": "user46",
+        "last_triggered": 1756265170,
+        "last_success": 1,
+        "active": 0
+      },
+      {
+        "id": 11,
+        "agent_id": 15,
+        "agent_name": "scripts",
+        "agent_label": "Script",
+        "friendly_name": "user48",
+        "last_triggered": 1532639661,
+        "last_success": 1,
+        "active": 0
+      },
+      {
+        "id": 12,
+        "agent_id": 21,
+        "agent_name": "remoteapp",
+        "agent_label": "Tautulli Remote App",
+        "friendly_name": "",
+        "last_triggered": 1783176173,
+        "last_success": 0,
+        "active": 1
+      },
+      {
+        "id": 13,
+        "agent_id": 15,
+        "agent_name": "scripts",
+        "agent_label": "Script",
+        "friendly_name": "user60",
+        "last_triggered": 1576886863,
+        "last_success": 1,
+        "active": 0
+      },
+      {
+        "id": 15,
+        "agent_id": 26,
+        "agent_name": "plexmobileapp",
+        "agent_label": "Plex Android / iOS App",
+        "friendly_name": "",
+        "last_triggered": 1616524934,
+        "last_success": 1,
+        "active": 0
+      },
+      {
+        "id": 19,
+        "agent_id": 17,
+        "agent_name": "browser",
+        "agent_label": "Browser",
+        "friendly_name": "",
+        "last_triggered": null,
+        "last_success": null,
+        "active": 0
+      }
+    ]
+  }
+}

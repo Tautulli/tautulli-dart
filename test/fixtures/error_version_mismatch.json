@@ -1,7 +1,0 @@
-{
-  "response": {
-    "result": "error",
-    "message": "Device registration failed: Tautulli version v2.9.0 does not meet the minimum requirement of v2.10.5.",
-    "data": null
-  }
-}

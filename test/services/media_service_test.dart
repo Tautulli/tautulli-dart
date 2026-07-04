@@ -1,4 +1,3 @@
-import 'package:http/http.dart' as http;
 import 'package:http/testing.dart';
 import 'package:test/test.dart';
 import 'package:tautulli/tautulli.dart';
@@ -18,7 +17,7 @@ void main() {
       ),
       httpClient: MockClient((request) async {
         lastRequestUri = request.url;
-        return http.Response(fixture(fixtureFile), 200);
+        return fixtureResponse(fixtureFile);
       }),
     );
   }
@@ -34,25 +33,25 @@ void main() {
     test('parses metadata fields', () async {
       makeClient('media/get_metadata.json');
       final item = await client.media.getMetadata(ratingKey: 1001);
-      expect(item.title, 'The Matrix');
+      expect(item.title, 'The American President');
       expect(item.mediaType, MediaType.movie);
-      expect(item.year, 1999);
-      expect(item.rating, closeTo(8.7, 0.01));
+      expect(item.year, 1995);
+      expect(item.rating, closeTo(9.0, 0.01));
     });
 
     test('parses nested media_info', () async {
       makeClient('media/get_metadata.json');
       final item = await client.media.getMetadata(ratingKey: 1001);
       expect(item.mediaInfo, isNotNull);
-      expect(item.mediaInfo!.videoCodec, 'h264');
+      expect(item.mediaInfo!.videoCodec, 'hevc');
       expect(item.mediaInfo!.audioChannels, 6);
     });
 
     test('parses string lists', () async {
       makeClient('media/get_metadata.json');
       final item = await client.media.getMetadata(ratingKey: 1001);
-      expect(item.genres, contains('Action'));
-      expect(item.actors, contains('Keanu Reeves'));
+      expect(item.genres, contains('Comedy'));
+      expect(item.actors, contains('Michael Douglas'));
     });
   });
 
@@ -74,9 +73,9 @@ void main() {
         ratingKey: 2000,
         mediaType: 'show',
       );
-      expect(items, hasLength(1));
-      expect(items.first.title, 'Season 1');
-      expect(items.first.mediaType, MediaType.season);
+      expect(items, hasLength(32));
+      expect(items.first.title, 'Episode 1');
+      expect(items.first.mediaType, MediaType.episode);
       expect(items.first.mediaIndex, 1);
     });
   });
@@ -102,6 +101,16 @@ void main() {
       expect(lastRequestUri.queryParameters['cmd'], 'search');
       expect(lastRequestUri.queryParameters['query'], 'inception');
       expect(result, isNotEmpty);
+    });
+  });
+
+  group('MediaService.search() PMS-failure shape', () {
+    test('returns an empty map when the server sends a bare list', () async {
+      // Captured live: omitting `limit` (or any upstream PMS search failure)
+      // makes the server return `data: []` instead of the results object.
+      makeClient('media/search__no_limit_empty_list.json');
+      final result = await client.media.search(query: 'anything');
+      expect(result, isEmpty);
     });
   });
 

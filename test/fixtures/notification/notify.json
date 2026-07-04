@@ -1,0 +1,9 @@
+{
+  "response": {
+    "result": "success",
+    "message": "Notification sent.",
+    "data": {
+      "notification_id": 95844
+    }
+  }
+}

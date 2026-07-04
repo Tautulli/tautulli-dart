@@ -437,8 +437,12 @@ Future<void> _phaseStream() async {
   } on TautulliException catch (e) {
     _pkgLog('activity.terminateSession', 'FAIL', '$e');
   }
+  // terminate_session is asynchronous: the session lingers in get_activity
+  // for several seconds while draining (observed gone ~12s after). This
+  // capture intentionally shows the draining state; the settled zero-session
+  // state is the canonical get_activity fixture.
   await Future<void>.delayed(const Duration(seconds: 4));
-  await _capture('activity', 'get_activity__after_terminate', 'get_activity');
+  await _capture('activity', 'get_activity__terminating', 'get_activity');
 }
 
 // ---------------------------------------------------------------------------
@@ -603,11 +607,12 @@ Future<void> _newsletterLifecycle() async {
       'agent_id': '$newsletterAgentId',
     },
   );
-  // notify_newsletter: succeeds or fails depending on SMTP config; both are
-  // useful captures.
+  // notify_newsletter fails without SMTP config and delete_hosted_images
+  // fails without an image-hosting service — on a typical test server both
+  // captures are error states, so they carry the __error variant name.
   await _capture(
     'newsletter',
-    'notify_newsletter',
+    'notify_newsletter__error',
     'notify_newsletter',
     params: {'newsletter_id': '$newsletterId'},
   );
@@ -617,7 +622,11 @@ Future<void> _newsletterLifecycle() async {
   } on TautulliException catch (e) {
     _pkgLog('newsletters.deleteNewsletter', 'FAIL', '$e');
   }
-  await _capture('newsletter', 'delete_hosted_images', 'delete_hosted_images');
+  await _capture(
+    'newsletter',
+    'delete_hosted_images__error',
+    'delete_hosted_images',
+  );
 }
 
 Future<void> _exportLifecycle() async {
@@ -872,7 +881,9 @@ Future<void> _deleteUndeleteToggles() async {
     try {
       await pkg.users.deleteUser(userId: int.parse(userId2));
       _pkgLog('users.deleteUser (toggle)', 'OK');
-      await _capture('user', 'delete_user__toggle', 'get_users');
+      // A deleted user is filtered out of get_users entirely (demonstrated
+      // by absence, not by a flag).
+      await _capture('user', 'get_users__after_delete_user', 'get_users');
       await pkg.users.undeleteUser(
         userId: int.parse(userId2),
         username: username2,
@@ -923,12 +934,11 @@ Future<void> _logoutUserSession() async {
   } on TautulliException catch (e) {
     _pkgLog('tautulli.logoutUserSession', 'FAIL', '$e');
   }
-  await _capture(
-    'user',
-    'get_user_logins__after_logout',
-    'get_user_logins',
-    params: {'length': '5'},
-  );
+  // No after-capture: logout only NULLs the jwt_token column, which
+  // get_user_logins does not expose — the table looks identical afterwards.
+  // The observable evidence is the server debug log line
+  // "Clearing JWT tokens for row_ids [...]", which fires only when the
+  // row_ids parameter is received.
 }
 
 Future<void> _mediaMutations() async {

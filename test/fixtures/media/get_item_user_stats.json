@@ -1,0 +1,16 @@
+{
+  "response": {
+    "result": "success",
+    "message": null,
+    "data": [
+      {
+        "friendly_name": "user26",
+        "user_id": 65059356,
+        "user_thumb": "https://plex.tv/users/0000000000000000/avatar?c=1783101112",
+        "username": "user27",
+        "total_plays": 2,
+        "total_time": 12996
+      }
+    ]
+  }
+}

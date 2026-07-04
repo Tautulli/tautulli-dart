@@ -20,7 +20,7 @@ void main() {
       ),
       httpClient: MockClient((request) async {
         lastRequestUri = request.url;
-        return http.Response(fixture(fixtureFile), 200);
+        return fixtureResponse(fixtureFile);
       }),
     );
   }
@@ -32,68 +32,77 @@ void main() {
       expect(lastRequestUri.queryParameters['cmd'], 'get_activity');
     });
 
-    test('parses core session and identity fields', () async {
+    test('parses an idle server (zero sessions)', () async {
       makeClient('activity/get_activity.json');
+      final data = await client.activity.getActivity();
+      expect(data.streamCount, 0);
+      expect(data.sessions, isEmpty);
+    });
+
+    test('parses core session and identity fields', () async {
+      makeClient('activity/get_activity__live.json');
       final data = await client.activity.getActivity();
       expect(data.sessions, hasLength(1));
       final s = data.sessions.first;
-      expect(s.title, 'The Murder of Rachel Nickell');
+      expect(s.title, 'Project Hail Mary');
       expect(s.mediaType, MediaType.movie);
       expect(s.state, PlaybackState.playing);
-      expect(s.sectionId, 3);
-      expect(s.machineId, 'machine-id-02');
-      expect(s.actors, contains('Rachel Nickell'));
-      expect(data.lanBandwidth, 0);
-      expect(data.wanBandwidth, 3568);
+      expect(s.sectionId, 12);
+      expect(s.machineId, 'eeeeeeeeeeeeeeeeeeeeee01');
+      expect(s.actors, contains('Ryan Gosling'));
+      expect(data.lanBandwidth, 10278);
+      expect(data.wanBandwidth, 0);
     });
 
     test('relayed replaces the old relay key', () async {
-      makeClient('activity/get_activity.json');
+      makeClient('activity/get_activity__live.json');
       final s = (await client.activity.getActivity()).sessions.first;
       expect(s.relayed, isFalse);
     });
 
     test('parses extended fields with numeric-string coercion', () async {
-      makeClient('activity/get_activity.json');
+      makeClient('activity/get_activity__live.json');
       final s = (await client.activity.getActivity()).sessions.first;
       expect(s.videoWidth, 1920);
-      expect(s.videoHeight, 800);
-      expect(s.bitrate, 2633);
-      expect(s.fileSize, 1902855892);
-      expect(s.streamVideoBitrate, 2249);
-      expect(s.videoFramerate, 'PAL'); // label, not numeric
+      expect(s.videoHeight, 1080);
+      expect(s.bitrate, 9904);
+      expect(s.fileSize, 11943659317);
+      expect(s.streamVideoBitrate, 9263);
+      expect(s.videoFramerate, '24p'); // label, not numeric
       expect(s.videoDoviPresent, isFalse);
     });
 
     test('parses extended metadata list and string fields', () async {
-      makeClient('activity/get_activity.json');
+      makeClient('activity/get_activity__live.json');
       final s = (await client.activity.getActivity()).sessions.first;
-      expect(s.guids, contains('imdb://tt42192165'));
-      expect(s.genres, contains('Documentary'));
-      expect(s.directors, contains('Lucy Bowden'));
-      expect(s.contentRating, 'TV-MA');
-      expect(s.studio, 'Blast! Films');
+      expect(s.guids, contains('imdb://tt12042730'));
+      expect(s.genres, contains('Science Fiction'));
+      expect(s.directors, contains('Phil Lord'));
+      expect(s.contentRating, 'PG-13');
+      expect(s.studio, 'Lord Miller');
       expect(s.libraryName, 'Movies');
-      expect(s.user, 'TestAdmin');
+      expect(s.user, 'user70');
     });
 
     test('parses markers into typed Marker objects', () async {
-      makeClient('activity/get_activity.json');
+      makeClient('activity/get_activity__live.json');
       final s = (await client.activity.getActivity()).sessions.first;
       expect(s.markers, isNotNull);
+      expect(s.markers, hasLength(2));
       final m = s.markers!.first;
-      expect(m.id, 3826);
+      expect(m.id, 118638);
       expect(m.type, 'credits');
-      expect(m.startTimeOffset, const Duration(milliseconds: 5552998));
-      expect(m.isFinal, isTrue);
+      expect(m.startTimeOffset, const Duration(milliseconds: 9055945));
+      expect(m.isFinal, isFalse);
+      expect(s.markers!.last.isFinal, isTrue);
     });
 
     test('wraps a single-session (bare object) response', () async {
-      makeClient('activity/get_activity_session.json');
-      final data = await client.activity.getActivity(sessionKey: 27);
+      makeClient('activity/get_activity__by_session_key.json');
+      final data = await client.activity.getActivity(sessionKey: 2);
       expect(data.sessions, hasLength(1));
-      expect(data.sessions.first.sessionKey, 27);
-      expect(data.sessions.first.title, 'The Matrix');
+      expect(data.sessions.first.sessionKey, 2);
+      expect(data.sessions.first.title, 'Project Hail Mary');
       expect(data.sessions.first.state, PlaybackState.playing);
     });
 
@@ -146,15 +155,15 @@ void main() {
 
   group('ActivityService.getStreamData()', () {
     test('sends correct cmd with session_key', () async {
-      makeClient('activity/get_stream_data.json');
+      makeClient('activity/get_stream_data__row_id.json');
       final data = await client.activity.getStreamData(sessionKey: 42);
       expect(lastRequestUri.queryParameters['cmd'], 'get_stream_data');
       expect(lastRequestUri.queryParameters['session_key'], '42');
-      expect(data['title'], 'Frozen');
+      expect(data['title'], 'Episode 31');
     });
 
     test('sends row_id for a historical entry, no phantom params', () async {
-      makeClient('activity/get_stream_data.json');
+      makeClient('activity/get_stream_data__row_id.json');
       await client.activity.getStreamData(rowId: 2597);
       final q = lastRequestUri.queryParameters;
       expect(q['row_id'], '2597');

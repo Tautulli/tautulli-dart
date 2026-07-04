@@ -1,0 +1,41 @@
+{
+  "response": {
+    "result": "success",
+    "message": null,
+    "data": [
+      {
+        "id": 1,
+        "agent_id": 0,
+        "agent_name": "recently_added",
+        "agent_label": "Recently Added",
+        "friendly_name": "user69",
+        "cron": "0 * * * *",
+        "active": 1,
+        "last_triggered": 1783177200,
+        "last_success": 1
+      },
+      {
+        "id": 2,
+        "agent_id": 0,
+        "agent_name": "recently_added",
+        "agent_label": "Recently Added",
+        "friendly_name": "",
+        "cron": "0 19 * * 5",
+        "active": 0,
+        "last_triggered": 1545144570,
+        "last_success": 1
+      },
+      {
+        "id": 3,
+        "agent_id": 0,
+        "agent_name": "recently_added",
+        "agent_label": "Recently Added",
+        "friendly_name": "",
+        "cron": "0 0 * * 0",
+        "active": 0,
+        "last_triggered": null,
+        "last_success": null
+      }
+    ]
+  }
+}

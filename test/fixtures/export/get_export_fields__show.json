@@ -1,0 +1,1500 @@
+{
+  "response": {
+    "result": "success",
+    "message": null,
+    "data": {
+      "metadata_fields": [
+        {
+          "field": "addedAt",
+          "level": 1
+        },
+        {
+          "field": "art",
+          "level": 3
+        },
+        {
+          "field": "artBlurHash",
+          "level": 9
+        },
+        {
+          "field": "artFile",
+          "level": 9
+        },
+        {
+          "field": "artProvider",
+          "level": 9
+        },
+        {
+          "field": "audienceRating",
+          "level": 1
+        },
+        {
+          "field": "audienceRatingImage",
+          "level": 1
+        },
+        {
+          "field": "audioLanguage",
+          "level": 9
+        },
+        {
+          "field": "autoDeletionItemPolicyUnwatchedLibrary",
+          "level": 9
+        },
+        {
+          "field": "autoDeletionItemPolicyWatchedLibrary",
+          "level": 9
+        },
+        {
+          "field": "childCount",
+          "level": 1
+        },
+        {
+          "field": "collections.id",
+          "level": 9
+        },
+        {
+          "field": "collections.tag",
+          "level": 2
+        },
+        {
+          "field": "contentRating",
+          "level": 1
+        },
+        {
+          "field": "duration",
+          "level": 1
+        },
+        {
+          "field": "durationHuman",
+          "level": 1
+        },
+        {
+          "field": "enableCreditsMarkerGeneration",
+          "level": 9
+        },
+        {
+          "field": "episodeSort",
+          "level": 9
+        },
+        {
+          "field": "fields.locked",
+          "level": 2
+        },
+        {
+          "field": "fields.name",
+          "level": 2
+        },
+        {
+          "field": "flattenSeasons",
+          "level": 9
+        },
+        {
+          "field": "genres.id",
+          "level": 9
+        },
+        {
+          "field": "genres.tag",
+          "level": 2
+        },
+        {
+          "field": "guid",
+          "level": 1
+        },
+        {
+          "field": "guids.id",
+          "level": 2
+        },
+        {
+          "field": "index",
+          "level": 9
+        },
+        {
+          "field": "key",
+          "level": 3
+        },
+        {
+          "field": "labels.id",
+          "level": 9
+        },
+        {
+          "field": "labels.tag",
+          "level": 2
+        },
+        {
+          "field": "languageOverride",
+          "level": 9
+        },
+        {
+          "field": "lastRatedAt",
+          "level": 3
+        },
+        {
+          "field": "lastViewedAt",
+          "level": 3
+        },
+        {
+          "field": "leafCount",
+          "level": 9
+        },
+        {
+          "field": "librarySectionID",
+          "level": 9
+        },
+        {
+          "field": "librarySectionKey",
+          "level": 9
+        },
+        {
+          "field": "librarySectionTitle",
+          "level": 9
+        },
+        {
+          "field": "logo",
+          "level": 9
+        },
+        {
+          "field": "logoFile",
+          "level": 9
+        },
+        {
+          "field": "logoProvider",
+          "level": 9
+        },
+        {
+          "field": "metadataDirectory",
+          "level": 9
+        },
+        {
+          "field": "network",
+          "level": 1
+        },
+        {
+          "field": "originalTitle",
+          "level": 1
+        },
+        {
+          "field": "originallyAvailableAt",
+          "level": 1
+        },
+        {
+          "field": "rating",
+          "level": 1
+        },
+        {
+          "field": "ratingKey",
+          "level": 1
+        },
+        {
+          "field": "roles.id",
+          "level": 9
+        },
+        {
+          "field": "roles.role",
+          "level": 2
+        },
+        {
+          "field": "roles.tag",
+          "level": 2
+        },
+        {
+          "field": "roles.thumb",
+          "level": 9
+        },
+        {
+          "field": "seasonCount",
+          "level": 1
+        },
+        {
+          "field": "seasons.addedAt",
+          "level": 1
+        },
+        {
+          "field": "seasons.art",
+          "level": 3
+        },
+        {
+          "field": "seasons.artBlurHash",
+          "level": 9
+        },
+        {
+          "field": "seasons.artFile",
+          "level": 9
+        },
+        {
+          "field": "seasons.artProvider",
+          "level": 9
+        },
+        {
+          "field": "seasons.audioLanguage",
+          "level": 9
+        },
+        {
+          "field": "seasons.collections.id",
+          "level": 9
+        },
+        {
+          "field": "seasons.collections.tag",
+          "level": 2
+        },
+        {
+          "field": "seasons.episodes.addedAt",
+          "level": 1
+        },
+        {
+          "field": "seasons.episodes.art",
+          "level": 3
+        },
+        {
+          "field": "seasons.episodes.artBlurHash",
+          "level": 9
+        },
+        {
+          "field": "seasons.episodes.artFile",
+          "level": 9
+        },
+        {
+          "field": "seasons.episodes.artProvider",
+          "level": 9
+        },
+        {
+          "field": "seasons.episodes.audienceRating",
+          "level": 1
+        },
+        {
+          "field": "seasons.episodes.audienceRatingImage",
+          "level": 1
+        },
+        {
+          "field": "seasons.episodes.chapterSource",
+          "level": 3
+        },
+        {
+          "field": "seasons.episodes.chapters.end",
+          "level": 3
+        },
+        {
+          "field": "seasons.episodes.chapters.id",
+          "level": 9
+        },
+        {
+          "field": "seasons.episodes.chapters.index",
+          "level": 3
+        },
+        {
+          "field": "seasons.episodes.chapters.start",
+          "level": 3
+        },
+        {
+          "field": "seasons.episodes.chapters.tag",
+          "level": 3
+        },
+        {
+          "field": "seasons.episodes.chapters.thumb",
+          "level": 3
+        },
+        {
+          "field": "seasons.episodes.collections.id",
+          "level": 9
+        },
+        {
+          "field": "seasons.episodes.collections.tag",
+          "level": 2
+        },
+        {
+          "field": "seasons.episodes.contentRating",
+          "level": 1
+        },
+        {
+          "field": "seasons.episodes.directors.id",
+          "level": 9
+        },
+        {
+          "field": "seasons.episodes.directors.tag",
+          "level": 2
+        },
+        {
+          "field": "seasons.episodes.duration",
+          "level": 1
+        },
+        {
+          "field": "seasons.episodes.durationHuman",
+          "level": 1
+        },
+        {
+          "field": "seasons.episodes.episodeNumber",
+          "level": 1
+        },
+        {
+          "field": "seasons.episodes.fields.locked",
+          "level": 2
+        },
+        {
+          "field": "seasons.episodes.fields.name",
+          "level": 2
+        },
+        {
+          "field": "seasons.episodes.grandparentArt",
+          "level": 3
+        },
+        {
+          "field": "seasons.episodes.grandparentGuid",
+          "level": 1
+        },
+        {
+          "field": "seasons.episodes.grandparentKey",
+          "level": 3
+        },
+        {
+          "field": "seasons.episodes.grandparentRatingKey",
+          "level": 1
+        },
+        {
+          "field": "seasons.episodes.grandparentTheme",
+          "level": 3
+        },
+        {
+          "field": "seasons.episodes.grandparentThumb",
+          "level": 3
+        },
+        {
+          "field": "seasons.episodes.grandparentTitle",
+          "level": 1
+        },
+        {
+          "field": "seasons.episodes.guid",
+          "level": 1
+        },
+        {
+          "field": "seasons.episodes.guids.id",
+          "level": 2
+        },
+        {
+          "field": "seasons.episodes.hasCommercialMarker",
+          "level": 1
+        },
+        {
+          "field": "seasons.episodes.hasCreditsMarker",
+          "level": 1
+        },
+        {
+          "field": "seasons.episodes.hasIntroMarker",
+          "level": 1
+        },
+        {
+          "field": "seasons.episodes.hasPreviewThumbnails",
+          "level": 3
+        },
+        {
+          "field": "seasons.episodes.hasVoiceActivity",
+          "level": 3
+        },
+        {
+          "field": "seasons.episodes.index",
+          "level": 9
+        },
+        {
+          "field": "seasons.episodes.key",
+          "level": 3
+        },
+        {
+          "field": "seasons.episodes.labels.id",
+          "level": 9
+        },
+        {
+          "field": "seasons.episodes.labels.tag",
+          "level": 9
+        },
+        {
+          "field": "seasons.episodes.lastRatedAt",
+          "level": 3
+        },
+        {
+          "field": "seasons.episodes.lastViewedAt",
+          "level": 3
+        },
+        {
+          "field": "seasons.episodes.librarySectionID",
+          "level": 9
+        },
+        {
+          "field": "seasons.episodes.librarySectionKey",
+          "level": 9
+        },
+        {
+          "field": "seasons.episodes.librarySectionTitle",
+          "level": 9
+        },
+        {
+          "field": "seasons.episodes.logo",
+          "level": 9
+        },
+        {
+          "field": "seasons.episodes.logoFile",
+          "level": 9
+        },
+        {
+          "field": "seasons.episodes.logoProvider",
+          "level": 9
+        },
+        {
+          "field": "seasons.episodes.markers.end",
+          "level": 2
+        },
+        {
+          "field": "seasons.episodes.markers.final",
+          "level": 2
+        },
+        {
+          "field": "seasons.episodes.markers.first",
+          "level": 2
+        },
+        {
+          "field": "seasons.episodes.markers.id",
+          "level": 9
+        },
+        {
+          "field": "seasons.episodes.markers.start",
+          "level": 2
+        },
+        {
+          "field": "seasons.episodes.markers.type",
+          "level": 2
+        },
+        {
+          "field": "seasons.episodes.metadataDirectory",
+          "level": 9
+        },
+        {
+          "field": "seasons.episodes.originallyAvailableAt",
+          "level": 1
+        },
+        {
+          "field": "seasons.episodes.parentGuid",
+          "level": 1
+        },
+        {
+          "field": "seasons.episodes.parentIndex",
+          "level": 9
+        },
+        {
+          "field": "seasons.episodes.parentKey",
+          "level": 3
+        },
+        {
+          "field": "seasons.episodes.parentRatingKey",
+          "level": 1
+        },
+        {
+          "field": "seasons.episodes.parentThumb",
+          "level": 3
+        },
+        {
+          "field": "seasons.episodes.parentTitle",
+          "level": 1
+        },
+        {
+          "field": "seasons.episodes.parentYear",
+          "level": 1
+        },
+        {
+          "field": "seasons.episodes.producers.id",
+          "level": 9
+        },
+        {
+          "field": "seasons.episodes.producers.tag",
+          "level": 2
+        },
+        {
+          "field": "seasons.episodes.rating",
+          "level": 1
+        },
+        {
+          "field": "seasons.episodes.ratingKey",
+          "level": 1
+        },
+        {
+          "field": "seasons.episodes.roles.id",
+          "level": 9
+        },
+        {
+          "field": "seasons.episodes.roles.role",
+          "level": 2
+        },
+        {
+          "field": "seasons.episodes.roles.tag",
+          "level": 2
+        },
+        {
+          "field": "seasons.episodes.roles.thumb",
+          "level": 9
+        },
+        {
+          "field": "seasons.episodes.seasonEpisode",
+          "level": 1
+        },
+        {
+          "field": "seasons.episodes.seasonNumber",
+          "level": 1
+        },
+        {
+          "field": "seasons.episodes.slug",
+          "level": 9
+        },
+        {
+          "field": "seasons.episodes.squareArt",
+          "level": 9
+        },
+        {
+          "field": "seasons.episodes.squareArtFile",
+          "level": 9
+        },
+        {
+          "field": "seasons.episodes.squareArtProvider",
+          "level": 9
+        },
+        {
+          "field": "seasons.episodes.summary",
+          "level": 1
+        },
+        {
+          "field": "seasons.episodes.thumb",
+          "level": 3
+        },
+        {
+          "field": "seasons.episodes.thumbBlurHash",
+          "level": 9
+        },
+        {
+          "field": "seasons.episodes.thumbFile",
+          "level": 9
+        },
+        {
+          "field": "seasons.episodes.thumbProvider",
+          "level": 9
+        },
+        {
+          "field": "seasons.episodes.title",
+          "level": 1
+        },
+        {
+          "field": "seasons.episodes.titleSort",
+          "level": 1
+        },
+        {
+          "field": "seasons.episodes.type",
+          "level": 1
+        },
+        {
+          "field": "seasons.episodes.updatedAt",
+          "level": 3
+        },
+        {
+          "field": "seasons.episodes.userRating",
+          "level": 1
+        },
+        {
+          "field": "seasons.episodes.viewCount",
+          "level": 3
+        },
+        {
+          "field": "seasons.episodes.viewOffset",
+          "level": 9
+        },
+        {
+          "field": "seasons.episodes.writers.id",
+          "level": 9
+        },
+        {
+          "field": "seasons.episodes.writers.tag",
+          "level": 2
+        },
+        {
+          "field": "seasons.episodes.year",
+          "level": 1
+        },
+        {
+          "field": "seasons.fields.locked",
+          "level": 2
+        },
+        {
+          "field": "seasons.fields.name",
+          "level": 2
+        },
+        {
+          "field": "seasons.guid",
+          "level": 1
+        },
+        {
+          "field": "seasons.guids.id",
+          "level": 2
+        },
+        {
+          "field": "seasons.index",
+          "level": 9
+        },
+        {
+          "field": "seasons.key",
+          "level": 3
+        },
+        {
+          "field": "seasons.labels.id",
+          "level": 9
+        },
+        {
+          "field": "seasons.labels.tag",
+          "level": 9
+        },
+        {
+          "field": "seasons.lastRatedAt",
+          "level": 3
+        },
+        {
+          "field": "seasons.lastViewedAt",
+          "level": 3
+        },
+        {
+          "field": "seasons.leafCount",
+          "level": 9
+        },
+        {
+          "field": "seasons.librarySectionID",
+          "level": 9
+        },
+        {
+          "field": "seasons.librarySectionKey",
+          "level": 9
+        },
+        {
+          "field": "seasons.librarySectionTitle",
+          "level": 9
+        },
+        {
+          "field": "seasons.logo",
+          "level": 9
+        },
+        {
+          "field": "seasons.logoFile",
+          "level": 9
+        },
+        {
+          "field": "seasons.logoProvider",
+          "level": 9
+        },
+        {
+          "field": "seasons.metadataDirectory",
+          "level": 9
+        },
+        {
+          "field": "seasons.parentGuid",
+          "level": 1
+        },
+        {
+          "field": "seasons.parentIndex",
+          "level": 9
+        },
+        {
+          "field": "seasons.parentKey",
+          "level": 3
+        },
+        {
+          "field": "seasons.parentRatingKey",
+          "level": 1
+        },
+        {
+          "field": "seasons.parentStudio",
+          "level": 9
+        },
+        {
+          "field": "seasons.parentTheme",
+          "level": 3
+        },
+        {
+          "field": "seasons.parentThumb",
+          "level": 3
+        },
+        {
+          "field": "seasons.parentTitle",
+          "level": 1
+        },
+        {
+          "field": "seasons.ratingKey",
+          "level": 1
+        },
+        {
+          "field": "seasons.seasonNumber",
+          "level": 1
+        },
+        {
+          "field": "seasons.slug",
+          "level": 9
+        },
+        {
+          "field": "seasons.squareArt",
+          "level": 9
+        },
+        {
+          "field": "seasons.squareArtFile",
+          "level": 9
+        },
+        {
+          "field": "seasons.squareArtProvider",
+          "level": 9
+        },
+        {
+          "field": "seasons.subtitleLanguage",
+          "level": 9
+        },
+        {
+          "field": "seasons.subtitleMode",
+          "level": 9
+        },
+        {
+          "field": "seasons.summary",
+          "level": 1
+        },
+        {
+          "field": "seasons.thumb",
+          "level": 3
+        },
+        {
+          "field": "seasons.thumbBlurHash",
+          "level": 9
+        },
+        {
+          "field": "seasons.thumbFile",
+          "level": 9
+        },
+        {
+          "field": "seasons.thumbProvider",
+          "level": 9
+        },
+        {
+          "field": "seasons.title",
+          "level": 1
+        },
+        {
+          "field": "seasons.titleSort",
+          "level": 1
+        },
+        {
+          "field": "seasons.type",
+          "level": 1
+        },
+        {
+          "field": "seasons.updatedAt",
+          "level": 3
+        },
+        {
+          "field": "seasons.userRating",
+          "level": 1
+        },
+        {
+          "field": "seasons.viewCount",
+          "level": 3
+        },
+        {
+          "field": "seasons.viewedLeafCount",
+          "level": 9
+        },
+        {
+          "field": "seasons.year",
+          "level": 1
+        },
+        {
+          "field": "showOrdering",
+          "level": 9
+        },
+        {
+          "field": "slug",
+          "level": 9
+        },
+        {
+          "field": "squareArt",
+          "level": 9
+        },
+        {
+          "field": "squareArtFile",
+          "level": 9
+        },
+        {
+          "field": "squareArtProvider",
+          "level": 9
+        },
+        {
+          "field": "studio",
+          "level": 1
+        },
+        {
+          "field": "subtitleLanguage",
+          "level": 9
+        },
+        {
+          "field": "subtitleMode",
+          "level": 9
+        },
+        {
+          "field": "summary",
+          "level": 1
+        },
+        {
+          "field": "tagline",
+          "level": 1
+        },
+        {
+          "field": "theme",
+          "level": 3
+        },
+        {
+          "field": "themeFile",
+          "level": 9
+        },
+        {
+          "field": "themeProvider",
+          "level": 9
+        },
+        {
+          "field": "thumb",
+          "level": 3
+        },
+        {
+          "field": "thumbBlurHash",
+          "level": 9
+        },
+        {
+          "field": "thumbFile",
+          "level": 9
+        },
+        {
+          "field": "thumbProvider",
+          "level": 9
+        },
+        {
+          "field": "title",
+          "level": 1
+        },
+        {
+          "field": "titleSort",
+          "level": 1
+        },
+        {
+          "field": "type",
+          "level": 1
+        },
+        {
+          "field": "updatedAt",
+          "level": 3
+        },
+        {
+          "field": "useOriginalTitle",
+          "level": 9
+        },
+        {
+          "field": "userRating",
+          "level": 1
+        },
+        {
+          "field": "viewCount",
+          "level": 3
+        },
+        {
+          "field": "viewedLeafCount",
+          "level": 9
+        },
+        {
+          "field": "year",
+          "level": 1
+        }
+      ],
+      "media_info_fields": [
+        {
+          "field": "locations",
+          "level": 9
+        },
+        {
+          "field": "seasons.episodes.locations",
+          "level": 1
+        },
+        {
+          "field": "seasons.episodes.media.aspectRatio",
+          "level": 1
+        },
+        {
+          "field": "seasons.episodes.media.audioChannels",
+          "level": 1
+        },
+        {
+          "field": "seasons.episodes.media.audioCodec",
+          "level": 1
+        },
+        {
+          "field": "seasons.episodes.media.audioProfile",
+          "level": 1
+        },
+        {
+          "field": "seasons.episodes.media.bitrate",
+          "level": 1
+        },
+        {
+          "field": "seasons.episodes.media.container",
+          "level": 1
+        },
+        {
+          "field": "seasons.episodes.media.duration",
+          "level": 1
+        },
+        {
+          "field": "seasons.episodes.media.has64bitOffsets",
+          "level": 9
+        },
+        {
+          "field": "seasons.episodes.media.hasVoiceActivity",
+          "level": 9
+        },
+        {
+          "field": "seasons.episodes.media.hdr",
+          "level": 1
+        },
+        {
+          "field": "seasons.episodes.media.height",
+          "level": 1
+        },
+        {
+          "field": "seasons.episodes.media.id",
+          "level": 9
+        },
+        {
+          "field": "seasons.episodes.media.isOptimizedVersion",
+          "level": 1
+        },
+        {
+          "field": "seasons.episodes.media.optimizedForStreaming",
+          "level": 9
+        },
+        {
+          "field": "seasons.episodes.media.parts.accessible",
+          "level": 9
+        },
+        {
+          "field": "seasons.episodes.media.parts.audioProfile",
+          "level": 2
+        },
+        {
+          "field": "seasons.episodes.media.parts.audioStreams.audioChannelLayout",
+          "level": 3
+        },
+        {
+          "field": "seasons.episodes.media.parts.audioStreams.bitDepth",
+          "level": 3
+        },
+        {
+          "field": "seasons.episodes.media.parts.audioStreams.bitrate",
+          "level": 3
+        },
+        {
+          "field": "seasons.episodes.media.parts.audioStreams.bitrateMode",
+          "level": 9
+        },
+        {
+          "field": "seasons.episodes.media.parts.audioStreams.channels",
+          "level": 3
+        },
+        {
+          "field": "seasons.episodes.media.parts.audioStreams.codec",
+          "level": 3
+        },
+        {
+          "field": "seasons.episodes.media.parts.audioStreams.default",
+          "level": 3
+        },
+        {
+          "field": "seasons.episodes.media.parts.audioStreams.displayTitle",
+          "level": 3
+        },
+        {
+          "field": "seasons.episodes.media.parts.audioStreams.duration",
+          "level": 9
+        },
+        {
+          "field": "seasons.episodes.media.parts.audioStreams.extendedDisplayTitle",
+          "level": 3
+        },
+        {
+          "field": "seasons.episodes.media.parts.audioStreams.id",
+          "level": 9
+        },
+        {
+          "field": "seasons.episodes.media.parts.audioStreams.index",
+          "level": 9
+        },
+        {
+          "field": "seasons.episodes.media.parts.audioStreams.key",
+          "level": 9
+        },
+        {
+          "field": "seasons.episodes.media.parts.audioStreams.language",
+          "level": 3
+        },
+        {
+          "field": "seasons.episodes.media.parts.audioStreams.languageCode",
+          "level": 3
+        },
+        {
+          "field": "seasons.episodes.media.parts.audioStreams.languageTag",
+          "level": 9
+        },
+        {
+          "field": "seasons.episodes.media.parts.audioStreams.profile",
+          "level": 3
+        },
+        {
+          "field": "seasons.episodes.media.parts.audioStreams.requiredBandwidths",
+          "level": 9
+        },
+        {
+          "field": "seasons.episodes.media.parts.audioStreams.samplingRate",
+          "level": 3
+        },
+        {
+          "field": "seasons.episodes.media.parts.audioStreams.selected",
+          "level": 9
+        },
+        {
+          "field": "seasons.episodes.media.parts.audioStreams.streamIdentifier",
+          "level": 9
+        },
+        {
+          "field": "seasons.episodes.media.parts.audioStreams.streamType",
+          "level": 9
+        },
+        {
+          "field": "seasons.episodes.media.parts.audioStreams.title",
+          "level": 3
+        },
+        {
+          "field": "seasons.episodes.media.parts.audioStreams.type",
+          "level": 9
+        },
+        {
+          "field": "seasons.episodes.media.parts.audioStreams.visualImpaired",
+          "level": 9
+        },
+        {
+          "field": "seasons.episodes.media.parts.container",
+          "level": 2
+        },
+        {
+          "field": "seasons.episodes.media.parts.deepAnalysisVersion",
+          "level": 2
+        },
+        {
+          "field": "seasons.episodes.media.parts.duration",
+          "level": 2
+        },
+        {
+          "field": "seasons.episodes.media.parts.exists",
+          "level": 9
+        },
+        {
+          "field": "seasons.episodes.media.parts.file",
+          "level": 2
+        },
+        {
+          "field": "seasons.episodes.media.parts.has64bitOffsets",
+          "level": 9
+        },
+        {
+          "field": "seasons.episodes.media.parts.hasPreviewThumbnails",
+          "level": 2
+        },
+        {
+          "field": "seasons.episodes.media.parts.hasThumbnail",
+          "level": 9
+        },
+        {
+          "field": "seasons.episodes.media.parts.id",
+          "level": 9
+        },
+        {
+          "field": "seasons.episodes.media.parts.indexes",
+          "level": 2
+        },
+        {
+          "field": "seasons.episodes.media.parts.key",
+          "level": 9
+        },
+        {
+          "field": "seasons.episodes.media.parts.optimizedForStreaming",
+          "level": 2
+        },
+        {
+          "field": "seasons.episodes.media.parts.packetLength",
+          "level": 9
+        },
+        {
+          "field": "seasons.episodes.media.parts.requiredBandwidths",
+          "level": 9
+        },
+        {
+          "field": "seasons.episodes.media.parts.size",
+          "level": 2
+        },
+        {
+          "field": "seasons.episodes.media.parts.sizeHuman",
+          "level": 2
+        },
+        {
+          "field": "seasons.episodes.media.parts.subtitleStreams.canAutoSync",
+          "level": 9
+        },
+        {
+          "field": "seasons.episodes.media.parts.subtitleStreams.codec",
+          "level": 3
+        },
+        {
+          "field": "seasons.episodes.media.parts.subtitleStreams.container",
+          "level": 3
+        },
+        {
+          "field": "seasons.episodes.media.parts.subtitleStreams.default",
+          "level": 3
+        },
+        {
+          "field": "seasons.episodes.media.parts.subtitleStreams.displayTitle",
+          "level": 3
+        },
+        {
+          "field": "seasons.episodes.media.parts.subtitleStreams.extendedDisplayTitle",
+          "level": 3
+        },
+        {
+          "field": "seasons.episodes.media.parts.subtitleStreams.forced",
+          "level": 3
+        },
+        {
+          "field": "seasons.episodes.media.parts.subtitleStreams.format",
+          "level": 3
+        },
+        {
+          "field": "seasons.episodes.media.parts.subtitleStreams.headerCompression",
+          "level": 9
+        },
+        {
+          "field": "seasons.episodes.media.parts.subtitleStreams.hearingImpaired",
+          "level": 9
+        },
+        {
+          "field": "seasons.episodes.media.parts.subtitleStreams.id",
+          "level": 9
+        },
+        {
+          "field": "seasons.episodes.media.parts.subtitleStreams.index",
+          "level": 9
+        },
+        {
+          "field": "seasons.episodes.media.parts.subtitleStreams.key",
+          "level": 9
+        },
+        {
+          "field": "seasons.episodes.media.parts.subtitleStreams.language",
+          "level": 3
+        },
+        {
+          "field": "seasons.episodes.media.parts.subtitleStreams.languageCode",
+          "level": 3
+        },
+        {
+          "field": "seasons.episodes.media.parts.subtitleStreams.languageTag",
+          "level": 9
+        },
+        {
+          "field": "seasons.episodes.media.parts.subtitleStreams.perfectMatch",
+          "level": 9
+        },
+        {
+          "field": "seasons.episodes.media.parts.subtitleStreams.providerTitle",
+          "level": 9
+        },
+        {
+          "field": "seasons.episodes.media.parts.subtitleStreams.requiredBandwidths",
+          "level": 9
+        },
+        {
+          "field": "seasons.episodes.media.parts.subtitleStreams.score",
+          "level": 9
+        },
+        {
+          "field": "seasons.episodes.media.parts.subtitleStreams.selected",
+          "level": 9
+        },
+        {
+          "field": "seasons.episodes.media.parts.subtitleStreams.sourceKey",
+          "level": 9
+        },
+        {
+          "field": "seasons.episodes.media.parts.subtitleStreams.streamType",
+          "level": 9
+        },
+        {
+          "field": "seasons.episodes.media.parts.subtitleStreams.title",
+          "level": 3
+        },
+        {
+          "field": "seasons.episodes.media.parts.subtitleStreams.transient",
+          "level": 9
+        },
+        {
+          "field": "seasons.episodes.media.parts.subtitleStreams.type",
+          "level": 9
+        },
+        {
+          "field": "seasons.episodes.media.parts.subtitleStreams.userID",
+          "level": 9
+        },
+        {
+          "field": "seasons.episodes.media.parts.syncItemId",
+          "level": 9
+        },
+        {
+          "field": "seasons.episodes.media.parts.syncState",
+          "level": 9
+        },
+        {
+          "field": "seasons.episodes.media.parts.videoProfile",
+          "level": 2
+        },
+        {
+          "field": "seasons.episodes.media.parts.videoStreams.DOVIBLCompatID",
+          "level": 9
+        },
+        {
+          "field": "seasons.episodes.media.parts.videoStreams.DOVIBLPresent",
+          "level": 9
+        },
+        {
+          "field": "seasons.episodes.media.parts.videoStreams.DOVIELPresent",
+          "level": 9
+        },
+        {
+          "field": "seasons.episodes.media.parts.videoStreams.DOVILevel",
+          "level": 9
+        },
+        {
+          "field": "seasons.episodes.media.parts.videoStreams.DOVIPresent",
+          "level": 9
+        },
+        {
+          "field": "seasons.episodes.media.parts.videoStreams.DOVIProfile",
+          "level": 9
+        },
+        {
+          "field": "seasons.episodes.media.parts.videoStreams.DOVIRPUPresent",
+          "level": 9
+        },
+        {
+          "field": "seasons.episodes.media.parts.videoStreams.DOVIVersion",
+          "level": 9
+        },
+        {
+          "field": "seasons.episodes.media.parts.videoStreams.anamorphic",
+          "level": 9
+        },
+        {
+          "field": "seasons.episodes.media.parts.videoStreams.bitDepth",
+          "level": 3
+        },
+        {
+          "field": "seasons.episodes.media.parts.videoStreams.bitrate",
+          "level": 3
+        },
+        {
+          "field": "seasons.episodes.media.parts.videoStreams.cabac",
+          "level": 9
+        },
+        {
+          "field": "seasons.episodes.media.parts.videoStreams.chromaLocation",
+          "level": 9
+        },
+        {
+          "field": "seasons.episodes.media.parts.videoStreams.chromaSubsampling",
+          "level": 9
+        },
+        {
+          "field": "seasons.episodes.media.parts.videoStreams.codec",
+          "level": 3
+        },
+        {
+          "field": "seasons.episodes.media.parts.videoStreams.codecID",
+          "level": 9
+        },
+        {
+          "field": "seasons.episodes.media.parts.videoStreams.codedHeight",
+          "level": 9
+        },
+        {
+          "field": "seasons.episodes.media.parts.videoStreams.codedWidth",
+          "level": 9
+        },
+        {
+          "field": "seasons.episodes.media.parts.videoStreams.colorPrimaries",
+          "level": 9
+        },
+        {
+          "field": "seasons.episodes.media.parts.videoStreams.colorRange",
+          "level": 9
+        },
+        {
+          "field": "seasons.episodes.media.parts.videoStreams.colorSpace",
+          "level": 3
+        },
+        {
+          "field": "seasons.episodes.media.parts.videoStreams.colorTrc",
+          "level": 9
+        },
+        {
+          "field": "seasons.episodes.media.parts.videoStreams.default",
+          "level": 3
+        },
+        {
+          "field": "seasons.episodes.media.parts.videoStreams.displayTitle",
+          "level": 3
+        },
+        {
+          "field": "seasons.episodes.media.parts.videoStreams.duration",
+          "level": 9
+        },
+        {
+          "field": "seasons.episodes.media.parts.videoStreams.extendedDisplayTitle",
+          "level": 3
+        },
+        {
+          "field": "seasons.episodes.media.parts.videoStreams.frameRate",
+          "level": 3
+        },
+        {
+          "field": "seasons.episodes.media.parts.videoStreams.frameRateMode",
+          "level": 9
+        },
+        {
+          "field": "seasons.episodes.media.parts.videoStreams.hasScalingMatrix",
+          "level": 9
+        },
+        {
+          "field": "seasons.episodes.media.parts.videoStreams.hdr",
+          "level": 3
+        },
+        {
+          "field": "seasons.episodes.media.parts.videoStreams.height",
+          "level": 3
+        },
+        {
+          "field": "seasons.episodes.media.parts.videoStreams.id",
+          "level": 9
+        },
+        {
+          "field": "seasons.episodes.media.parts.videoStreams.index",
+          "level": 9
+        },
+        {
+          "field": "seasons.episodes.media.parts.videoStreams.key",
+          "level": 9
+        },
+        {
+          "field": "seasons.episodes.media.parts.videoStreams.language",
+          "level": 3
+        },
+        {
+          "field": "seasons.episodes.media.parts.videoStreams.languageCode",
+          "level": 3
+        },
+        {
+          "field": "seasons.episodes.media.parts.videoStreams.languageTag",
+          "level": 9
+        },
+        {
+          "field": "seasons.episodes.media.parts.videoStreams.level",
+          "level": 3
+        },
+        {
+          "field": "seasons.episodes.media.parts.videoStreams.pixelAspectRatio",
+          "level": 9
+        },
+        {
+          "field": "seasons.episodes.media.parts.videoStreams.pixelFormat",
+          "level": 9
+        },
+        {
+          "field": "seasons.episodes.media.parts.videoStreams.profile",
+          "level": 3
+        },
+        {
+          "field": "seasons.episodes.media.parts.videoStreams.refFrames",
+          "level": 3
+        },
+        {
+          "field": "seasons.episodes.media.parts.videoStreams.requiredBandwidths",
+          "level": 9
+        },
+        {
+          "field": "seasons.episodes.media.parts.videoStreams.scanType",
+          "level": 3
+        },
+        {
+          "field": "seasons.episodes.media.parts.videoStreams.selected",
+          "level": 9
+        },
+        {
+          "field": "seasons.episodes.media.parts.videoStreams.streamIdentifier",
+          "level": 9
+        },
+        {
+          "field": "seasons.episodes.media.parts.videoStreams.streamType",
+          "level": 9
+        },
+        {
+          "field": "seasons.episodes.media.parts.videoStreams.title",
+          "level": 3
+        },
+        {
+          "field": "seasons.episodes.media.parts.videoStreams.type",
+          "level": 9
+        },
+        {
+          "field": "seasons.episodes.media.parts.videoStreams.width",
+          "level": 3
+        },
+        {
+          "field": "seasons.episodes.media.proxyType",
+          "level": 9
+        },
+        {
+          "field": "seasons.episodes.media.target",
+          "level": 9
+        },
+        {
+          "field": "seasons.episodes.media.title",
+          "level": 9
+        },
+        {
+          "field": "seasons.episodes.media.videoCodec",
+          "level": 1
+        },
+        {
+          "field": "seasons.episodes.media.videoFrameRate",
+          "level": 1
+        },
+        {
+          "field": "seasons.episodes.media.videoProfile",
+          "level": 1
+        },
+        {
+          "field": "seasons.episodes.media.videoResolution",
+          "level": 1
+        },
+        {
+          "field": "seasons.episodes.media.width",
+          "level": 1
+        }
+      ]
+    }
+  }
+}

@@ -3,25 +3,81 @@
     "result": "success",
     "message": null,
     "data": {
-      "draw": 1,
-      "recordsTotal": 1,
-      "recordsFiltered": 1,
+      "recordsFiltered": 67938,
+      "recordsTotal": 67938,
       "data": [
         {
-          "id": 1,
-          "timestamp": 1783109768,
+          "id": 67938,
+          "timestamp": 1783177200,
           "newsletter_id": 1,
           "agent_id": 0,
           "agent_name": "recently_added",
-          "notify_action": "api",
-          "subject_text": "Recently Added to Margarita! (2026-07-03)",
-          "body_text": "View the newsletter here: http://tautulli.local/newsletter/860db87f",
-          "start_date": "2026-06-26",
-          "end_date": "2026-07-03",
-          "uuid": "860db87f",
-          "success": 0
+          "notify_action": "on_cron",
+          "subject_text": "Recently Added to TestServer! (2026-07-04)",
+          "body_text": "View the newsletter here: https://host2.example.com/newsletter/6fda8ba5",
+          "start_date": "2026-06-27",
+          "end_date": "2026-07-04",
+          "uuid": "6fda8ba5",
+          "success": 1
+        },
+        {
+          "id": 67937,
+          "timestamp": 1783018801,
+          "newsletter_id": 1,
+          "agent_id": 0,
+          "agent_name": "recently_added",
+          "notify_action": "on_cron",
+          "subject_text": "Recently Added to TestServer! (2026-07-02)",
+          "body_text": "View the newsletter here: https://host2.example.com/newsletter/5a6f765b",
+          "start_date": "2026-06-25",
+          "end_date": "2026-07-02",
+          "uuid": "5a6f765b",
+          "success": 1
+        },
+        {
+          "id": 67936,
+          "timestamp": 1783015200,
+          "newsletter_id": 1,
+          "agent_id": 0,
+          "agent_name": "recently_added",
+          "notify_action": "on_cron",
+          "subject_text": "Recently Added to TestServer! (2026-07-02)",
+          "body_text": "View the newsletter here: https://host2.example.com/newsletter/0d97a015",
+          "start_date": "2026-06-25",
+          "end_date": "2026-07-02",
+          "uuid": "0d97a015",
+          "success": 1
+        },
+        {
+          "id": 67935,
+          "timestamp": 1783008000,
+          "newsletter_id": 1,
+          "agent_id": 0,
+          "agent_name": "recently_added",
+          "notify_action": "on_cron",
+          "subject_text": "Recently Added to TestServer! (2026-07-02)",
+          "body_text": "View the newsletter here: https://host2.example.com/newsletter/16d4d140",
+          "start_date": "2026-06-25",
+          "end_date": "2026-07-02",
+          "uuid": "16d4d140",
+          "success": 1
+        },
+        {
+          "id": 67934,
+          "timestamp": 1783004400,
+          "newsletter_id": 1,
+          "agent_id": 0,
+          "agent_name": "recently_added",
+          "notify_action": "on_cron",
+          "subject_text": "Recently Added to TestServer! (2026-07-02)",
+          "body_text": "View the newsletter here: https://host2.example.com/newsletter/e32546e9",
+          "start_date": "2026-06-25",
+          "end_date": "2026-07-02",
+          "uuid": "e32546e9",
+          "success": 1
         }
-      ]
+      ],
+      "draw": 1
     }
   }
 }

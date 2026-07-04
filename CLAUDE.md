@@ -38,7 +38,10 @@ Services depend on `TautulliExecutor`, not `TautulliClient` directly. This is th
 2. Build a `params` map including only non-null values: `if (x != null) params['key'] = x`
 3. Call `_client.execute(cmd, params: params)` — or `_client.executeDownload()` for binary responses
 4. Parse `response['data']` through the typed model
-5. Add a fixture JSON file at `test/fixtures/<domain>/<cmd>.json`
+5. Add a fixture at `test/fixtures/<domain>/<cmd>.json` — **fixtures are full sanitized captures from a
+   live server** (see `test/CAPTURING.md` for the capture tooling). **Never write a fixture to match the
+   model code**: that once made the entire test suite pass while 22 model fields were permanently null
+   and a dozen methods were broken against real servers.
 6. Add a test verifying the `cmd` query param and basic model parsing
 
 ## Model Conventions
@@ -55,16 +58,26 @@ Services depend on `TautulliExecutor`, not `TautulliClient` directly. This is th
 ## Testing Pattern
 
 Tests use `MockClient` from `package:http/testing.dart` (ships with `http` — no separate mock package needed). Each test group:
-- Constructs a `TautulliClient` with a `MockClient` that returns a fixture file
+- Constructs a `TautulliClient` with a `MockClient` that returns a fixture via `fixtureResponse()` (from `test/helpers/fixture_reader.dart` — UTF-8 bytes with the real `application/json;charset=UTF-8` content type)
 - Captures the request URI via closure to assert query parameters
 - Asserts the `cmd` query parameter and key model fields
 - Tests at least one error case (401 → `TautulliAuthException`)
 
-Fixture files live at `test/fixtures/<domain>/<cmd>.json`.
+## Fixtures (ground truth)
+
+`test/fixtures/` holds ~150 **full sanitized real responses** captured 2026-07-04 from a live Tautulli
+v2.17.2 server (see `test/fixtures/README.md` for provenance/sanitization and `test/CAPTURING.md` for the
+reproducible capture process using `tool/live_capture/`). They are the authoritative source for response
+shapes — more reliable than the wiki, whose examples are sometimes stale or abbreviated:
+
+- **Never hand-edit a fixture and never invent keys** — regenerate from a live server instead.
+- Naming: `<domain>/<cmd>.json` (canonical), `<cmd>__<variant>.json` (param variants, error shapes,
+  mutation states), `<name>.meta.json` (binary download metadata).
+- Tests are reconciled to fixture content, never the other way around.
 
 ## API Reference
 
-The authoritative source for all Tautulli commands, parameters, and response shapes is the [Tautulli API Reference](https://github.com/Tautulli/Tautulli/wiki/Tautulli-API-Reference). The package was last audited against Tautulli v2.17.0. When adding or modifying commands, verify parameter names and response structure against the wiki.
+The primary reference for commands and parameters is the [Tautulli API Reference](https://github.com/Tautulli/Tautulli/wiki/Tautulli-API-Reference), **but the wiki contains known errors** — check `API_REFERENCE_INCONSISTENCIES.md` before trusting it on a disputed point. Precedence for resolving response-shape questions: `test/fixtures/` (real behavior) > Tautulli server source at the version tag (shallow-clone + AST-extract technique, see CODE_REVIEW.md appendix) > wiki. The package was last verified against **Tautulli v2.17.2 (nightly `5a39bac6`), including two live full-API test campaigns** (`LIVE_TEST_RESULTS.md`); the fix backlog is `CODE_REVIEW.md`.
 
 ## Exception Hierarchy
 

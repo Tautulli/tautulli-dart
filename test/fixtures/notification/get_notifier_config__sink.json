@@ -1,0 +1,160 @@
+{
+  "response": {
+    "result": "success",
+    "message": null,
+    "data": {
+      "id": 19,
+      "agent_id": 17,
+      "agent_name": "browser",
+      "agent_label": "Browser",
+      "friendly_name": "",
+      "custom_conditions": [
+        {
+          "parameter": "",
+          "operator": "",
+          "value": [],
+          "type": null
+        }
+      ],
+      "custom_conditions_logic": "",
+      "config": {
+        "auto_hide_delay": 5
+      },
+      "config_options": [
+        {
+          "label": "Note",
+          "description": "You may need to refresh the page after saving for changes to take effect.",
+          "input_type": "help"
+        },
+        {
+          "label": "Allow Notifications",
+          "value": "Allow Notifications",
+          "name": "browser_allow_browser",
+          "description": "Click to allow browser notifications. You must click this button for each browser.",
+          "input_type": "button"
+        },
+        {
+          "label": "Auto Hide Delay",
+          "value": 5,
+          "name": "browser_auto_hide_delay",
+          "description": "Set the number of seconds for the notification to remain visible. Set 0 to disable auto hiding. (Note: Some browsers have a maximum time limit.)",
+          "input_type": "number"
+        }
+      ],
+      "actions": {
+        "on_play": 0,
+        "on_stop": 0,
+        "on_pause": 0,
+        "on_resume": 0,
+        "on_buffer": 0,
+        "on_watched": 0,
+        "on_created": 0,
+        "on_extdown": 0,
+        "on_intdown": 0,
+        "on_extup": 0,
+        "on_intup": 0,
+        "on_pmsupdate": 0,
+        "on_concurrent": 0,
+        "on_newdevice": 0,
+        "on_plexpyupdate": 0,
+        "on_change": 0,
+        "on_plexpydbcorrupt": 0,
+        "on_error": 0,
+        "on_intro": 0,
+        "on_credits": 0,
+        "on_commercial": 0,
+        "on_tokenexpired": 0
+      },
+      "notify_text": {
+        "on_play": {
+          "subject": "Tautulli ({server_name})",
+          "body": "{user} ({player}) started playing {title}."
+        },
+        "on_stop": {
+          "subject": "Tautulli ({server_name})",
+          "body": "{user} ({player}) has stopped {title}."
+        },
+        "on_pause": {
+          "subject": "Tautulli ({server_name})",
+          "body": "{user} ({player}) has paused {title}."
+        },
+        "on_resume": {
+          "subject": "Tautulli ({server_name})",
+          "body": "{user} ({player}) has resumed {title}."
+        },
+        "on_buffer": {
+          "subject": "Tautulli ({server_name})",
+          "body": "{user} ({player}) is buffering {title}."
+        },
+        "on_watched": {
+          "subject": "Tautulli ({server_name})",
+          "body": "{user} ({player}) has watched {title}."
+        },
+        "on_created": {
+          "subject": "Tautulli ({server_name})",
+          "body": "{title} was recently added to Plex."
+        },
+        "on_extdown": {
+          "subject": "Tautulli ({server_name})",
+          "body": "The Plex Media Server remote access is down. ({remote_access_reason})"
+        },
+        "on_intdown": {
+          "subject": "Tautulli ({server_name})",
+          "body": "The Plex Media Server is down."
+        },
+        "on_extup": {
+          "subject": "Tautulli ({server_name})",
+          "body": "The Plex Media Server remote access is back up."
+        },
+        "on_intup": {
+          "subject": "Tautulli ({server_name})",
+          "body": "The Plex Media Server is back up."
+        },
+        "on_pmsupdate": {
+          "subject": "Tautulli ({server_name})",
+          "body": "An update is available for the Plex Media Server (version {update_version})."
+        },
+        "on_concurrent": {
+          "subject": "Tautulli ({server_name})",
+          "body": "{user} has {user_streams} concurrent streams."
+        },
+        "on_newdevice": {
+          "subject": "Tautulli ({server_name})",
+          "body": "{user} is streaming from a new device: {player}."
+        },
+        "on_plexpyupdate": {
+          "subject": "Tautulli ({server_name})",
+          "body": "An update is available for Tautulli (version {tautulli_update_version})."
+        },
+        "on_change": {
+          "subject": "Tautulli ({server_name})",
+          "body": "{user} ({player}) has changed transcode decision for {title}."
+        },
+        "on_plexpydbcorrupt": {
+          "subject": "Tautulli ({server_name})",
+          "body": "Tautulli database corruption detected. Automatic cleanup of database backups is suspended."
+        },
+        "on_error": {
+          "subject": "Tautulli ({server_name})",
+          "body": "{user} ({player}) encountered an error trying to play {title}."
+        },
+        "on_intro": {
+          "subject": "Tautulli ({server_name})",
+          "body": "{user} ({player}) has reached an intro marker for {title}."
+        },
+        "on_credits": {
+          "subject": "Tautulli ({server_name})",
+          "body": "{user} ({player}) has reached a credits marker for {title}."
+        },
+        "on_commercial": {
+          "subject": "Tautulli ({server_name})",
+          "body": "{user} ({player}) has reached a commercial marker for {title}."
+        },
+        "on_tokenexpired": {
+          "subject": "Tautulli ({server_name})",
+          "body": "The Tautulli Plex account token has expired."
+        }
+      }
+    }
+  }
+}

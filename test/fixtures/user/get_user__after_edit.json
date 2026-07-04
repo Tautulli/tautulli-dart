@@ -1,0 +1,34 @@
+{
+  "response": {
+    "result": "success",
+    "message": null,
+    "data": {
+      "row_id": 47,
+      "user_id": 65059356,
+      "username": "user27",
+      "friendly_name": "dart-edit-check",
+      "user_thumb": "https://plex.tv/users/0000000000000000/avatar?c=1783101112",
+      "email": "jack@example.com",
+      "is_active": 1,
+      "is_admin": 0,
+      "is_home_user": 0,
+      "is_allow_sync": 1,
+      "is_restricted": 0,
+      "do_notify": 0,
+      "keep_history": 1,
+      "deleted_user": 0,
+      "allow_guest": 0,
+      "shared_libraries": [
+        "28",
+        "30",
+        "6",
+        "13",
+        "31",
+        "12",
+        "7",
+        "1"
+      ],
+      "last_seen": null
+    }
+  }
+}

@@ -1,1 +1,172 @@
-{"response":{"result":"success","message":null,"data":[{"section_id":"1","section_name":"Movies","section_type":"movie","count":"500","parent_count":"0","child_count":"0","art":"/library/sections/1/art/1000000","is_active":1,"thumb":"/library/sections/1/thumb/1000000"}]}}
+{
+  "response": {
+    "result": "success",
+    "message": null,
+    "data": [
+      {
+        "section_id": "24",
+        "section_name": "4K Movies",
+        "section_type": "movie",
+        "agent": "tv.plex.agents.movie",
+        "thumb": "",
+        "art": "",
+        "count": "4",
+        "is_active": 1
+      },
+      {
+        "section_id": "28",
+        "section_name": "Library 1",
+        "section_type": "movie",
+        "agent": "tv.plex.agents.movie",
+        "thumb": "",
+        "art": "",
+        "count": "86",
+        "is_active": 1
+      },
+      {
+        "section_id": "6",
+        "section_name": "Comedy Specials",
+        "section_type": "movie",
+        "agent": "tv.plex.agents.movie",
+        "thumb": "",
+        "art": "",
+        "count": "86",
+        "is_active": 1
+      },
+      {
+        "section_id": "13",
+        "section_name": "Documentaries",
+        "section_type": "movie",
+        "agent": "tv.plex.agents.movie",
+        "thumb": "",
+        "art": "",
+        "count": "53",
+        "is_active": 1
+      },
+      {
+        "section_id": "12",
+        "section_name": "Movies",
+        "section_type": "movie",
+        "agent": "tv.plex.agents.movie",
+        "thumb": "",
+        "art": "",
+        "count": "1651",
+        "is_active": 1
+      },
+      {
+        "section_id": "7",
+        "section_name": "Movies (Fan Edits)",
+        "section_type": "movie",
+        "agent": "tv.plex.agents.movie",
+        "thumb": "",
+        "art": "",
+        "count": "5",
+        "is_active": 1
+      },
+      {
+        "section_id": "22",
+        "section_name": "Theater Plays",
+        "section_type": "movie",
+        "agent": "tv.plex.agents.movie",
+        "thumb": "",
+        "art": "",
+        "count": "2",
+        "is_active": 1
+      },
+      {
+        "section_id": "25",
+        "section_name": "4K TV Shows",
+        "section_type": "show",
+        "agent": "tv.plex.agents.series",
+        "thumb": "",
+        "art": "",
+        "count": "1",
+        "is_active": 1,
+        "parent_count": "2",
+        "child_count": "18"
+      },
+      {
+        "section_id": "30",
+        "section_name": "Library 2",
+        "section_type": "show",
+        "agent": "tv.plex.agents.series",
+        "thumb": "",
+        "art": "",
+        "count": "41",
+        "is_active": 1,
+        "parent_count": "76",
+        "child_count": "1374"
+      },
+      {
+        "section_id": "31",
+        "section_name": "Docuseries",
+        "section_type": "show",
+        "agent": "tv.plex.agents.series",
+        "thumb": "",
+        "art": "",
+        "count": "40",
+        "is_active": 1,
+        "parent_count": "69",
+        "child_count": "472"
+      },
+      {
+        "section_id": "1",
+        "section_name": "TV Shows",
+        "section_type": "show",
+        "agent": "tv.plex.agents.series",
+        "thumb": "",
+        "art": "",
+        "count": "654",
+        "is_active": 1,
+        "parent_count": "2255",
+        "child_count": "32947"
+      },
+      {
+        "section_id": "27",
+        "section_name": "Audiobooks",
+        "section_type": "artist",
+        "agent": "com.plexapp.agents.audnexus",
+        "thumb": "",
+        "art": "",
+        "count": "22",
+        "is_active": 1,
+        "parent_count": "70",
+        "child_count": "71"
+      },
+      {
+        "section_id": "19",
+        "section_name": "Music",
+        "section_type": "artist",
+        "agent": "tv.plex.agents.music",
+        "thumb": "",
+        "art": "",
+        "count": "57",
+        "is_active": 1,
+        "parent_count": "360",
+        "child_count": "4708"
+      },
+      {
+        "section_id": "26",
+        "section_name": "Photos",
+        "section_type": "photo",
+        "agent": "tv.plex.agents.none",
+        "thumb": "",
+        "art": "",
+        "count": "6",
+        "is_active": 1,
+        "parent_count": "8541",
+        "child_count": "1"
+      },
+      {
+        "section_id": "4",
+        "section_name": "Home Videos",
+        "section_type": "movie",
+        "agent": "com.plexapp.agents.none",
+        "thumb": "",
+        "art": "",
+        "count": "68",
+        "is_active": 1
+      }
+    ]
+  }
+}

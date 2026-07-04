@@ -20,7 +20,7 @@ void main() {
       ),
       httpClient: MockClient((request) async {
         lastRequestUri = request.url;
-        return http.Response(fixture(fixtureFile), 200);
+        return fixtureResponse(fixtureFile);
       }),
     );
   }
@@ -36,22 +36,22 @@ void main() {
       makeClient('tautulli/get_settings.json');
       final settings = await client.tautulli.getSettings();
       expect(settings.dateFormat, 'YYYY-MM-DD');
-      expect(settings.timeFormat, 'HH:mm');
+      expect(settings.timeFormat, 'hh:mm a');
     });
 
     test('provides rawData escape hatch with full sectioned map', () async {
       makeClient('tautulli/get_settings.json');
       final settings = await client.tautulli.getSettings();
       final pms = settings.rawData['PMS'] as Map<String, dynamic>;
-      expect(pms['pms_name'], 'Margarita');
+      expect(pms['pms_name'], 'TestServer');
     });
 
     test('falls back to root keys for a single-section response', () async {
-      makeClient('tautulli/get_settings_general_section.json');
+      makeClient('tautulli/get_settings__key_general.json');
       final settings = await client.tautulli.getSettings(key: 'General');
       expect(lastRequestUri.queryParameters['key'], 'General');
       expect(settings.dateFormat, 'YYYY-MM-DD');
-      expect(settings.timeFormat, 'HH:mm');
+      expect(settings.timeFormat, 'hh:mm a');
     });
   });
 
@@ -83,8 +83,7 @@ void main() {
       makeClient('tautulli/get_tautulli_info.json');
       final result = await client.tautulli.getTautulliInfo();
       expect(lastRequestUri.queryParameters['cmd'], 'get_tautulli_info');
-      expect(result['tautulli_version'], 'v2.13.4');
-      expect(result['tautulli_python_version'], '3.11.0');
+      expect(result['tautulli_version'], 'v2.17.2');
       expect(result['tautulli_platform'], 'Linux');
     });
   });

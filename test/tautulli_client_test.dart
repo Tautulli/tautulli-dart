@@ -27,7 +27,7 @@ void main() {
           connection: connection,
           httpClient: MockClient((request) async {
             captured = request.url;
-            return http.Response(fixture('success_response.json'), 200);
+            return fixtureResponse('success_response.json');
           }),
         );
 
@@ -49,7 +49,7 @@ void main() {
         connection: connection,
         httpClient: MockClient((request) async {
           captured = request.url;
-          return http.Response(fixture('success_response.json'), 200);
+          return fixtureResponse('success_response.json');
         }),
       );
 
@@ -70,7 +70,7 @@ void main() {
         connection: httpsConnection,
         httpClient: MockClient((request) async {
           captured = request.url;
-          return http.Response(fixture('success_response.json'), 200);
+          return fixtureResponse('success_response.json');
         }),
       );
 
@@ -92,7 +92,7 @@ void main() {
         connection: apiKeyConnection,
         httpClient: MockClient((request) async {
           captured = request.url;
-          return http.Response(fixture('success_response.json'), 200);
+          return fixtureResponse('success_response.json');
         }),
       );
 
@@ -107,7 +107,7 @@ void main() {
         connection: connection,
         httpClient: MockClient((request) async {
           captured = request.url;
-          return http.Response(fixture('success_response.json'), 200);
+          return fixtureResponse('success_response.json');
         }),
       );
 
@@ -126,7 +126,7 @@ void main() {
         connection: connection,
         httpClient: MockClient((request) async {
           captured = request.url;
-          return http.Response(fixture('success_response.json'), 200);
+          return fixtureResponse('success_response.json');
         }),
       );
 
@@ -145,7 +145,7 @@ void main() {
         connection: connection,
         httpClient: MockClient((request) async {
           captured = request.url;
-          return http.Response(fixture('success_response.json'), 200);
+          return fixtureResponse('success_response.json');
         }),
       );
 
@@ -171,7 +171,7 @@ void main() {
         connection: trailing,
         httpClient: MockClient((request) async {
           captured = request.url;
-          return http.Response(fixture('success_response.json'), 200);
+          return fixtureResponse('success_response.json');
         }),
       );
 
@@ -325,7 +325,7 @@ void main() {
       final client = TautulliClient(
         connection: connection,
         httpClient: MockClient(
-          (_) async => http.Response(fixture('success_response.json'), 200),
+          (_) async => fixtureResponse('success_response.json'),
         ),
       );
 
@@ -417,8 +417,10 @@ void main() {
         final client = TautulliClient(
           connection: connection,
           httpClient: MockClient(
-            (_) async =>
-                http.Response(fixture('error_version_mismatch.json'), 400),
+            (_) async => fixtureResponse(
+              'device/register_device__min_version_error.json',
+              statusCode: 400,
+            ),
           ),
         );
 
@@ -472,7 +474,7 @@ void main() {
       final client = TautulliClient(
         connection: connection,
         httpClient: MockClient(
-          (_) async => http.Response(fixture('error_invalid_apikey.json'), 200),
+          (_) async => fixtureResponse('auth/auth__bad_key.json'),
         ),
       );
 
@@ -489,7 +491,7 @@ void main() {
           connection: connection,
           httpClient: MockClient(
             (_) async =>
-                http.Response(fixture('error_terminate_session.json'), 200),
+                fixtureResponse('activity/terminate_session__error.json'),
           ),
         );
 
@@ -591,6 +593,41 @@ void main() {
         () => client.executeDownload('download_log'),
         throwsA(isA<TautulliAuthException>()),
       );
+    });
+  });
+
+  group('TautulliClient.executeDownload() — connection handling', () {
+    test('sends Connection: close on downloads (native)', () async {
+      // Tautulli serves live files whose size can change mid-response;
+      // closing the connection keeps surplus bytes off the keep-alive pool
+      // (they would surface as an unhandled async HttpException).
+      late Map<String, String> capturedHeaders;
+      final client = TautulliClient(
+        connection: connection,
+        httpClient: MockClient((request) async {
+          capturedHeaders = request.headers;
+          return http.Response.bytes(
+            [1, 2, 3],
+            200,
+            headers: {'content-type': 'application/x-download'},
+          );
+        }),
+      );
+      await client.executeDownload('download_log');
+      expect(capturedHeaders['connection'], 'close');
+    });
+
+    test('regular execute() does not send Connection: close', () async {
+      late Map<String, String> capturedHeaders;
+      final client = TautulliClient(
+        connection: connection,
+        httpClient: MockClient((request) async {
+          capturedHeaders = request.headers;
+          return fixtureResponse('success_response.json');
+        }),
+      );
+      await client.execute('get_server_info');
+      expect(capturedHeaders.containsKey('connection'), isFalse);
     });
   });
 
@@ -748,7 +785,7 @@ void main() {
         connection: withHeaders,
         httpClient: MockClient((request) async {
           captured = request.headers;
-          return http.Response(fixture('success_response.json'), 200);
+          return fixtureResponse('success_response.json');
         }),
       );
 

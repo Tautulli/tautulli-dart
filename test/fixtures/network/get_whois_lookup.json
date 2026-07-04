@@ -1,1 +1,29 @@
-{"response":{"result":"success","message":null,"data":{"status":"success","city":null,"country":"United States","countryCode":"US","isp":"Example ISP","org":"Example Org","query":"8.8.8.8"}}}
+{
+  "response": {
+    "result": "success",
+    "message": null,
+    "data": {
+      "host": "Not available",
+      "nets": [
+        {
+          "cidr": "203.0.113.62/24",
+          "name": "GOGL",
+          "handle": "NET-8-8-8-0-2",
+          "range": "203.0.113.62 - 203.0.113.63",
+          "description": "Google LLC",
+          "country": "United States",
+          "state": "CA",
+          "city": "Mountain View",
+          "address": "1600 Amphitheatre Parkway",
+          "postal_code": "94043",
+          "emails": [
+            "network-abuse@google.com",
+            "arin-contact@google.com"
+          ],
+          "created": "2023-12-28",
+          "updated": "2023-12-28"
+        }
+      ]
+    }
+  }
+}

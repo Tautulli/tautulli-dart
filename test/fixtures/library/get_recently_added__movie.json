@@ -1,0 +1,290 @@
+{
+  "response": {
+    "result": "success",
+    "message": null,
+    "data": {
+      "recently_added": [
+        {
+          "media_type": "movie",
+          "section_id": "28",
+          "library_name": "Library 1",
+          "rating_key": "168184",
+          "parent_rating_key": "",
+          "grandparent_rating_key": "",
+          "title": "The Devil Wears Prada 2",
+          "parent_title": "",
+          "grandparent_title": "",
+          "original_title": "",
+          "sort_title": "Devil Wears Prada 2",
+          "media_index": "",
+          "parent_media_index": "",
+          "studio": "20th Century Studios",
+          "content_rating": "PG-13",
+          "summary": "Andy Sachs returns to Runway as Miranda Priestly navigates a new media landscape and Runway's position within. The duo reconnect with former assistant Emily Charlton, now the head of a luxury brand that possesses funding which could ensure Runway's survival.",
+          "tagline": "Icons reign forever.",
+          "rating": "7.7",
+          "rating_image": "rottentomatoes://image.rating.ripe",
+          "audience_rating": "8.4",
+          "audience_rating_image": "rottentomatoes://image.rating.upright",
+          "user_rating": "",
+          "duration": "7216864",
+          "year": "2026",
+          "thumb": "/library/metadata/168184/thumb/1782779176",
+          "parent_thumb": "",
+          "grandparent_thumb": "",
+          "art": "/library/metadata/168184/art/1782779176",
+          "banner": "",
+          "originally_available_at": "2026-04-29",
+          "added_at": "1782779175",
+          "updated_at": "1782779176",
+          "last_viewed_at": "",
+          "guid": "plex://movie/668da3cd701c9385b944d19e",
+          "directors": [
+            "David Frankel"
+          ],
+          "writers": [
+            "Aline Brosh McKenna"
+          ],
+          "actors": [
+            "Meryl Streep",
+            "Anne Hathaway",
+            "Emily Blunt"
+          ],
+          "genres": [
+            "Drama",
+            "Comedy"
+          ],
+          "labels": [],
+          "collections": [],
+          "guids": [],
+          "full_title": "The Devil Wears Prada 2",
+          "child_count": ""
+        },
+        {
+          "media_type": "movie",
+          "section_id": "12",
+          "library_name": "Movies",
+          "rating_key": "168181",
+          "parent_rating_key": "",
+          "grandparent_rating_key": "",
+          "title": "Obsession",
+          "parent_title": "",
+          "grandparent_title": "",
+          "original_title": "",
+          "sort_title": "",
+          "media_index": "",
+          "parent_media_index": "",
+          "studio": "Obsessive Picture Productions",
+          "content_rating": "",
+          "summary": "As a boy becomes more obsessed with basketball he becomes increasingly more angry.",
+          "tagline": "",
+          "rating": "",
+          "rating_image": "",
+          "audience_rating": "7.2",
+          "audience_rating_image": "imdb://image.rating",
+          "user_rating": "",
+          "duration": "6533216",
+          "year": "2026",
+          "thumb": "/library/metadata/168181/thumb/1782746596",
+          "parent_thumb": "",
+          "grandparent_thumb": "",
+          "art": "/library/metadata/168181/art/1782746596",
+          "banner": "",
+          "originally_available_at": "2026-01-13",
+          "added_at": "1782744728",
+          "updated_at": "1782746596",
+          "last_viewed_at": "",
+          "guid": "plex://movie/697f69420df4b2030bb5397d",
+          "directors": [
+            "Jackson Treadway"
+          ],
+          "writers": [
+            "Jackson Treadway"
+          ],
+          "actors": [
+            "Kaden Treadway",
+            "Jackson Treadway"
+          ],
+          "genres": [
+            "Short",
+            "Thriller"
+          ],
+          "labels": [],
+          "collections": [],
+          "guids": [],
+          "full_title": "Obsession",
+          "child_count": ""
+        },
+        {
+          "media_type": "movie",
+          "section_id": "13",
+          "library_name": "Documentaries",
+          "rating_key": "167921",
+          "parent_rating_key": "",
+          "grandparent_rating_key": "",
+          "title": "What's the Story, Wishbone?",
+          "parent_title": "",
+          "grandparent_title": "",
+          "original_title": "",
+          "sort_title": "",
+          "media_index": "",
+          "parent_media_index": "",
+          "studio": "Novel Tails",
+          "content_rating": "",
+          "summary": "A behind-the-scenes journey into the creation and lasting legacy of Wishbone, the Emmy-winning PBS series that introduced a generation to classic literature through the adventures of a small dog with a big imagination.",
+          "tagline": "The story of the little dog who introduced a generation to the world of classic literature.",
+          "rating": "",
+          "rating_image": "",
+          "audience_rating": "8.5",
+          "audience_rating_image": "imdb://image.rating",
+          "user_rating": "",
+          "duration": "5318496",
+          "year": "2026",
+          "thumb": "/library/metadata/167921/thumb/1782998444",
+          "parent_thumb": "",
+          "grandparent_thumb": "",
+          "art": "/library/metadata/167921/art/1782998444",
+          "banner": "",
+          "originally_available_at": "2026-06-10",
+          "added_at": "1781274125",
+          "updated_at": "1782998444",
+          "last_viewed_at": "",
+          "guid": "plex://movie/6348126fa460de7192ebe8dd",
+          "directors": [
+            "Joey Stewart"
+          ],
+          "writers": [
+            "Joey Stewart"
+          ],
+          "actors": [
+            "Soccer the Dog",
+            "Mary Chris Wall",
+            "Larry Brantley"
+          ],
+          "genres": [
+            "Documentary",
+            "Family"
+          ],
+          "labels": [],
+          "collections": [],
+          "guids": [],
+          "full_title": "What's the Story, Wishbone?",
+          "child_count": ""
+        },
+        {
+          "media_type": "movie",
+          "section_id": "28",
+          "library_name": "Library 1",
+          "rating_key": "167911",
+          "parent_rating_key": "",
+          "grandparent_rating_key": "",
+          "title": "Office Romance",
+          "parent_title": "",
+          "grandparent_title": "",
+          "original_title": "",
+          "sort_title": "",
+          "media_index": "",
+          "parent_media_index": "",
+          "studio": "Ryder Picture Company",
+          "content_rating": "R",
+          "summary": "Jackie, President and CEO of Air Cruz, runs a tight ship in her business, including a rigid anti-fraternization policy for all her employees, which is severely tested when a sexy new lawyer begins working for her.",
+          "tagline": "It's going down.",
+          "rating": "4.9",
+          "rating_image": "rottentomatoes://image.rating.rotten",
+          "audience_rating": "4.4",
+          "audience_rating_image": "rottentomatoes://image.rating.spilled",
+          "user_rating": "",
+          "duration": "6898880",
+          "year": "2026",
+          "thumb": "/library/metadata/167911/thumb/1782998443",
+          "parent_thumb": "",
+          "grandparent_thumb": "",
+          "art": "/library/metadata/167911/art/1782998443",
+          "banner": "",
+          "originally_available_at": "2026-06-05",
+          "added_at": "1781234769",
+          "updated_at": "1782998443",
+          "last_viewed_at": "",
+          "guid": "plex://movie/66ee181a903be48819e5469b",
+          "directors": [
+            "Ol Parker"
+          ],
+          "writers": [
+            "Joe Kelly",
+            "Brett Goldstein"
+          ],
+          "actors": [
+            "Jennifer Lopez",
+            "Brett Goldstein",
+            "Betty Gilpin"
+          ],
+          "genres": [
+            "Romance",
+            "Comedy"
+          ],
+          "labels": [],
+          "collections": [],
+          "guids": [],
+          "full_title": "Office Romance",
+          "child_count": ""
+        },
+        {
+          "media_type": "movie",
+          "section_id": "28",
+          "library_name": "Library 1",
+          "rating_key": "167910",
+          "parent_rating_key": "",
+          "grandparent_rating_key": "",
+          "title": "In the Grey",
+          "parent_title": "",
+          "grandparent_title": "",
+          "original_title": "",
+          "sort_title": "",
+          "media_index": "",
+          "parent_media_index": "",
+          "studio": "C2 Motion Picture Group",
+          "content_rating": "R",
+          "summary": "A covert team of elite operatives are living in the shadows. When a ruthless despot steals a billion-dollar fortune, they're sent to take it back-an impossible heist that erupts into a deadly game of strategy, deception and survival.",
+          "tagline": "When billions get stolen, meet the pros who steal it back.",
+          "rating": "5.0",
+          "rating_image": "rottentomatoes://image.rating.rotten",
+          "audience_rating": "8.3",
+          "audience_rating_image": "rottentomatoes://image.rating.upright",
+          "user_rating": "",
+          "duration": "5811753",
+          "year": "2026",
+          "thumb": "/library/metadata/167910/thumb/1782480289",
+          "parent_thumb": "",
+          "grandparent_thumb": "",
+          "art": "/library/metadata/167910/art/1782480289",
+          "banner": "",
+          "originally_available_at": "2026-04-10",
+          "added_at": "1781234704",
+          "updated_at": "1782480289",
+          "last_viewed_at": "",
+          "guid": "plex://movie/6456bd77fc0430a14eb16a44",
+          "directors": [
+            "Guy Ritchie"
+          ],
+          "writers": [
+            "Guy Ritchie"
+          ],
+          "actors": [
+            "Henry Cavill",
+            "Jake Gyllenhaal",
+            "Eiza González"
+          ],
+          "genres": [
+            "Action",
+            "Drama"
+          ],
+          "labels": [],
+          "collections": [],
+          "guids": [],
+          "full_title": "In the Grey",
+          "child_count": ""
+        }
+      ]
+    }
+  }
+}

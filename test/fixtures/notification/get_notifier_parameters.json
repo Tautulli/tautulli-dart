@@ -12,6 +12,1516 @@
         "name": "Tautulli Remote",
         "type": "str",
         "value": "tautulli_remote"
+      },
+      {
+        "name": "Tautulli Branch",
+        "type": "str",
+        "value": "tautulli_branch"
+      },
+      {
+        "name": "Tautulli Commit",
+        "type": "str",
+        "value": "tautulli_commit"
+      },
+      {
+        "name": "Server Name",
+        "type": "str",
+        "value": "server_name"
+      },
+      {
+        "name": "Server IP",
+        "type": "str",
+        "value": "server_ip"
+      },
+      {
+        "name": "Server Port",
+        "type": "int",
+        "value": "server_port"
+      },
+      {
+        "name": "Server URL",
+        "type": "str",
+        "value": "server_url"
+      },
+      {
+        "name": "Server Platform",
+        "type": "str",
+        "value": "server_platform"
+      },
+      {
+        "name": "Server Version",
+        "type": "str",
+        "value": "server_version"
+      },
+      {
+        "name": "Server ID",
+        "type": "str",
+        "value": "server_machine_id"
+      },
+      {
+        "name": "Action",
+        "type": "str",
+        "value": "action"
+      },
+      {
+        "name": "Current Year",
+        "type": "int",
+        "value": "current_year"
+      },
+      {
+        "name": "Current Month",
+        "type": "int",
+        "value": "current_month"
+      },
+      {
+        "name": "Current Day",
+        "type": "int",
+        "value": "current_day"
+      },
+      {
+        "name": "Current Hour",
+        "type": "int",
+        "value": "current_hour"
+      },
+      {
+        "name": "Current Minute",
+        "type": "int",
+        "value": "current_minute"
+      },
+      {
+        "name": "Current Second",
+        "type": "int",
+        "value": "current_second"
+      },
+      {
+        "name": "Current Weekday",
+        "type": "int",
+        "value": "current_weekday"
+      },
+      {
+        "name": "Current Week",
+        "type": "int",
+        "value": "current_week"
+      },
+      {
+        "name": "Datestamp",
+        "type": "str",
+        "value": "datestamp"
+      },
+      {
+        "name": "Timestamp",
+        "type": "str",
+        "value": "timestamp"
+      },
+      {
+        "name": "Unix Time",
+        "type": "int",
+        "value": "unixtime"
+      },
+      {
+        "name": "UTC Time",
+        "type": "int",
+        "value": "utctime"
+      },
+      {
+        "name": "Streams",
+        "type": "int",
+        "value": "streams"
+      },
+      {
+        "name": "LAN Streams",
+        "type": "int",
+        "value": "lan_streams"
+      },
+      {
+        "name": "WAN Streams",
+        "type": "int",
+        "value": "wan_streams"
+      },
+      {
+        "name": "Direct Plays",
+        "type": "int",
+        "value": "direct_plays"
+      },
+      {
+        "name": "Direct Streams",
+        "type": "int",
+        "value": "direct_streams"
+      },
+      {
+        "name": "Transcodes",
+        "type": "int",
+        "value": "transcodes"
+      },
+      {
+        "name": "Total Bandwidth",
+        "type": "int",
+        "value": "total_bandwidth"
+      },
+      {
+        "name": "LAN Bandwidth",
+        "type": "int",
+        "value": "lan_bandwidth"
+      },
+      {
+        "name": "WAN Bandwidth",
+        "type": "int",
+        "value": "wan_bandwidth"
+      },
+      {
+        "name": "User Streams",
+        "type": "int",
+        "value": "user_streams"
+      },
+      {
+        "name": "User Direct Plays",
+        "type": "int",
+        "value": "user_direct_plays"
+      },
+      {
+        "name": "User Direct Streams",
+        "type": "int",
+        "value": "user_direct_streams"
+      },
+      {
+        "name": "User Transcodes",
+        "type": "int",
+        "value": "user_transcodes"
+      },
+      {
+        "name": "User",
+        "type": "str",
+        "value": "user"
+      },
+      {
+        "name": "Username",
+        "type": "str",
+        "value": "username"
+      },
+      {
+        "name": "User Email",
+        "type": "str",
+        "value": "user_email"
+      },
+      {
+        "name": "User Thumb",
+        "type": "str",
+        "value": "user_thumb"
+      },
+      {
+        "name": "Device",
+        "type": "str",
+        "value": "device"
+      },
+      {
+        "name": "Platform",
+        "type": "str",
+        "value": "platform"
+      },
+      {
+        "name": "Platform Version",
+        "type": "str",
+        "value": "platform_version"
+      },
+      {
+        "name": "Product",
+        "type": "str",
+        "value": "product"
+      },
+      {
+        "name": "Product Version",
+        "type": "str",
+        "value": "product_version"
+      },
+      {
+        "name": "Player",
+        "type": "str",
+        "value": "player"
+      },
+      {
+        "name": "Initial Stream",
+        "type": "int",
+        "value": "initial_stream"
+      },
+      {
+        "name": "IP Address",
+        "type": "str",
+        "value": "ip_address"
+      },
+      {
+        "name": "Started Datestamp",
+        "type": "str",
+        "value": "started_datestamp"
+      },
+      {
+        "name": "Started Timestamp",
+        "type": "str",
+        "value": "started_timestamp"
+      },
+      {
+        "name": "Started Unix Time",
+        "type": "int",
+        "value": "started_unixtime"
+      },
+      {
+        "name": "Stopped Datestamp",
+        "type": "str",
+        "value": "stopped_datestamp"
+      },
+      {
+        "name": "Stopped Timestamp",
+        "type": "str",
+        "value": "stopped_timestamp"
+      },
+      {
+        "name": "Stopped Unix Time",
+        "type": "int",
+        "value": "stopped_unixtime"
+      },
+      {
+        "name": "Stream Duration",
+        "type": "int",
+        "value": "stream_duration"
+      },
+      {
+        "name": "Stream Duration (sec)",
+        "type": "int",
+        "value": "stream_duration_sec"
+      },
+      {
+        "name": "Stream Time",
+        "type": "str",
+        "value": "stream_time"
+      },
+      {
+        "name": "Remaining Duration",
+        "type": "int",
+        "value": "remaining_duration"
+      },
+      {
+        "name": "Remaining Duration (sec)",
+        "type": "int",
+        "value": "remaining_duration_sec"
+      },
+      {
+        "name": "Remaining Time",
+        "type": "str",
+        "value": "remaining_time"
+      },
+      {
+        "name": "Progress Duration",
+        "type": "int",
+        "value": "progress_duration"
+      },
+      {
+        "name": "Progress Duration (sec)",
+        "type": "int",
+        "value": "progress_duration_sec"
+      },
+      {
+        "name": "Progress Time",
+        "type": "str",
+        "value": "progress_time"
+      },
+      {
+        "name": "Progress Percent",
+        "type": "int",
+        "value": "progress_percent"
+      },
+      {
+        "name": "View Offset (ms)",
+        "type": "int",
+        "value": "view_offset"
+      },
+      {
+        "name": "Transcode Decision",
+        "type": "str",
+        "value": "transcode_decision"
+      },
+      {
+        "name": "Container Decision",
+        "type": "str",
+        "value": "container_decision"
+      },
+      {
+        "name": "Video Decision",
+        "type": "str",
+        "value": "video_decision"
+      },
+      {
+        "name": "Audio Decision",
+        "type": "str",
+        "value": "audio_decision"
+      },
+      {
+        "name": "Subtitle Decision",
+        "type": "str",
+        "value": "subtitle_decision"
+      },
+      {
+        "name": "Quality Profile",
+        "type": "str",
+        "value": "quality_profile"
+      },
+      {
+        "name": "Optimized Version",
+        "type": "int",
+        "value": "optimized_version"
+      },
+      {
+        "name": "Optimized Version Profile",
+        "type": "str",
+        "value": "optimized_version_profile"
+      },
+      {
+        "name": "Synced Version",
+        "type": "int",
+        "value": "synced_version"
+      },
+      {
+        "name": "Live",
+        "type": "int",
+        "value": "live"
+      },
+      {
+        "name": "Marker Start Time",
+        "type": "int",
+        "value": "marker_start"
+      },
+      {
+        "name": "Marker End Time",
+        "type": "int",
+        "value": "marker_end"
+      },
+      {
+        "name": "Credits Marker First",
+        "type": "int",
+        "value": "credits_marker_first"
+      },
+      {
+        "name": "Credits Marker Final",
+        "type": "int",
+        "value": "credits_marker_final"
+      },
+      {
+        "name": "Channel Call Sign",
+        "type": "str",
+        "value": "channel_call_sign"
+      },
+      {
+        "name": "Channel ID",
+        "type": "str",
+        "value": "channel_id"
+      },
+      {
+        "name": "Channel Identifier",
+        "type": "str",
+        "value": "channel_identifier"
+      },
+      {
+        "name": "Channel Title",
+        "type": "str",
+        "value": "channel_title"
+      },
+      {
+        "name": "Channel Thumb",
+        "type": "str",
+        "value": "channel_thumb"
+      },
+      {
+        "name": "Channel VCN",
+        "type": "str",
+        "value": "channel_title"
+      },
+      {
+        "name": "Secure",
+        "type": "int",
+        "value": "secure"
+      },
+      {
+        "name": "Relayed",
+        "type": "int",
+        "value": "relayed"
+      },
+      {
+        "name": "Stream user52",
+        "type": "int",
+        "value": "stream_local"
+      },
+      {
+        "name": "Stream Location",
+        "type": "str",
+        "value": "stream_location"
+      },
+      {
+        "name": "Stream Bandwidth",
+        "type": "int",
+        "value": "stream_bandwidth"
+      },
+      {
+        "name": "Stream Container",
+        "type": "str",
+        "value": "stream_container"
+      },
+      {
+        "name": "Stream Bitrate",
+        "type": "int",
+        "value": "stream_bitrate"
+      },
+      {
+        "name": "Stream Aspect Ratio",
+        "type": "float",
+        "value": "stream_aspect_ratio"
+      },
+      {
+        "name": "Stream Video Codec",
+        "type": "str",
+        "value": "stream_video_codec"
+      },
+      {
+        "name": "Stream Video Codec Level",
+        "type": "int",
+        "value": "stream_video_codec_level"
+      },
+      {
+        "name": "Stream Video Bitrate",
+        "type": "int",
+        "value": "stream_video_bitrate"
+      },
+      {
+        "name": "Stream Video Bit Depth",
+        "type": "int",
+        "value": "stream_video_bit_depth"
+      },
+      {
+        "name": "Stream Video Chroma Subsampling",
+        "type": "str",
+        "value": "stream_video_chroma_subsampling"
+      },
+      {
+        "name": "Stream Video Color Primaries",
+        "type": "str",
+        "value": "stream_video_color_primaries"
+      },
+      {
+        "name": "Stream Video Color Range",
+        "type": "str",
+        "value": "stream_video_color_range"
+      },
+      {
+        "name": "Stream Video Color Space",
+        "type": "str",
+        "value": "stream_video_color_space"
+      },
+      {
+        "name": "Stream Video Color Transfer Function",
+        "type": "str",
+        "value": "stream_video_color_trc"
+      },
+      {
+        "name": "Stream Video Dynamic Range",
+        "type": "str",
+        "value": "stream_video_dynamic_range"
+      },
+      {
+        "name": "Stream Video DOVI Present",
+        "type": "int",
+        "value": "stream_video_dovi_present"
+      },
+      {
+        "name": "Stream Video DOVI Level",
+        "type": "int",
+        "value": "stream_video_dovi_level"
+      },
+      {
+        "name": "Stream Video DOVI Profile",
+        "type": "int",
+        "value": "stream_video_dovi_profile"
+      },
+      {
+        "name": "Stream Video Framerate",
+        "type": "str",
+        "value": "stream_video_framerate"
+      },
+      {
+        "name": "Stream Video Full Resolution",
+        "type": "str",
+        "value": "stream_video_full_resolution"
+      },
+      {
+        "name": "Stream Video Ref Frames",
+        "type": "int",
+        "value": "stream_video_ref_frames"
+      },
+      {
+        "name": "Stream Video Resolution",
+        "type": "str",
+        "value": "stream_video_resolution"
+      },
+      {
+        "name": "Stream Video Scan Type",
+        "type": "str",
+        "value": "stream_video_scan_type"
+      },
+      {
+        "name": "Stream Video Height",
+        "type": "int",
+        "value": "stream_video_height"
+      },
+      {
+        "name": "Stream Video Width",
+        "type": "int",
+        "value": "stream_video_width"
+      },
+      {
+        "name": "Stream Video Language",
+        "type": "str",
+        "value": "stream_video_language"
+      },
+      {
+        "name": "Stream Video Language Code",
+        "type": "str",
+        "value": "stream_video_language_code"
+      },
+      {
+        "name": "Stream Audio Bitrate",
+        "type": "int",
+        "value": "stream_audio_bitrate"
+      },
+      {
+        "name": "Stream Audio Bitrate Mode",
+        "type": "str",
+        "value": "stream_audio_bitrate_mode"
+      },
+      {
+        "name": "Stream Audio Codec",
+        "type": "str",
+        "value": "stream_audio_codec"
+      },
+      {
+        "name": "Stream Audio Channels",
+        "type": "float",
+        "value": "stream_audio_channels"
+      },
+      {
+        "name": "Stream Audio Channel Layout",
+        "type": "str",
+        "value": "stream_audio_channel_layout"
+      },
+      {
+        "name": "Stream Audio Sample Rate",
+        "type": "int",
+        "value": "stream_audio_sample_rate"
+      },
+      {
+        "name": "Stream Audio Language",
+        "type": "str",
+        "value": "stream_audio_language"
+      },
+      {
+        "name": "Stream Audio Language Code",
+        "type": "str",
+        "value": "stream_audio_language_code"
+      },
+      {
+        "name": "Stream Audio Profile",
+        "type": "str",
+        "value": "stream_audio_profile"
+      },
+      {
+        "name": "Stream Subtitle Codec",
+        "type": "str",
+        "value": "stream_subtitle_codec"
+      },
+      {
+        "name": "Stream Subtitle Container",
+        "type": "str",
+        "value": "stream_subtitle_container"
+      },
+      {
+        "name": "Stream Subtitle Format",
+        "type": "str",
+        "value": "stream_subtitle_format"
+      },
+      {
+        "name": "Stream Subtitle Forced",
+        "type": "int",
+        "value": "stream_subtitle_forced"
+      },
+      {
+        "name": "Stream Subtitle Language",
+        "type": "str",
+        "value": "stream_subtitle_language"
+      },
+      {
+        "name": "Stream Subtitle Language Code",
+        "type": "str",
+        "value": "stream_subtitle_language_code"
+      },
+      {
+        "name": "Stream Subtitle Location",
+        "type": "str",
+        "value": "stream_subtitle_location"
+      },
+      {
+        "name": "Transcode Container",
+        "type": "str",
+        "value": "transcode_container"
+      },
+      {
+        "name": "Transcode Video Codec",
+        "type": "str",
+        "value": "transcode_video_codec"
+      },
+      {
+        "name": "Transcode Video Width",
+        "type": "int",
+        "value": "transcode_video_width"
+      },
+      {
+        "name": "Transcode Video Height",
+        "type": "int",
+        "value": "transcode_video_height"
+      },
+      {
+        "name": "Transcode Audio Codec",
+        "type": "str",
+        "value": "transcode_audio_codec"
+      },
+      {
+        "name": "Transcode Audio Channels",
+        "type": "float",
+        "value": "transcode_audio_channels"
+      },
+      {
+        "name": "Transcode HW Requested",
+        "type": "int",
+        "value": "transcode_hw_requested"
+      },
+      {
+        "name": "Transcode HW Decoding",
+        "type": "int",
+        "value": "transcode_hw_decoding"
+      },
+      {
+        "name": "Transcode HW Decoding Codec",
+        "type": "str",
+        "value": "transcode_hw_decode"
+      },
+      {
+        "name": "Transcode HW Decoding Title",
+        "type": "str",
+        "value": "transcode_hw_decode_title"
+      },
+      {
+        "name": "Transcode HW Encoding",
+        "type": "int",
+        "value": "transcode_hw_encoding"
+      },
+      {
+        "name": "Transcode HW Encoding Codec",
+        "type": "str",
+        "value": "transcode_hw_encode"
+      },
+      {
+        "name": "Transcode HW Encoding Title",
+        "type": "str",
+        "value": "transcode_hw_encode_title"
+      },
+      {
+        "name": "Session Key",
+        "type": "str",
+        "value": "session_key"
+      },
+      {
+        "name": "Transcode Key",
+        "type": "str",
+        "value": "transcode_key"
+      },
+      {
+        "name": "Session ID",
+        "type": "str",
+        "value": "session_id"
+      },
+      {
+        "name": "User ID",
+        "type": "int",
+        "value": "user_id"
+      },
+      {
+        "name": "Machine ID",
+        "type": "str",
+        "value": "machine_id"
+      },
+      {
+        "name": "Media Type",
+        "type": "str",
+        "value": "media_type"
+      },
+      {
+        "name": "Extra Type",
+        "type": "str",
+        "value": "extra_type"
+      },
+      {
+        "name": "Preroll",
+        "type": "int",
+        "value": "preroll"
+      },
+      {
+        "name": "Library Name",
+        "type": "str",
+        "value": "library_name"
+      },
+      {
+        "name": "Title",
+        "type": "str",
+        "value": "title"
+      },
+      {
+        "name": "Edition Title",
+        "type": "str",
+        "value": "edition_title"
+      },
+      {
+        "name": "Show Name",
+        "type": "str",
+        "value": "show_name"
+      },
+      {
+        "name": "Season Name",
+        "type": "str",
+        "value": "season_name"
+      },
+      {
+        "name": "Episode Name",
+        "type": "str",
+        "value": "episode_name"
+      },
+      {
+        "name": "Artist Name",
+        "type": "str",
+        "value": "artist_name"
+      },
+      {
+        "name": "Album Name",
+        "type": "str",
+        "value": "album_name"
+      },
+      {
+        "name": "Track Name",
+        "type": "str",
+        "value": "track_name"
+      },
+      {
+        "name": "Track Artist",
+        "type": "str",
+        "value": "track_artist"
+      },
+      {
+        "name": "Season Number",
+        "type": "int",
+        "value": "season_num"
+      },
+      {
+        "name": "Season Number 00",
+        "type": "int",
+        "value": "season_num00"
+      },
+      {
+        "name": "Episode Number",
+        "type": "int",
+        "value": "episode_num"
+      },
+      {
+        "name": "Episode Number 00",
+        "type": "int",
+        "value": "episode_num00"
+      },
+      {
+        "name": "Disc Number",
+        "type": "int",
+        "value": "disc_num"
+      },
+      {
+        "name": "Disc Number 00",
+        "type": "int",
+        "value": "disc_num00"
+      },
+      {
+        "name": "Track Number",
+        "type": "int",
+        "value": "track_num"
+      },
+      {
+        "name": "Track Number 00",
+        "type": "int",
+        "value": "track_num00"
+      },
+      {
+        "name": "Season Count",
+        "type": "int",
+        "value": "season_count"
+      },
+      {
+        "name": "Episode Count",
+        "type": "int",
+        "value": "episode_count"
+      },
+      {
+        "name": "Album Count",
+        "type": "int",
+        "value": "album_count"
+      },
+      {
+        "name": "Track Count",
+        "type": "int",
+        "value": "track_count"
+      },
+      {
+        "name": "Year",
+        "type": "int",
+        "value": "year"
+      },
+      {
+        "name": "Show Year",
+        "type": "int",
+        "value": "show_year"
+      },
+      {
+        "name": "Release Date",
+        "type": "str",
+        "value": "release_date"
+      },
+      {
+        "name": "Air Date",
+        "type": "str",
+        "value": "air_date"
+      },
+      {
+        "name": "Added Date",
+        "type": "str",
+        "value": "added_date"
+      },
+      {
+        "name": "Updated Date",
+        "type": "str",
+        "value": "updated_date"
+      },
+      {
+        "name": "Last Viewed Date",
+        "type": "str",
+        "value": "last_viewed_date"
+      },
+      {
+        "name": "Studio",
+        "type": "str",
+        "value": "studio"
+      },
+      {
+        "name": "Content Rating",
+        "type": "str",
+        "value": "content_rating"
+      },
+      {
+        "name": "Directors",
+        "type": "str",
+        "value": "directors"
+      },
+      {
+        "name": "Writers",
+        "type": "str",
+        "value": "writers"
+      },
+      {
+        "name": "Actors",
+        "type": "str",
+        "value": "actors"
+      },
+      {
+        "name": "Genres",
+        "type": "str",
+        "value": "genres"
+      },
+      {
+        "name": "Labels",
+        "type": "str",
+        "value": "labels"
+      },
+      {
+        "name": "Collections",
+        "type": "str",
+        "value": "collections"
+      },
+      {
+        "name": "Summary",
+        "type": "str",
+        "value": "summary"
+      },
+      {
+        "name": "Tagline",
+        "type": "str",
+        "value": "tagline"
+      },
+      {
+        "name": "Rating",
+        "type": "float",
+        "value": "rating"
+      },
+      {
+        "name": "Critic Rating",
+        "type": "int",
+        "value": "critic_rating"
+      },
+      {
+        "name": "Audience Rating",
+        "type": "float",
+        "value": "audience_rating"
+      },
+      {
+        "name": "User Rating",
+        "type": "float",
+        "value": "user_rating"
+      },
+      {
+        "name": "Duration",
+        "type": "int",
+        "value": "duration"
+      },
+      {
+        "name": "Duration (sec)",
+        "type": "int",
+        "value": "duration_sec"
+      },
+      {
+        "name": "Duration (ms)",
+        "type": "int",
+        "value": "duration_ms"
+      },
+      {
+        "name": "Duration Time",
+        "type": "str",
+        "value": "duration_time"
+      },
+      {
+        "name": "Poster URL",
+        "type": "str",
+        "value": "poster_url"
+      },
+      {
+        "name": "Plex ID",
+        "type": "str",
+        "value": "plex_id"
+      },
+      {
+        "name": "Plex URL",
+        "type": "str",
+        "value": "plex_url"
+      },
+      {
+        "name": "Plex Slug",
+        "type": "str",
+        "value": "plex_slug"
+      },
+      {
+        "name": "Plex Watch URL",
+        "type": "str",
+        "value": "plex_watch_url"
+      },
+      {
+        "name": "IMDB ID",
+        "type": "str",
+        "value": "imdb_id"
+      },
+      {
+        "name": "IMDB URL",
+        "type": "str",
+        "value": "imdb_url"
+      },
+      {
+        "name": "TVDB ID",
+        "type": "int",
+        "value": "thetvdb_id"
+      },
+      {
+        "name": "TVDB URL",
+        "type": "str",
+        "value": "thetvdb_url"
+      },
+      {
+        "name": "TMDB ID",
+        "type": "int",
+        "value": "themoviedb_id"
+      },
+      {
+        "name": "TMDB URL",
+        "type": "str",
+        "value": "themoviedb_url"
+      },
+      {
+        "name": "TVmaze ID",
+        "type": "int",
+        "value": "tvmaze_id"
+      },
+      {
+        "name": "TVmaze URL",
+        "type": "str",
+        "value": "tvmaze_url"
+      },
+      {
+        "name": "MusicBrainz ID",
+        "type": "str",
+        "value": "musicbrainz_id"
+      },
+      {
+        "name": "MusicBrainz URL",
+        "type": "str",
+        "value": "musicbrainz_url"
+      },
+      {
+        "name": "AniDB ID",
+        "type": "str",
+        "value": "anidb_id"
+      },
+      {
+        "name": "AniDB URL",
+        "type": "str",
+        "value": "anidb_url"
+      },
+      {
+        "name": "Last.fm URL",
+        "type": "str",
+        "value": "lastfm_url"
+      },
+      {
+        "name": "Trakt URL",
+        "type": "str",
+        "value": "trakt_url"
+      },
+      {
+        "name": "Simkl URL",
+        "type": "str",
+        "value": "simkl_url"
+      },
+      {
+        "name": "Container",
+        "type": "str",
+        "value": "container"
+      },
+      {
+        "name": "Bitrate",
+        "type": "int",
+        "value": "bitrate"
+      },
+      {
+        "name": "Aspect Ratio",
+        "type": "float",
+        "value": "aspect_ratio"
+      },
+      {
+        "name": "Video Codec",
+        "type": "str",
+        "value": "video_codec"
+      },
+      {
+        "name": "Video Codec Level",
+        "type": "int",
+        "value": "video_codec_level"
+      },
+      {
+        "name": "Video Bitrate",
+        "type": "int",
+        "value": "video_bitrate"
+      },
+      {
+        "name": "Video Bit Depth",
+        "type": "int",
+        "value": "video_bit_depth"
+      },
+      {
+        "name": "Video Chroma Subsampling",
+        "type": "str",
+        "value": "video_chroma_subsampling"
+      },
+      {
+        "name": "Video Color Primaries",
+        "type": "str",
+        "value": "video_color_primaries"
+      },
+      {
+        "name": "Video Color Range",
+        "type": "str",
+        "value": "video_color_range"
+      },
+      {
+        "name": "Video Color Space",
+        "type": "str",
+        "value": "video_color_space"
+      },
+      {
+        "name": "Video Color Transfer Function",
+        "type": "str",
+        "value": "video_color_trc"
+      },
+      {
+        "name": "Video Dynamic Range",
+        "type": "str",
+        "value": "video_dynamic_range"
+      },
+      {
+        "name": "Video DOVI Present",
+        "type": "int",
+        "value": "video_dovi_present"
+      },
+      {
+        "name": "Video DOVI Level",
+        "type": "int",
+        "value": "video_dovi_level"
+      },
+      {
+        "name": "Video DOVI Profile",
+        "type": "int",
+        "value": "video_dovi_profile"
+      },
+      {
+        "name": "Video Framerate",
+        "type": "str",
+        "value": "video_framerate"
+      },
+      {
+        "name": "Video Full Resolution",
+        "type": "str",
+        "value": "video_full_resolution"
+      },
+      {
+        "name": "Video Ref Frames",
+        "type": "int",
+        "value": "video_ref_frames"
+      },
+      {
+        "name": "Video Resolution",
+        "type": "str",
+        "value": "video_resolution"
+      },
+      {
+        "name": "Video Scan Type",
+        "type": "str",
+        "value": "video_scan_type"
+      },
+      {
+        "name": "Video Height",
+        "type": "int",
+        "value": "video_height"
+      },
+      {
+        "name": "Video Width",
+        "type": "int",
+        "value": "video_width"
+      },
+      {
+        "name": "Video Language",
+        "type": "str",
+        "value": "video_language"
+      },
+      {
+        "name": "Video Language Code",
+        "type": "str",
+        "value": "video_language_code"
+      },
+      {
+        "name": "Audio Bitrate",
+        "type": "int",
+        "value": "audio_bitrate"
+      },
+      {
+        "name": "Audio Bitrate Mode",
+        "type": "str",
+        "value": "audio_bitrate_mode"
+      },
+      {
+        "name": "Audio Codec",
+        "type": "str",
+        "value": "audio_codec"
+      },
+      {
+        "name": "Audio Channels",
+        "type": "float",
+        "value": "audio_channels"
+      },
+      {
+        "name": "Audio Channel Layout",
+        "type": "str",
+        "value": "audio_channel_layout"
+      },
+      {
+        "name": "Audio Sample Rate",
+        "type": "int",
+        "value": "audio_sample_rate"
+      },
+      {
+        "name": "Audio Language",
+        "type": "str",
+        "value": "audio_language"
+      },
+      {
+        "name": "Audio Language Code",
+        "type": "str",
+        "value": "audio_language_code"
+      },
+      {
+        "name": "Audio Profile",
+        "type": "str",
+        "value": "audio_profile"
+      },
+      {
+        "name": "Subtitle Codec",
+        "type": "str",
+        "value": "subtitle_codec"
+      },
+      {
+        "name": "Subtitle Container",
+        "type": "str",
+        "value": "subtitle_container"
+      },
+      {
+        "name": "Subtitle Format",
+        "type": "str",
+        "value": "subtitle_format"
+      },
+      {
+        "name": "Subtitle Forced",
+        "type": "int",
+        "value": "subtitle_forced"
+      },
+      {
+        "name": "Subtitle Location",
+        "type": "str",
+        "value": "subtitle_location"
+      },
+      {
+        "name": "Subtitle Language",
+        "type": "str",
+        "value": "subtitle_language"
+      },
+      {
+        "name": "Subtitle Language Code",
+        "type": "str",
+        "value": "subtitle_language_code"
+      },
+      {
+        "name": "File",
+        "type": "str",
+        "value": "file"
+      },
+      {
+        "name": "Filename",
+        "type": "str",
+        "value": "filename"
+      },
+      {
+        "name": "File Size",
+        "type": "str",
+        "value": "file_size"
+      },
+      {
+        "name": "File Size Bytes",
+        "type": "int",
+        "value": "file_size_bytes"
+      },
+      {
+        "name": "Guid",
+        "type": "str",
+        "value": "guid"
+      },
+      {
+        "name": "Section ID",
+        "type": "int",
+        "value": "section_id"
+      },
+      {
+        "name": "Rating Key",
+        "type": "int",
+        "value": "rating_key"
+      },
+      {
+        "name": "Parent Rating Key",
+        "type": "int",
+        "value": "parent_rating_key"
+      },
+      {
+        "name": "Grandparent Rating Key",
+        "type": "int",
+        "value": "grandparent_rating_key"
+      },
+      {
+        "name": "Art",
+        "type": "str",
+        "value": "art"
+      },
+      {
+        "name": "Thumb",
+        "type": "str",
+        "value": "thumb"
+      },
+      {
+        "name": "Parent Thumb",
+        "type": "str",
+        "value": "parent_thumb"
+      },
+      {
+        "name": "Grandparent Thumb",
+        "type": "str",
+        "value": "grandparent_thumb"
+      },
+      {
+        "name": "Poster Thumb",
+        "type": "str",
+        "value": "poster_thumb"
+      },
+      {
+        "name": "Poster Title",
+        "type": "str",
+        "value": "poster_title"
+      },
+      {
+        "name": "Indexes",
+        "type": "int",
+        "value": "indexes"
+      },
+      {
+        "name": "Remote Access Mapping State",
+        "type": "str",
+        "value": "remote_access_mapping_state"
+      },
+      {
+        "name": "Remote Access Mapping Error",
+        "type": "str",
+        "value": "remote_access_mapping_error"
+      },
+      {
+        "name": "Remote Access Public IP Address",
+        "type": "str",
+        "value": "remote_access_public_address"
+      },
+      {
+        "name": "Remote Access Public Port",
+        "type": "str",
+        "value": "remote_access_public_port"
+      },
+      {
+        "name": "Remote Access Private IP Address",
+        "type": "str",
+        "value": "remote_access_private_address"
+      },
+      {
+        "name": "Remote Access Private Port",
+        "type": "str",
+        "value": "remote_access_private_port"
+      },
+      {
+        "name": "Remote Access Failure Reason",
+        "type": "str",
+        "value": "remote_access_reason"
+      },
+      {
+        "name": "Update Version",
+        "type": "str",
+        "value": "update_version"
+      },
+      {
+        "name": "Update Url",
+        "type": "str",
+        "value": "update_url"
+      },
+      {
+        "name": "Update Release Date",
+        "type": "str",
+        "value": "update_release_date"
+      },
+      {
+        "name": "Update Channel",
+        "type": "str",
+        "value": "update_channel"
+      },
+      {
+        "name": "Update Platform",
+        "type": "str",
+        "value": "update_platform"
+      },
+      {
+        "name": "Update Distro",
+        "type": "str",
+        "value": "update_distro"
+      },
+      {
+        "name": "Update Distro Build",
+        "type": "str",
+        "value": "update_distro_build"
+      },
+      {
+        "name": "Update Requirements",
+        "type": "str",
+        "value": "update_requirements"
+      },
+      {
+        "name": "Update Extra Info",
+        "type": "str",
+        "value": "update_extra_info"
+      },
+      {
+        "name": "Update Changelog Added",
+        "type": "str",
+        "value": "update_changelog_added"
+      },
+      {
+        "name": "Update Changelog Fixed",
+        "type": "str",
+        "value": "update_changelog_fixed"
+      },
+      {
+        "name": "Tautulli Update Version",
+        "type": "str",
+        "value": "tautulli_update_version"
+      },
+      {
+        "name": "Tautulli Update Release URL",
+        "type": "str",
+        "value": "tautulli_update_release_url"
+      },
+      {
+        "name": "Tautulli Update Exe",
+        "type": "str",
+        "value": "tautulli_update_exe"
+      },
+      {
+        "name": "Tautulli Update Pkg",
+        "type": "str",
+        "value": "tautulli_update_pkg"
+      },
+      {
+        "name": "Tautulli Update Tar",
+        "type": "str",
+        "value": "tautulli_update_tar"
+      },
+      {
+        "name": "Tautulli Update Zip",
+        "type": "str",
+        "value": "tautulli_update_zip"
+      },
+      {
+        "name": "Tautulli Update Commit",
+        "type": "str",
+        "value": "tautulli_update_commit"
+      },
+      {
+        "name": "Tautulli Update Behind",
+        "type": "int",
+        "value": "tautulli_update_behind"
+      },
+      {
+        "name": "Tautulli Update Changelog",
+        "type": "str",
+        "value": "tautulli_update_changelog"
       }
     ]
   }

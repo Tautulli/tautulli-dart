@@ -1,1 +1,68 @@
-{"response":{"result":"success","message":null,"data":[{"loglevel":"INFO","msg":"Tautulli started","thread":"MainThread","time":"2024-01-01 12:00:00"},{"loglevel":"DEBUG","msg":"Loading database","thread":"MainThread","time":"2024-01-01 12:00:01"}]}}
+{
+  "response": {
+    "result": "success",
+    "message": null,
+    "data": [
+      {
+        "time": "2026-07-04 10:29:28 ",
+        "loglevel": "WARNING",
+        "msg": "Tautulli Pmsconnect :: Failed to terminate session: Invalid session_key (999999) or session_id ().",
+        "thread": "CP Server Thread-11"
+      },
+      {
+        "time": "2026-07-04 10:29:26 ",
+        "loglevel": "WARNING",
+        "msg": "Unable to retrieve data for search_results.",
+        "thread": "CP Server Thread-12"
+      },
+      {
+        "time": "2026-07-04 10:29:26 ",
+        "loglevel": "WARNING",
+        "msg": "Tautulli Pmsconnect :: Unable to parse XML for get_search_result: 'NoneType' object has no attribute 'getElementsByTagName'.",
+        "thread": "CP Server Thread-12"
+      },
+      {
+        "time": "2026-07-04 10:29:26 ",
+        "loglevel": "WARNING",
+        "msg": "Unable to retrieve data for get_metadata_details.",
+        "thread": "CP Server Thread-9"
+      },
+      {
+        "time": "2026-07-04 10:29:26 ",
+        "loglevel": "WARNING",
+        "msg": "Tautulli Pmsconnect :: Unable to parse XML for get_metadata_details: 'NoneType' object has no attribute 'getElementsByTagName'.",
+        "thread": "CP Server Thread-9"
+      },
+      {
+        "time": "2026-07-04 10:29:26 ",
+        "loglevel": "ERROR",
+        "msg": "Failed to access uri endpoint /library/metadata/999999999?includeMarkers=1. Status code 404 Client Error: Not Found for url: https://192-0-2-10.00000000000000000000000000000000.plex.direct:32400/library/metadata/999999999?includeMarkers=1",
+        "thread": "CP Server Thread-9"
+      },
+      {
+        "time": "2026-07-04 10:29:25 ",
+        "loglevel": "WARNING",
+        "msg": "Unable to retrieve data for get_home_stats.",
+        "thread": "CP Server Thread-13"
+      },
+      {
+        "time": "2026-07-04 10:29:25 ",
+        "loglevel": "WARNING",
+        "msg": "Tautulli DataFactory :: Unable to execute database query for get_home_stats: top_tv: Incorrect number of bindings supplied. The current statement uses 0, and there are 1 supplied..",
+        "thread": "CP Server Thread-13"
+      },
+      {
+        "time": "2026-07-04 10:29:25 ",
+        "loglevel": "ERROR",
+        "msg": "Tautulli Database :: Fatal Error executing SELECT sh.id, shm.grandparent_title, sh.grandparent_rating_key, shm.grandparent_thumb, sh.section_id, shm.year, sh.rating_key, shm.art, sh.media_type, shm.content_rating, shm.rating, shm.labels, sh.started, shm.live, shm.guid, MAX(sh.started) AS last_watch, COUNT(sh.id) AS total_plays, SUM(sh.d) AS total_duration FROM (SELECT *, SUM(CASE WHEN stopped &gt; 0 THEN (stopped - started) -        (CASE WHEN paused_counter IS NULL THEN 0 ELSE paused_counter END) ELSE 0 END)        AS d    FROM session_history    WHERE session_history.media_type = 'episode' AND strftime('%%Y-%%m-%%d', datetime(started, 'unixepoch', 'localtime')) &lt;= '?' AND session_history.stopped &gt;= 1890885600.0 AND session_history.stopped &gt;= 1780586965     GROUP BY session_history.reference_id) AS sh JOIN session_history_metadata AS shm ON shm.id = sh.id GROUP BY shm.grandparent_title ORDER BY total_plays DESC, sh.started DESC LIMIT 10 OFFSET 0  :: Incorrect number of bindings supplied. The current statement uses 0, and there are 1 supplied.",
+        "thread": "CP Server Thread-13"
+      },
+      {
+        "time": "2026-07-04 10:29:16 ",
+        "loglevel": "WARNING",
+        "msg": "Tautulli Users :: Unable to retrieve user 999999999 from database. Returning 'user52' user.",
+        "thread": "CP Server Thread-8"
+      }
+    ]
+  }
+}

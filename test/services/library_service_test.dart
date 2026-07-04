@@ -1,4 +1,3 @@
-import 'package:http/http.dart' as http;
 import 'package:http/testing.dart';
 import 'package:test/test.dart';
 import 'package:tautulli/tautulli.dart';
@@ -18,7 +17,7 @@ void main() {
       ),
       httpClient: MockClient((request) async {
         lastRequestUri = request.url;
-        return http.Response(fixture(fixtureFile), 200);
+        return fixtureResponse(fixtureFile);
       }),
     );
   }
@@ -33,11 +32,11 @@ void main() {
     test('parses paged result', () async {
       makeClient('library/get_libraries_table.json');
       final result = await client.libraries.getLibrariesTable();
-      expect(result.recordsTotal, 3);
-      expect(result.data, hasLength(1));
-      expect(result.data.first.sectionName, 'Movies');
-      expect(result.data.first.sectionType, SectionType.movie);
-      expect(result.data.first.plays, 1234);
+      expect(result.recordsTotal, 27);
+      expect(result.data, hasLength(15));
+      expect(result.data.first.sectionName, 'TV Shows');
+      expect(result.data.first.sectionType, SectionType.show);
+      expect(result.data.first.plays, 52777);
     });
   });
 
@@ -52,9 +51,9 @@ void main() {
     test('parses paged result', () async {
       makeClient('library/get_library_media_info.json');
       final result = await client.libraries.getLibraryMediaInfo(sectionId: 1);
-      expect(result.recordsTotal, 500);
-      expect(result.data.first.title, 'The Matrix');
-      expect(result.data.first.playCount, 5);
+      expect(result.recordsTotal, 4);
+      expect(result.data.first.title, 'Rogue One: A Star Wars Story');
+      expect(result.data.first.playCount, isNull);
     });
 
     test('parses media info fields', () async {
@@ -62,13 +61,13 @@ void main() {
       final item = (await client.libraries.getLibraryMediaInfo(
         sectionId: 1,
       )).data.first;
-      expect(item.bitrate, 8000);
+      expect(item.bitrate, 22964);
       expect(item.container, 'mkv');
-      expect(item.videoCodec, 'h264');
-      expect(item.videoResolution, '1080');
-      expect(item.audioCodec, 'aac');
-      expect(item.audioChannels, 2);
-      expect(item.fileSize, 4831838208);
+      expect(item.videoCodec, 'hevc');
+      expect(item.videoResolution, '4k');
+      expect(item.audioCodec, 'truehd');
+      expect(item.audioChannels, 8);
+      expect(item.fileSize, 23049233562);
     });
   });
 
@@ -84,8 +83,8 @@ void main() {
       makeClient('library/get_library_user_stats.json');
       final result = await client.libraries.getLibraryUserStats(sectionId: 1);
       expect(result, hasLength(1));
-      expect(result.first.friendlyName, 'JohnDoe');
-      expect(result.first.totalPlays, 42);
+      expect(result.first.friendlyName, 'user25');
+      expect(result.first.totalPlays, 4);
     });
   });
 
@@ -130,10 +129,10 @@ void main() {
     test('parses recently added list', () async {
       makeClient('library/get_recently_added.json');
       final result = await client.libraries.getRecentlyAdded(count: 10);
-      expect(result, hasLength(1));
-      expect(result.first.title, 'Inception');
-      expect(result.first.mediaType, MediaType.movie);
-      expect(result.first.genres, contains('Action'));
+      expect(result, hasLength(5));
+      expect(result.first.title, 'FROM');
+      expect(result.first.mediaType, MediaType.show);
+      expect(result.first.genres, contains('Mystery'));
     });
   });
 
@@ -142,12 +141,12 @@ void main() {
       makeClient('library/get_libraries.json');
       final result = await client.libraries.getLibraries();
       expect(lastRequestUri.queryParameters['cmd'], 'get_libraries');
-      expect(result, hasLength(1));
-      expect(result.first.sectionName, 'Movies');
+      expect(result, hasLength(15));
+      expect(result.first.sectionName, '4K Movies');
       // API returns numeric fields as strings; Cast.castToInt coerces them
-      expect(result.first.sectionId, 1);
-      expect(result.first.count, 500);
-      expect(result.first.childCount, 0);
+      expect(result.first.sectionId, 24);
+      expect(result.first.count, 4);
+      expect(result.first.childCount, isNull);
       expect(result.first.isActive, true);
       expect(result.first.art, isNotNull);
       expect(result.first.thumb, isNotNull);
@@ -157,26 +156,25 @@ void main() {
   group('LibraryService.getLibrary()', () {
     test('sends correct cmd with section_id', () async {
       makeClient('library/get_library.json');
-      final result = await client.libraries.getLibrary(sectionId: 1);
+      final result = await client.libraries.getLibrary(sectionId: 24);
       expect(lastRequestUri.queryParameters['cmd'], 'get_library');
-      expect(lastRequestUri.queryParameters['section_id'], '1');
-      expect(result.sectionName, 'Movies');
+      expect(lastRequestUri.queryParameters['section_id'], '24');
+      expect(result.sectionName, '4K Movies');
     });
 
     test('parses extended fields from API reference', () async {
       makeClient('library/get_library.json');
-      final result = await client.libraries.getLibrary(sectionId: 1);
-      expect(result.count, 887);
-      expect(result.rowId, 1);
+      final result = await client.libraries.getLibrary(sectionId: 24);
+      expect(result.count, 4);
+      expect(result.rowId, 20);
       expect(result.doNotify, true);
       expect(result.doNotifyCreated, true);
       expect(result.keepHistory, true);
       expect(result.isActive, true);
       expect(result.deletedSection, false);
-      expect(result.lastAccessed, isA<DateTime>());
-      expect(result.libraryArt, '/:/resources/movie-fanart.jpg');
-      expect(result.libraryThumb, '/:/resources/movie.png');
-      expect(result.serverId, 'ds48g4r354a8v9byrrtr697g3g79w');
+      expect(result.libraryArt, '');
+      expect(result.libraryThumb, 'interfaces/default/images/cover.png');
+      expect(result.serverId, isNotNull);
     });
 
     test('sends include_last_accessed param', () async {
@@ -194,8 +192,8 @@ void main() {
       makeClient('library/get_library_names.json');
       final result = await client.libraries.getLibraryNames();
       expect(lastRequestUri.queryParameters['cmd'], 'get_library_names');
-      expect(result, hasLength(1));
-      expect(result.first.sectionName, 'Movies');
+      expect(result, hasLength(15));
+      expect(result.first.sectionName, 'Documentaries');
       expect(result.first.sectionType, 'movie');
     });
   });

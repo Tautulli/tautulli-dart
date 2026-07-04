@@ -1,1 +1,98 @@
-{"response":{"result":"success","message":null,"data":[{"section_id":1,"section_name":"Movies","section_type":"movie"}]}}
+{
+  "response": {
+    "result": "success",
+    "message": null,
+    "data": [
+      {
+        "section_id": 13,
+        "section_name": "Documentaries",
+        "section_type": "movie",
+        "agent": "tv.plex.agents.movie"
+      },
+      {
+        "section_id": 4,
+        "section_name": "Home Videos",
+        "section_type": "movie",
+        "agent": "com.plexapp.agents.none"
+      },
+      {
+        "section_id": 12,
+        "section_name": "Movies",
+        "section_type": "movie",
+        "agent": "tv.plex.agents.movie"
+      },
+      {
+        "section_id": 7,
+        "section_name": "Movies (Fan Edits)",
+        "section_type": "movie",
+        "agent": "tv.plex.agents.movie"
+      },
+      {
+        "section_id": 6,
+        "section_name": "Comedy Specials",
+        "section_type": "movie",
+        "agent": "tv.plex.agents.movie"
+      },
+      {
+        "section_id": 1,
+        "section_name": "TV Shows",
+        "section_type": "show",
+        "agent": "tv.plex.agents.series"
+      },
+      {
+        "section_id": 19,
+        "section_name": "Music",
+        "section_type": "artist",
+        "agent": "tv.plex.agents.music"
+      },
+      {
+        "section_id": 22,
+        "section_name": "Theater Plays",
+        "section_type": "movie",
+        "agent": "tv.plex.agents.movie"
+      },
+      {
+        "section_id": 24,
+        "section_name": "4K Movies",
+        "section_type": "movie",
+        "agent": "tv.plex.agents.movie"
+      },
+      {
+        "section_id": 25,
+        "section_name": "4K TV Shows",
+        "section_type": "show",
+        "agent": "tv.plex.agents.series"
+      },
+      {
+        "section_id": 26,
+        "section_name": "Photos",
+        "section_type": "photo",
+        "agent": "tv.plex.agents.none"
+      },
+      {
+        "section_id": 27,
+        "section_name": "Audiobooks",
+        "section_type": "artist",
+        "agent": "com.plexapp.agents.audnexus"
+      },
+      {
+        "section_id": 28,
+        "section_name": "Library 1",
+        "section_type": "movie",
+        "agent": "tv.plex.agents.movie"
+      },
+      {
+        "section_id": 30,
+        "section_name": "Library 2",
+        "section_type": "show",
+        "agent": "tv.plex.agents.series"
+      },
+      {
+        "section_id": 31,
+        "section_name": "Docuseries",
+        "section_type": "show",
+        "agent": "tv.plex.agents.series"
+      }
+    ]
+  }
+}

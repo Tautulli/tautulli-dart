@@ -5,14 +5,54 @@
     "data": {
       "data": [
         [
-          "May 08, 2016 09:35:37",
-          "DEBUG",
-          "Auth: Came in with a super-token, authorization succeeded."
+          "Jul 04, 2026 10:29:28.406",
+          "ERROR",
+          "[Req#1be2f6/Transcode/5eb06d01-5c1d-4fc5-b1b0-47e296eb8939/06bb8ac9-3406-4cfa-8d58-569c0fb479c9] [truehd_eae @ 0x146d194a5080] error reading output: -1313558101 (Unknown error occurred)\n"
         ],
         [
-          "May 08, 2016 09:36:10",
-          "INFO",
-          "Completed scanning the Movies library."
+          "Jul 04, 2026 10:29:28.406",
+          "ERROR",
+          "[Req#1be2f7/Transcode/5eb06d01-5c1d-4fc5-b1b0-47e296eb8939/06bb8ac9-3406-4cfa-8d58-569c0fb479c9] [aist#0:1/truehd @ 0x146d18d28500] Error submitting packet to decoder: Unknown error occurred\n"
+        ],
+        [
+          "Jul 04, 2026 10:29:28.408",
+          "ERROR",
+          "[Req#1be2f8/Transcode/5eb06d01-5c1d-4fc5-b1b0-47e296eb8939/06bb8ac9-3406-4cfa-8d58-569c0fb479c9] [truehd_eae @ 0x146d194a5080] error reading output: -1313558101 (Unknown error occurred)\n"
+        ],
+        [
+          "Jul 04, 2026 10:29:28.408",
+          "ERROR",
+          "[Req#1be2f9/Transcode/5eb06d01-5c1d-4fc5-b1b0-47e296eb8939/06bb8ac9-3406-4cfa-8d58-569c0fb479c9] [aist#0:1/truehd @ 0x146d18d28500] Error submitting packet to decoder: Unknown error occurred\n"
+        ],
+        [
+          "Jul 04, 2026 10:29:28.409",
+          "ERROR",
+          "[Req#1be2fa/Transcode/5eb06d01-5c1d-4fc5-b1b0-47e296eb8939/06bb8ac9-3406-4cfa-8d58-569c0fb479c9] [truehd_eae @ 0x146d194a5080] error reading output: -1313558101 (Unknown error occurred)\n"
+        ],
+        [
+          "Jul 04, 2026 10:29:28.409",
+          "ERROR",
+          "[Req#1be2fb/Transcode/5eb06d01-5c1d-4fc5-b1b0-47e296eb8939/06bb8ac9-3406-4cfa-8d58-569c0fb479c9] [aist#0:1/truehd @ 0x146d18d28500] Error submitting packet to decoder: Unknown error occurred\n"
+        ],
+        [
+          "Jul 04, 2026 10:29:28.411",
+          "ERROR",
+          "[Req#1be2fc/Transcode/5eb06d01-5c1d-4fc5-b1b0-47e296eb8939/06bb8ac9-3406-4cfa-8d58-569c0fb479c9] [truehd_eae @ 0x146d194a5080] error reading output: -1313558101 (Unknown error occurred)\n"
+        ],
+        [
+          "Jul 04, 2026 10:29:28.411",
+          "ERROR",
+          "[Req#1be2fd/Transcode/5eb06d01-5c1d-4fc5-b1b0-47e296eb8939/06bb8ac9-3406-4cfa-8d58-569c0fb479c9] [aist#0:1/truehd @ 0x146d18d28500] Error submitting packet to decoder: Unknown error occurred\n"
+        ],
+        [
+          "Jul 04, 2026 10:29:28.413",
+          "ERROR",
+          "[Req#1be2fe/Transcode/5eb06d01-5c1d-4fc5-b1b0-47e296eb8939/06bb8ac9-3406-4cfa-8d58-569c0fb479c9] [truehd_eae @ 0x146d194a5080] error reading output: -1313558101 (Unknown error occurred)\n"
+        ],
+        [
+          "Jul 04, 2026 10:29:28.413",
+          "ERROR",
+          "[Req#1be2ff/Transcode/5eb06d01-5c1d-4fc5-b1b0-47e296eb8939/06bb8ac9-3406-4cfa-8d58-569c0fb479c9] [aist#0:1/truehd @ 0x146d18d28500] Error submitting packet to decoder: Unknown error occurred\n"
         ]
       ]
     }

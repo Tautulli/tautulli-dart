@@ -1,0 +1,813 @@
+{
+  "response": {
+    "result": "success",
+    "message": null,
+    "data": {
+      "id": 3,
+      "agent_id": 0,
+      "agent_name": "recently_added",
+      "agent_label": "Recently Added",
+      "id_name": "",
+      "friendly_name": "",
+      "cron": "0 0 * * 0",
+      "active": 0,
+      "subject": "Recently Added to {server_name}! ({end_date})",
+      "body": "View the newsletter here: {newsletter_url}",
+      "message": "",
+      "config": {
+        "custom_cron": 0,
+        "time_frame": 7,
+        "time_frame_units": "days",
+        "formatted": 1,
+        "threaded": 0,
+        "notifier_id": 0,
+        "filename": "",
+        "save_only": 0,
+        "incl_libraries": []
+      },
+      "email_config": {
+        "from_name": "Tautulli Newsletter",
+        "from": "",
+        "to": [],
+        "cc": [],
+        "bcc": [],
+        "smtp_server": "",
+        "smtp_port": 465,
+        "smtp_user": "",
+        "smtp_password": "",
+        "tls": 2,
+        "html_support": 1,
+        "notifier_id": 0
+      },
+      "config_options": [
+        {
+          "label": "Included Libraries",
+          "value": [],
+          "description": "Select the libraries to include in the newsletter.",
+          "name": "newsletter_config_incl_libraries",
+          "input_type": "selectize",
+          "select_options": {
+            "Movie Libraries": [
+              {
+                "value": 13,
+                "text": "Documentaries"
+              },
+              {
+                "value": 12,
+                "text": "Movies"
+              },
+              {
+                "value": 7,
+                "text": "Movies (Fan Edits)"
+              },
+              {
+                "value": 6,
+                "text": "Comedy Specials"
+              },
+              {
+                "value": 22,
+                "text": "Theater Plays"
+              },
+              {
+                "value": 24,
+                "text": "4K Movies"
+              },
+              {
+                "value": 28,
+                "text": "Library 1"
+              }
+            ],
+            "TV Show Libraries": [
+              {
+                "value": 1,
+                "text": "TV Shows"
+              },
+              {
+                "value": 25,
+                "text": "4K TV Shows"
+              },
+              {
+                "value": 30,
+                "text": "Library 2"
+              },
+              {
+                "value": 31,
+                "text": "Docuseries"
+              }
+            ],
+            "Music Libraries": [
+              {
+                "value": 19,
+                "text": "Music"
+              },
+              {
+                "value": 27,
+                "text": "Audiobooks"
+              }
+            ],
+            "Other Video Libraries": [
+              {
+                "value": 4,
+                "text": "Home Videos"
+              }
+            ]
+          },
+          "select_all": true
+        }
+      ],
+      "email_config_options": [
+        {
+          "label": "From Name",
+          "value": "Tautulli Newsletter",
+          "name": "newsletter_email_from_name",
+          "description": "The name of the sender.",
+          "input_type": "text"
+        },
+        {
+          "label": "From",
+          "value": "",
+          "name": "newsletter_email_from",
+          "description": "The email address of the sender.",
+          "input_type": "text"
+        },
+        {
+          "label": "To",
+          "value": [],
+          "name": "newsletter_email_to",
+          "description": "The email address(es) of the recipients.",
+          "input_type": "selectize",
+          "select_options": [
+            {
+              "value": "user81@gmail.com",
+              "text": "user25"
+            },
+            {
+              "value": "mona@example.com",
+              "text": "user57"
+            },
+            {
+              "value": "user7527@gmail.com",
+              "text": "dave"
+            },
+            {
+              "value": "carol@example.com",
+              "text": "ivy"
+            },
+            {
+              "value": "joe@user77.net",
+              "text": "user38"
+            },
+            {
+              "value": "frank@example.com",
+              "text": "oscar"
+            },
+            {
+              "value": "nina@example.com",
+              "text": "user55"
+            },
+            {
+              "value": "henry@example.com",
+              "text": "user19"
+            },
+            {
+              "value": "user82",
+              "text": "user21"
+            },
+            {
+              "value": "ivy@example.com",
+              "text": "user23"
+            },
+            {
+              "value": "carol@example.com",
+              "text": "pete"
+            },
+            {
+              "value": "alice@example.com",
+              "text": "user34"
+            },
+            {
+              "value": "jack@example.com",
+              "text": "user28"
+            },
+            {
+              "value": "pete@example.com",
+              "text": "grace"
+            },
+            {
+              "value": "erin@example.com",
+              "text": "user64"
+            },
+            {
+              "value": "oscar@example.com",
+              "text": "user33"
+            },
+            {
+              "value": "ivy@example.com",
+              "text": "user68"
+            },
+            {
+              "value": "user91@gmail.com",
+              "text": "user36"
+            },
+            {
+              "value": "dave@example.com",
+              "text": "user42"
+            },
+            {
+              "value": "henry@example.com",
+              "text": "user44"
+            },
+            {
+              "value": "alice@example.com",
+              "text": "user59"
+            },
+            {
+              "value": "ivy@example.com",
+              "text": "user37"
+            },
+            {
+              "value": "user95@gmail.com",
+              "text": "user56"
+            },
+            {
+              "value": "user98@gmail.com",
+              "text": "user63"
+            },
+            {
+              "value": "nina@example.com",
+              "text": "carol"
+            },
+            {
+              "value": "grace@example.com",
+              "text": "user43"
+            },
+            {
+              "value": "henry@example.com",
+              "text": "user62"
+            },
+            {
+              "value": "user105@gmail.com",
+              "text": "user72"
+            },
+            {
+              "value": "dave@example.com",
+              "text": "liam"
+            },
+            {
+              "value": "jack@example.com",
+              "text": "user51"
+            },
+            {
+              "value": "bob@example.com",
+              "text": "user35"
+            },
+            {
+              "value": "grace@example.com",
+              "text": "user49"
+            },
+            {
+              "value": "user73",
+              "text": "erin"
+            },
+            {
+              "value": "bob@example.com",
+              "text": "henry"
+            },
+            {
+              "value": "bob@example.com",
+              "text": "jack"
+            },
+            {
+              "value": "kara@example.com",
+              "text": "user40"
+            },
+            {
+              "value": "pete@example.com",
+              "text": "user65"
+            },
+            {
+              "value": "jack@example.com",
+              "text": "user32"
+            },
+            {
+              "value": "kara@example.com",
+              "text": "user22"
+            },
+            {
+              "value": "frank@example.com",
+              "text": "user104"
+            },
+            {
+              "value": "oscar@example.com",
+              "text": "frank"
+            },
+            {
+              "value": "pete@example.com",
+              "text": "user41"
+            },
+            {
+              "value": "user84aOtaku@gmail.com",
+              "text": "kara"
+            },
+            {
+              "value": "jack@example.com",
+              "text": "user26"
+            },
+            {
+              "value": "kara@example.com",
+              "text": "user53"
+            },
+            {
+              "value": "mona@example.com",
+              "text": "alice"
+            },
+            {
+              "value": "frank@example.com",
+              "text": "user39"
+            },
+            {
+              "value": "oscar@example.com",
+              "text": "user101"
+            },
+            {
+              "value": "grace@example.com",
+              "text": "mona"
+            },
+            {
+              "value": "user78@gmail.com",
+              "text": "nina"
+            }
+          ],
+          "select_all": true
+        },
+        {
+          "label": "CC",
+          "value": [],
+          "name": "newsletter_email_cc",
+          "description": "The email address(es) to CC.",
+          "input_type": "selectize",
+          "select_options": [
+            {
+              "value": "user81@gmail.com",
+              "text": "user25"
+            },
+            {
+              "value": "mona@example.com",
+              "text": "user57"
+            },
+            {
+              "value": "user7527@gmail.com",
+              "text": "dave"
+            },
+            {
+              "value": "carol@example.com",
+              "text": "ivy"
+            },
+            {
+              "value": "joe@user77.net",
+              "text": "user38"
+            },
+            {
+              "value": "frank@example.com",
+              "text": "oscar"
+            },
+            {
+              "value": "nina@example.com",
+              "text": "user55"
+            },
+            {
+              "value": "henry@example.com",
+              "text": "user19"
+            },
+            {
+              "value": "user82",
+              "text": "user21"
+            },
+            {
+              "value": "ivy@example.com",
+              "text": "user23"
+            },
+            {
+              "value": "carol@example.com",
+              "text": "pete"
+            },
+            {
+              "value": "alice@example.com",
+              "text": "user34"
+            },
+            {
+              "value": "jack@example.com",
+              "text": "user28"
+            },
+            {
+              "value": "pete@example.com",
+              "text": "grace"
+            },
+            {
+              "value": "erin@example.com",
+              "text": "user64"
+            },
+            {
+              "value": "oscar@example.com",
+              "text": "user33"
+            },
+            {
+              "value": "ivy@example.com",
+              "text": "user68"
+            },
+            {
+              "value": "user91@gmail.com",
+              "text": "user36"
+            },
+            {
+              "value": "dave@example.com",
+              "text": "user42"
+            },
+            {
+              "value": "henry@example.com",
+              "text": "user44"
+            },
+            {
+              "value": "alice@example.com",
+              "text": "user59"
+            },
+            {
+              "value": "ivy@example.com",
+              "text": "user37"
+            },
+            {
+              "value": "user95@gmail.com",
+              "text": "user56"
+            },
+            {
+              "value": "user98@gmail.com",
+              "text": "user63"
+            },
+            {
+              "value": "nina@example.com",
+              "text": "carol"
+            },
+            {
+              "value": "grace@example.com",
+              "text": "user43"
+            },
+            {
+              "value": "henry@example.com",
+              "text": "user62"
+            },
+            {
+              "value": "user105@gmail.com",
+              "text": "user72"
+            },
+            {
+              "value": "dave@example.com",
+              "text": "liam"
+            },
+            {
+              "value": "jack@example.com",
+              "text": "user51"
+            },
+            {
+              "value": "bob@example.com",
+              "text": "user35"
+            },
+            {
+              "value": "grace@example.com",
+              "text": "user49"
+            },
+            {
+              "value": "user73",
+              "text": "erin"
+            },
+            {
+              "value": "bob@example.com",
+              "text": "henry"
+            },
+            {
+              "value": "bob@example.com",
+              "text": "jack"
+            },
+            {
+              "value": "kara@example.com",
+              "text": "user40"
+            },
+            {
+              "value": "pete@example.com",
+              "text": "user65"
+            },
+            {
+              "value": "jack@example.com",
+              "text": "user32"
+            },
+            {
+              "value": "kara@example.com",
+              "text": "user22"
+            },
+            {
+              "value": "frank@example.com",
+              "text": "user104"
+            },
+            {
+              "value": "oscar@example.com",
+              "text": "frank"
+            },
+            {
+              "value": "pete@example.com",
+              "text": "user41"
+            },
+            {
+              "value": "user84aOtaku@gmail.com",
+              "text": "kara"
+            },
+            {
+              "value": "jack@example.com",
+              "text": "user26"
+            },
+            {
+              "value": "kara@example.com",
+              "text": "user53"
+            },
+            {
+              "value": "mona@example.com",
+              "text": "alice"
+            },
+            {
+              "value": "frank@example.com",
+              "text": "user39"
+            },
+            {
+              "value": "oscar@example.com",
+              "text": "user101"
+            },
+            {
+              "value": "grace@example.com",
+              "text": "mona"
+            },
+            {
+              "value": "user78@gmail.com",
+              "text": "nina"
+            }
+          ],
+          "select_all": true
+        },
+        {
+          "label": "BCC",
+          "value": [],
+          "name": "newsletter_email_bcc",
+          "description": "The email address(es) to BCC.",
+          "input_type": "selectize",
+          "select_options": [
+            {
+              "value": "user81@gmail.com",
+              "text": "user25"
+            },
+            {
+              "value": "mona@example.com",
+              "text": "user57"
+            },
+            {
+              "value": "user7527@gmail.com",
+              "text": "dave"
+            },
+            {
+              "value": "carol@example.com",
+              "text": "ivy"
+            },
+            {
+              "value": "joe@user77.net",
+              "text": "user38"
+            },
+            {
+              "value": "frank@example.com",
+              "text": "oscar"
+            },
+            {
+              "value": "nina@example.com",
+              "text": "user55"
+            },
+            {
+              "value": "henry@example.com",
+              "text": "user19"
+            },
+            {
+              "value": "user82",
+              "text": "user21"
+            },
+            {
+              "value": "ivy@example.com",
+              "text": "user23"
+            },
+            {
+              "value": "carol@example.com",
+              "text": "pete"
+            },
+            {
+              "value": "alice@example.com",
+              "text": "user34"
+            },
+            {
+              "value": "jack@example.com",
+              "text": "user28"
+            },
+            {
+              "value": "pete@example.com",
+              "text": "grace"
+            },
+            {
+              "value": "erin@example.com",
+              "text": "user64"
+            },
+            {
+              "value": "oscar@example.com",
+              "text": "user33"
+            },
+            {
+              "value": "ivy@example.com",
+              "text": "user68"
+            },
+            {
+              "value": "user91@gmail.com",
+              "text": "user36"
+            },
+            {
+              "value": "dave@example.com",
+              "text": "user42"
+            },
+            {
+              "value": "henry@example.com",
+              "text": "user44"
+            },
+            {
+              "value": "alice@example.com",
+              "text": "user59"
+            },
+            {
+              "value": "ivy@example.com",
+              "text": "user37"
+            },
+            {
+              "value": "user95@gmail.com",
+              "text": "user56"
+            },
+            {
+              "value": "user98@gmail.com",
+              "text": "user63"
+            },
+            {
+              "value": "nina@example.com",
+              "text": "carol"
+            },
+            {
+              "value": "grace@example.com",
+              "text": "user43"
+            },
+            {
+              "value": "henry@example.com",
+              "text": "user62"
+            },
+            {
+              "value": "user105@gmail.com",
+              "text": "user72"
+            },
+            {
+              "value": "dave@example.com",
+              "text": "liam"
+            },
+            {
+              "value": "jack@example.com",
+              "text": "user51"
+            },
+            {
+              "value": "bob@example.com",
+              "text": "user35"
+            },
+            {
+              "value": "grace@example.com",
+              "text": "user49"
+            },
+            {
+              "value": "user73",
+              "text": "erin"
+            },
+            {
+              "value": "bob@example.com",
+              "text": "henry"
+            },
+            {
+              "value": "bob@example.com",
+              "text": "jack"
+            },
+            {
+              "value": "kara@example.com",
+              "text": "user40"
+            },
+            {
+              "value": "pete@example.com",
+              "text": "user65"
+            },
+            {
+              "value": "jack@example.com",
+              "text": "user32"
+            },
+            {
+              "value": "kara@example.com",
+              "text": "user22"
+            },
+            {
+              "value": "frank@example.com",
+              "text": "user104"
+            },
+            {
+              "value": "oscar@example.com",
+              "text": "frank"
+            },
+            {
+              "value": "pete@example.com",
+              "text": "user41"
+            },
+            {
+              "value": "user84aOtaku@gmail.com",
+              "text": "kara"
+            },
+            {
+              "value": "jack@example.com",
+              "text": "user26"
+            },
+            {
+              "value": "kara@example.com",
+              "text": "user53"
+            },
+            {
+              "value": "mona@example.com",
+              "text": "alice"
+            },
+            {
+              "value": "frank@example.com",
+              "text": "user39"
+            },
+            {
+              "value": "oscar@example.com",
+              "text": "user101"
+            },
+            {
+              "value": "grace@example.com",
+              "text": "mona"
+            },
+            {
+              "value": "user78@gmail.com",
+              "text": "nina"
+            }
+          ],
+          "select_all": true
+        },
+        {
+          "label": "SMTP Server",
+          "value": "",
+          "name": "newsletter_email_smtp_server",
+          "description": "Host for the SMTP server.",
+          "input_type": "text"
+        },
+        {
+          "label": "SMTP Port",
+          "value": 465,
+          "name": "newsletter_email_smtp_port",
+          "description": "Port for the SMTP server.",
+          "input_type": "number"
+        },
+        {
+          "label": "SMTP Username",
+          "value": "",
+          "name": "newsletter_email_smtp_user",
+          "description": "Username for the SMTP server.",
+          "input_type": "text"
+        },
+        {
+          "label": "SMTP Password",
+          "value": "",
+          "name": "newsletter_email_smtp_password",
+          "description": "Password for the SMTP server.",
+          "input_type": "password"
+        },
+        {
+          "label": "Encryption",
+          "value": 2,
+          "name": "newsletter_email_tls",
+          "description": "Send emails encrypted using SSL or TLS.",
+          "input_type": "select",
+          "select_options": {
+            "0": "None",
+            "1": "TLS/STARTTLS (Typically port 587)",
+            "2": "SSL/TLS (Typically port 465)"
+          }
+        },
+        {
+          "label": "Enable HTML Support",
+          "value": 1,
+          "name": "newsletter_email_html_support",
+          "description": "Style your messages using HTML tags.",
+          "input_type": "checkbox"
+        }
+      ]
+    }
+  }
+}

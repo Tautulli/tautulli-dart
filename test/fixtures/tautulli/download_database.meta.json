@@ -1,0 +1,6 @@
+{
+  "status": 500,
+  "content_type": "text/plain",
+  "bytes": 76,
+  "body_preview": "The requested resource returned more bytes than the declared Content-Length."
+}
