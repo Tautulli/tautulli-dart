@@ -5,3 +5,8 @@ pubspec.lock
 .idea/
 .vscode/
 .DS_Store
+# Development notes — never committed, never published
+CODE_REVIEW.md
+LIVE_TEST_RESULTS.md
+API_REFERENCE_INCONSISTENCIES.md
+TAUTULLI_SERVER_IMPROVEMENTS.md
