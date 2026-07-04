@@ -65,4 +65,12 @@ void main() {
       expect(result.first.thread, isNull);
     });
   });
+
+  group('LogService download logfile param', () {
+    test('downloadPlexLog sends logfile', () async {
+      makeClient('log/get_logs.json');
+      await client.logs.downloadPlexLog(logfile: 'Plex Media Server');
+      expect(lastRequestUri.queryParameters['logfile'], 'Plex Media Server');
+    });
+  });
 }

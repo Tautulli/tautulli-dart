@@ -250,4 +250,12 @@ void main() {
       expect(q.containsKey('section_name'), isFalse);
     });
   });
+
+  group('LibraryService.getPlaylistsTable() userId', () {
+    test('sends user_id', () async {
+      makeClient('library/get_playlists_table.json');
+      await client.libraries.getPlaylistsTable(userId: 5);
+      expect(lastRequestUri.queryParameters['user_id'], '5');
+    });
+  });
 }

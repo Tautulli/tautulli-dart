@@ -1,0 +1,10 @@
+{
+  "response": {
+    "result": "success",
+    "message": null,
+    "data": {
+      "metadata_fields": [{"field": "addedAt", "level": 1}],
+      "media_info_fields": [{"field": "media.aspectRatio", "level": 1}]
+    }
+  }
+}

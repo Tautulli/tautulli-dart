@@ -53,13 +53,24 @@ class LogService {
   }
 
   /// Downloads the Tautulli log file as raw bytes.
-  Future<Uint8List> downloadLog() async {
-    return _client.executeDownload('download_log');
+  ///
+  /// [logfile] selects a specific log file by name.
+  Future<Uint8List> downloadLog({String? logfile}) async {
+    return _client.executeDownload(
+      'download_log',
+      params: {if (logfile != null) 'logfile': logfile},
+    );
   }
 
   /// Downloads the Plex Media Server log file as raw bytes.
-  Future<Uint8List> downloadPlexLog() async {
-    return _client.executeDownload('download_plex_log');
+  ///
+  /// [logfile] selects a specific Plex log file by name (e.g.
+  /// `'Plex Media Server'`, `'Plex Media Scanner'`).
+  Future<Uint8List> downloadPlexLog({String? logfile}) async {
+    return _client.executeDownload(
+      'download_plex_log',
+      params: {if (logfile != null) 'logfile': logfile},
+    );
   }
 
   /// Deletes all entries from the Tautulli login log.

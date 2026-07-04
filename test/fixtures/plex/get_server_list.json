@@ -1,0 +1,9 @@
+{
+  "response": {
+    "result": "success",
+    "message": null,
+    "data": [
+      {"name": "Margarita", "clientIdentifier": "0000", "local": 1}
+    ]
+  }
+}

@@ -9,11 +9,12 @@ class MediaService {
   MediaService(TautulliExecutor client) : _client = client;
 
   /// Returns metadata for a single Plex item identified by [ratingKey].
-  Future<MediaItem> getMetadata({required int ratingKey}) async {
-    final response = await _client.execute(
-      'get_metadata',
-      params: {'rating_key': ratingKey},
-    );
+  ///
+  /// Alternatively pass [syncId] to look up a synced item.
+  Future<MediaItem> getMetadata({required int ratingKey, int? syncId}) async {
+    final params = <String, dynamic>{'rating_key': ratingKey};
+    if (syncId != null) params['sync_id'] = syncId;
+    final response = await _client.execute('get_metadata', params: params);
     return MediaItem.fromJson(response['data'] as Map<String, dynamic>? ?? {});
   }
 
@@ -124,13 +125,18 @@ class MediaService {
   }
 
   /// Deletes the external metadata lookup cache for [ratingKey] from the given [service].
+  ///
+  /// Set [deleteAll] to clear the lookup cache for all items instead.
   Future<void> deleteLookupInfo({
     required int ratingKey,
     required String service,
+    bool? deleteAll,
   }) async {
-    await _client.execute(
-      'delete_lookup_info',
-      params: {'rating_key': ratingKey, 'service': service},
-    );
+    final params = <String, dynamic>{
+      'rating_key': ratingKey,
+      'service': service,
+    };
+    if (deleteAll != null) params['delete_all'] = deleteAll;
+    await _client.execute('delete_lookup_info', params: params);
   }
 }

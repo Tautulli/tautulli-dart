@@ -231,6 +231,7 @@ class LibraryService {
   /// Returns a paginated table of Plex playlists.
   Future<PagedResult<Map<String, dynamic>>> getPlaylistsTable({
     int? sectionId,
+    int? userId,
     String? orderColumn,
     String? orderDir,
     int? start,
@@ -239,6 +240,7 @@ class LibraryService {
   }) async {
     final params = <String, dynamic>{};
     if (sectionId != null) params['section_id'] = sectionId;
+    if (userId != null) params['user_id'] = userId;
     if (orderColumn != null) params['order_column'] = orderColumn;
     if (orderDir != null) params['order_dir'] = orderDir;
     if (start != null) params['start'] = start;

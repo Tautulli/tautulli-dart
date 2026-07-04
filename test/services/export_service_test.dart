@@ -64,4 +64,27 @@ void main() {
       expect(q.containsKey('include_images'), isFalse);
     });
   });
+
+  group('ExportService new params', () {
+    test('getExportsTable sends user_id', () async {
+      makeClient('export/get_exports_table.json');
+      await client.exports.getExportsTable(userId: 5);
+      expect(lastRequestUri.queryParameters['user_id'], '5');
+    });
+
+    test('getExportFields sends sub_media_type', () async {
+      makeClient('export/get_export_fields.json');
+      await client.exports.getExportFields(
+        mediaType: 'collection',
+        subMediaType: 'movie',
+      );
+      expect(lastRequestUri.queryParameters['sub_media_type'], 'movie');
+    });
+
+    test('deleteExport sends delete_all', () async {
+      makeClient('success_response.json');
+      await client.exports.deleteExport(exportId: 1, deleteAll: true);
+      expect(lastRequestUri.queryParameters['delete_all'], '1');
+    });
+  });
 }

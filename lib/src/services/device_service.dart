@@ -20,11 +20,17 @@ class DeviceService {
   }
 
   /// Removes a mobile device registration from Tautulli.
-  Future<void> deleteMobileDevice({required int mobileDeviceId}) async {
-    await _client.execute(
-      'delete_mobile_device',
-      params: {'mobile_device_id': mobileDeviceId},
-    );
+  ///
+  /// Identify the device by its Tautulli [mobileDeviceId] or by its Plex
+  /// [deviceId]; provide one.
+  Future<void> deleteMobileDevice({
+    int? mobileDeviceId,
+    String? deviceId,
+  }) async {
+    final params = <String, dynamic>{};
+    if (mobileDeviceId != null) params['mobile_device_id'] = mobileDeviceId;
+    if (deviceId != null) params['device_id'] = deviceId;
+    await _client.execute('delete_mobile_device', params: params);
   }
 
   /// Registers a mobile device with Tautulli and returns server info.

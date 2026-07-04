@@ -84,4 +84,15 @@ void main() {
       expect(q.containsKey('onesignal_id'), isFalse);
     });
   });
+
+  group('DeviceService.deleteMobileDevice()', () {
+    test('sends device_id (alternative identifier)', () async {
+      makeClient('success_response.json');
+      await client.devices.deleteMobileDevice(deviceId: 'dev-abc');
+      final q = lastRequestUri.queryParameters;
+      expect(q['cmd'], 'delete_mobile_device');
+      expect(q['device_id'], 'dev-abc');
+      expect(q.containsKey('mobile_device_id'), isFalse);
+    });
+  });
 }

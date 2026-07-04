@@ -13,10 +13,11 @@ class ExportService {
 
   /// Returns a paginated list of metadata export jobs.
   ///
-  /// Filter by [sectionId] or [ratingKey] to limit results to a specific
-  /// library or item. Use [start]/[length] for pagination.
+  /// Filter by [sectionId], [userId], or [ratingKey] to limit results to a
+  /// specific library, user, or item. Use [start]/[length] for pagination.
   Future<PagedResult<ExportEntry>> getExportsTable({
     int? sectionId,
+    int? userId,
     int? ratingKey,
     String? orderColumn,
     String? orderDir,
@@ -26,6 +27,7 @@ class ExportService {
   }) async {
     final params = <String, dynamic>{};
     if (sectionId != null) params['section_id'] = sectionId;
+    if (userId != null) params['user_id'] = userId;
     if (ratingKey != null) params['rating_key'] = ratingKey;
     if (orderColumn != null) params['order_column'] = orderColumn;
     if (orderDir != null) params['order_dir'] = orderDir;
@@ -36,32 +38,25 @@ class ExportService {
     final response = await _client.execute('get_exports_table', params: params);
     final data = response['data'] as Map<String, dynamic>? ?? {};
     return PagedResult(
-      data: (data['data'] as List? ?? [])
-          .whereType<Map<String, dynamic>>()
-          .map(ExportEntry.fromJson)
-          .toList(),
+      data: (data['data'] as List? ?? []).whereType<Map<String, dynamic>>().map(ExportEntry.fromJson).toList(),
       recordsTotal: Cast.castToInt(data['recordsTotal']),
       recordsFiltered: Cast.castToInt(data['recordsFiltered']),
     );
   }
 
   /// Returns the available export fields for the given [mediaType].
-  Future<Map<String, dynamic>> getExportFields({
-    required String mediaType,
-  }) async {
-    final response = await _client.execute(
-      'get_export_fields',
-      params: {'media_type': mediaType},
-    );
+  ///
+  /// [subMediaType] narrows collection/playlist fields (e.g. `'movie'`, `'video'`).
+  Future<Map<String, dynamic>> getExportFields({required String mediaType, String? subMediaType}) async {
+    final params = <String, dynamic>{'media_type': mediaType};
+    if (subMediaType != null) params['sub_media_type'] = subMediaType;
+    final response = await _client.execute('get_export_fields', params: params);
     return response['data'] as Map<String, dynamic>? ?? {};
   }
 
   /// Downloads a completed export file by its [exportId].
   Future<Uint8List> downloadExport({required int exportId}) async {
-    return _client.executeDownload(
-      'download_export',
-      params: {'export_id': exportId},
-    );
+    return _client.executeDownload('download_export', params: {'export_id': exportId});
   }
 
   /// Queues a metadata export job.
@@ -106,7 +101,11 @@ class ExportService {
   }
 
   /// Deletes the export job identified by [exportId].
-  Future<void> deleteExport({required int exportId}) async {
-    await _client.execute('delete_export', params: {'export_id': exportId});
+  ///
+  /// Set [deleteAll] to remove all export files instead.
+  Future<void> deleteExport({required int exportId, bool? deleteAll}) async {
+    final params = <String, dynamic>{'export_id': exportId};
+    if (deleteAll != null) params['delete_all'] = deleteAll;
+    await _client.execute('delete_export', params: params);
   }
 }

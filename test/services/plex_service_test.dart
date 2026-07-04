@@ -106,4 +106,14 @@ void main() {
       expect(id, '3502fd8796ee5a72045f020a30cf6f10');
     });
   });
+
+  group('PlexService.getServerList()', () {
+    test('sends include_cloud and all_servers', () async {
+      makeClient('plex/get_server_list.json');
+      await client.plex.getServerList(includeCloud: false, allServers: true);
+      final q = lastRequestUri.queryParameters;
+      expect(q['include_cloud'], '0');
+      expect(q['all_servers'], '1');
+    });
+  });
 }
