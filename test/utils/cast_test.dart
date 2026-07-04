@@ -1,4 +1,5 @@
-import 'package:tautulli/tautulli.dart';
+import 'package:tautulli/src/utils/cast.dart';
+import 'package:tautulli/tautulli.dart' show TautulliBadResponseException;
 import 'package:test/test.dart';
 
 void main() {

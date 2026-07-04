@@ -43,8 +43,13 @@ final class TautulliVersionException extends TautulliException {
   const TautulliVersionException({super.message});
 }
 
-/// Thrown when the server's TLS certificate is expired.
-/// Must be raised by the caller's [http.Client] (e.g. from badCertificateCallback).
+/// Thrown when the server's TLS certificate has expired.
+///
+/// Raised by the native (`dart:io`) network-error mapper on a best-effort basis
+/// when a TLS handshake fails specifically because the certificate is expired;
+/// other verification failures surface as [TautulliCertVerificationException].
+/// A caller's [http.Client] may also raise it directly (e.g. from a
+/// `badCertificateCallback`).
 final class TautulliCertExpiredException extends TautulliException {
   const TautulliCertExpiredException({super.message});
 }

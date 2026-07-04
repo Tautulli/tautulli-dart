@@ -13,8 +13,17 @@ TautulliException mapNetworkException(Exception e) {
     return TautulliConnectionException(message: e.message);
   }
   if (e is HandshakeException) {
-    if (e.toString().contains('CERTIFICATE_VERIFY_FAILED')) {
-      return TautulliCertVerificationException(message: e.toString());
+    final text = e.toString();
+    if (text.contains('CERTIFICATE_VERIFY_FAILED')) {
+      // Best-effort: distinguish an expired certificate from other verification
+      // failures. The exact substring is BoringSSL/platform-dependent, so fall
+      // back to the generic verification exception when it is absent.
+      final lower = text.toLowerCase();
+      if (lower.contains('cert_has_expired') ||
+          lower.contains('certificate has expired')) {
+        return TautulliCertExpiredException(message: text);
+      }
+      return TautulliCertVerificationException(message: text);
     }
     return TautulliConnectionException(message: e.message);
   }

@@ -47,12 +47,19 @@ class TautulliClient implements TautulliExecutor {
   final TautulliConnection connection;
   final http.Client _httpClient;
 
+  /// Whether this client created [_httpClient] itself. Injected clients are the
+  /// caller's to close, so [close] only closes the owned one.
+  final bool _ownsClient;
+
   /// Creates a [TautulliClient] with the given [connection].
   ///
   /// An optional [httpClient] can be supplied for testing or to configure
-  /// SSL/TLS behaviour (e.g. to allow self-signed certificates).
+  /// SSL/TLS behaviour (e.g. to allow self-signed certificates). An injected
+  /// [httpClient] is **not** closed by [close] — the caller retains ownership
+  /// and is responsible for closing it.
   TautulliClient({required this.connection, http.Client? httpClient})
-    : _httpClient = httpClient ?? http.Client();
+    : _httpClient = httpClient ?? http.Client(),
+      _ownsClient = httpClient == null;
 
   /// Service for `get_activity`, `get_stream_data`, and `terminate_session`.
   late final ActivityService activity = ActivityService(this);
@@ -170,8 +177,12 @@ class TautulliClient implements TautulliExecutor {
 
   /// Closes the underlying HTTP client and releases resources.
   ///
-  /// Call this when the client is no longer needed to free sockets.
-  void close() => _httpClient.close();
+  /// Only closes the client if [TautulliClient] created it. When an
+  /// `httpClient` was injected into the constructor, this is a no-op — that
+  /// client belongs to the caller, who must close it.
+  void close() {
+    if (_ownsClient) _httpClient.close();
+  }
 
   // ---------------------------------------------------------------------------
 
