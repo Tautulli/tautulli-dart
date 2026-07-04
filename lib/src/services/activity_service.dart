@@ -15,9 +15,17 @@ class ActivityService {
     if (sessionId != null) params['session_id'] = sessionId;
 
     final response = await _client.execute('get_activity', params: params);
-    return ActivityData.fromJson(
-      response['data'] as Map<String, dynamic>? ?? {},
-    );
+    final data = response['data'] as Map<String, dynamic>? ?? {};
+
+    // A single-session query returns the bare session object as `data`
+    // (no stream counts / sessions wrapper) rather than the full snapshot.
+    if ((sessionKey != null || sessionId != null) &&
+        !data.containsKey('sessions')) {
+      if (data.isEmpty) return const ActivityData();
+      return ActivityData(sessions: [ActivitySession.fromJson(data)]);
+    }
+
+    return ActivityData.fromJson(data);
   }
 
   /// Returns raw stream data for a session as an untyped map.

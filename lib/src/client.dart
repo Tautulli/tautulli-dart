@@ -250,16 +250,8 @@ class TautulliClient implements TautulliExecutor {
       final message =
           (body['response'] as Map<String, dynamic>?)?['message'] as String?;
 
-      if (message == 'Invalid apikey') {
-        throw const TautulliInvalidApiKeyException();
-      }
-
-      final versionMismatch = RegExp(
-        r'^Device registration failed: Tautulli version v\d+\.\d+\.\d+ does not meet the minimum requirement of v\d+\.\d+\.\d+\.',
-      );
-      if (message != null && versionMismatch.hasMatch(message)) {
-        throw TautulliVersionException(message: message);
-      }
+      final mapped = _mapErrorMessage(message);
+      if (mapped != null) throw mapped;
 
       throw TautulliServerException(
         statusCode: response.statusCode,
@@ -279,15 +271,33 @@ class TautulliClient implements TautulliExecutor {
     final message = apiResponse['message'] as String?;
 
     if (result != 'success') {
-      if (message == 'Invalid apikey') {
-        throw const TautulliInvalidApiKeyException();
-      }
-      if (message != null && message.contains('Failed to terminate session')) {
-        throw TautulliTerminateStreamException(message: message);
-      }
+      final mapped = _mapErrorMessage(message);
+      if (mapped != null) throw mapped;
       throw TautulliBadResponseException(message: message ?? 'result: $result');
     }
 
     return apiResponse;
+  }
+
+  static final _versionMismatch = RegExp(
+    r'^Device registration failed: Tautulli version v\d+\.\d+\.\d+ does not meet the minimum requirement of v\d+\.\d+\.\d+\.',
+  );
+
+  /// Maps a Tautulli error message to a specific exception, or `null` when no
+  /// known pattern matches. Applied to both non-200 responses and HTTP 200
+  /// responses whose `result` is not `success`, so error classification does
+  /// not depend on the status code.
+  TautulliException? _mapErrorMessage(String? message) {
+    if (message == null) return null;
+    if (message == 'Invalid apikey') {
+      return const TautulliInvalidApiKeyException();
+    }
+    if (_versionMismatch.hasMatch(message)) {
+      return TautulliVersionException(message: message);
+    }
+    if (message.contains('Failed to terminate session')) {
+      return TautulliTerminateStreamException(message: message);
+    }
+    return null;
   }
 }

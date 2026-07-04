@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import '../executor.dart';
 
 /// Commands: docs, docs_md, arnold
@@ -12,9 +14,11 @@ class ApiService {
   }
 
   /// Returns the Tautulli API documentation as Markdown text.
+  ///
+  /// `docs_md` returns a raw (non-JSON) body, so it is fetched as bytes.
   Future<String> docsMd() async {
-    final response = await _client.execute('docs_md');
-    return (response['data'] as String?) ?? '';
+    final bytes = await _client.executeDownload('docs_md');
+    return utf8.decode(bytes, allowMalformed: true);
   }
 
   /// Returns a random Arnold Schwarzenegger quote.

@@ -88,6 +88,9 @@ class PlexService {
   }
 
   /// Returns synced items for a Plex client device.
+  ///
+  /// Note: Plex has retired the Sync feature, so modern servers return no
+  /// synced items and this yields an empty list.
   Future<List<Map<String, dynamic>>> getSyncedItems({
     String? machineId,
     int? userId,
@@ -96,9 +99,10 @@ class PlexService {
     if (machineId != null) params['machine_id'] = machineId;
     if (userId != null) params['user_id'] = userId;
     final response = await _client.execute('get_synced_items', params: params);
-    return (response['data'] as List? ?? [])
-        .whereType<Map<String, dynamic>>()
-        .toList();
+    // Servers with no sync data return {} instead of a list.
+    final data = response['data'];
+    if (data is! List) return [];
+    return data.whereType<Map<String, dynamic>>().toList();
   }
 
   /// Deletes the synced item [syncId] from the device identified by [clientId].

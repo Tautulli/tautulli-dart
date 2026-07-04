@@ -40,4 +40,23 @@ void main() {
       expect(result, contains('crush'));
     });
   });
+
+  group('ApiService.docsMd()', () {
+    test('decodes the raw (non-JSON) markdown body', () async {
+      client = TautulliClient(
+        connection: const TautulliConnection(
+          protocol: 'http',
+          domain: 'tautulli.local',
+          apiKey: 'abc123',
+        ),
+        httpClient: MockClient((request) async {
+          lastRequestUri = request.url;
+          return http.Response('# Tautulli API\n\n## General structure', 200);
+        }),
+      );
+      final result = await client.api.docsMd();
+      expect(lastRequestUri.queryParameters['cmd'], 'docs_md');
+      expect(result, contains('# Tautulli API'));
+    });
+  });
 }

@@ -66,6 +66,7 @@ export 'src/models/newsletter/newsletter_config.dart';
 export 'src/models/newsletter/newsletter_log_entry.dart';
 export 'src/models/notification/notification_log_entry.dart';
 export 'src/models/notification/notifier_config.dart';
+export 'src/models/notification/notifier_parameter.dart';
 export 'src/models/plex/plex_server_info.dart';
 export 'src/models/tautulli/register_device_result.dart';
 export 'src/models/tautulli/tautulli_settings.dart';

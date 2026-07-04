@@ -88,6 +88,15 @@ void main() {
       expect(m.isFinal, isTrue);
     });
 
+    test('wraps a single-session (bare object) response', () async {
+      makeClient('activity/get_activity_session.json');
+      final data = await client.activity.getActivity(sessionKey: 27);
+      expect(data.sessions, hasLength(1));
+      expect(data.sessions.first.sessionKey, 27);
+      expect(data.sessions.first.title, 'The Matrix');
+      expect(data.sessions.first.state, PlaybackState.playing);
+    });
+
     test('passes optional params', () async {
       makeClient('activity/get_activity.json');
       await client.activity.getActivity(sessionKey: 42, sessionId: 'abc');

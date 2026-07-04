@@ -221,4 +221,33 @@ void main() {
       expect(q['do_notify_created'], '1');
     });
   });
+
+  group('LibraryService.deleteLibrary()', () {
+    test('sends server_id and section_id (not section_name)', () async {
+      makeClient('success_response.json');
+      await client.libraries.deleteLibrary(serverId: 'srv-abc', sectionId: 3);
+      final q = lastRequestUri.queryParameters;
+      expect(q['cmd'], 'delete_library');
+      expect(q['server_id'], 'srv-abc');
+      expect(q['section_id'], '3');
+      expect(q.containsKey('section_name'), isFalse);
+    });
+  });
+
+  group('LibraryService.deleteAllLibraryHistory()', () {
+    test('sends server_id, section_id and optional row_ids', () async {
+      makeClient('success_response.json');
+      await client.libraries.deleteAllLibraryHistory(
+        serverId: 'srv-abc',
+        sectionId: 3,
+        rowIds: [5, 6],
+      );
+      final q = lastRequestUri.queryParameters;
+      expect(q['cmd'], 'delete_all_library_history');
+      expect(q['server_id'], 'srv-abc');
+      expect(q['section_id'], '3');
+      expect(q['row_ids'], '5,6');
+      expect(q.containsKey('section_name'), isFalse);
+    });
+  });
 }

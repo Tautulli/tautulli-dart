@@ -1,6 +1,7 @@
 import '../executor.dart';
 import '../models/notification/notification_log_entry.dart';
 import '../models/notification/notifier_config.dart';
+import '../models/notification/notifier_parameter.dart';
 import '../models/paged_result.dart';
 import '../utils/cast.dart';
 
@@ -35,10 +36,15 @@ class NotificationService {
     );
   }
 
-  /// Returns the available notification parameters and their descriptions.
-  Future<Map<String, dynamic>> getNotifierParameters() async {
+  /// Returns the notification template parameters available for message text.
+  Future<List<NotifierParameter>> getNotifierParameters() async {
     final response = await _client.execute('get_notifier_parameters');
-    return response['data'] as Map<String, dynamic>? ?? {};
+    final data = response['data'];
+    if (data is! List) return [];
+    return data
+        .whereType<Map<String, dynamic>>()
+        .map(NotifierParameter.fromJson)
+        .toList();
   }
 
   /// Returns a paginated list of notification log entries.

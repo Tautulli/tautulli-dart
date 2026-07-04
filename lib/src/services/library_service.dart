@@ -298,25 +298,32 @@ class LibraryService {
   }
 
   /// Marks a library section as deleted in Tautulli's database.
+  ///
+  /// [serverId] is the Plex server machine identifier
+  /// (see `PlexService.getServerInfo().pmsIdentifier`).
   Future<void> deleteLibrary({
+    required String serverId,
     required int sectionId,
-    required String sectionName,
   }) async {
     await _client.execute(
       'delete_library',
-      params: {'section_id': sectionId, 'section_name': sectionName},
+      params: {'server_id': serverId, 'section_id': sectionId},
     );
   }
 
   /// Deletes all watch history for the library identified by [sectionId].
+  ///
+  /// [serverId] is the Plex server machine identifier
+  /// (see `PlexService.getServerInfo().pmsIdentifier`). Optionally limit the
+  /// deletion to specific history [rowIds].
   Future<void> deleteAllLibraryHistory({
+    required String serverId,
     required int sectionId,
-    required String sectionName,
-    String? rowIds,
+    List<int>? rowIds,
   }) async {
     final params = <String, dynamic>{
+      'server_id': serverId,
       'section_id': sectionId,
-      'section_name': sectionName,
     };
     if (rowIds != null) params['row_ids'] = rowIds;
     await _client.execute('delete_all_library_history', params: params);

@@ -78,4 +78,13 @@ void main() {
       expect(q.containsKey('machine_id'), isFalse);
     });
   });
+
+  group('PlexService.getSyncedItems()', () {
+    test('returns empty list when server sends {} (sync retired)', () async {
+      makeClient('plex/get_synced_items.json');
+      final result = await client.plex.getSyncedItems();
+      expect(lastRequestUri.queryParameters['cmd'], 'get_synced_items');
+      expect(result, isEmpty);
+    });
+  });
 }

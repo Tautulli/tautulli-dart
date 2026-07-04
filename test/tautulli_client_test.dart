@@ -354,6 +354,24 @@ void main() {
         throwsA(isA<TautulliBadResponseException>()),
       );
     });
+
+    test('maps terminate failure on an HTTP 400 response (not just 200)', () {
+      final client = TautulliClient(
+        connection: connection,
+        httpClient: MockClient(
+          (_) async => http.Response(
+            '{"response":{"result":"error","message":'
+            '"Failed to terminate session: Invalid session_key"}}',
+            400,
+          ),
+        ),
+      );
+
+      expect(
+        () => client.execute('terminate_session'),
+        throwsA(isA<TautulliTerminateStreamException>()),
+      );
+    });
   });
 
   group('ImageService.buildImageUrl()', () {
