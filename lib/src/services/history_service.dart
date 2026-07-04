@@ -102,8 +102,12 @@ class HistoryService {
     if (after != null) params['after'] = _formatDate(after);
 
     final response = await _client.execute('get_home_stats', params: params);
+    final data = response['data'];
+    // A single-stat query ([statId]) returns the bare stat-group object
+    // rather than the list of groups.
+    if (data is Map<String, dynamic>) return [HomeStatGroup.fromJson(data)];
     return Cast.dataList(
-      response['data'],
+      data,
       'get_home_stats',
     ).whereType<Map<String, dynamic>>().map(HomeStatGroup.fromJson).toList();
   }
