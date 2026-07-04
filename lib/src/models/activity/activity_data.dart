@@ -4,6 +4,7 @@ import '../../types/playback_state.dart';
 import '../../types/stream_decision.dart';
 import '../../types/subtitle_decision.dart';
 import '../../utils/cast.dart';
+import '../marker.dart';
 
 /// Snapshot of current Plex activity returned by `get_activity`.
 class ActivityData {
@@ -154,7 +155,7 @@ class ActivitySession {
   final String? qualityProfile;
 
   /// Whether the stream is being relayed through Plex Relay.
-  final bool? relay;
+  final bool? relayed;
 
   /// Whether the connection to the Plex client is secured.
   final bool? secure;
@@ -241,9 +242,6 @@ class ActivitySession {
 
   /// Current playback state.
   final PlaybackState? state;
-
-  /// Sub-type string for the playing item.
-  final String? subType;
 
   /// Thumbnail URL path for the playing item.
   final String? thumb;
@@ -535,6 +533,305 @@ class ActivitySession {
   /// Whether bandwidth throttling is active for this session.
   final bool? throttled;
 
+  // ---- Extended fields (full get_activity session coverage) ----
+
+  /// Session field `aspect_ratio` from `get_activity`.
+  final String? aspectRatio;
+
+  /// Session field `audience_rating` from `get_activity`.
+  final String? audienceRating;
+
+  /// Session field `audience_rating_image` from `get_activity`.
+  final String? audienceRatingImage;
+
+  /// Session field `audio_bitrate_mode` from `get_activity`.
+  final String? audioBitrateMode;
+
+  /// Session field `audio_language_code` from `get_activity`.
+  final String? audioLanguageCode;
+
+  /// Session field `banner` from `get_activity`.
+  final String? banner;
+
+  /// Session field `begins_at` from `get_activity`.
+  final int? beginsAt;
+
+  /// Session field `bif_thumb` from `get_activity`.
+  final String? bifThumb;
+
+  /// Session field `bitrate` from `get_activity`.
+  final int? bitrate;
+
+  /// Session field `channel_id` from `get_activity`.
+  final String? channelId;
+
+  /// Session field `channel_identifier` from `get_activity`.
+  final String? channelIdentifier;
+
+  /// Session field `channel_stream` from `get_activity`.
+  final int? channelStream;
+
+  /// Session field `channel_thumb` from `get_activity`.
+  final String? channelThumb;
+
+  /// Session field `channel_title` from `get_activity`.
+  final String? channelTitle;
+
+  /// Session field `channel_vcn` from `get_activity`.
+  final String? channelVcn;
+
+  /// Session field `children_count` from `get_activity`.
+  final int? childrenCount;
+
+  /// Session field `collections` from `get_activity`.
+  final List<String>? collections;
+
+  /// Session field `content_rating` from `get_activity`.
+  final String? contentRating;
+
+  /// Session field `deleted_user` from `get_activity`.
+  final bool? deletedUser;
+
+  /// Session field `device` from `get_activity`.
+  final String? device;
+
+  /// Session field `directors` from `get_activity`.
+  final List<String>? directors;
+
+  /// Session field `do_notify` from `get_activity`.
+  final bool? doNotify;
+
+  /// Session field `edition_title` from `get_activity`.
+  final String? editionTitle;
+
+  /// Session field `email` from `get_activity`.
+  final String? email;
+
+  /// Session field `ends_at` from `get_activity`.
+  final int? endsAt;
+
+  /// Session field `file` from `get_activity`.
+  final String? file;
+
+  /// Session field `file_size` from `get_activity`.
+  final int? fileSize;
+
+  /// Session field `genres` from `get_activity`.
+  final List<String>? genres;
+
+  /// Session field `grandparent_guid` from `get_activity`.
+  final String? grandparentGuid;
+
+  /// Session field `grandparent_guids` from `get_activity`.
+  final List<String>? grandparentGuids;
+
+  /// Session field `grandparent_slug` from `get_activity`.
+  final String? grandparentSlug;
+
+  /// Session field `grandparent_year` from `get_activity`.
+  final String? grandparentYear;
+
+  /// Session field `guid` from `get_activity`.
+  final String? guid;
+
+  /// Session field `guids` from `get_activity`.
+  final List<String>? guids;
+
+  /// Session field `id` from `get_activity`.
+  final String? id;
+
+  /// Session field `indexes` from `get_activity`.
+  final int? indexes;
+
+  /// Session field `is_active` from `get_activity`.
+  final bool? isActive;
+
+  /// Session field `is_admin` from `get_activity`.
+  final bool? isAdmin;
+
+  /// Session field `is_allow_sync` from `get_activity`.
+  final bool? isAllowSync;
+
+  /// Session field `is_home_user` from `get_activity`.
+  final bool? isHomeUser;
+
+  /// Session field `is_restricted` from `get_activity`.
+  final bool? isRestricted;
+
+  /// Session field `keep_history` from `get_activity`.
+  final bool? keepHistory;
+
+  /// Session field `labels` from `get_activity`.
+  final List<String>? labels;
+
+  /// Session field `last_seen` from `get_activity`.
+  final int? lastSeen;
+
+  /// Session field `last_viewed_at` from `get_activity`.
+  final int? lastViewedAt;
+
+  /// Session field `library_name` from `get_activity`.
+  final String? libraryName;
+
+  /// Session field `markers` from `get_activity`.
+  final List<Marker>? markers;
+
+  /// Session field `parent_guid` from `get_activity`.
+  final String? parentGuid;
+
+  /// Session field `parent_guids` from `get_activity`.
+  final List<String>? parentGuids;
+
+  /// Session field `parent_slug` from `get_activity`.
+  final String? parentSlug;
+
+  /// Session field `parent_year` from `get_activity`.
+  final String? parentYear;
+
+  /// Session field `profile` from `get_activity`.
+  final String? profile;
+
+  /// Session field `protocol` from `get_activity`.
+  final String? protocol;
+
+  /// Session field `rating` from `get_activity`.
+  final String? rating;
+
+  /// Session field `rating_image` from `get_activity`.
+  final String? ratingImage;
+
+  /// Session field `row_id` from `get_activity`.
+  final int? rowId;
+
+  /// Session field `selected` from `get_activity`.
+  final bool? selected;
+
+  /// Session field `shared_libraries` from `get_activity`.
+  final List<String>? sharedLibraries;
+
+  /// Session field `slug` from `get_activity`.
+  final String? slug;
+
+  /// Session field `sort_title` from `get_activity`.
+  final String? sortTitle;
+
+  /// Session field `stream_audio_bitrate_mode` from `get_activity`.
+  final String? streamAudioBitrateMode;
+
+  /// Session field `stream_audio_channel_layout_` from `get_activity`.
+  final String? streamAudioChannelLayoutFull;
+
+  /// Session field `stream_subtitle_transient` from `get_activity`.
+  final bool? streamSubtitleTransient;
+
+  /// Session field `stream_video_bitrate` from `get_activity`.
+  final int? streamVideoBitrate;
+
+  /// Session field `stream_video_dovi_bl_present` from `get_activity`.
+  final bool? streamVideoDoviBlPresent;
+
+  /// Session field `stream_video_dovi_el_present` from `get_activity`.
+  final bool? streamVideoDoviElPresent;
+
+  /// Session field `stream_video_dovi_level` from `get_activity`.
+  final int? streamVideoDoviLevel;
+
+  /// Session field `stream_video_dovi_present` from `get_activity`.
+  final bool? streamVideoDoviPresent;
+
+  /// Session field `stream_video_dovi_profile` from `get_activity`.
+  final int? streamVideoDoviProfile;
+
+  /// Session field `stream_video_dovi_rpu_present` from `get_activity`.
+  final bool? streamVideoDoviRpuPresent;
+
+  /// Session field `stream_video_dovi_version` from `get_activity`.
+  final int? streamVideoDoviVersion;
+
+  /// Session field `studio` from `get_activity`.
+  final String? studio;
+
+  /// Session field `subtitle_decision` from `get_activity`.
+  final String? subtitleDecision;
+
+  /// Session field `summary` from `get_activity`.
+  final String? summary;
+
+  /// Session field `synced_version` from `get_activity`.
+  final int? syncedVersion;
+
+  /// Session field `synced_version_profile` from `get_activity`.
+  final String? syncedVersionProfile;
+
+  /// Session field `tagline` from `get_activity`.
+  final String? tagline;
+
+  /// Session field `transcode_audio_channels` from `get_activity`.
+  final String? transcodeAudioChannels;
+
+  /// Session field `transcode_audio_codec` from `get_activity`.
+  final String? transcodeAudioCodec;
+
+  /// Session field `transcode_hw_encode` from `get_activity`.
+  final String? transcodeHwEncode;
+
+  /// Session field `transcode_hw_encode_title` from `get_activity`.
+  final String? transcodeHwEncodeTitle;
+
+  /// Session field `transcode_video_codec` from `get_activity`.
+  final String? transcodeVideoCodec;
+
+  /// Session field `updated_at` from `get_activity`.
+  final int? updatedAt;
+
+  /// Session field `user` from `get_activity`.
+  final String? user;
+
+  /// Session field `user_rating` from `get_activity`.
+  final String? userRating;
+
+  /// Session field `username` from `get_activity`.
+  final String? username;
+
+  /// Session field `video_bitrate` from `get_activity`.
+  final int? videoBitrate;
+
+  /// Session field `video_chroma_subsampling` from `get_activity`.
+  final String? videoChromaSubsampling;
+
+  /// Session field `video_dovi_bl_present` from `get_activity`.
+  final bool? videoDoviBlPresent;
+
+  /// Session field `video_dovi_el_present` from `get_activity`.
+  final bool? videoDoviElPresent;
+
+  /// Session field `video_dovi_level` from `get_activity`.
+  final int? videoDoviLevel;
+
+  /// Session field `video_dovi_present` from `get_activity`.
+  final bool? videoDoviPresent;
+
+  /// Session field `video_dovi_profile` from `get_activity`.
+  final int? videoDoviProfile;
+
+  /// Session field `video_dovi_rpu_present` from `get_activity`.
+  final bool? videoDoviRpuPresent;
+
+  /// Session field `video_dovi_version` from `get_activity`.
+  final int? videoDoviVersion;
+
+  /// Session field `video_framerate` from `get_activity`.
+  final String? videoFramerate;
+
+  /// Session field `video_height` from `get_activity`.
+  final int? videoHeight;
+
+  /// Session field `video_width` from `get_activity`.
+  final int? videoWidth;
+
+  /// Session field `writers` from `get_activity`.
+  final List<String>? writers;
+
   const ActivitySession({
     this.audioChannelLayout,
     this.audioBitrate,
@@ -562,7 +859,7 @@ class ActivitySession {
     this.product,
     this.productVersion,
     this.qualityProfile,
-    this.relay,
+    this.relayed,
     this.secure,
     this.sessionId,
     this.sessionKey,
@@ -592,7 +889,6 @@ class ActivitySession {
     this.ratingKey,
     this.sectionId,
     this.state,
-    this.subType,
     this.thumb,
     this.title,
     this.type,
@@ -685,6 +981,105 @@ class ActivitySession {
     this.transcodeThrottled,
     this.transcodeWidth,
     this.throttled,
+    this.aspectRatio,
+    this.audienceRating,
+    this.audienceRatingImage,
+    this.audioBitrateMode,
+    this.audioLanguageCode,
+    this.banner,
+    this.beginsAt,
+    this.bifThumb,
+    this.bitrate,
+    this.channelId,
+    this.channelIdentifier,
+    this.channelStream,
+    this.channelThumb,
+    this.channelTitle,
+    this.channelVcn,
+    this.childrenCount,
+    this.collections,
+    this.contentRating,
+    this.deletedUser,
+    this.device,
+    this.directors,
+    this.doNotify,
+    this.editionTitle,
+    this.email,
+    this.endsAt,
+    this.file,
+    this.fileSize,
+    this.genres,
+    this.grandparentGuid,
+    this.grandparentGuids,
+    this.grandparentSlug,
+    this.grandparentYear,
+    this.guid,
+    this.guids,
+    this.id,
+    this.indexes,
+    this.isActive,
+    this.isAdmin,
+    this.isAllowSync,
+    this.isHomeUser,
+    this.isRestricted,
+    this.keepHistory,
+    this.labels,
+    this.lastSeen,
+    this.lastViewedAt,
+    this.libraryName,
+    this.markers,
+    this.parentGuid,
+    this.parentGuids,
+    this.parentSlug,
+    this.parentYear,
+    this.profile,
+    this.protocol,
+    this.rating,
+    this.ratingImage,
+    this.rowId,
+    this.selected,
+    this.sharedLibraries,
+    this.slug,
+    this.sortTitle,
+    this.streamAudioBitrateMode,
+    this.streamAudioChannelLayoutFull,
+    this.streamSubtitleTransient,
+    this.streamVideoBitrate,
+    this.streamVideoDoviBlPresent,
+    this.streamVideoDoviElPresent,
+    this.streamVideoDoviLevel,
+    this.streamVideoDoviPresent,
+    this.streamVideoDoviProfile,
+    this.streamVideoDoviRpuPresent,
+    this.streamVideoDoviVersion,
+    this.studio,
+    this.subtitleDecision,
+    this.summary,
+    this.syncedVersion,
+    this.syncedVersionProfile,
+    this.tagline,
+    this.transcodeAudioChannels,
+    this.transcodeAudioCodec,
+    this.transcodeHwEncode,
+    this.transcodeHwEncodeTitle,
+    this.transcodeVideoCodec,
+    this.updatedAt,
+    this.user,
+    this.userRating,
+    this.username,
+    this.videoBitrate,
+    this.videoChromaSubsampling,
+    this.videoDoviBlPresent,
+    this.videoDoviElPresent,
+    this.videoDoviLevel,
+    this.videoDoviPresent,
+    this.videoDoviProfile,
+    this.videoDoviRpuPresent,
+    this.videoDoviVersion,
+    this.videoFramerate,
+    this.videoHeight,
+    this.videoWidth,
+    this.writers,
   });
 
   /// Parses an [ActivitySession] from a Tautulli API JSON map.
@@ -727,7 +1122,7 @@ class ActivitySession {
       product: Cast.castToString(json['product']),
       productVersion: Cast.castToString(json['product_version']),
       qualityProfile: Cast.castToString(json['quality_profile']),
-      relay: Cast.castToBool(json['relay']),
+      relayed: Cast.castToBool(json['relayed']),
       secure: Cast.castToBool(json['secure']),
       sessionId: Cast.castToString(json['session_id']),
       sessionKey: Cast.castToInt(json['session_key']),
@@ -762,7 +1157,6 @@ class ActivitySession {
       ratingKey: Cast.castToInt(json['rating_key']),
       sectionId: Cast.castToInt(json['section_id']),
       state: PlaybackState.fromString(Cast.castToString(json['state'])),
-      subType: Cast.castToString(json['sub_type']),
       thumb: Cast.castToString(json['thumb']),
       title: Cast.castToString(json['title']),
       type: Cast.castToString(json['type']),
@@ -917,6 +1311,137 @@ class ActivitySession {
       transcodeThrottled: Cast.castToBool(json['transcode_throttled']),
       transcodeWidth: Cast.castToInt(json['transcode_width']),
       throttled: Cast.castToBool(json['throttled']),
+
+      // Extended fields
+      aspectRatio: Cast.castToString(json['aspect_ratio']),
+      audienceRating: Cast.castToString(json['audience_rating']),
+      audienceRatingImage: Cast.castToString(json['audience_rating_image']),
+      audioBitrateMode: Cast.castToString(json['audio_bitrate_mode']),
+      audioLanguageCode: Cast.castToString(json['audio_language_code']),
+      banner: Cast.castToString(json['banner']),
+      beginsAt: Cast.castToInt(json['begins_at']),
+      bifThumb: Cast.castToString(json['bif_thumb']),
+      bitrate: Cast.castToInt(json['bitrate']),
+      channelId: Cast.castToString(json['channel_id']),
+      channelIdentifier: Cast.castToString(json['channel_identifier']),
+      channelStream: Cast.castToInt(json['channel_stream']),
+      channelThumb: Cast.castToString(json['channel_thumb']),
+      channelTitle: Cast.castToString(json['channel_title']),
+      channelVcn: Cast.castToString(json['channel_vcn']),
+      childrenCount: Cast.castToInt(json['children_count']),
+      collections: (json['collections'] as List?)
+          ?.map((e) => e.toString())
+          .toList(),
+      contentRating: Cast.castToString(json['content_rating']),
+      deletedUser: Cast.castToBool(json['deleted_user']),
+      device: Cast.castToString(json['device']),
+      directors: (json['directors'] as List?)
+          ?.map((e) => e.toString())
+          .toList(),
+      doNotify: Cast.castToBool(json['do_notify']),
+      editionTitle: Cast.castToString(json['edition_title']),
+      email: Cast.castToString(json['email']),
+      endsAt: Cast.castToInt(json['ends_at']),
+      file: Cast.castToString(json['file']),
+      fileSize: Cast.castToInt(json['file_size']),
+      genres: (json['genres'] as List?)?.map((e) => e.toString()).toList(),
+      grandparentGuid: Cast.castToString(json['grandparent_guid']),
+      grandparentGuids: (json['grandparent_guids'] as List?)
+          ?.map((e) => e.toString())
+          .toList(),
+      grandparentSlug: Cast.castToString(json['grandparent_slug']),
+      grandparentYear: Cast.castToString(json['grandparent_year']),
+      guid: Cast.castToString(json['guid']),
+      guids: (json['guids'] as List?)?.map((e) => e.toString()).toList(),
+      id: Cast.castToString(json['id']),
+      indexes: Cast.castToInt(json['indexes']),
+      isActive: Cast.castToBool(json['is_active']),
+      isAdmin: Cast.castToBool(json['is_admin']),
+      isAllowSync: Cast.castToBool(json['is_allow_sync']),
+      isHomeUser: Cast.castToBool(json['is_home_user']),
+      isRestricted: Cast.castToBool(json['is_restricted']),
+      keepHistory: Cast.castToBool(json['keep_history']),
+      labels: (json['labels'] as List?)?.map((e) => e.toString()).toList(),
+      lastSeen: Cast.castToInt(json['last_seen']),
+      lastViewedAt: Cast.castToInt(json['last_viewed_at']),
+      libraryName: Cast.castToString(json['library_name']),
+      markers: _markersFromList(json['markers'] as List?),
+      parentGuid: Cast.castToString(json['parent_guid']),
+      parentGuids: (json['parent_guids'] as List?)
+          ?.map((e) => e.toString())
+          .toList(),
+      parentSlug: Cast.castToString(json['parent_slug']),
+      parentYear: Cast.castToString(json['parent_year']),
+      profile: Cast.castToString(json['profile']),
+      protocol: Cast.castToString(json['protocol']),
+      rating: Cast.castToString(json['rating']),
+      ratingImage: Cast.castToString(json['rating_image']),
+      rowId: Cast.castToInt(json['row_id']),
+      selected: Cast.castToBool(json['selected']),
+      sharedLibraries: (json['shared_libraries'] as List?)
+          ?.map((e) => e.toString())
+          .toList(),
+      slug: Cast.castToString(json['slug']),
+      sortTitle: Cast.castToString(json['sort_title']),
+      streamAudioBitrateMode: Cast.castToString(
+        json['stream_audio_bitrate_mode'],
+      ),
+      streamAudioChannelLayoutFull: Cast.castToString(
+        json['stream_audio_channel_layout_'],
+      ),
+      streamSubtitleTransient: Cast.castToBool(
+        json['stream_subtitle_transient'],
+      ),
+      streamVideoBitrate: Cast.castToInt(json['stream_video_bitrate']),
+      streamVideoDoviBlPresent: Cast.castToBool(
+        json['stream_video_dovi_bl_present'],
+      ),
+      streamVideoDoviElPresent: Cast.castToBool(
+        json['stream_video_dovi_el_present'],
+      ),
+      streamVideoDoviLevel: Cast.castToInt(json['stream_video_dovi_level']),
+      streamVideoDoviPresent: Cast.castToBool(
+        json['stream_video_dovi_present'],
+      ),
+      streamVideoDoviProfile: Cast.castToInt(json['stream_video_dovi_profile']),
+      streamVideoDoviRpuPresent: Cast.castToBool(
+        json['stream_video_dovi_rpu_present'],
+      ),
+      streamVideoDoviVersion: Cast.castToInt(json['stream_video_dovi_version']),
+      studio: Cast.castToString(json['studio']),
+      subtitleDecision: Cast.castToString(json['subtitle_decision']),
+      summary: Cast.castToString(json['summary']),
+      syncedVersion: Cast.castToInt(json['synced_version']),
+      syncedVersionProfile: Cast.castToString(json['synced_version_profile']),
+      tagline: Cast.castToString(json['tagline']),
+      transcodeAudioChannels: Cast.castToString(
+        json['transcode_audio_channels'],
+      ),
+      transcodeAudioCodec: Cast.castToString(json['transcode_audio_codec']),
+      transcodeHwEncode: Cast.castToString(json['transcode_hw_encode']),
+      transcodeHwEncodeTitle: Cast.castToString(
+        json['transcode_hw_encode_title'],
+      ),
+      transcodeVideoCodec: Cast.castToString(json['transcode_video_codec']),
+      updatedAt: Cast.castToInt(json['updated_at']),
+      user: Cast.castToString(json['user']),
+      userRating: Cast.castToString(json['user_rating']),
+      username: Cast.castToString(json['username']),
+      videoBitrate: Cast.castToInt(json['video_bitrate']),
+      videoChromaSubsampling: Cast.castToString(
+        json['video_chroma_subsampling'],
+      ),
+      videoDoviBlPresent: Cast.castToBool(json['video_dovi_bl_present']),
+      videoDoviElPresent: Cast.castToBool(json['video_dovi_el_present']),
+      videoDoviLevel: Cast.castToInt(json['video_dovi_level']),
+      videoDoviPresent: Cast.castToBool(json['video_dovi_present']),
+      videoDoviProfile: Cast.castToInt(json['video_dovi_profile']),
+      videoDoviRpuPresent: Cast.castToBool(json['video_dovi_rpu_present']),
+      videoDoviVersion: Cast.castToInt(json['video_dovi_version']),
+      videoFramerate: Cast.castToString(json['video_framerate']),
+      videoHeight: Cast.castToInt(json['video_height']),
+      videoWidth: Cast.castToInt(json['video_width']),
+      writers: (json['writers'] as List?)?.map((e) => e.toString()).toList(),
     );
   }
 
@@ -930,5 +1455,13 @@ class ActivitySession {
     final ms = Cast.castToInt(value);
     if (ms == null) return null;
     return Duration(milliseconds: ms);
+  }
+
+  static List<Marker>? _markersFromList(List? markers) {
+    if (markers == null) return null;
+    return markers
+        .whereType<Map<String, dynamic>>()
+        .map(Marker.fromJson)
+        .toList();
   }
 }

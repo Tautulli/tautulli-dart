@@ -32,82 +32,60 @@ void main() {
       expect(lastRequestUri.queryParameters['cmd'], 'get_activity');
     });
 
-    test('parses sessions list', () async {
+    test('parses core session and identity fields', () async {
       makeClient('activity/get_activity.json');
       final data = await client.activity.getActivity();
       expect(data.sessions, hasLength(1));
-      expect(data.sessions.first.title, 'The Matrix');
-      expect(data.sessions.first.fullTitle, 'The Matrix');
-      expect(data.sessions.first.mediaType, MediaType.movie);
-      expect(data.sessions.first.state, PlaybackState.playing);
+      final s = data.sessions.first;
+      expect(s.title, 'The Murder of Rachel Nickell');
+      expect(s.mediaType, MediaType.movie);
+      expect(s.state, PlaybackState.playing);
+      expect(s.sectionId, 3);
+      expect(s.machineId, 'machine-id-02');
+      expect(s.actors, contains('Rachel Nickell'));
+      expect(data.lanBandwidth, 0);
+      expect(data.wanBandwidth, 3568);
     });
 
-    test('parses actors, addedAt, allowGuest, art from session', () async {
+    test('relayed replaces the old relay key', () async {
       makeClient('activity/get_activity.json');
       final s = (await client.activity.getActivity()).sessions.first;
-      expect(s.actors, contains('Keanu Reeves'));
-      expect(s.addedAt, '1461572396');
-      expect(s.allowGuest, true);
-      expect(s.art, '/library/metadata/1001/art/1000000');
+      expect(s.relayed, isFalse);
     });
 
-    test('parses source video quality fields', () async {
+    test('parses extended fields with numeric-string coercion', () async {
       makeClient('activity/get_activity.json');
       final s = (await client.activity.getActivity()).sessions.first;
-      expect(s.videoBitDepth, 8);
-      expect(s.videoCodecLevel, '4.1');
-      expect(s.videoProfile, 'high');
-      expect(s.videoResolution, '1080');
-      expect(s.videoScanType, 'progressive');
+      expect(s.videoWidth, 1920);
+      expect(s.videoHeight, 800);
+      expect(s.bitrate, 2633);
+      expect(s.fileSize, 1902855892);
+      expect(s.streamVideoBitrate, 2249);
+      expect(s.videoFramerate, 'PAL'); // label, not numeric
+      expect(s.videoDoviPresent, isFalse);
     });
 
-    test('parses stream video quality fields', () async {
+    test('parses extended metadata list and string fields', () async {
       makeClient('activity/get_activity.json');
       final s = (await client.activity.getActivity()).sessions.first;
-      expect(s.streamVideoHeight, 1080);
-      expect(s.streamVideoWidth, 1920);
-      expect(s.streamVideoBitDepth, 8);
-      expect(s.streamVideoFramerate, '23.976');
+      expect(s.guids, contains('imdb://tt42192165'));
+      expect(s.genres, contains('Documentary'));
+      expect(s.directors, contains('Lucy Bowden'));
+      expect(s.contentRating, 'TV-MA');
+      expect(s.studio, 'Blast! Films');
+      expect(s.libraryName, 'Movies');
+      expect(s.user, 'TestAdmin');
     });
 
-    test('parses stream audio fields', () async {
+    test('parses markers into typed Marker objects', () async {
       makeClient('activity/get_activity.json');
       final s = (await client.activity.getActivity()).sessions.first;
-      expect(s.audioBitrate, 256);
-      expect(s.audioChannels, 2);
-      expect(s.streamAudioBitrate, 256);
-      expect(s.streamAudioLanguageCode, 'eng');
-    });
-
-    test('parses stream subtitle fields', () async {
-      makeClient('activity/get_activity.json');
-      final s = (await client.activity.getActivity()).sessions.first;
-      expect(s.streamSubtitleForced, false);
-    });
-
-    test('parses transcode detail fields', () async {
-      makeClient('activity/get_activity.json');
-      final s = (await client.activity.getActivity()).sessions.first;
-      expect(s.transcodeContainer, isNull);
-      expect(s.transcodeHwFullPipeline, false);
-      expect(s.transcodeHwRequested, false);
-    });
-
-    test('parses session metadata fields', () async {
-      makeClient('activity/get_activity.json');
-      final s = (await client.activity.getActivity()).sessions.first;
-      expect(s.sectionId, 1);
-      expect(s.ipAddressPublic, '1.2.3.4');
-      expect(s.machineId, 'abc-machine-id');
-      expect(s.streamAspectRatio, '2.4');
-      expect(s.streamDuration, const Duration(milliseconds: 4488000));
-    });
-
-    test('parses bandwidth fields', () async {
-      makeClient('activity/get_activity.json');
-      final data = await client.activity.getActivity();
-      expect(data.lanBandwidth, 8000);
-      expect(data.wanBandwidth, 0);
+      expect(s.markers, isNotNull);
+      final m = s.markers!.first;
+      expect(m.id, 3826);
+      expect(m.type, 'credits');
+      expect(m.startTimeOffset, const Duration(milliseconds: 5552998));
+      expect(m.isFinal, isTrue);
     });
 
     test('passes optional params', () async {

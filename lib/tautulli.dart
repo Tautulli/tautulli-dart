@@ -44,6 +44,7 @@ export 'src/types/video_dynamic_range.dart';
 export 'src/types/watched_status.dart';
 
 // Models
+export 'src/models/marker.dart';
 export 'src/models/paged_result.dart';
 export 'src/models/activity/activity_data.dart';
 export 'src/models/export/export_entry.dart';
