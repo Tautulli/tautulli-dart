@@ -62,7 +62,7 @@ class LogService {
   Future<Uint8List> downloadLog({String? logfile}) async {
     return _client.executeDownload(
       'download_log',
-      params: {if (logfile != null) 'logfile': logfile},
+      params: {'logfile': ?logfile},
     );
   }
 
@@ -73,7 +73,7 @@ class LogService {
   Future<Uint8List> downloadPlexLog({String? logfile}) async {
     return _client.executeDownload(
       'download_plex_log',
-      params: {if (logfile != null) 'logfile': logfile},
+      params: {'logfile': ?logfile},
     );
   }
 

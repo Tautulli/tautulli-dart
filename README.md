@@ -99,6 +99,10 @@ final client = TautulliClient(
 > **Native only.** This example uses `dart:io` and `IOClient`, which don't exist
 > on the web — see [Platform Support](#platform-support) below.
 
+> **Client ownership.** An `httpClient` you inject is yours to manage:
+> `client.close()` will **not** close it. Close it yourself when you're done.
+> When you don't pass one, the client creates its own and `close()` disposes it.
+
 ## Platform Support
 
 Runs on the Dart VM, Flutter (Android/iOS/desktop), server, **and Flutter web /
@@ -116,6 +120,24 @@ WASM**. Two things differ on the web:
   makes requests non-simple and triggers a CORS preflight that current Tautulli
   does not fully satisfy — so custom headers are effectively native-only.
 
+## Security
+
+The API key is sent as a URL query parameter (`?apikey=...`), as the Tautulli
+API requires. Use `protocol: 'https'` in production so the key — and every
+response — is encrypted in transit; over `http` both are visible to anything on
+the network path. On the web the key is additionally visible to browser dev
+tools and any JavaScript running on the page.
+
+## Dates
+
+All model `DateTime` values are in **UTC** (they come from Unix epoch
+timestamps). Call `.toLocal()` before displaying them:
+
+```dart
+final entry = history.data.first;
+print(entry.date?.toLocal());
+```
+
 ## Exception Handling
 
 All exceptions extend the sealed `TautulliException` class:
@@ -128,7 +150,7 @@ All exceptions extend the sealed `TautulliException` class:
 | `TautulliServerException` | Non-200, non-401 HTTP status |
 | `TautulliBadResponseException` | Malformed JSON or unexpected response structure |
 | `TautulliTimeoutException` | Request exceeds configured timeout |
-| `TautulliVersionException` | Server version below minimum requirement |
+| `TautulliVersionException` | Server rejects `register_device` for being below the requested `min_version` |
 | `TautulliCertExpiredException` | TLS certificate has expired |
 | `TautulliCertVerificationException` | TLS certificate verification failed |
 | `TautulliProtocolException` | Protocol is not `http` or `https` |
@@ -165,8 +187,10 @@ final client = TautulliClient(
 
 All commands are documented in the [Tautulli API Reference](https://github.com/Tautulli/Tautulli/wiki/Tautulli-API-Reference).
 
-- Minimum supported Tautulli server: **v2.10.5**
-- Last audited against: **v2.17.0**
+- Last audited against: **v2.17.2**
+
+The client imposes no server-version floor. `importConfig()` and
+`importDatabase()` are not implemented and throw `UnimplementedError`.
 
 ## License
 
