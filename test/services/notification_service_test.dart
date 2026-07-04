@@ -66,6 +66,29 @@ void main() {
     });
   });
 
+  group('NotificationService.notifyRecentlyAdded()', () {
+    test('sends rating_key and optional notifier_id', () async {
+      makeClient('success_response.json');
+      await client.notifications.notifyRecentlyAdded(
+        ratingKey: 12345,
+        notifierId: 3,
+      );
+      final q = lastRequestUri.queryParameters;
+      expect(q['cmd'], 'notify_recently_added');
+      expect(q['rating_key'], '12345');
+      expect(q['notifier_id'], '3');
+    });
+
+    test('omits notifier_id when not provided', () async {
+      makeClient('success_response.json');
+      await client.notifications.notifyRecentlyAdded(ratingKey: 999);
+      final q = lastRequestUri.queryParameters;
+      expect(q['cmd'], 'notify_recently_added');
+      expect(q['rating_key'], '999');
+      expect(q.containsKey('notifier_id'), isFalse);
+    });
+  });
+
   group('NotificationService.getNotifierParameters()', () {
     test('parses the parameter list (not a map)', () async {
       makeClient('notification/get_notifier_parameters.json');

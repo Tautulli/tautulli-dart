@@ -594,6 +594,85 @@ void main() {
     });
   });
 
+  group('TautulliClient.executeDownload() — error paths', () {
+    test('throws TautulliAuthException on HTTP 401', () {
+      final client = TautulliClient(
+        connection: connection,
+        httpClient: MockClient((_) async => http.Response('', 401)),
+      );
+      expect(
+        () => client.executeDownload('download_log'),
+        throwsA(isA<TautulliAuthException>()),
+      );
+    });
+
+    test('throws TautulliServerException on a non-200 status', () {
+      final client = TautulliClient(
+        connection: connection,
+        httpClient: MockClient((_) async => http.Response('boom', 500)),
+      );
+      expect(
+        () => client.executeDownload('download_log'),
+        throwsA(
+          isA<TautulliServerException>().having(
+            (e) => e.statusCode,
+            'statusCode',
+            500,
+          ),
+        ),
+      );
+    });
+
+    test('throws TautulliBadResponseException on a 200 JSON error body', () {
+      final client = TautulliClient(
+        connection: connection,
+        httpClient: MockClient(
+          (_) async => http.Response(
+            '{"response":{"result":"error","message":"log file not found"}}',
+            200,
+            headers: {'content-type': 'application/json'},
+          ),
+        ),
+      );
+      expect(
+        () => client.executeDownload('download_log'),
+        throwsA(
+          isA<TautulliBadResponseException>().having(
+            (e) => e.message,
+            'message',
+            contains('log file not found'),
+          ),
+        ),
+      );
+    });
+
+    test(
+      'throws when a 200 JSON success envelope arrives instead of a file',
+      () {
+        final client = TautulliClient(
+          connection: connection,
+          httpClient: MockClient(
+            (_) async => http.Response(
+              '{"response":{"result":"success","data":{}}}',
+              200,
+              headers: {'content-type': 'application/json'},
+            ),
+          ),
+        );
+        expect(
+          () => client.executeDownload('download_log'),
+          throwsA(
+            isA<TautulliBadResponseException>().having(
+              (e) => e.message,
+              'message',
+              contains('Expected a file'),
+            ),
+          ),
+        );
+      },
+    );
+  });
+
   group('TautulliClient.execute() — network error handling', () {
     test('redacts the API key from connection error messages', () async {
       final client = TautulliClient(
