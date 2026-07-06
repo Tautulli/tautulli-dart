@@ -63,10 +63,10 @@ class MediaService {
 
   /// Searches Plex for items matching [query], with an optional result [limit].
   ///
-  /// Note: on current Plex Media Server versions, omitting [limit] makes the
-  /// Tautulli server's PMS query fail and the result is always empty (the
-  /// server sends `&limit=` with no value, which the PMS rejects) — pass a
-  /// [limit] to get results.
+  /// Note: on Tautulli servers up to and including v2.17.2, omitting [limit]
+  /// makes the server's PMS query fail and the result is always empty (the
+  /// server sends `&limit=` with no value, which current PMS versions
+  /// reject) — pass a [limit] when targeting those servers.
   Future<Map<String, dynamic>> search({
     required String query,
     int? limit,

@@ -85,6 +85,11 @@ class ActivitySession {
   /// Source audio language name.
   final String? audioLanguage;
 
+  /// Whether the source audio is Dolby Atmos.
+  ///
+  /// Only sent by Tautulli servers newer than v2.17.2; null on older servers.
+  final bool? audioAtmos;
+
   /// Source audio encoding profile.
   final String? audioProfile;
 
@@ -306,6 +311,11 @@ class ActivitySession {
 
   /// Streamed audio language ISO code.
   final String? streamAudioLanguageCode;
+
+  /// Whether the streamed audio is Dolby Atmos.
+  ///
+  /// Only sent by Tautulli servers newer than v2.17.2; null on older servers.
+  final bool? streamAudioAtmos;
 
   /// Streamed audio encoding profile.
   final String? streamAudioProfile;
@@ -836,6 +846,7 @@ class ActivitySession {
     this.audioCodec,
     this.audioDecision,
     this.audioLanguage,
+    this.audioAtmos,
     this.audioProfile,
     this.audioSampleRate,
     this.bandwidth,
@@ -906,6 +917,7 @@ class ActivitySession {
     this.streamAudioDecision,
     this.streamAudioLanguage,
     this.streamAudioLanguageCode,
+    this.streamAudioAtmos,
     this.streamAudioProfile,
     this.streamAudioSampleRate,
     this.streamSubtitleCodec,
@@ -1090,6 +1102,7 @@ class ActivitySession {
         Cast.castToString(json['audio_decision']),
       ),
       audioLanguage: Cast.castToString(json['audio_language']),
+      audioAtmos: Cast.castToBool(json['audio_atmos']),
       audioProfile: Cast.castToString(json['audio_profile']),
       audioSampleRate: Cast.castToInt(json['audio_sample_rate']),
 
@@ -1185,6 +1198,7 @@ class ActivitySession {
       streamAudioLanguageCode: Cast.castToString(
         json['stream_audio_language_code'],
       ),
+      streamAudioAtmos: Cast.castToBool(json['stream_audio_atmos']),
       streamAudioProfile: Cast.castToString(json['stream_audio_profile']),
       streamAudioSampleRate: Cast.castToInt(json['stream_audio_sample_rate']),
 
