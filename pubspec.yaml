@@ -1,6 +1,6 @@
 name: tautulli
 description: A Dart client for the Tautulli API. Provides typed access to activity, history, libraries, users, and more for Plex media server monitoring.
-version: 3.1.0
+version: 3.2.0-beta.1
 homepage: https://github.com/Tautulli/tautulli-dart
 repository: https://github.com/Tautulli/tautulli-dart
 issue_tracker: https://github.com/Tautulli/tautulli-dart/issues
