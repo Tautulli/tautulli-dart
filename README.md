@@ -114,19 +114,27 @@ WASM**. Two things differ on the web:
   the default `BrowserClient` is used. Connection failures surface as
   `TautulliConnectionException` — the finer `TautulliCertVerificationException`
   mapping is native-only.
-- **CORS.** The client sends plain GET requests, which Tautulli answers with
-  `Access-Control-Allow-Origin`, so cross-origin calls work by default. However,
-  setting custom `headers` on `TautulliConnection` (e.g. reverse-proxy auth)
-  makes requests non-simple and triggers a CORS preflight that current Tautulli
-  does not fully satisfy — so custom headers are effectively native-only.
+- **CORS.** With the default query-parameter auth, the client sends simple GET
+  requests that work cross-origin against every server version. Request
+  headers (opt-in `ApiKeyLocation.header`, or custom `headers` on
+  `TautulliConnection`) make requests non-simple and trigger a CORS preflight
+  that only Tautulli newer than v2.17.2 answers — on older servers, header
+  auth and custom headers are unusable from the browser.
 
 ## Security
 
-The API key is sent as a URL query parameter (`?apikey=...`), as the Tautulli
-API requires. Use `protocol: 'https'` in production so the key — and every
-response — is encrypted in transit; over `http` both are visible to anything on
-the network path. On the web the key is additionally visible to browser dev
-tools and any JavaScript running on the page.
+By default the API key is sent as the `apikey` query parameter, which works on
+every server version. On Tautulli servers **newer than v2.17.2** you can opt
+in to header auth — `apiKeyLocation: ApiKeyLocation.header` on the connection —
+which sends the key as an `X-Api-Key` header instead, keeping it out of URLs
+and therefore out of server access logs, proxy logs, and browser tooling.
+Older servers only read the parameter and reject header-only requests, so
+enable it only when the server is known to support it.
+
+Two caveats regardless of mode: image URLs from `buildImageUrl()` always embed
+the key as a query parameter (an `<img>` tag cannot send headers), and you
+should use `protocol: 'https'` in production so the key and every response are
+encrypted in transit.
 
 ## Dates
 

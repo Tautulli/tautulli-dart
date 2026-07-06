@@ -25,6 +25,7 @@ import 'services/notification_service.dart';
 import 'services/plex_service.dart';
 import 'services/tautulli_service.dart';
 import 'services/user_service.dart';
+import 'types/api_key_location.dart';
 
 /// The main entry point for interacting with the Tautulli API.
 ///
@@ -118,8 +119,7 @@ class TautulliClient implements TautulliExecutor {
     Map<String, dynamic> params = const {},
     Duration? timeout,
   }) async {
-    final uri = _buildUri(cmd, params);
-    final response = await _get(uri, timeout: timeout);
+    final response = await _authedGet(cmd, params, timeout: timeout);
     return _parseResponse(response);
   }
 
@@ -134,9 +134,9 @@ class TautulliClient implements TautulliExecutor {
     Duration? timeout,
     bool allowNonBinary = false,
   }) async {
-    final uri = _buildUri(cmd, params);
-    final response = await _get(
-      uri,
+    final response = await _authedGet(
+      cmd,
+      params,
       timeout: timeout ?? connection.downloadTimeout,
       extraHeaders: downloadHeaders,
     );
@@ -148,6 +148,11 @@ class TautulliClient implements TautulliExecutor {
     if (response.statusCode == 401 ||
         (contentType.contains('text/html') &&
             response.body.toLowerCase().contains('authorization required'))) {
+      // Newer servers return 401 with a JSON envelope (e.g. "Invalid
+      // apikey") — surface the specific exception when one applies.
+      if (contentType.contains('application/json')) {
+        _parseResponse(response); // throws the typed error for the envelope
+      }
       throw const TautulliAuthException();
     }
 
@@ -187,10 +192,14 @@ class TautulliClient implements TautulliExecutor {
 
   // ---------------------------------------------------------------------------
 
-  Uri _buildUri(String cmd, Map<String, dynamic> params) {
+  Uri _buildUri(
+    String cmd,
+    Map<String, dynamic> params, {
+    required bool keyInQuery,
+  }) {
     final queryParams = <String, String>{
       'cmd': cmd,
-      'apikey': connection.apiKey,
+      if (keyInQuery) 'apikey': connection.apiKey,
       if (connection.useDeviceToken) 'app': 'true',
     };
     for (final entry in params.entries) {
@@ -207,6 +216,27 @@ class TautulliClient implements TautulliExecutor {
     }
 
     return buildTautulliUri(connection, queryParams);
+  }
+
+  /// Performs an authenticated GET, honoring [TautulliConnection.apiKeyLocation]:
+  /// the key travels as the `apikey` query parameter (default) or as an
+  /// `X-Api-Key` header. In device-token mode only the token moves — the
+  /// `app=true` flag always stays in the query string.
+  Future<http.Response> _authedGet(
+    String cmd,
+    Map<String, dynamic> params, {
+    Duration? timeout,
+    Map<String, String> extraHeaders = const {},
+  }) {
+    final useHeader = connection.apiKeyLocation == ApiKeyLocation.header;
+    return _get(
+      _buildUri(cmd, params, keyInQuery: !useHeader),
+      timeout: timeout,
+      extraHeaders: {
+        ...extraHeaders,
+        if (useHeader) 'X-Api-Key': connection.apiKey,
+      },
+    );
   }
 
   Future<http.Response> _get(

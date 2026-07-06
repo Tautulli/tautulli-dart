@@ -224,6 +224,81 @@ void main() {
     });
   });
 
+  group('TautulliClient — API key location', () {
+    test('query (default) sends the apikey parameter and no header', () async {
+      late http.Request captured;
+      final client = TautulliClient(
+        connection: connection,
+        httpClient: MockClient((request) async {
+          captured = request;
+          return fixtureResponse('success_response.json');
+        }),
+      );
+
+      await client.execute('get_server_info');
+
+      expect(captured.url.queryParameters['apikey'], equals('test_api_key'));
+      expect(captured.headers.containsKey('X-Api-Key'), isFalse);
+    });
+
+    test('header mode sends X-Api-Key and omits the query parameter', () async {
+      late http.Request captured;
+      final client = TautulliClient(
+        connection: connection.copyWith(apiKeyLocation: ApiKeyLocation.header),
+        httpClient: MockClient((request) async {
+          captured = request;
+          return fixtureResponse('success_response.json');
+        }),
+      );
+
+      await client.execute('get_server_info');
+
+      expect(captured.headers['X-Api-Key'], equals('test_api_key'));
+      expect(captured.url.queryParameters.containsKey('apikey'), isFalse);
+    });
+
+    test(
+      'header mode: device token in header, app=true stays in the query',
+      () async {
+        late http.Request captured;
+        final client = TautulliClient(
+          connection: connection.copyWith(
+            apiKeyLocation: ApiKeyLocation.header,
+          ),
+          httpClient: MockClient((request) async {
+            captured = request;
+            return fixtureResponse('success_response.json');
+          }),
+        );
+
+        await client.execute('get_server_info');
+
+        expect(captured.headers['X-Api-Key'], equals('test_api_key'));
+        expect(captured.url.queryParameters['app'], equals('true'));
+      },
+    );
+
+    test('header mode applies to downloads too', () async {
+      late http.Request captured;
+      final client = TautulliClient(
+        connection: connection.copyWith(apiKeyLocation: ApiKeyLocation.header),
+        httpClient: MockClient((request) async {
+          captured = request;
+          return http.Response.bytes(
+            [1, 2, 3],
+            200,
+            headers: {'content-type': 'application/x-download'},
+          );
+        }),
+      );
+
+      await client.executeDownload('download_log');
+
+      expect(captured.headers['X-Api-Key'], equals('test_api_key'));
+      expect(captured.url.queryParameters.containsKey('apikey'), isFalse);
+    });
+  });
+
   group('TautulliClient.executeDownload() — content handling', () {
     test('returns bytes for a binary (application/x-download) body', () async {
       final client = TautulliClient(

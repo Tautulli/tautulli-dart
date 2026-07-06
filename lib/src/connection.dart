@@ -1,3 +1,5 @@
+import 'types/api_key_location.dart';
+
 /// Immutable connection configuration for a Tautulli server.
 class TautulliConnection {
   /// HTTP scheme — `'http'` or `'https'`.
@@ -28,6 +30,12 @@ class TautulliConnection {
   /// apiKey is a device-scoped token obtained via `register_device`.
   final bool useDeviceToken;
 
+  /// How the [apiKey] is transmitted. Defaults to [ApiKeyLocation.query],
+  /// which works on every server version. Opt in to [ApiKeyLocation.header]
+  /// on servers newer than v2.17.2 to keep the key out of URLs and access
+  /// logs.
+  final ApiKeyLocation apiKeyLocation;
+
   const TautulliConnection({
     required this.protocol,
     required this.domain,
@@ -37,6 +45,7 @@ class TautulliConnection {
     this.timeout = const Duration(seconds: 30),
     this.downloadTimeout,
     this.useDeviceToken = false,
+    this.apiKeyLocation = ApiKeyLocation.query,
   });
 
   /// Returns a copy of this connection with the given fields replaced.
@@ -53,6 +62,7 @@ class TautulliConnection {
     Duration? timeout,
     Duration? downloadTimeout,
     bool? useDeviceToken,
+    ApiKeyLocation? apiKeyLocation,
   }) {
     return TautulliConnection(
       protocol: protocol ?? this.protocol,
@@ -63,6 +73,7 @@ class TautulliConnection {
       timeout: timeout ?? this.timeout,
       downloadTimeout: downloadTimeout ?? this.downloadTimeout,
       useDeviceToken: useDeviceToken ?? this.useDeviceToken,
+      apiKeyLocation: apiKeyLocation ?? this.apiKeyLocation,
     );
   }
 
@@ -77,6 +88,7 @@ class TautulliConnection {
         other.timeout == timeout &&
         other.downloadTimeout == downloadTimeout &&
         other.useDeviceToken == useDeviceToken &&
+        other.apiKeyLocation == apiKeyLocation &&
         _headersEqual(other.headers, headers);
   }
 
@@ -89,6 +101,7 @@ class TautulliConnection {
     timeout,
     downloadTimeout,
     useDeviceToken,
+    apiKeyLocation,
     _headersHash(headers),
   );
 
@@ -99,7 +112,7 @@ class TautulliConnection {
       'TautulliConnection(protocol: $protocol, domain: $domain, '
       'path: $path, apiKey: <redacted>, headers: ${headers.length} entries, '
       'timeout: $timeout, downloadTimeout: $downloadTimeout, '
-      'useDeviceToken: $useDeviceToken)';
+      'useDeviceToken: $useDeviceToken, apiKeyLocation: ${apiKeyLocation.name})';
 }
 
 /// Order-independent equality for two `<String, String>` header maps.

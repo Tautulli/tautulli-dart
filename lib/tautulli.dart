@@ -30,6 +30,7 @@ export 'src/services/tautulli_service.dart';
 export 'src/services/user_service.dart';
 
 // Types
+export 'src/types/api_key_location.dart';
 export 'src/types/graph_series_type.dart';
 export 'src/types/image_fallback.dart';
 export 'src/types/location.dart';
