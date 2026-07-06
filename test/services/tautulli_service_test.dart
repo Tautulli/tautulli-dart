@@ -32,27 +32,26 @@ void main() {
       expect(lastRequestUri.queryParameters['cmd'], 'get_settings');
     });
 
-    test('parses date and time format from the General section', () async {
+    test('returns the raw sectioned settings map', () async {
       makeClient('tautulli/get_settings.json');
       final settings = await client.tautulli.getSettings();
-      expect(settings.dateFormat, 'YYYY-MM-DD');
-      expect(settings.timeFormat, 'hh:mm a');
-    });
-
-    test('provides rawData escape hatch with full sectioned map', () async {
-      makeClient('tautulli/get_settings.json');
-      final settings = await client.tautulli.getSettings();
-      final pms = settings.rawData['PMS'] as Map<String, dynamic>;
+      final general = settings['General'] as Map<String, dynamic>;
+      final pms = settings['PMS'] as Map<String, dynamic>;
+      expect(general['date_format'], 'YYYY-MM-DD');
+      expect(general['time_format'], 'hh:mm a');
       expect(pms['pms_name'], 'TestServer');
     });
 
-    test('falls back to root keys for a single-section response', () async {
-      makeClient('tautulli/get_settings__key_general.json');
-      final settings = await client.tautulli.getSettings(key: 'General');
-      expect(lastRequestUri.queryParameters['key'], 'General');
-      expect(settings.dateFormat, 'YYYY-MM-DD');
-      expect(settings.timeFormat, 'hh:mm a');
-    });
+    test(
+      'returns a single section at the top level when key is given',
+      () async {
+        makeClient('tautulli/get_settings__key_general.json');
+        final settings = await client.tautulli.getSettings(key: 'General');
+        expect(lastRequestUri.queryParameters['key'], 'General');
+        expect(settings['date_format'], 'YYYY-MM-DD');
+        expect(settings['time_format'], 'hh:mm a');
+      },
+    );
   });
 
   group('TautulliService.deleteImageCache()', () {

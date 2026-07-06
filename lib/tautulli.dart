@@ -70,7 +70,6 @@ export 'src/models/notification/notifier_config.dart';
 export 'src/models/notification/notifier_parameter.dart';
 export 'src/models/plex/plex_server_info.dart';
 export 'src/models/tautulli/register_device_result.dart';
-export 'src/models/tautulli/tautulli_settings.dart';
 export 'src/models/user/user_data.dart';
 export 'src/models/user/user_name.dart';
 export 'src/models/user/user_player_stat.dart';

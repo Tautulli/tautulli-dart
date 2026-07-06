@@ -120,17 +120,18 @@ Future<void> _run() async {
   });
   await _check('tautulli.getSettings (sectioned)', () async {
     final s = await pkg.tautulli.getSettings();
-    final sections = s.rawData.keys.take(4).join(',');
-    if (!s.rawData.containsKey('General')) {
+    final sections = s.keys.take(4).join(',');
+    final general = s['General'];
+    if (general is! Map<String, dynamic>) {
       throw const TautulliBadResponseException(
-        message: 'expected sectioned settings with a General key',
+        message: 'expected sectioned settings with a General section',
       );
     }
-    return 'sections=[$sections,…] dateFormat=${s.dateFormat}';
+    return 'sections=[$sections,…] dateFormat=${general['date_format']}';
   });
   await _check('tautulli.getSettings(key: General)', () async {
     final s = await pkg.tautulli.getSettings(key: 'General');
-    return 'keys=${s.rawData.length}';
+    return 'keys=${s.length}';
   });
   await _check('tautulli.getDateFormats', () async {
     final f = await pkg.tautulli.getDateFormats();

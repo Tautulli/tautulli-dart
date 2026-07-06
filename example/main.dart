@@ -23,9 +23,9 @@ Future<void> main() async {
   // );
 
   try {
-    final settings = await client.tautulli.getSettings();
-    print('Date format: ${settings.dateFormat}');
-    print('Time format: ${settings.timeFormat}');
+    final formats = await client.tautulli.getDateFormats();
+    print('Date format: ${formats['date_format']}');
+    print('Time format: ${formats['time_format']}');
 
     final activity = await client.activity.getActivity();
     print('Active streams: ${activity.streamCount ?? 0}');

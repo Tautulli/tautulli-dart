@@ -1,7 +1,6 @@
 import 'dart:typed_data';
 
 import '../executor.dart';
-import '../models/tautulli/tautulli_settings.dart';
 import '../utils/cast.dart';
 
 /// Commands: get_tautulli_info, get_date_formats, get_settings, status,
@@ -13,18 +12,16 @@ class TautulliService {
   final TautulliExecutor _client;
   TautulliService(TautulliExecutor client) : _client = client;
 
-  /// Returns Tautulli's current settings, grouped into config sections.
+  /// Returns Tautulli's current settings as raw JSON, grouped into config
+  /// sections (`{"General": {...}, "PMS": {...}, ...}`).
   ///
   /// Optionally pass [key] to retrieve a single config *section* (e.g.
-  /// `'General'`), not an individual setting. All raw settings are available
-  /// via [TautulliSettings.rawData].
-  Future<TautulliSettings> getSettings({String? key}) async {
+  /// `'General'`), whose keys are then returned at the top level.
+  Future<Map<String, dynamic>> getSettings({String? key}) async {
     final params = <String, dynamic>{};
     if (key != null) params['key'] = key;
     final response = await _client.execute('get_settings', params: params);
-    return TautulliSettings.fromJson(
-      Cast.dataMap(response['data'], 'get_settings'),
-    );
+    return Cast.dataMap(response['data'], 'get_settings');
   }
 
   /// Returns Tautulli version, branch, and installation metadata.

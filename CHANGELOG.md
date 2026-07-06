@@ -1,5 +1,10 @@
 # Changelog
 
+## 3.2.0-beta.2
+
+- `getSettings` now returns the raw sectioned JSON map (like `getDateFormats`); the
+  `TautulliSettings` model is removed — use `getDateFormats` for the format strings
+
 ## 3.2.0-beta.1
 
 Prerelease tracking the **Tautulli nightly branch** (verified live at nightly commit
