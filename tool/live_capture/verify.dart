@@ -31,12 +31,20 @@ Future<void> main() async {
 
   final base = Uri.parse(req('TAUTULLI_BASE_URL'));
   final domain = base.hasPort ? '${base.host}:${base.port}' : base.host;
+  // Optional: TAUTULLI_API_KEY_LOCATION=header runs the whole sweep through
+  // X-Api-Key header auth (requires a server newer than v2.17.2).
+  final keyLocation =
+      Platform.environment['TAUTULLI_API_KEY_LOCATION'] == 'header'
+      ? ApiKeyLocation.header
+      : ApiKeyLocation.query;
+  stdout.writeln('API key location: ${keyLocation.name}');
   pkg = TautulliClient(
     connection: TautulliConnection(
       protocol: base.scheme,
       domain: domain,
       path: base.path.isEmpty ? null : base.path,
       apiKey: req('TAUTULLI_API_KEY'),
+      apiKeyLocation: keyLocation,
     ),
   );
   pkgToken = TautulliClient(
@@ -46,6 +54,7 @@ Future<void> main() async {
       path: base.path.isEmpty ? null : base.path,
       apiKey: req('TAUTULLI_DEVICE_TOKEN'),
       useDeviceToken: true,
+      apiKeyLocation: keyLocation,
     ),
   );
 
