@@ -14,12 +14,6 @@ class LibraryEntry {
   /// Whether this library section has been deleted from Plex.
   final bool? deletedSection;
 
-  /// Whether Tautulli sends notifications for activity in this library.
-  final bool? doNotify;
-
-  /// Whether Tautulli sends notifications when new items are added to this library.
-  final bool? doNotifyCreated;
-
   /// Whether this library is currently active in Plex.
   final bool? isActive;
 
@@ -61,8 +55,6 @@ class LibraryEntry {
     this.childCount,
     this.count,
     this.deletedSection,
-    this.doNotify,
-    this.doNotifyCreated,
     this.isActive,
     this.keepHistory,
     this.lastAccessed,
@@ -83,8 +75,6 @@ class LibraryEntry {
     childCount: Cast.castToInt(json['child_count']),
     count: Cast.castToInt(json['count']),
     deletedSection: Cast.castToBool(json['deleted_section']),
-    doNotify: Cast.castToBool(json['do_notify']),
-    doNotifyCreated: Cast.castToBool(json['do_notify_created']),
     isActive: Cast.castToBool(json['is_active']),
     keepHistory: Cast.castToBool(json['keep_history']),
     lastAccessed: Cast.dateTimeFromEpochSeconds(json['last_accessed']),

@@ -598,9 +598,6 @@ class ActivitySession {
   /// Session field `directors` from `get_activity`.
   final List<String>? directors;
 
-  /// Session field `do_notify` from `get_activity`.
-  final bool? doNotify;
-
   /// Session field `edition_title` from `get_activity`.
   final String? editionTitle;
 
@@ -1002,7 +999,6 @@ class ActivitySession {
     this.deletedUser,
     this.device,
     this.directors,
-    this.doNotify,
     this.editionTitle,
     this.email,
     this.endsAt,
@@ -1338,7 +1334,6 @@ class ActivitySession {
       directors: (json['directors'] as List?)
           ?.map((e) => e.toString())
           .toList(),
-      doNotify: Cast.castToBool(json['do_notify']),
       editionTitle: Cast.castToString(json['edition_title']),
       email: Cast.castToString(json['email']),
       endsAt: Cast.castToInt(json['ends_at']),

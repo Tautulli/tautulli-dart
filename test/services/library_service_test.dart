@@ -167,8 +167,6 @@ void main() {
       final result = await client.libraries.getLibrary(sectionId: 24);
       expect(result.count, 4);
       expect(result.rowId, 20);
-      expect(result.doNotify, true);
-      expect(result.doNotifyCreated, true);
       expect(result.keepHistory, true);
       expect(result.isActive, true);
       expect(result.deletedSection, false);

@@ -15,12 +15,6 @@ class LibraryTableEntry {
   /// Number of top-level items in this library (movies, shows, or artists).
   final int? count;
 
-  /// Whether Tautulli sends notifications for activity in this library.
-  final bool? doNotify;
-
-  /// Whether Tautulli sends notifications when new items are added.
-  final bool? doNotifyCreated;
-
   /// Total watch duration for the most recently played item.
   final Duration? duration;
 
@@ -103,8 +97,6 @@ class LibraryTableEntry {
     this.childCount,
     this.contentRating,
     this.count,
-    this.doNotify,
-    this.doNotifyCreated,
     this.duration,
     this.guid,
     this.historyRowId,
@@ -139,8 +131,6 @@ class LibraryTableEntry {
       childCount: Cast.castToInt(json['child_count']),
       contentRating: Cast.castToString(json['content_rating']),
       count: Cast.castToInt(json['count']),
-      doNotify: Cast.castToBool(json['do_notify']),
-      doNotifyCreated: Cast.castToBool(json['do_notify_created']),
       duration: _durationFromSeconds(Cast.castToInt(json['duration'])),
       guid: Cast.castToString(json['guid']),
       historyRowId: Cast.castToInt(json['history_row_id']),

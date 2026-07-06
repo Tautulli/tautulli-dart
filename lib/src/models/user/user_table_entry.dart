@@ -10,9 +10,6 @@ class UserTableEntry {
   /// Whether this user is allowed to access Plex as a guest.
   final bool? allowGuest;
 
-  /// Whether Tautulli sends notifications for this user's activity.
-  final bool? doNotify;
-
   /// Total watch duration for the most recently played item in seconds.
   final int? duration;
 
@@ -99,7 +96,6 @@ class UserTableEntry {
 
   const UserTableEntry({
     this.allowGuest,
-    this.doNotify,
     this.duration,
     this.email,
     this.friendlyName,
@@ -134,7 +130,6 @@ class UserTableEntry {
   factory UserTableEntry.fromJson(Map<String, dynamic> json) {
     return UserTableEntry(
       allowGuest: Cast.castToBool(json['allow_guest']),
-      doNotify: Cast.castToBool(json['do_notify']),
       duration: Cast.castToInt(json['duration']),
       email: Cast.castToString(json['email']),
       friendlyName: Cast.castToString(json['friendly_name']),

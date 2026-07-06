@@ -8,9 +8,6 @@ class UserData {
   /// Whether this user has been deleted from Plex.
   final bool? deletedUser;
 
-  /// Whether Tautulli sends notifications for this user's activity.
-  final bool? doNotify;
-
   /// User's email address.
   final String? email;
 
@@ -71,7 +68,6 @@ class UserData {
   const UserData({
     this.allowGuest,
     this.deletedUser,
-    this.doNotify,
     this.email,
     this.filterAll,
     this.filterMovies,
@@ -98,7 +94,6 @@ class UserData {
     return UserData(
       allowGuest: Cast.castToBool(json['allow_guest']),
       deletedUser: Cast.castToBool(json['deleted_user']),
-      doNotify: Cast.castToBool(json['do_notify']),
       email: Cast.castToString(json['email']),
       filterAll: Cast.castToString(json['filter_all']),
       filterMovies: Cast.castToString(json['filter_movies']),
