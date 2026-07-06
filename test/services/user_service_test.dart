@@ -141,7 +141,7 @@ void main() {
   });
 
   group('UserService.editUser()', () {
-    test('sends all fields with bools as 1/0', () async {
+    test('sends provided fields with bools as 1/0', () async {
       makeClient('success_response.json');
       await client.users.editUser(
         userId: 7,
@@ -149,7 +149,6 @@ void main() {
         customThumb: '',
         keepHistory: true,
         allowGuest: false,
-        doNotify: true,
       );
       final q = lastRequestUri.queryParameters;
       expect(q['cmd'], 'edit_user');
@@ -158,7 +157,16 @@ void main() {
       expect(q['custom_thumb'], '');
       expect(q['keep_history'], '1');
       expect(q['allow_guest'], '0');
-      expect(q['do_notify'], '1');
+    });
+
+    test('omits unset fields (partial update)', () async {
+      makeClient('success_response.json');
+      await client.users.editUser(userId: 7, friendlyName: 'Jon Snow');
+      final q = lastRequestUri.queryParameters;
+      expect(q['friendly_name'], 'Jon Snow');
+      expect(q.containsKey('custom_thumb'), isFalse);
+      expect(q.containsKey('keep_history'), isFalse);
+      expect(q.containsKey('allow_guest'), isFalse);
     });
   });
 

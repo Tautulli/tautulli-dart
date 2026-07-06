@@ -267,28 +267,27 @@ class LibraryService {
 
   /// Updates the Tautulli settings for the library identified by [sectionId].
   ///
-  /// `edit_library` is a **full overwrite**: the server resets any field it does
-  /// not receive to its default, so every setting is required here. Read the
-  /// current values with [getLibrary] first and pass them all back, changing
-  /// only what you intend to. Pass an empty [customThumb] or [customArt] to
-  /// clear it.
+  /// Omitted (null) settings are left unchanged — `edit_library` performs a
+  /// partial update. Pass an empty [customThumb] or [customArt] to clear it.
+  ///
+  /// **Warning — servers up to and including v2.17.2:** older `edit_library`
+  /// handlers are a full overwrite that **resets every omitted field to its
+  /// default** (`keep_history` → 0, custom thumb/art → ''). When targeting
+  /// those servers, read the current values with [getLibrary] first and pass
+  /// every setting back.
   Future<void> editLibrary({
     required int sectionId,
-    required String customThumb,
-    required String customArt,
-    required bool keepHistory,
-    required bool doNotify,
-    required bool doNotifyCreated,
+    String? customThumb,
+    String? customArt,
+    bool? keepHistory,
   }) async {
     await _client.execute(
       'edit_library',
       params: {
         'section_id': sectionId,
-        'custom_thumb': customThumb,
-        'custom_art': customArt,
-        'keep_history': keepHistory,
-        'do_notify': doNotify,
-        'do_notify_created': doNotifyCreated,
+        'custom_thumb': ?customThumb,
+        'custom_art': ?customArt,
+        'keep_history': ?keepHistory,
       },
     );
   }

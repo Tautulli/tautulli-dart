@@ -144,28 +144,30 @@ class UserService {
 
   /// Updates the Tautulli settings for the user identified by [userId].
   ///
-  /// `edit_user` is a **full overwrite**: the server resets any field it does
-  /// not receive to its default, so every setting is required here. Read the
-  /// current values with [getUser] first and pass them all back, changing only
-  /// what you intend to. Pass an empty [friendlyName] or [customThumb] to clear
-  /// it (an empty friendly name reverts to the Plex username).
+  /// Omitted (null) settings are left unchanged — `edit_user` performs a
+  /// partial update. Pass an empty [friendlyName] or [customThumb] to clear it
+  /// (an empty friendly name reverts to the Plex username).
+  ///
+  /// **Warning — servers up to and including v2.17.2:** older `edit_user`
+  /// handlers are a full overwrite that **resets every omitted field to its
+  /// default** (`keep_history` → 0, `allow_guest` → 0, `friendly_name` → '').
+  /// When targeting those servers, read the current values with [getUser]
+  /// first and pass every setting back.
   Future<void> editUser({
     required int userId,
-    required String friendlyName,
-    required String customThumb,
-    required bool keepHistory,
-    required bool allowGuest,
-    required bool doNotify,
+    String? friendlyName,
+    String? customThumb,
+    bool? keepHistory,
+    bool? allowGuest,
   }) async {
     await _client.execute(
       'edit_user',
       params: {
         'user_id': userId,
-        'friendly_name': friendlyName,
-        'custom_thumb': customThumb,
-        'keep_history': keepHistory,
-        'allow_guest': allowGuest,
-        'do_notify': doNotify,
+        'friendly_name': ?friendlyName,
+        'custom_thumb': ?customThumb,
+        'keep_history': ?keepHistory,
+        'allow_guest': ?allowGuest,
       },
     );
   }

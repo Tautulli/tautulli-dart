@@ -757,7 +757,7 @@ Future<void> _deviceLifecycle() async {
 }
 
 Future<void> _editUserRoundTrip() async {
-  stdout.writeln('--- edit_user round trip (§ bool storage fix) ---');
+  stdout.writeln('--- edit_user partial-update round trip ---');
   final userId = _placeholders['userId'];
   if (userId == null) {
     _pkgLog('edit_user round trip', 'SKIP', 'no user discovered');
@@ -766,24 +766,18 @@ Future<void> _editUserRoundTrip() async {
   final before = await _rawData('get_user', {'user_id': userId});
   final b = before?['data'] as Map<String, dynamic>? ?? {};
   final origFriendly = '${b['friendly_name'] ?? ''}';
-  final origThumb = '${b['custom_thumb'] ?? ''}';
-  bool asBool(dynamic v) => '$v' == '1' || '$v' == 'true';
-  final origKeep = asBool(b['keep_history']);
-  final origGuest = asBool(b['allow_guest']);
-  final origNotify = asBool(b['do_notify']);
 
+  // Partial update: send ONLY friendly_name. On current servers the other
+  // settings must survive untouched (verified via the SQL oracle below); on
+  // servers ≤ v2.17.2 they would be reset — this lifecycle targets current.
   try {
     await pkg.users.editUser(
       userId: int.parse(userId),
       friendlyName: 'dart-edit-check',
-      customThumb: origThumb,
-      keepHistory: true,
-      allowGuest: false,
-      doNotify: false,
     );
-    _pkgLog('users.editUser', 'OK');
+    _pkgLog('users.editUser (partial)', 'OK');
   } on TautulliException catch (e) {
-    _pkgLog('users.editUser', 'FAIL', '$e');
+    _pkgLog('users.editUser (partial)', 'FAIL', '$e');
     return;
   }
   await _capture(
@@ -792,15 +786,15 @@ Future<void> _editUserRoundTrip() async {
     'get_user',
     params: {'user_id': userId},
   );
-  // SQL oracle (only if api_sql is enabled): the fix stores real ints, not
-  // the strings 'true'/'false'.
+  // SQL oracle (only if api_sql is enabled): bools stored as real ints, and
+  // omitted fields untouched by the partial update.
   await _capture(
     'tautulli',
     'sql__user_flags_after_edit',
     'sql',
     params: {
       'query':
-          'SELECT keep_history, allow_guest, do_notify FROM users '
+          'SELECT friendly_name, keep_history, allow_guest FROM users '
           'WHERE user_id = $userId',
     },
   );
@@ -809,10 +803,6 @@ Future<void> _editUserRoundTrip() async {
     await pkg.users.editUser(
       userId: int.parse(userId),
       friendlyName: origFriendly,
-      customThumb: origThumb,
-      keepHistory: origKeep,
-      allowGuest: origGuest,
-      doNotify: origNotify,
     );
     _pkgLog('users.editUser (restore)', 'OK');
   } on TautulliException catch (e) {
@@ -821,7 +811,7 @@ Future<void> _editUserRoundTrip() async {
 }
 
 Future<void> _editLibraryRoundTrip() async {
-  stdout.writeln('--- edit_library round trip ---');
+  stdout.writeln('--- edit_library partial-update round trip ---');
   final sectionId = _placeholders['sectionId'];
   if (sectionId == null) {
     _pkgLog('edit_library round trip', 'SKIP', 'no section discovered');
@@ -831,21 +821,16 @@ Future<void> _editLibraryRoundTrip() async {
   final b = before?['data'] as Map<String, dynamic>? ?? {};
   bool asBool(dynamic v) => '$v' == '1' || '$v' == 'true';
   final origKeep = asBool(b['keep_history']);
-  final origNotify = asBool(b['do_notify']);
-  final origCreated = asBool(b['do_notify_created']);
 
+  // Partial update: send ONLY keep_history; thumb/art must survive.
   try {
     await pkg.libraries.editLibrary(
       sectionId: int.parse(sectionId),
-      customThumb: '',
-      customArt: '',
-      keepHistory: true,
-      doNotify: false,
-      doNotifyCreated: false,
+      keepHistory: !origKeep,
     );
-    _pkgLog('libraries.editLibrary', 'OK');
+    _pkgLog('libraries.editLibrary (partial)', 'OK');
   } on TautulliException catch (e) {
-    _pkgLog('libraries.editLibrary', 'FAIL', '$e');
+    _pkgLog('libraries.editLibrary (partial)', 'FAIL', '$e');
     return;
   }
   await _capture(
@@ -854,18 +839,14 @@ Future<void> _editLibraryRoundTrip() async {
     'sql',
     params: {
       'query':
-          'SELECT keep_history, do_notify, do_notify_created '
+          'SELECT custom_thumb_url, custom_art_url, keep_history '
           'FROM library_sections WHERE section_id = $sectionId',
     },
   );
   try {
     await pkg.libraries.editLibrary(
       sectionId: int.parse(sectionId),
-      customThumb: '',
-      customArt: '',
       keepHistory: origKeep,
-      doNotify: origNotify,
-      doNotifyCreated: origCreated,
     );
     _pkgLog('libraries.editLibrary (restore)', 'OK');
   } on TautulliException catch (e) {
