@@ -65,6 +65,34 @@ void main() {
       expect(result.first.message, contains('error reading output'));
       expect(result.first.thread, isNull);
     });
+
+    test(
+      'parses the flattened bare-list shape (servers after v2.17.2)',
+      () async {
+        client = TautulliClient(
+          connection: const TautulliConnection(
+            protocol: 'http',
+            domain: 'tautulli.local',
+            apiKey: 'abc123',
+          ),
+          httpClient: MockClient(
+            (_) async => http.Response(
+              '{"response":{"result":"success","data":['
+              '["Jul 07, 2026 17:19:08.048","WARN","first line"],'
+              '["Jul 07, 2026 17:19:09.000","DEBUG","second line"]]}}',
+              200,
+              headers: {'content-type': 'application/json;charset=UTF-8'},
+            ),
+          ),
+        );
+
+        final result = await client.logs.getPlexLog(window: 5);
+        expect(result, hasLength(2));
+        expect(result.first.timestamp, 'Jul 07, 2026 17:19:08.048');
+        expect(result.first.level, 'WARN');
+        expect(result.first.message, 'first line');
+      },
+    );
   });
 
   group('LogService download logfile param', () {

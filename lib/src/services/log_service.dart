@@ -49,7 +49,8 @@ class LogService {
     if (logfile != null) params['logfile'] = logfile;
 
     final response = await _client.execute('get_plex_log', params: params);
-    // get_plex_log nests its rows under data.data as [timestamp, level, message].
+    // Rows are [timestamp, level, message]. Servers up to v2.17.2 nest them
+    // under `data.data`; newer servers return the bare list as `data`.
     final data = response['data'];
     final rows = data is Map<String, dynamic> ? data['data'] : data;
     if (rows is! List) return [];

@@ -210,10 +210,6 @@ Future<void> _run() async {
     final s = await pkg.plex.serverStatus();
     return 'connected=${s['connected']}';
   });
-  await _check('plex.getSyncedItems (retired feature)', () async {
-    final l = await pkg.plex.getSyncedItems();
-    return '${l.length} items (Plex Sync retired)';
-  });
 
   // ---- libraries -----------------------------------------------------------
   await _check('libraries.getLibraries', () async {

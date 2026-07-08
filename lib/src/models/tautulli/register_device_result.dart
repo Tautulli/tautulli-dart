@@ -11,9 +11,6 @@ class RegisterDeviceResult {
   /// IP address of the Plex Media Server.
   final String? pmsIp;
 
-  /// Whether the Plex server is a Plex Cloud server.
-  final bool? pmsIsCloud;
-
   /// Friendly name of the Plex Media Server.
   final String? pmsName;
 
@@ -74,7 +71,6 @@ class RegisterDeviceResult {
   const RegisterDeviceResult({
     this.pmsIdentifier,
     this.pmsIp,
-    this.pmsIsCloud,
     this.pmsName,
     this.pmsPlatform,
     this.pmsPlexpass,
@@ -101,7 +97,6 @@ class RegisterDeviceResult {
     return RegisterDeviceResult(
       pmsIdentifier: Cast.castToString(json['pms_identifier']),
       pmsIp: Cast.castToString(json['pms_ip']),
-      pmsIsCloud: Cast.castToBool(json['pms_is_cloud']),
       pmsName: Cast.castToString(json['pms_name']),
       pmsPlatform: Cast.castToString(json['pms_platform']),
       pmsPlexpass: Cast.castToBool(json['pms_plexpass']),

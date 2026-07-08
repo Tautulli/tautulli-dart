@@ -153,7 +153,6 @@ const readEntries = <CaptureEntry>[
   CaptureEntry('plex', 'get_servers_info', 'get_servers_info'),
   CaptureEntry('plex', 'get_pms_update', 'get_pms_update'),
   CaptureEntry('plex', 'server_status', 'server_status'),
-  CaptureEntry('plex', 'get_synced_items', 'get_synced_items'),
 
   // --- library ------------------------------------------------------------
   CaptureEntry('library', 'get_libraries', 'get_libraries'),

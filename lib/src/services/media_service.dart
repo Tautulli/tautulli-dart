@@ -11,7 +11,12 @@ class MediaService {
 
   /// Returns metadata for a single Plex item identified by [ratingKey].
   ///
-  /// Alternatively pass [syncId] to look up a synced item.
+  /// An unknown [ratingKey] returns an empty [MediaItem] on servers up to
+  /// v2.17.2, but throws [TautulliServerException] on newer servers (they
+  /// return an error for an invalid rating key).
+  ///
+  /// [syncId] is deprecated: the parameter was removed from the server after
+  /// v2.17.2 and is silently ignored there.
   Future<MediaItem> getMetadata({required int ratingKey, int? syncId}) async {
     final params = <String, dynamic>{'rating_key': ratingKey};
     if (syncId != null) params['sync_id'] = syncId;

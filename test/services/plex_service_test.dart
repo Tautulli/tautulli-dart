@@ -69,27 +69,6 @@ void main() {
     });
   });
 
-  group('PlexService.deleteSyncedItem()', () {
-    test('sends client_id and sync_id (not machine_id)', () async {
-      makeClient('success_response.json');
-      await client.plex.deleteSyncedItem(clientId: 'device-abc', syncId: 42);
-      final q = lastRequestUri.queryParameters;
-      expect(q['cmd'], 'delete_synced_item');
-      expect(q['client_id'], 'device-abc');
-      expect(q['sync_id'], '42');
-      expect(q.containsKey('machine_id'), isFalse);
-    });
-  });
-
-  group('PlexService.getSyncedItems()', () {
-    test('returns empty list when server sends {} (sync retired)', () async {
-      makeClient('plex/get_synced_items.json');
-      final result = await client.plex.getSyncedItems();
-      expect(lastRequestUri.queryParameters['cmd'], 'get_synced_items');
-      expect(result, isEmpty);
-    });
-  });
-
   group('PlexService.getServerId()', () {
     test('sends hostname/port/ssl (no phantom remote), parses id', () async {
       makeClient('plex/get_server_id.json');

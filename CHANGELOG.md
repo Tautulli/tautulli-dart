@@ -4,6 +4,13 @@
 
 - `getSettings` now returns the raw sectioned JSON map (like `getDateFormats`); the
   `TautulliSettings` model is removed — use `getDateFormats` for the format strings
+- Removed the dead `RegisterDeviceResult.pmsIsCloud` field (dropped from the API)
+- `getPlexLog` now parses both the old nested and the new flattened `get_plex_log`
+  response shapes
+- Removed `getSyncedItems` and `deleteSyncedItem` — Plex retired the Sync feature and
+  Tautulli removed `get_synced_items` from the API
+- Documented that on newer servers `getMetadata` errors on an unknown `rating_key`,
+  and its `syncId` parameter is deprecated
 
 ## 3.2.0-beta.1
 

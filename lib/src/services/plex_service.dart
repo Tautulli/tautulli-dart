@@ -4,7 +4,7 @@ import '../utils/cast.dart';
 
 /// Commands: get_server_info, get_server_identity, get_server_friendly_name,
 /// get_server_id, get_server_list, get_server_pref, get_servers_info,
-/// get_pms_update, server_status, get_synced_items, delete_synced_item
+/// get_pms_update, server_status
 class PlexService {
   final TautulliExecutor _client;
   PlexService(TautulliExecutor client) : _client = client;
@@ -100,34 +100,5 @@ class PlexService {
     if (sessionId != null) params['session_id'] = sessionId;
     final response = await _client.execute('server_status', params: params);
     return Cast.dataMap(response['data'], 'server_status');
-  }
-
-  /// Returns synced items for a Plex client device.
-  ///
-  /// Note: Plex has retired the Sync feature, so modern servers return no
-  /// synced items and this yields an empty list.
-  Future<List<Map<String, dynamic>>> getSyncedItems({
-    String? machineId,
-    int? userId,
-  }) async {
-    final params = <String, dynamic>{};
-    if (machineId != null) params['machine_id'] = machineId;
-    if (userId != null) params['user_id'] = userId;
-    final response = await _client.execute('get_synced_items', params: params);
-    // Servers with no sync data return {} instead of a list.
-    final data = response['data'];
-    if (data is! List) return [];
-    return data.whereType<Map<String, dynamic>>().toList();
-  }
-
-  /// Deletes the synced item [syncId] from the device identified by [clientId].
-  Future<void> deleteSyncedItem({
-    required String clientId,
-    required int syncId,
-  }) async {
-    await _client.execute(
-      'delete_synced_item',
-      params: {'client_id': clientId, 'sync_id': syncId},
-    );
   }
 }

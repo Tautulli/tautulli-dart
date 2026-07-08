@@ -51,7 +51,6 @@ void main() {
       expect(result.serverId, 'eeeeeeeeeeeeeeeeeeeeeeeeeeeeee08');
       expect(result.tautulliVersion, 'v2.17.2');
       expect(result.pmsPlexpass, isTrue);
-      expect(result.pmsIsCloud, isFalse);
     });
 
     test('includes minVersion when provided', () async {
