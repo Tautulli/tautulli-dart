@@ -87,4 +87,31 @@ void main() {
       expect(mapNetworkException(e), isNot(isA<TautulliRedirectException>()));
     });
   });
+
+  group('mapNetworkException — malformed request', () {
+    test('a FormatException maps to TautulliRequestException', () {
+      // dart:io throws this from HttpHeaders.set when a custom header name
+      // contains an illegal character such as ':'. IOClient does not wrap it,
+      // so it reaches the mapper as a raw FormatException.
+      const e = FormatException(
+        'Invalid HTTP header field name: "CF-Access-Client-Id:"',
+      );
+      expect(mapNetworkException(e), isA<TautulliRequestException>());
+    });
+
+    test('a FormatException is NOT reported as a connection failure', () {
+      // The whole point: a request that never touched the network must not be
+      // mislabeled as "no connectivity".
+      const e = FormatException('Invalid HTTP header field name: "a b"');
+      final mapped = mapNetworkException(e);
+      expect(mapped, isA<TautulliRequestException>());
+      expect(mapped, isNot(isA<TautulliConnectionException>()));
+    });
+
+    test('a request failure carries the underlying message through', () {
+      const e = FormatException('Invalid HTTP header field name: "a:b"');
+      final mapped = mapNetworkException(e);
+      expect(mapped.message, contains('Invalid HTTP header field name'));
+    });
+  });
 }

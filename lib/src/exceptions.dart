@@ -80,6 +80,21 @@ final class TautulliProtocolException extends TautulliException {
   const TautulliProtocolException({super.message});
 }
 
+/// Thrown when the request itself is malformed and cannot be built — most often
+/// a custom header whose name or value is not valid HTTP (e.g. a name
+/// containing ':' or whitespace), which `dart:io` rejects with a
+/// [FormatException] before anything is sent.
+///
+/// This is a client-side configuration error, **not** a network failure, so it
+/// is deliberately a direct [TautulliException] rather than a
+/// [TautulliConnectionException]: it should be surfaced as "check the request /
+/// headers" instead of "no connectivity", and it is never retried by connection
+/// failover. The carried [message] is the underlying failure text (e.g.
+/// `Invalid HTTP header field name: "CF-Access-Client-Id:"`).
+final class TautulliRequestException extends TautulliException {
+  const TautulliRequestException({super.message});
+}
+
 /// Thrown when Tautulli fails to terminate a stream session.
 final class TautulliTerminateStreamException extends TautulliException {
   const TautulliTerminateStreamException({super.message});

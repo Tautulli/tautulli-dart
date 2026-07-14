@@ -21,6 +21,15 @@ TautulliException mapNetworkException(Exception e) {
   if (redirectMessage != null) {
     return TautulliRedirectException(message: redactApiKey(redirectMessage));
   }
+  // A request the client refused to even send — most often a custom header
+  // whose name or value is not valid HTTP. dart:io throws FormatException while
+  // building the request (IOClient does not wrap it, since it is neither a
+  // SocketException nor an HttpException), so it never reached the network:
+  // report it as a request/config error, not a connection failure. Kept in
+  // sync with errors_stub.dart.
+  if (e is FormatException) {
+    return TautulliRequestException(message: redactApiKey(e.toString()));
+  }
   if (e is SocketException) {
     return TautulliConnectionException(message: e.message);
   }

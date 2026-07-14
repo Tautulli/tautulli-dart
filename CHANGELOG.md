@@ -9,6 +9,12 @@
   from an offline socket error; they now map to a dedicated type that carries the
   underlying message, while still satisfying callers that only handle
   `TautulliConnectionException`
+- Added `TautulliRequestException` for a request that cannot be built — most often a
+  custom header whose name or value is not valid HTTP (e.g. a name containing ':' or
+  whitespace), which `dart:io` rejects with a `FormatException` before anything is sent.
+  Previously this was flattened into `TautulliConnectionException` and mislabeled as a
+  connection failure; it is now a distinct, direct `TautulliException` (not a
+  `TautulliConnectionException`) carrying the underlying message
 - `getSettings` now returns the raw sectioned JSON map (like `getDateFormats`); the
   `TautulliSettings` model is removed — use `getDateFormats` for the format strings
 - Removed the dead `RegisterDeviceResult.pmsIsCloud` field (dropped from the API)

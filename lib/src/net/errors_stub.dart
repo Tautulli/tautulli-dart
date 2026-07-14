@@ -17,6 +17,12 @@ TautulliException mapNetworkException(Exception e) {
       e.message.toLowerCase().contains('redirect')) {
     return TautulliRedirectException(message: redactApiKey(e.message));
   }
+  // A malformed request the client refused to send (e.g. an invalid custom
+  // header name/value) surfaces as a FormatException — a request/config error,
+  // not a connection failure. Kept in sync with errors_io.dart.
+  if (e is FormatException) {
+    return TautulliRequestException(message: redactApiKey(e.toString()));
+  }
   return TautulliConnectionException(message: redactApiKey(e.toString()));
 }
 
