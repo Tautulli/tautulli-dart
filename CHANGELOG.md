@@ -2,6 +2,13 @@
 
 ## 3.2.0-beta.2
 
+- Added `TautulliRedirectException` (a subtype of `TautulliConnectionException`) for
+  redirect-limit / redirect-loop failures — most often a reverse proxy or access gateway
+  (Cloudflare Access, Authelia, …) answering an unauthenticated request with a login
+  redirect that the client follows in a loop. Previously these were indistinguishable
+  from an offline socket error; they now map to a dedicated type that carries the
+  underlying message, while still satisfying callers that only handle
+  `TautulliConnectionException`
 - `getSettings` now returns the raw sectioned JSON map (like `getDateFormats`); the
   `TautulliSettings` model is removed — use `getDateFormats` for the format strings
 - Removed the dead `RegisterDeviceResult.pmsIsCloud` field (dropped from the API)

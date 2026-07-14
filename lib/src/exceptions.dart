@@ -11,6 +11,22 @@ final class TautulliConnectionException extends TautulliException {
   const TautulliConnectionException({super.message});
 }
 
+/// Thrown when the HTTP client exhausts its redirect limit (or detects a
+/// redirect loop) while following a 3xx response.
+///
+/// This is most often a reverse proxy or access gateway (Cloudflare Access,
+/// Authelia, Authentik, …) answering an unauthenticated request with a login
+/// redirect that the client then follows in a loop until the limit is hit.
+///
+/// It is deliberately a subtype of [TautulliConnectionException] so existing
+/// callers keep treating it as a connection failure; catch it specifically to
+/// surface a distinct "authentication / redirect" message instead of a generic
+/// offline-network error. The carried [message] is the underlying redirect
+/// failure text (e.g. `Redirect limit exceeded`).
+final class TautulliRedirectException extends TautulliConnectionException {
+  const TautulliRedirectException({super.message});
+}
+
 /// Thrown when the server returns 401 or an 'Authorization Required' response.
 /// Typically caused by missing HTTP basic auth headers on a reverse proxy.
 final class TautulliAuthException extends TautulliException {

@@ -3,6 +3,7 @@ library;
 
 import 'dart:io';
 
+import 'package:http/http.dart' as http;
 import 'package:tautulli/src/net/errors_io.dart';
 import 'package:tautulli/tautulli.dart';
 import 'package:test/test.dart';
@@ -40,6 +41,50 @@ void main() {
         mapNetworkException(const SocketException('no route to host')),
         isA<TautulliConnectionException>(),
       );
+    });
+  });
+
+  group('mapNetworkException — redirect failures', () {
+    test('a raw RedirectException maps to TautulliRedirectException', () {
+      const e = RedirectException('Redirect limit exceeded', []);
+      expect(mapNetworkException(e), isA<TautulliRedirectException>());
+    });
+
+    test('the IOClient-wrapped redirect ClientException maps to '
+        'TautulliRedirectException', () {
+      // package:http's IOClient rewraps dart:io RedirectException as a plain
+      // ClientException carrying the message, so this is the type that actually
+      // reaches the mapper at runtime.
+      final e = http.ClientException('Redirect limit exceeded');
+      expect(mapNetworkException(e), isA<TautulliRedirectException>());
+    });
+
+    test('a redirect failure carries the underlying message through', () {
+      final e = http.ClientException('Redirect loop detected');
+      final mapped = mapNetworkException(e);
+      expect(mapped.message, 'Redirect loop detected');
+    });
+
+    test('TautulliRedirectException is still a TautulliConnectionException '
+        'so callers that only handle connection failures keep working', () {
+      const e = RedirectException('Redirect limit exceeded', []);
+      expect(mapNetworkException(e), isA<TautulliConnectionException>());
+    });
+
+    test('a non-redirect ClientException stays a plain connection exception',
+        () {
+      final e = http.ClientException('Connection closed before full header');
+      final mapped = mapNetworkException(e);
+      expect(mapped, isA<TautulliConnectionException>());
+      expect(mapped, isNot(isA<TautulliRedirectException>()));
+    });
+
+    test('a wrapped SocketException is not misread as a redirect', () {
+      // _ClientSocketException is both a SocketException and a ClientException;
+      // its message never mentions a redirect, so it must map to a plain
+      // connection exception, not a redirect one.
+      final e = http.ClientException('Connection refused (errno 111)');
+      expect(mapNetworkException(e), isNot(isA<TautulliRedirectException>()));
     });
   });
 }
