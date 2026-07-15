@@ -71,13 +71,15 @@ void main() {
       expect(mapNetworkException(e), isA<TautulliConnectionException>());
     });
 
-    test('a non-redirect ClientException stays a plain connection exception',
-        () {
-      final e = http.ClientException('Connection closed before full header');
-      final mapped = mapNetworkException(e);
-      expect(mapped, isA<TautulliConnectionException>());
-      expect(mapped, isNot(isA<TautulliRedirectException>()));
-    });
+    test(
+      'a non-redirect ClientException stays a plain connection exception',
+      () {
+        final e = http.ClientException('Connection closed before full header');
+        final mapped = mapNetworkException(e);
+        expect(mapped, isA<TautulliConnectionException>());
+        expect(mapped, isNot(isA<TautulliRedirectException>()));
+      },
+    );
 
     test('a wrapped SocketException is not misread as a redirect', () {
       // _ClientSocketException is both a SocketException and a ClientException;
