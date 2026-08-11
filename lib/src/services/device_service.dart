@@ -39,6 +39,11 @@ class DeviceService {
   /// Only [deviceId] and [deviceName] are required. Returns a
   /// [RegisterDeviceResult] containing Plex Media Server details and Tautulli
   /// version information for the connected server.
+  ///
+  /// [pushToken] is the device's push notification token, used by servers
+  /// v2.18.0 and newer to deliver notifications via the Tautulli Remote relay;
+  /// older servers ignore it. [onesignalId] is the legacy OneSignal transport,
+  /// still accepted alongside it.
   Future<RegisterDeviceResult> registerDevice({
     required String deviceId,
     required String deviceName,
@@ -46,6 +51,7 @@ class DeviceService {
     String? version,
     String? friendlyName,
     String? onesignalId,
+    String? pushToken,
     String? minVersion,
   }) async {
     final params = <String, dynamic>{
@@ -56,6 +62,7 @@ class DeviceService {
     if (version != null) params['version'] = version;
     if (friendlyName != null) params['friendly_name'] = friendlyName;
     if (onesignalId != null) params['onesignal_id'] = onesignalId;
+    if (pushToken != null) params['push_token'] = pushToken;
     if (minVersion != null) params['min_version'] = minVersion;
 
     final response = await _client.execute('register_device', params: params);

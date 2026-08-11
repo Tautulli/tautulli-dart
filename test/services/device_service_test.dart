@@ -80,6 +80,20 @@ void main() {
       // optional now — not sent when omitted
       expect(q.containsKey('platform'), isFalse);
       expect(q.containsKey('onesignal_id'), isFalse);
+      expect(q.containsKey('push_token'), isFalse);
+    });
+
+    test('sends push_token alongside onesignal_id', () async {
+      makeClient('device/register_device.json');
+      await client.devices.registerDevice(
+        deviceId: 'id',
+        deviceName: 'TestPhone',
+        onesignalId: 'onesignal-disabled',
+        pushToken: 'fcm-token-abc',
+      );
+      final q = lastRequestUri.queryParameters;
+      expect(q['push_token'], 'fcm-token-abc');
+      expect(q['onesignal_id'], 'onesignal-disabled');
     });
   });
 
