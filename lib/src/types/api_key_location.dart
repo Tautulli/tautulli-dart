@@ -7,7 +7,7 @@ enum ApiKeyLocation {
 
   /// Send the key as an `X-Api-Key` header instead, keeping it out of URLs.
   ///
-  /// Requires a Tautulli server **newer than v2.17.2** — older servers only
+  /// Requires Tautulli server **v2.18.0 or newer** — older servers only
   /// read the query parameter and reject header-only requests with
   /// "Parameter apikey is required". Enable this only when the server is
   /// known to support it.

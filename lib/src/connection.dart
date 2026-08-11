@@ -32,7 +32,7 @@ class TautulliConnection {
 
   /// How the [apiKey] is transmitted. Defaults to [ApiKeyLocation.query],
   /// which works on every server version. Opt in to [ApiKeyLocation.header]
-  /// on servers newer than v2.17.2 to keep the key out of URLs and access
+  /// on servers v2.18.0 or newer to keep the key out of URLs and access
   /// logs.
   final ApiKeyLocation apiKeyLocation;
 

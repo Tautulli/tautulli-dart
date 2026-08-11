@@ -118,13 +118,13 @@ WASM**. Two things differ on the web:
   requests that work cross-origin against every server version. Request
   headers (opt-in `ApiKeyLocation.header`, or custom `headers` on
   `TautulliConnection`) make requests non-simple and trigger a CORS preflight
-  that only Tautulli newer than v2.17.2 answers — on older servers, header
-  auth and custom headers are unusable from the browser.
+  that only Tautulli v2.18.0+ answers — on older servers, header auth and
+  custom headers are unusable from the browser.
 
 ## Security
 
 By default the API key is sent as the `apikey` query parameter, which works on
-every server version. On Tautulli servers **newer than v2.17.2** you can opt
+every server version. On Tautulli servers **v2.18.0 or newer** you can opt
 in to header auth — `apiKeyLocation: ApiKeyLocation.header` on the connection —
 which sends the key as an `X-Api-Key` header instead, keeping it out of URLs
 and therefore out of server access logs, proxy logs, and browser tooling.
