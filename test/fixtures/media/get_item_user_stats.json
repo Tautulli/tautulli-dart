@@ -4,12 +4,36 @@
     "message": null,
     "data": [
       {
-        "friendly_name": "user26",
-        "user_id": 65059356,
-        "user_thumb": "https://plex.tv/users/0000000000000000/avatar?c=1783101112",
-        "username": "user27",
+        "friendly_name": "pete",
+        "user_id": 2249785,
+        "user_thumb": "https://plex.tv/users/0000000000000000/avatar?c=1787711821",
+        "username": "user81",
         "total_plays": 2,
-        "total_time": 12996
+        "total_time": 17230
+      },
+      {
+        "friendly_name": "user24",
+        "user_id": 65059356,
+        "user_thumb": "https://plex.tv/users/0000000000000000/avatar?c=1787861052",
+        "username": "user25",
+        "total_plays": 2,
+        "total_time": 11008
+      },
+      {
+        "friendly_name": "user19",
+        "user_id": 2940460,
+        "user_thumb": "https://plex.tv/users/0000000000000000/avatar?c=1787864842",
+        "username": "user20",
+        "total_plays": 1,
+        "total_time": 9083
+      },
+      {
+        "friendly_name": "liam",
+        "user_id": 2535039,
+        "user_thumb": "https://plex.tv/users/0000000000000000/avatar?c=1787863352",
+        "username": "user65",
+        "total_plays": 1,
+        "total_time": 5158
       }
     ]
   }

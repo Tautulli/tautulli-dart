@@ -471,7 +471,7 @@ const readEntries = <CaptureEntry>[
   ),
   CaptureEntry(
     'media',
-    'search__no_limit_empty_list',
+    'search__no_limit',
     'search',
     params: {'query': '{searchTerm}'},
   ),
@@ -575,7 +575,7 @@ const readEntries = <CaptureEntry>[
   ),
   CaptureEntry(
     'export',
-    'get_export_fields__movie_no_sub_500',
+    'get_export_fields__movie_no_sub',
     'get_export_fields',
     params: {'media_type': 'movie'},
   ),
@@ -587,7 +587,7 @@ const readEntries = <CaptureEntry>[
   ),
   CaptureEntry(
     'export',
-    'get_export_fields__collection_no_sub_500',
+    'get_export_fields__collection_no_sub',
     'get_export_fields',
     params: {'media_type': 'collection'},
   ),

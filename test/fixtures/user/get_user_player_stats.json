@@ -4,84 +4,132 @@
     "message": null,
     "data": [
       {
-        "player_name": "SHIELD Android TV",
-        "platform": "Android",
-        "platform_name": "android",
-        "total_plays": 13414,
-        "total_time": 24347257,
+        "player_name": "Firefox",
+        "platform": "Firefox",
+        "platform_name": "firefox",
+        "total_plays": 2949,
+        "total_time": 7270290,
         "result_id": 0
-      },
-      {
-        "player_name": "Apple TV",
-        "platform": "tvOS",
-        "platform_name": "atv",
-        "total_plays": 2147,
-        "total_time": 5146586,
-        "result_id": 1
-      },
-      {
-        "player_name": "iPhone",
-        "platform": "iOS",
-        "platform_name": "ios",
-        "total_plays": 798,
-        "total_time": 4208971,
-        "result_id": 2
-      },
-      {
-        "player_name": "4K TV",
-        "platform": "Android",
-        "platform_name": "android",
-        "total_plays": 96,
-        "total_time": 141603,
-        "result_id": 3
       },
       {
         "player_name": "Chrome",
         "platform": "Chrome",
         "platform_name": "chrome",
-        "total_plays": 85,
-        "total_time": 311765,
+        "total_plays": 1844,
+        "total_time": 4159091,
+        "result_id": 1
+      },
+      {
+        "player_name": "Living Room TV",
+        "platform": "Roku",
+        "platform_name": "roku",
+        "total_plays": 465,
+        "total_time": 1348956,
+        "result_id": 2
+      },
+      {
+        "player_name": "BRAVIA VH22",
+        "platform": "Android",
+        "platform_name": "android",
+        "total_plays": 341,
+        "total_time": 894366,
+        "result_id": 3
+      },
+      {
+        "player_name": "Chromecast",
+        "platform": "Chromecast",
+        "platform_name": "chromecast",
+        "total_plays": 217,
+        "total_time": 566610,
         "result_id": 4
       },
       {
-        "player_name": "BRAVIA 2015",
+        "player_name": "BRAVIA 4K UR3",
         "platform": "Android",
         "platform_name": "android",
-        "total_plays": 16,
-        "total_time": 41627,
+        "total_plays": 111,
+        "total_time": 233062,
         "result_id": 5
       },
       {
-        "player_name": "HisenseRoku TV - X00100N2VJVN",
+        "player_name": "Beardroom",
         "platform": "Roku",
         "platform_name": "roku",
-        "total_plays": 4,
-        "total_time": 13499,
+        "total_plays": 40,
+        "total_time": 86178,
         "result_id": 6
       },
       {
-        "player_name": "Chromecast Google TV (HD)",
+        "player_name": "Galaxy S8+",
         "platform": "Android",
         "platform_name": "android",
-        "total_plays": 4,
-        "total_time": 11719,
+        "total_plays": 32,
+        "total_time": 68208,
         "result_id": 7
       },
       {
-        "player_name": "TV 2020",
-        "platform": "Tizen",
-        "platform_name": "samsung",
-        "total_plays": 2,
-        "total_time": 9800,
+        "player_name": "Pixel 9a",
+        "platform": "Android",
+        "platform_name": "android",
+        "total_plays": 27,
+        "total_time": 39502,
         "result_id": 8
       },
       {
-        "player_name": "APAC",
+        "player_name": "Pixel 5",
+        "platform": "Android",
+        "platform_name": "android",
+        "total_plays": 6,
+        "total_time": 15186,
+        "result_id": 9
+      },
+      {
+        "player_name": "TCLRoku TV - YK001V781196",
+        "platform": "Roku",
+        "platform_name": "roku",
+        "total_plays": 4,
+        "total_time": 12053,
+        "result_id": 10
+      },
+      {
+        "player_name": "BRAVIA VH21",
+        "platform": "Android",
+        "platform_name": "android",
+        "total_plays": 4,
+        "total_time": 10575,
+        "result_id": 11
+      },
+      {
+        "player_name": "TV UN60KU630D",
+        "platform": "Tizen",
+        "platform_name": "samsung",
+        "total_plays": 3,
+        "total_time": 12339,
+        "result_id": 12
+      },
+      {
+        "player_name": "Plex Web (Chrome)",
+        "platform": "Chrome",
+        "platform_name": "chrome",
+        "total_plays": 3,
+        "total_time": 9781,
+        "result_id": 13
+      },
+      {
+        "player_name": "Pixel",
         "platform": "Android",
         "platform_name": "android",
         "total_plays": 1,
-        "total_time": 114,
-        "result_id": 9
+        "total_time": 2454,
+        "result_id": 14
+      },
+      {
+        "player_name": "Josh’s iPhone",
+        "platform": "iOS",
+        "platform_name": "ios",
+        "total_plays": 1,
+        "total_time": 226,
+        "result_id": 15
       }
     ]
   }

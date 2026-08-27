@@ -93,7 +93,7 @@ void main() {
       makeClient('notification/get_notifier_parameters.json');
       final result = await client.notifications.getNotifierParameters();
       expect(lastRequestUri.queryParameters['cmd'], 'get_notifier_parameters');
-      expect(result, hasLength(304));
+      expect(result, hasLength(306));
       expect(result.first.name, 'Tautulli Version');
       expect(result.first.type, 'str');
       expect(result.first.value, 'tautulli_version');
@@ -105,15 +105,15 @@ void main() {
       makeClient('notification/get_notification_log.json');
       final result = await client.notifications.getNotificationLog();
       expect(lastRequestUri.queryParameters['cmd'], 'get_notification_log');
-      expect(result.recordsTotal, 95840);
+      expect(result.recordsTotal, 208);
       final entry = result.data.first;
-      expect(entry.id, 95839);
+      expect(entry.id, 96052);
       expect(entry.notifierId, 12);
       expect(entry.agentId, 21);
       expect(entry.agentName, 'remoteapp');
-      expect(entry.notifyAction, 'on_intup');
+      expect(entry.notifyAction, 'on_newdevice');
       expect(entry.subjectText, 'Tautulli (TestServer)');
-      expect(entry.bodyText, 'The Plex Media Server is back up.');
+      expect(entry.bodyText, 'liam is streaming from a new device: Firefox.');
       expect(entry.success, isFalse);
     });
   });

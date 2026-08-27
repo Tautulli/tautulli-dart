@@ -5,8 +5,8 @@
     "data": {
       "recordsFiltered": 0,
       "recordsTotal": 0,
-      "draw": 0,
-      "data": []
+      "data": [],
+      "draw": 1
     }
   }
 }

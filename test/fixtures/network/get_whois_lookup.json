@@ -6,10 +6,10 @@
       "host": "Not available",
       "nets": [
         {
-          "cidr": "203.0.113.62/24",
+          "cidr": "203.0.113.66/24",
           "name": "GOGL",
           "handle": "NET-8-8-8-0-2",
-          "range": "203.0.113.62 - 203.0.113.63",
+          "range": "203.0.113.66 - 203.0.113.67",
           "description": "Google LLC",
           "country": "United States",
           "state": "CA",

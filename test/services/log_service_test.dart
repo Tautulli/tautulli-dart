@@ -36,7 +36,7 @@ void main() {
         'Invalid session_key (999999) or session_id ().',
       );
       expect(result.first.thread, 'CP Server Thread-11');
-      expect(result.first.timestamp, '2026-07-04 10:29:28 ');
+      expect(result.first.timestamp, '2026-08-27 16:31:54 ');
     });
 
     test('sends order and regex params', () async {
@@ -60,9 +60,12 @@ void main() {
       expect(q['logfile'], 'Plex Media Server');
       // Rows are [timestamp, level, message] nested under data.data.
       expect(result, hasLength(10));
-      expect(result.first.timestamp, 'Jul 04, 2026 10:29:28.406');
-      expect(result.first.level, 'ERROR');
-      expect(result.first.message, contains('error reading output'));
+      expect(result.first.timestamp, 'Aug 27, 2026 16:31:54.029');
+      expect(result.first.level, 'DEBUG');
+      expect(
+        result.first.message,
+        contains('GET /library/metadata/153110?includeMarkers=1'),
+      );
       expect(result.first.thread, isNull);
     });
 

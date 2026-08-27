@@ -33,10 +33,10 @@ void main() {
       makeClient('library/get_libraries_table.json');
       final result = await client.libraries.getLibrariesTable();
       expect(result.recordsTotal, 27);
-      expect(result.data, hasLength(15));
+      expect(result.data, hasLength(14));
       expect(result.data.first.sectionName, 'TV Shows');
       expect(result.data.first.sectionType, SectionType.show);
-      expect(result.data.first.plays, 52777);
+      expect(result.data.first.plays, 47976);
     });
   });
 
@@ -61,7 +61,7 @@ void main() {
       final item = (await client.libraries.getLibraryMediaInfo(
         sectionId: 1,
       )).data.first;
-      expect(item.bitrate, 22964);
+      expect(item.bitrate, 22942);
       expect(item.container, 'mkv');
       expect(item.videoCodec, 'hevc');
       expect(item.videoResolution, '4k');
@@ -130,9 +130,12 @@ void main() {
       makeClient('library/get_recently_added.json');
       final result = await client.libraries.getRecentlyAdded(count: 10);
       expect(result, hasLength(5));
-      expect(result.first.title, 'FROM');
-      expect(result.first.mediaType, MediaType.show);
-      expect(result.first.genres, contains('Mystery'));
+      expect(result.first.title, 'Off-Hour');
+      expect(result.first.mediaType, MediaType.episode);
+      // This capture holds only episodes, whose genres list is empty; the
+      // directors list covers the same string-list parsing path.
+      expect(result.first.genres, isEmpty);
+      expect(result.first.directors, contains('Dan Liu'));
     });
   });
 
@@ -190,7 +193,7 @@ void main() {
       makeClient('library/get_library_names.json');
       final result = await client.libraries.getLibraryNames();
       expect(lastRequestUri.queryParameters['cmd'], 'get_library_names');
-      expect(result, hasLength(15));
+      expect(result, hasLength(14));
       expect(result.first.sectionName, 'Documentaries');
       expect(result.first.sectionType, 'movie');
     });

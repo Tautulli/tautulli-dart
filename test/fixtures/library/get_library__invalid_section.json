@@ -6,7 +6,7 @@
       "row_id": 0,
       "server_id": "",
       "section_id": 0,
-      "section_name": "user52",
+      "section_name": "user50",
       "section_type": "",
       "library_thumb": "interfaces/default/images/cover.png",
       "library_art": "",
@@ -14,8 +14,6 @@
       "parent_count": 0,
       "child_count": 0,
       "is_active": 1,
-      "do_notify": 0,
-      "do_notify_created": 0,
       "keep_history": 1,
       "deleted_section": 0,
       "last_accessed": null

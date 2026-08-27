@@ -444,7 +444,7 @@
         "value": "relayed"
       },
       {
-        "name": "Stream user52",
+        "name": "Stream user50",
         "type": "int",
         "value": "stream_local"
       },
@@ -627,6 +627,11 @@
         "name": "Stream Audio Profile",
         "type": "str",
         "value": "stream_audio_profile"
+      },
+      {
+        "name": "Stream Audio Atmos",
+        "type": "int",
+        "value": "stream_audio_atmos"
       },
       {
         "name": "Stream Subtitle Codec",
@@ -1272,6 +1277,11 @@
         "name": "Audio Profile",
         "type": "str",
         "value": "audio_profile"
+      },
+      {
+        "name": "Audio Atmos",
+        "type": "int",
+        "value": "audio_atmos"
       },
       {
         "name": "Subtitle Codec",

@@ -5,29 +5,29 @@
     "data": {
       "data": [
         [
-          "Jul 04, 2026 10:29:28.413",
-          "ERROR",
-          "[Req#1be2ff/Transcode/5eb06d01-5c1d-4fc5-b1b0-47e296eb8939/06bb8ac9-3406-4cfa-8d58-569c0fb479c9] [aist#0:1/truehd @ 0x146d18d28500] Error submitting packet to decoder: Unknown error occurred\n"
+          "Aug 27, 2026 16:31:54.033",
+          "DEBUG",
+          "Audio Stream: 1291924, Subtitle Stream: -1\n"
         ],
         [
-          "Jul 04, 2026 10:29:28.428",
-          "ERROR",
-          "[Req#1be300/Transcode/5eb06d01-5c1d-4fc5-b1b0-47e296eb8939/06bb8ac9-3406-4cfa-8d58-569c0fb479c9] [truehd_eae @ 0x146d194a5080] error reading output: -1313558101 (Unknown error occurred)\n"
+          "Aug 27, 2026 16:31:54.035",
+          "DEBUG",
+          "Completed: [192.0.2.12:32786] 200 GET /library/metadata/153110?includeMarkers=1 (34 live) #b0f217 TLS GZIP 5ms 6453 bytes (pipelined: 2)\n"
         ],
         [
-          "Jul 04, 2026 10:29:28.428",
-          "ERROR",
-          "[Req#1be301/Transcode/5eb06d01-5c1d-4fc5-b1b0-47e296eb8939/06bb8ac9-3406-4cfa-8d58-569c0fb479c9] [aist#0:1/truehd @ 0x146d18d28500] Error submitting packet to decoder: Unknown error occurred\n"
+          "Aug 27, 2026 16:31:54.095",
+          "DEBUG",
+          "Request: [192.0.2.12:32802 (WAN)] GET /status/sessions (34 live) #b0f213 TLS GZIP Signed-in Token (TheMeanCanEHdian)\n"
         ],
         [
-          "Jul 04, 2026 10:29:28.429",
-          "ERROR",
-          "[Req#1be302/Transcode/5eb06d01-5c1d-4fc5-b1b0-47e296eb8939/06bb8ac9-3406-4cfa-8d58-569c0fb479c9] [truehd_eae @ 0x146d194a5080] error reading output: -1313558101 (Unknown error occurred)\n"
+          "Aug 27, 2026 16:31:54.095",
+          "DEBUG",
+          "[Req#b0f213] [Now] Adding 1 sessions.\n"
         ],
         [
-          "Jul 04, 2026 10:29:28.430",
-          "ERROR",
-          "[Req#1be303/Transcode/5eb06d01-5c1d-4fc5-b1b0-47e296eb8939/06bb8ac9-3406-4cfa-8d58-569c0fb479c9] [aist#0:1/truehd @ 0x146d18d28500] Error submitting packet to decoder: Unknown error occurred\n"
+          "Aug 27, 2026 16:31:54.096",
+          "DEBUG",
+          "Completed: [192.0.2.12:32802] 200 GET /status/sessions (34 live) #b0f213 TLS GZIP 0ms 4313 bytes (pipelined: 1)\n"
         ]
       ]
     }

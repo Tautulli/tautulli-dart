@@ -1,3 +1,4 @@
+import 'package:http/http.dart' as http;
 import 'package:http/testing.dart';
 import 'package:test/test.dart';
 import 'package:tautulli/tautulli.dart';
@@ -33,25 +34,28 @@ void main() {
     test('parses metadata fields', () async {
       makeClient('media/get_metadata.json');
       final item = await client.media.getMetadata(ratingKey: 1001);
-      expect(item.title, 'The American President');
+      expect(item.title, "Harry Potter and the Sorcerer's Stone");
       expect(item.mediaType, MediaType.movie);
-      expect(item.year, 1995);
-      expect(item.rating, closeTo(9.0, 0.01));
+      expect(item.year, 2001);
+      // The captured item has no critic rating (`rating` is `""`); the
+      // audience score covers the double coercion.
+      expect(item.rating, isNull);
+      expect(item.audienceRating, closeTo(7.7, 0.01));
     });
 
     test('parses nested media_info', () async {
       makeClient('media/get_metadata.json');
       final item = await client.media.getMetadata(ratingKey: 1001);
       expect(item.mediaInfo, isNotNull);
-      expect(item.mediaInfo!.videoCodec, 'hevc');
+      expect(item.mediaInfo!.videoCodec, 'h264');
       expect(item.mediaInfo!.audioChannels, 6);
     });
 
     test('parses string lists', () async {
       makeClient('media/get_metadata.json');
       final item = await client.media.getMetadata(ratingKey: 1001);
-      expect(item.genres, contains('Comedy'));
-      expect(item.actors, contains('Michael Douglas'));
+      expect(item.genres, contains('Fantasy'));
+      expect(item.actors, contains('Daniel Radcliffe'));
     });
   });
 
@@ -73,10 +77,13 @@ void main() {
         ratingKey: 2000,
         mediaType: 'show',
       );
-      expect(items, hasLength(32));
-      expect(items.first.title, 'Episode 1');
+      expect(items, hasLength(2));
+      expect(
+        items.first.title,
+        'Demon Slayer -Kimetsu no Yaiba- The Movie: Mugen Train',
+      );
       expect(items.first.mediaType, MediaType.episode);
-      expect(items.first.mediaIndex, 1);
+      expect(items.first.mediaIndex, 2);
     });
   });
 
@@ -106,9 +113,24 @@ void main() {
 
   group('MediaService.search() PMS-failure shape', () {
     test('returns an empty map when the server sends a bare list', () async {
-      // Captured live: omitting `limit` (or any upstream PMS search failure)
-      // makes the server return `data: []` instead of the results object.
-      makeClient('media/search__no_limit_empty_list.json');
+      // When the upstream PMS search fails, the server returns `data: []`
+      // instead of the results object. Inline rather than a fixture: the
+      // reliable trigger (omitting `limit`) was fixed in v2.18.0, so this
+      // shape is no longer reproducible against a supported server.
+      client = TautulliClient(
+        connection: const TautulliConnection(
+          protocol: 'http',
+          domain: 'tautulli.local',
+          apiKey: 'abc123',
+        ),
+        httpClient: MockClient(
+          (_) async => http.Response(
+            '{"response":{"result":"success","message":null,"data":[]}}',
+            200,
+            headers: {'content-type': 'application/json;charset=UTF-8'},
+          ),
+        ),
+      );
       final result = await client.media.search(query: 'anything');
       expect(result, isEmpty);
     });

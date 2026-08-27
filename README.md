@@ -16,7 +16,7 @@ Or add manually to `pubspec.yaml`:
 
 ```yaml
 dependencies:
-  tautulli: ^3.0.0
+  tautulli: ^3.2.0
 ```
 
 ## Quick Start
@@ -114,22 +114,19 @@ WASM**. Two things differ on the web:
   the default `BrowserClient` is used. Connection failures surface as
   `TautulliConnectionException` — the finer `TautulliCertVerificationException`
   mapping is native-only.
-- **CORS.** With the default query-parameter auth, the client sends simple GET
-  requests that work cross-origin against every server version. Request
-  headers (opt-in `ApiKeyLocation.header`, or custom `headers` on
-  `TautulliConnection`) make requests non-simple and trigger a CORS preflight
-  that only Tautulli v2.18.0+ answers — on older servers, header auth and
-  custom headers are unusable from the browser.
+- **CORS.** With the default query-parameter auth the client sends simple GET
+  requests. Request headers (opt-in `ApiKeyLocation.header`, or custom
+  `headers` on `TautulliConnection`) make requests non-simple and trigger a
+  CORS preflight, which Tautulli answers from v2.18.0 onward — so both work
+  from the browser on every supported server.
 
 ## Security
 
-By default the API key is sent as the `apikey` query parameter, which works on
-every server version. On Tautulli servers **v2.18.0 or newer** you can opt
-in to header auth — `apiKeyLocation: ApiKeyLocation.header` on the connection —
-which sends the key as an `X-Api-Key` header instead, keeping it out of URLs
-and therefore out of server access logs, proxy logs, and browser tooling.
-Older servers only read the parameter and reject header-only requests, so
-enable it only when the server is known to support it.
+By default the API key is sent as the `apikey` query parameter. Setting
+`apiKeyLocation: ApiKeyLocation.header` on the connection sends it as an
+`X-Api-Key` header instead, keeping the key out of URLs and therefore out of
+server access logs, proxy logs, and browser tooling. Header auth is supported
+by every server version this package targets, so it is worth enabling.
 
 Two caveats regardless of mode: image URLs from `buildImageUrl()` always embed
 the key as a query parameter (an `<img>` tag cannot send headers), and you
@@ -195,10 +192,14 @@ final client = TautulliClient(
 
 All commands are documented in the [Tautulli API Reference](https://github.com/Tautulli/Tautulli/wiki/Tautulli-API-Reference).
 
-- Last audited against: **v2.17.2**
+- Requires Tautulli **v2.18.0 or newer**
+- Last audited against: **v2.18.1**
 
-The client imposes no server-version floor. `importConfig()` and
-`importDatabase()` are not implemented and throw `UnimplementedError`.
+Older servers are not supported: v2.18.0 removed several parameters this client
+sends.
+
+`importConfig()` and `importDatabase()` are not implemented and throw
+`UnimplementedError`.
 
 ## License
 

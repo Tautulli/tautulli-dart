@@ -4,31 +4,25 @@
     "message": null,
     "data": {
       "categories": [
-        "SD",
         "1080p",
+        "SD",
         "720p",
-        "480p",
-        "1080i",
-        "576i"
+        "480p"
       ],
       "series": [
         {
           "name": "Direct Play",
           "data": [
+            801,
             0,
-            284,
-            4,
-            0,
-            3,
-            2
+            23,
+            1
           ]
         },
         {
           "name": "Direct Stream",
           "data": [
-            0,
             2,
-            0,
             0,
             0,
             0
@@ -37,12 +31,10 @@
         {
           "name": "Transcode",
           "data": [
-            520,
-            145,
+            232,
+            31,
             2,
-            4,
-            0,
-            0
+            2
           ]
         }
       ]

@@ -6,7 +6,7 @@
       "recently_added": [
         {
           "media_type": "movie",
-          "section_id": "",
+          "section_id": "24",
           "library_name": "",
           "rating_key": "135292",
           "parent_rating_key": "",
@@ -29,14 +29,14 @@
           "user_rating": "",
           "duration": "8037248",
           "year": "2016",
-          "thumb": "/library/metadata/135292/thumb/1780378328",
+          "thumb": "/library/metadata/135292/thumb/1785844239",
           "parent_thumb": "",
           "grandparent_thumb": "",
-          "art": "/library/metadata/135292/art/1780378328",
+          "art": "/library/metadata/135292/art/1785844239",
           "banner": "",
           "originally_available_at": "2016-12-14",
           "added_at": "1636916825",
-          "updated_at": "1780378328",
+          "updated_at": "1785844239",
           "last_viewed_at": "1747603686",
           "guid": "plex://movie/5d776b85594b2b001e6dc647",
           "directors": [
@@ -63,7 +63,7 @@
         },
         {
           "media_type": "movie",
-          "section_id": "",
+          "section_id": "24",
           "library_name": "",
           "rating_key": "134899",
           "parent_rating_key": "",
@@ -77,7 +77,7 @@
           "parent_media_index": "",
           "studio": "Legendary Pictures",
           "content_rating": "PG-13",
-          "summary": "Paul Atreides, a brilliant and gifted young man born into a great destiny beyond his understanding, must travel to the most dangerous planet in the universe to ensure the future of his family and his people. As malevolent forces explode into conflict over the planet's exclusive supply of the most precious resource in existence-a commodity capable of unlocking humanity's greatest potential-only those who can conquer their fear will survive.",
+          "summary": "Paul Atreides, a brilliant and gifted young man born into a great destiny beyond his understanding, must travel to the most dangerous planet in the universe to ensure the future of his family and his people. As malevolent forces explode into conflict over the planet's exclusive supply of the most precious resource in existence - a commodity capable of unlocking humanity's greatest potential - only those who can conquer their fear will survive.",
           "tagline": "It begins.",
           "rating": "",
           "rating_image": "",
@@ -86,14 +86,14 @@
           "user_rating": "",
           "duration": "9326624",
           "year": "2021",
-          "thumb": "/library/metadata/134899/thumb/1777975385",
+          "thumb": "/library/metadata/134899/thumb/1785944912",
           "parent_thumb": "",
           "grandparent_thumb": "",
-          "art": "/library/metadata/134899/art/1777975385",
+          "art": "/library/metadata/134899/art/1785944912",
           "banner": "",
           "originally_available_at": "2021-09-15",
           "added_at": "1635215589",
-          "updated_at": "1777975385",
+          "updated_at": "1785944912",
           "last_viewed_at": "1636475378",
           "guid": "plex://movie/5d776cac47dd6e001f6ee059",
           "directors": [
@@ -101,7 +101,7 @@
           ],
           "writers": [
             "Frank Herbert",
-            "Denis Villeneuve"
+            "Eric Roth"
           ],
           "actors": [
             "Timothée Chalamet",
@@ -120,7 +120,7 @@
         },
         {
           "media_type": "movie",
-          "section_id": "",
+          "section_id": "24",
           "library_name": "",
           "rating_key": "99190",
           "parent_rating_key": "",
@@ -143,14 +143,14 @@
           "user_rating": "",
           "duration": "6900448",
           "year": "2018",
-          "thumb": "/library/metadata/99190/thumb/1780579249",
+          "thumb": "/library/metadata/99190/thumb/1785944905",
           "parent_thumb": "",
           "grandparent_thumb": "",
-          "art": "/library/metadata/99190/art/1780579249",
+          "art": "/library/metadata/99190/art/1785944905",
           "banner": "",
           "originally_available_at": "2018-02-23",
           "added_at": "1592516150",
-          "updated_at": "1780579249",
+          "updated_at": "1785944905",
           "last_viewed_at": "",
           "guid": "plex://movie/5d776b3a7a53e9001e71e9de",
           "directors": [
@@ -166,8 +166,8 @@
             "Gina Rodriguez"
           ],
           "genres": [
-            "Thriller",
-            "Science Fiction"
+            "Science Fiction",
+            "Horror"
           ],
           "labels": [],
           "collections": [],
@@ -177,7 +177,7 @@
         },
         {
           "media_type": "movie",
-          "section_id": "",
+          "section_id": "24",
           "library_name": "",
           "rating_key": "99149",
           "parent_rating_key": "",
@@ -200,14 +200,14 @@
           "user_rating": "",
           "duration": "9827680",
           "year": "2017",
-          "thumb": "/library/metadata/99149/thumb/1780579248",
+          "thumb": "/library/metadata/99149/thumb/1785944905",
           "parent_thumb": "",
           "grandparent_thumb": "",
-          "art": "/library/metadata/99149/art/1780579248",
+          "art": "/library/metadata/99149/art/1785944905",
           "banner": "",
           "originally_available_at": "2017-10-04",
           "added_at": "1592493251",
-          "updated_at": "1780579248",
+          "updated_at": "1785944905",
           "last_viewed_at": "1621890674",
           "guid": "plex://movie/5d776b95594b2b001e6de3f3",
           "directors": [
@@ -224,7 +224,7 @@
           ],
           "genres": [
             "Science Fiction",
-            "Thriller"
+            "Mystery"
           ],
           "labels": [],
           "collections": [],

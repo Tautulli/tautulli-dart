@@ -8,10 +8,10 @@
         "agent_id": 0,
         "agent_name": "recently_added",
         "agent_label": "Recently Added",
-        "friendly_name": "user69",
+        "friendly_name": "user67",
         "cron": "0 * * * *",
         "active": 1,
-        "last_triggered": 1783177200,
+        "last_triggered": 1787864400,
         "last_success": 1
       },
       {
@@ -22,8 +22,8 @@
         "friendly_name": "",
         "cron": "0 19 * * 5",
         "active": 0,
-        "last_triggered": 1545144570,
-        "last_success": 1
+        "last_triggered": null,
+        "last_success": null
       }
     ]
   }

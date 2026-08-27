@@ -5,8 +5,8 @@
     "data": {
       "row_id": 0,
       "user_id": 0,
-      "username": "user52",
-      "friendly_name": "user52",
+      "username": "user50",
+      "friendly_name": "user50",
       "user_thumb": "interfaces/default/images/gravatar-default-80x80.png",
       "email": "",
       "is_active": 1,
@@ -14,7 +14,6 @@
       "is_home_user": 0,
       "is_allow_sync": 0,
       "is_restricted": 0,
-      "do_notify": 0,
       "keep_history": 1,
       "allow_guest": 0,
       "deleted_user": 0,

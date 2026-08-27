@@ -5,16 +5,16 @@
     "data": {
       "update_available": false,
       "platform": "Linux",
-      "release_date": 1782742565,
-      "version": "1.43.3.10793-cd55560bb",
+      "release_date": 1786974203,
+      "version": "1.43.4.10903-e5521bd8c",
       "requirements": "",
       "extra_info": "",
-      "changelog_added": "(Library) Audio codec filter is now available on music libraries when browsing tracks (PM-5224)\n(Network) IPv6 support has TEMPORARILY been made a plex pass feature (PM-5140)\n(Network) Support for ipv6 only networks (PM-5140)\n(Subtitles) Added support for dvb_teletext (PM-3855)\n(Transcoder) The \"HEVC Sources Only\" encoding setting now also applies to AV1 sources and is named \"HEVC/AV1 Sources Only\" (PM-5261)",
-      "changelog_fixed": "(Downloads) Stream display titles in download decisions now match streaming decisions (PM-5211)\n(Library) Expose HDR, DOVI, and Atmos filters for episodes in show libraries (PM-5215)\n(Library) Manual API requests could allow invalid URIs for smart collections and playlists (PM-4267)\n(Live-TV) OTA channels would often fail to hardware transcode on MacOS (PM-4103)\n(MacOS) The server could crash under certain network conditions (PM-5421)\n(Metadata) Don't abort metadata refresh on failed match if remaining providers are all local (PM-5422)\n(Metadata) user52 album images can fail to load if item matching is incomplete (PM-5422)\n(Metadata) Prefer certification tag when reading NFO content ratings and match to library country preference (PM-5378)\n(Metadata) Read writers credits in NFO parser (PM-5377)\n(Metadata) Using multiple providers with ratings can result in primary rating being set inconsistently (PM-5458)\n(Metadata) When remote providers are missing local metadata would fail to load (PM-5488)\n(Performance) Speed up related collection queries in some scenarios (PM-5204)\n(PlexMatch) Using show guid hints in .plexmatch files can result in unmatched episodes on initial scan (PM-5184)\n(Scanner) Filename text in curly braces should get cleaned up on unmatched content (PM-4844)\n(Transcoder) Correct the Content-Type of DASH manifest files (PM-5259)",
+      "changelog_added": "(GPU) Added support for HEVC transcode on devices that only support 8 bit HEVC encoding (PM-5595)\n(Library) Add library filter for HDR10+ media (PM-5617)\n(Metadata) Add HDR10+ metadata detection (PM-5355)\n(Transcoding) Added support for HW Tonemapping on MacOS (PM-4883)\n(Transcoding) Added support for HW burn in of image based subtitle formats (such as PGS) on MacOS (PM-4882)\n(Transcoding) Added support for HW decoding AV1 videos on MacOS (M3 and newer) (PM-4884)",
+      "changelog_fixed": "(Crash) Certain malformed webp images can crash the server (PM-5565)\n(Crash) Handling some POST requests could crash the server (PM-5592)\n(Crash) In rare instances, a timeline request can crash the server (PM-5590)\n(Database) Fixed a corrupt search index that made the database fail its integrity check and blocked backups (PM-5868)\n(HTTP) The server could crash after making certain HTTP requests (PM-5964)\n(Metadata) In rare instances, triggering an item rematch could crash the server (PM-5591)\n(Metadata) Reject invalid custom provider prefixes before they get added (PM-5275)\n(Metadata) Year value stored in TYER id3 tags would not be read (PM-5532)\n(Search) Fixed albums, tracks and episodes whose parent item was missing being left out of search results (PM-5868)\n(Shield) Tonemapping was being applied incorrectly (PM-5748)\n(Tuner) The Plex Tuner Service can crash during startup and shutdown (PM-5627)",
       "label": "Ubuntu (16.04+) / Debian (8+) - Intel 32-bit",
       "distro": "debian",
       "distro_build": "linux-x86",
-      "download_url": "https://downloads.plex.tv/plex-media-server-new/1.43.3.10793-cd55560bb/debian/plexmediaserver_1.43.3.10793-cd55560bb_i386.deb"
+      "download_url": "https://downloads.plex.tv/plex-media-server-new/1.43.4.10903-e5521bd8c/debian/plexmediaserver_1.43.4.10903-e5521bd8c_i386.deb"
     }
   }
 }

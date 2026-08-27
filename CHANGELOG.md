@@ -1,64 +1,51 @@
 # Changelog
 
-## 3.2.0-beta.2
+## 3.2.0
 
-**Requires Tautulli v2.18.0 or newer.** Several parameters this package sent were removed
-from the server in v2.18.0, and the version-scoped workarounds for v2.17.2 and earlier are
-gone with them.
+**Requires Tautulli v2.18.0 or newer.** Verified end-to-end against a live v2.18.1 server; the test
+fixtures are full sanitized captures from that release.
 
-- Breaking: removed parameters the server no longer accepts — `includeCloud` from
-  `getServerList`, `agentId` from `setNotifierConfig` and `setNewsletterConfig`, and
-  `syncId` from `getMetadata`
-- Fixed `getServerList(allServers: false)`, which was silently ignored on every server
-  version: Tautulli tests `not (all_servers == 'false')`, so the usual `1`/`0` encoding
-  always read as true. It is now sent as a literal string
-- `setNotifierConfig` and `setNewsletterConfig` are documented as partial updates, with a
-  warning against writing back a config map read from `getNotifierConfig` /
-  `getNewsletterConfig` — the server masks passwords as four spaces, and storing that mask
-  replaces the real password
-- Added `TautulliRedirectException` (a subtype of `TautulliConnectionException`) for
-  redirect-limit / redirect-loop failures — most often a reverse proxy or access gateway
-  (Cloudflare Access, Authelia, …) answering an unauthenticated request with a login
-  redirect that the client follows in a loop. Previously these were indistinguishable
-  from an offline socket error; they now map to a dedicated type that carries the
-  underlying message, while still satisfying callers that only handle
-  `TautulliConnectionException`
-- Added `TautulliRequestException` for a request that cannot be built — most often a
-  custom header whose name or value is not valid HTTP (e.g. a name containing ':' or
-  whitespace), which `dart:io` rejects with a `FormatException` before anything is sent.
-  Previously this was flattened into `TautulliConnectionException` and mislabeled as a
-  connection failure; it is now a distinct, direct `TautulliException` (not a
-  `TautulliConnectionException`) carrying the underlying message
-- `getSettings` now returns the raw sectioned JSON map (like `getDateFormats`); the
-  `TautulliSettings` model is removed — use `getDateFormats` for the format strings
-- Removed the dead `RegisterDeviceResult.pmsIsCloud` field (dropped from the API)
-- Added the optional `pushToken` parameter to `registerDevice` (Tautulli Remote relay
-  push transport on servers v2.18.0 and newer)
-- `getPlexLog` accepts both `get_plex_log` response shapes: the bare list that shipped in
-  v2.18.0, and the object nesting rows under `data.data` used by every later build (the
-  un-nesting was reverted upstream shortly after the release)
-- Removed `getSyncedItems` and `deleteSyncedItem` — Plex retired the Sync feature and
-  Tautulli removed `get_synced_items` from the API
-- `getMetadata` throws `TautulliServerException` for an unknown `rating_key`, matching the
-  error envelope the server now returns
-- `getPlexLog` throws `TautulliServerException` when the log cannot be read — a missing log
-  file, or no Plex log folder configured in Tautulli
+### Breaking
 
-## 3.2.0-beta.1
+- Requires Tautulli v2.18.0+; the workarounds for v2.17.2 and earlier are gone
+- Removed parameters the server no longer accepts: `includeCloud` from `getServerList`, `agentId` from
+  `setNotifierConfig` and `setNewsletterConfig`, `syncId` from `getMetadata`, and the
+  `doNotify`/`doNotifyCreated` edit parameters
+- Removed `getSyncedItems` and `deleteSyncedItem` — Plex retired the Sync feature and Tautulli removed
+  the commands
+- Removed the `doNotify`/`doNotifyCreated` model fields and `RegisterDeviceResult.pmsIsCloud`, all
+  dropped from the API
+- `getSettings` returns the raw sectioned JSON map (like `getDateFormats`); the `TautulliSettings` model
+  is gone — use `getDateFormats` for the format strings
 
-Prerelease tracking the **Tautulli nightly branch** (verified live at nightly commit
-`bd28214`, July 2026), which fixed the server-side API issues flagged during the 3.1.0
-verification campaigns. Stay on 3.1.0 for stable Tautulli servers (v2.17.2 and earlier);
-this line becomes stable 3.2.0 when those fixes ship in a Tautulli release.
+### Fixed
 
-- Added opt-in `X-Api-Key` header auth: set `apiKeyLocation: ApiKeyLocation.header` on the
-  connection to keep the key out of URLs and access logs (servers newer than v2.17.2 only;
-  the query parameter remains the default and works everywhere)
-- `editUser`/`editLibrary` are now partial updates with optional parameters — on servers
-  up to v2.17.2 omitted fields are still reset server-side, so send every field there
-- Removed the `doNotify`/`doNotifyCreated` model fields and edit parameters (the setting
-  was removed from the Tautulli API)
-- Added `audioAtmos`/`streamAudioAtmos` to `ActivitySession` (null on older servers)
+- `getServerList(allServers: false)` was silently ignored on every server version: Tautulli tests
+  `not (all_servers == 'false')`, so the usual `1`/`0` encoding always read as true. It is now sent as a
+  literal string
+- `editUser` and `editLibrary` are partial updates with optional parameters, matching the server
+- `getPlexLog` accepts both `get_plex_log` response shapes — the bare list that shipped in v2.18.0, and
+  the object nesting rows under `data.data` used before and after it
+
+### Added
+
+- Opt-in `X-Api-Key` header auth: `apiKeyLocation: ApiKeyLocation.header` keeps the key out of URLs and
+  access logs. The query parameter remains the default
+- `TautulliRedirectException` (a subtype of `TautulliConnectionException`) for redirect-limit and
+  redirect-loop failures — typically a reverse proxy or access gateway answering an unauthenticated
+  request with a login redirect. Previously indistinguishable from an offline socket error
+- `TautulliRequestException` for a request that cannot be built, most often a custom header whose name or
+  value is not valid HTTP. Previously mislabeled as a connection failure
+- `pushToken` on `registerDevice`, for the Tautulli Remote relay push transport
+- `audioAtmos` and `streamAudioAtmos` on `ActivitySession`
+
+### Behavior notes
+
+- `getMetadata` throws `TautulliServerException` for an unknown `rating_key`, and `getPlexLog` throws
+  when the log cannot be read — both now return error envelopes server-side
+- `setNotifierConfig` and `setNewsletterConfig` are partial updates. Never write back a config map read
+  from `getNotifierConfig` / `getNewsletterConfig`: the server masks passwords as four spaces, and
+  storing that mask replaces the real password
 
 ## 3.1.0
 

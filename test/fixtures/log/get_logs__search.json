@@ -4,16 +4,34 @@
     "message": null,
     "data": [
       {
-        "time": "2026-07-04 10:34:44 ",
+        "time": "2026-08-27 16:31:54 ",
         "loglevel": "WARNING",
-        "msg": "Tautulli Pmsconnect :: Unable to parse XML for get_search_result: 'NoneType' object has no attribute 'getElementsByTagName'.",
-        "thread": "CP Server Thread-8"
+        "msg": "Tautulli Pmsconnect :: Failed to terminate session: Invalid session_key (999999) or session_id ().",
+        "thread": "CP Server Thread-11"
       },
       {
-        "time": "2026-07-04 10:33:28 ",
+        "time": "2026-08-27 16:31:52 ",
         "loglevel": "WARNING",
-        "msg": "Tautulli Pmsconnect :: Unable to parse XML for get_search_result: 'NoneType' object has no attribute 'getElementsByTagName'.",
-        "thread": "CP Server Thread-6"
+        "msg": "Tautulli Pmsconnect :: Unable to parse XML for get_metadata_details: 'NoneType' object has no attribute 'getElementsByTagName'.",
+        "thread": "CP Server Thread-11"
+      },
+      {
+        "time": "2026-08-27 16:31:48 ",
+        "loglevel": "WARNING",
+        "msg": "Tautulli Users :: Unable to retrieve user 999999999 from database. Returning 'user50' user.",
+        "thread": "CP Server Thread-17"
+      },
+      {
+        "time": "2026-08-27 16:31:48 ",
+        "loglevel": "INFO",
+        "msg": "Tautulli Users :: Users list refreshed.",
+        "thread": "CP Server Thread-17"
+      },
+      {
+        "time": "2026-08-27 16:31:47 ",
+        "loglevel": "INFO",
+        "msg": "Tautulli Users :: Requesting users list refresh...",
+        "thread": "CP Server Thread-17"
       }
     ]
   }

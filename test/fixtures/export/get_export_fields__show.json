@@ -69,6 +69,10 @@
           "level": 1
         },
         {
+          "field": "editionTitle",
+          "level": 1
+        },
+        {
           "field": "enableCreditsMarkerGeneration",
           "level": 9
         },
@@ -237,6 +241,10 @@
           "level": 2
         },
         {
+          "field": "seasons.editionTitle",
+          "level": 9
+        },
+        {
           "field": "seasons.episodes.addedAt",
           "level": 1
         },
@@ -319,6 +327,10 @@
         {
           "field": "seasons.episodes.durationHuman",
           "level": 1
+        },
+        {
+          "field": "seasons.episodes.editionTitle",
+          "level": 9
         },
         {
           "field": "seasons.episodes.episodeNumber",

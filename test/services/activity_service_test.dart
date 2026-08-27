@@ -44,14 +44,14 @@ void main() {
       final data = await client.activity.getActivity();
       expect(data.sessions, hasLength(1));
       final s = data.sessions.first;
-      expect(s.title, 'Project Hail Mary');
-      expect(s.mediaType, MediaType.movie);
+      expect(s.title, 'Demon Slayer: Kimetsu no Yaiba - Infinity Castle');
+      expect(s.mediaType, MediaType.episode);
       expect(s.state, PlaybackState.playing);
-      expect(s.sectionId, 12);
-      expect(s.machineId, 'eeeeeeeeeeeeeeeeeeeeee01');
-      expect(s.actors, contains('Ryan Gosling'));
-      expect(data.lanBandwidth, 10278);
-      expect(data.wanBandwidth, 0);
+      expect(s.sectionId, 1);
+      expect(s.machineId, 'eeeeeeeeeeeeeeeeeeeeee0e');
+      expect(s.actors, contains('Natsuki Hanae'));
+      expect(data.lanBandwidth, 0);
+      expect(data.wanBandwidth, 10135);
     });
 
     test('relayed replaces the old relay key', () async {
@@ -65,9 +65,9 @@ void main() {
       final s = (await client.activity.getActivity()).sessions.first;
       expect(s.videoWidth, 1920);
       expect(s.videoHeight, 1080);
-      expect(s.bitrate, 9904);
-      expect(s.fileSize, 11943659317);
-      expect(s.streamVideoBitrate, 9263);
+      expect(s.bitrate, 8179);
+      expect(s.fileSize, 9490516707);
+      expect(s.streamVideoBitrate, 8179);
       expect(s.videoFramerate, '24p'); // label, not numeric
       expect(s.videoDoviPresent, isFalse);
     });
@@ -75,13 +75,15 @@ void main() {
     test('parses extended metadata list and string fields', () async {
       makeClient('activity/get_activity__live.json');
       final s = (await client.activity.getActivity()).sessions.first;
-      expect(s.guids, contains('imdb://tt12042730'));
-      expect(s.genres, contains('Science Fiction'));
-      expect(s.directors, contains('Phil Lord'));
-      expect(s.contentRating, 'PG-13');
-      expect(s.studio, 'Lord Miller');
-      expect(s.libraryName, 'Movies');
-      expect(s.user, 'user70');
+      expect(s.guids, contains('tvdb://11573737'));
+      expect(s.grandparentGuids, contains('imdb://tt9335498'));
+      expect(s.genres, contains('Sci-Fi & Fantasy'));
+      // The server returns an empty director list for this episode.
+      expect(s.directors, isEmpty);
+      expect(s.contentRating, 'TV-MA');
+      expect(s.studio, 'ufotable');
+      expect(s.libraryName, 'TV Shows');
+      expect(s.user, 'user65');
     });
 
     test('parses markers into typed Marker objects', () async {
@@ -92,17 +94,20 @@ void main() {
       final m = s.markers!.first;
       expect(m.id, 118638);
       expect(m.type, 'credits');
-      expect(m.startTimeOffset, const Duration(milliseconds: 9055945));
+      expect(m.startTimeOffset, const Duration(milliseconds: 8922995));
       expect(m.isFinal, isFalse);
       expect(s.markers!.last.isFinal, isTrue);
     });
 
     test('wraps a single-session (bare object) response', () async {
       makeClient('activity/get_activity__by_session_key.json');
-      final data = await client.activity.getActivity(sessionKey: 2);
+      final data = await client.activity.getActivity(sessionKey: 18);
       expect(data.sessions, hasLength(1));
-      expect(data.sessions.first.sessionKey, 2);
-      expect(data.sessions.first.title, 'Project Hail Mary');
+      expect(data.sessions.first.sessionKey, 18);
+      expect(
+        data.sessions.first.title,
+        'Demon Slayer: Kimetsu no Yaiba - Infinity Castle',
+      );
       expect(data.sessions.first.state, PlaybackState.playing);
     });
 

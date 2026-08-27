@@ -32,15 +32,22 @@ void main() {
     test('parses paged result', () async {
       makeClient('history/get_history.json');
       final result = await client.history.getHistory();
-      expect(result.recordsTotal, 82489);
-      expect(result.recordsFiltered, 64884);
+      expect(result.recordsTotal, 75818);
+      expect(result.recordsFiltered, 59962);
       expect(result.data, hasLength(10));
       final first = result.data.first;
-      expect(first.title, 'Episode 31');
-      expect(first.fullTitle, 'Love Island - Episode 31');
+      expect(first.title, 'Demon Slayer: Kimetsu no Yaiba - Infinity Castle');
+      expect(
+        first.fullTitle,
+        'Demon Slayer: Kimetsu no Yaiba - '
+        'Demon Slayer: Kimetsu no Yaiba - Infinity Castle',
+      );
       expect(first.mediaType, MediaType.episode);
-      expect(first.rowId, 83192);
-      expect(first.transcodeDecision, StreamDecision.directPlay);
+      // The first row is the in-progress session, which has no history row id.
+      expect(first.rowId, isNull);
+      expect(result.data[1].rowId, 85371);
+      expect(first.transcodeDecision, StreamDecision.copy);
+      expect(result.data[1].transcodeDecision, StreamDecision.directPlay);
       expect(first.location, Location.wan);
       expect(first.live, isFalse);
       expect(first.secure, isTrue);
@@ -49,7 +56,8 @@ void main() {
     test('parses watched_status thresholds', () async {
       makeClient('history/get_history.json');
       final result = await client.history.getHistory();
-      expect(result.data.first.watchedStatus, WatchedStatus.quarter);
+      expect(result.data[2].watchedStatus, WatchedStatus.quarter);
+      expect(result.data.first.watchedStatus, WatchedStatus.half);
       expect(result.data.last.watchedStatus, WatchedStatus.full);
     });
 
@@ -90,8 +98,8 @@ void main() {
         (g) => g.statId == StatIdType.topMovies,
       );
       expect(topMovies.rows, isNotEmpty);
-      expect(topMovies.rows.first.title, 'Marty Supreme');
-      expect(topMovies.rows.first.totalPlays, 3);
+      expect(topMovies.rows.first.title, 'Obsession');
+      expect(topMovies.rows.first.totalPlays, 4);
     });
 
     test('parses a single-stat (bare object) response', () async {
@@ -108,7 +116,7 @@ void main() {
     test('parses new metadata fields', () async {
       makeClient('history/get_home_stats__top_movies.json');
       final row = (await client.history.getHomeStats()).first.rows.first;
-      expect(row.guid, 'plex://movie/669748dc85be974cd2ab194c');
+      expect(row.guid, 'plex://movie/6856893830a4aaafd5c4291d');
       expect(row.contentRating, 'R');
       expect(row.live, false);
     });

@@ -1,8 +1,10 @@
 # Fixtures — real, sanitized Tautulli API responses
 
-**Provenance:** captured 2026-07-04 from a live **Tautulli v2.17.2** server (Docker, nightly commit
-`5a39bac6`, PMS 1.43.3) during the post-fix live verification campaign. Every file is a complete,
-unmodified server response run through the deterministic sanitizer in
+**Provenance:** the read-only corpus was captured 2026-08-27 from a live **Tautulli v2.18.1** server
+(release tag `6d410e2`, Docker). A smaller set of mutation-state, auth and stream fixtures dates from
+the 2026-07-04 campaign against **v2.17.2** (nightly `5a39bac6`) and is kept as evidence of those
+sequences — see "Two capture batches" below. Every file is a complete, unmodified server response run
+through the deterministic sanitizer in
 [`tool/live_capture/sanitize.dart`](../../tool/live_capture/sanitize.dart) — see
 [`test/CAPTURING.md`](../CAPTURING.md) for the full reproducible process.
 
@@ -18,20 +20,35 @@ unmodified server response run through the deterministic sanitizer in
    status/content-type/size for binary download endpoints instead of file bytes.
 4. `success_response.json` is a byte-copy of `tautulli/backup_config.json` (a real capture) used by
    tests that only need "any success envelope"; refresh the copy when regenerating.
-5. **Version-bound:** these reflect v2.17.2. When a new Tautulli release changes the API surface,
+5. **Version-bound:** these reflect v2.18.1. When a new Tautulli release changes the API surface,
    re-capture affected commands and update the provenance line above.
 6. **Variant semantics worth knowing** (timing-sensitive captures):
-   - `activity/get_activity__terminating.json` — taken ~4 s after `terminate_session`; the session is
-     still listed (draining, `session_id` cleared) because termination is asynchronous. The settled
-     zero-session state is the canonical `activity/get_activity.json`.
-   - `user/get_users__after_delete_user.json` — a deleted user is filtered out of `get_users` entirely;
-     the deletion shows as the row's absence (52 → 51 users vs `get_users.json`).
+   - `activity/get_activity.json` is the idle-server (zero sessions) case;
+     `activity/get_activity__live.json` is the populated one. `terminate_session` is asynchronous —
+     a terminated session lingers in `get_activity` for several seconds while it drains.
    - There is deliberately no "after logout" capture: `logout_user_session` NULLs a column that
      `get_user_logins` doesn't expose, so the table is unchanged by design.
+   - Some mutation-state captures from the v2.17.2 batch were removed because they carried
+     partially-sanitized operator email addresses; no test referenced them.
+
+## Two capture batches
+
+Sanitizer aliases are deterministic **within one capture run**, not across runs: the alias assigned to a
+user depends on the set of users present in that corpus. The v2.18.1 re-capture therefore renumbered
+some aliases relative to the v2.17.2 files retained alongside it, so the same real user can appear under
+different aliases in the two batches. Every fixture a test reads comes from the v2.18.1 batch; the
+retained v2.17.2 files are unreferenced evidence. When comparing identities, compare within a batch.
+
+A handful of v2.17.2 fixtures were deliberately kept rather than re-captured because the newer capture
+was *thinner*, not different in shape — `library/get_library_user_stats.json`,
+`user/get_user_logins.json` and `tautulli/update_check.json` lost rows only because earlier destructive
+testing emptied those tables, and `activity/get_activity.json` is the idle-server (zero sessions) case
+that a test depends on.
 
 ## Sanitization guarantees
 
-Replaced with stable placeholders (same input → same alias everywhere):
+Replaced with stable placeholders (same input → same alias everywhere **within a
+capture batch** — see above):
 
 - API key / device token literals; any value under a credential-looking key
   (`*password*`, `*token*`, `*api_key*`, `*secret*`, `*hook*`, …) → `REDACTED`
@@ -48,5 +65,29 @@ Deliberately kept (documented, not sensitive): media titles, rating keys and oth
 timestamps, transient session ids, Plex/public-service URLs (plex.tv, imgur, …), and Tautulli's own
 docs examples (`castleblack.com`).
 
-Audit any time with `dart run tool/live_capture/sanitize.dart --check` (requires the original
-env vars; scans this tree for every collected sensitive value and non-doc private IPs).
+## Auditing
+
+`dart run tool/live_capture/sanitize.dart --check` (requires the original env vars) scans this tree for
+every collected sensitive value and non-doc private IPs. **That check alone is not sufficient**: it can
+only look for values the collector already knows about, so anything the collector misses is invisible to
+it. Pair it with independent sweeps that do not depend on the collector — bare regex passes for email
+addresses, IPv4/IPv6 literals, URL hosts, home-directory paths, and high-entropy token-shaped strings.
+
+Two rounds of exactly that found leaks the keyed collector had missed, and the sanitizer was corrected
+for each:
+
+- Emails were only collected under a key literally named `email`, so addresses embedded in other
+  settings survived. Collection is now a regex sweep over whole bodies, and email replacement runs
+  before username replacement (a username is often an address's local part, and rewriting it first
+  corrupted the address while leaving the real domain).
+- Identity keys were matched exactly, missing plex.tv's camelCase `clientIdentifier` and `pms_uuid`;
+  they are now matched as substrings, above a 16-character floor that spares short non-identity ids.
+- Notifier credentials under keys no pattern reached (`maxmind_license_key`, `pushover_keys`,
+  `cloudinary_cloud_name`) are now named explicitly in the credential list. They cannot be caught by a
+  generic `key` rule without also swallowing `rating_key`/`rating_keys`/`session_key`.
+
+The already-published captures for those last two were re-redacted in place with the corrected
+sanitizer's own conventions rather than re-captured, because the staging tree was gone by then. That is
+the one sanctioned exception to "never hand-edit a fixture": it replaced secret *values* only, changing
+no key, shape, or type. A few v2.17.2 mutation-state captures were deleted instead of repaired, since
+no test referenced them.

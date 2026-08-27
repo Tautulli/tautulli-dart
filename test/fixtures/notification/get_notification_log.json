@@ -3,12 +3,42 @@
     "result": "success",
     "message": null,
     "data": {
-      "recordsFiltered": 95840,
-      "recordsTotal": 95840,
+      "recordsFiltered": 208,
+      "recordsTotal": 208,
       "data": [
         {
-          "id": 95839,
-          "timestamp": 1783176173,
+          "id": 96052,
+          "timestamp": 1787864595,
+          "session_key": 18,
+          "rating_key": 168633,
+          "user_id": 2535039,
+          "user": "user65",
+          "notifier_id": 12,
+          "agent_id": 21,
+          "agent_name": "remoteapp",
+          "notify_action": "on_newdevice",
+          "subject_text": "Tautulli (TestServer)",
+          "body_text": "liam is streaming from a new device: Firefox.",
+          "success": 0
+        },
+        {
+          "id": 96051,
+          "timestamp": 1787859556,
+          "session_key": 15,
+          "rating_key": 168633,
+          "user_id": 2535039,
+          "user": "user65",
+          "notifier_id": 12,
+          "agent_id": 21,
+          "agent_name": "remoteapp",
+          "notify_action": "on_newdevice",
+          "subject_text": "Tautulli (TestServer)",
+          "body_text": "liam is streaming from a new device: Firefox.",
+          "success": 0
+        },
+        {
+          "id": 96050,
+          "timestamp": 1787821375,
           "session_key": null,
           "rating_key": null,
           "user_id": null,
@@ -22,23 +52,8 @@
           "success": 0
         },
         {
-          "id": 95838,
-          "timestamp": 1782982355,
-          "session_key": null,
-          "rating_key": null,
-          "user_id": null,
-          "user": null,
-          "notifier_id": 12,
-          "agent_id": 21,
-          "agent_name": "remoteapp",
-          "notify_action": "on_intup",
-          "subject_text": "Tautulli (TestServer)",
-          "body_text": "The Plex Media Server is back up.",
-          "success": 0
-        },
-        {
-          "id": 95837,
-          "timestamp": 1782980525,
+          "id": 96049,
+          "timestamp": 1787819485,
           "session_key": null,
           "rating_key": null,
           "user_id": null,
@@ -52,8 +67,8 @@
           "success": 0
         },
         {
-          "id": 95836,
-          "timestamp": 1782895902,
+          "id": 96048,
+          "timestamp": 1787735037,
           "session_key": null,
           "rating_key": null,
           "user_id": null,
@@ -64,21 +79,6 @@
           "notify_action": "on_intup",
           "subject_text": "Tautulli (TestServer)",
           "body_text": "The Plex Media Server is back up.",
-          "success": 0
-        },
-        {
-          "id": 95835,
-          "timestamp": 1782894162,
-          "session_key": null,
-          "rating_key": null,
-          "user_id": null,
-          "user": null,
-          "notifier_id": 12,
-          "agent_id": 21,
-          "agent_name": "remoteapp",
-          "notify_action": "on_intdown",
-          "subject_text": "Tautulli (TestServer)",
-          "body_text": "The Plex Media Server is down.",
           "success": 0
         }
       ],

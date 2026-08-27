@@ -41,13 +41,13 @@ void main() {
         timeRange: 30,
       );
       expect(data.categories, hasLength(30));
-      expect(data.categories.first, '2026-06-05');
+      expect(data.categories.first, '2026-07-29');
       expect(data.series, hasLength(4));
       expect(data.series.first.seriesType, GraphSeriesType.tv);
       expect(data.series.first.data, hasLength(30));
-      expect(data.series.first.data.take(3), [37, 33, 25]);
+      expect(data.series.first.data.take(3), [53, 42, 56]);
       expect(data.series[1].seriesType, GraphSeriesType.movies);
-      expect(data.series[1].data.take(3), [3, 4, 2]);
+      expect(data.series[1].data.take(3), [2, 2, 1]);
     });
   });
 

@@ -19,9 +19,9 @@
           "year": "2016",
           "media_index": "",
           "parent_media_index": "",
-          "thumb": "/library/metadata/135292/thumb/1746546681",
+          "thumb": "/library/metadata/135292/thumb/1780378328",
           "container": "mkv",
-          "bitrate": "22964",
+          "bitrate": "22942",
           "video_codec": "hevc",
           "video_resolution": "4k",
           "video_framerate": "24p",
@@ -44,9 +44,9 @@
           "year": "2021",
           "media_index": "",
           "parent_media_index": "",
-          "thumb": "/library/metadata/134899/thumb/1746895670",
+          "thumb": "/library/metadata/134899/thumb/1783336401",
           "container": "mkv",
-          "bitrate": "20904",
+          "bitrate": "20777",
           "video_codec": "hevc",
           "video_resolution": "4k",
           "video_framerate": "24p",
@@ -69,17 +69,17 @@
           "year": "2017",
           "media_index": "",
           "parent_media_index": "",
-          "thumb": "/library/metadata/99149/thumb/1746895663",
+          "thumb": "/library/metadata/99149/thumb/1783336395",
           "container": "mkv",
-          "bitrate": "38601",
+          "bitrate": "38592",
           "video_codec": "hevc",
           "video_resolution": "4k",
           "video_framerate": "24p",
           "audio_codec": "truehd",
           "audio_channels": "8",
           "file_size": "47408925306",
-          "last_played": 1620502683,
-          "play_count": 2
+          "last_played": null,
+          "play_count": null
         },
         {
           "section_id": 24,
@@ -94,9 +94,9 @@
           "year": "2018",
           "media_index": "",
           "parent_media_index": "",
-          "thumb": "/library/metadata/99190/thumb/1746895663",
+          "thumb": "/library/metadata/99190/thumb/1783336395",
           "container": "mkv",
-          "bitrate": "28494",
+          "bitrate": "28563",
           "video_codec": "hevc",
           "video_resolution": "4k",
           "video_framerate": "24p",
@@ -110,7 +110,7 @@
       "draw": 1,
       "filtered_file_size": 119317262552,
       "total_file_size": 119317262552,
-      "last_refreshed": 1749738912
+      "last_refreshed": 1783359206
     }
   }
 }

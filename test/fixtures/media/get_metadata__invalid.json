@@ -1,7 +1,7 @@
 {
   "response": {
-    "result": "success",
-    "message": null,
+    "result": "error",
+    "message": "Unable to retrieve metadata for rating_key '999999999'",
     "data": {}
   }
 }

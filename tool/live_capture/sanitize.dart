@@ -66,11 +66,38 @@ const _userAliases = [
 
 // `hook` (not just `hook_url`) so agent-specific keys like `slack_hook` are
 // caught — webhook URLs embed credentials in the path.
+//
+// The trailing names are notifier credentials no generic rule reaches: a bare
+// `key` pattern would also swallow `rating_key`, `rating_keys`, `session_key`
+// and `transcode_key`, which are ids the fixtures must keep. Add a name here
+// when a new notification agent stores a credential.
 final _credentialKey = RegExp(
-  r'password|passwd|secret|token|api_key|apikey|client_id|hook',
+  r'password|passwd|secret|token|api_key|apikey|client_id|hook'
+  r'|license_key|ifttt_key|prowl_keys|pushover_keys|cloud_name',
+  caseSensitive: false,
+);
+
+/// Server-identity keys, matched as a substring so plex.tv's camelCase
+/// `clientIdentifier` and `pms_uuid` are caught alongside the snake_case
+/// spellings. The 16-character floor at the call site keeps short ids that
+/// are not identity — newsletter run `uuid`s are 8 characters.
+final _idKey = RegExp(
+  r'machine_id|identifier|server_id|uuid',
   caseSensitive: false,
 );
 final _pathKey = RegExp(r'(_dir|_path|_folder|^log_dir$|^backup_dir$)');
+
+/// Any email address anywhere in a body, not just under a key named `email`.
+final _emailRx = RegExp(r'[\w.+%-]+@[\w-]+(?:\.[\w-]+)+');
+
+/// Domains that are Tautulli's own documentation examples or public registry
+/// data, not operator information. Left untouched so `docs`/`whois` fixtures
+/// stay faithful.
+final _safeEmailDomain = RegExp(
+  r'@(example\.com|castleblack\.com|thewinteriscoming\.com|google\.com)$',
+  caseSensitive: false,
+);
+
 final _ipv4 = RegExp(r'\b(\d{1,3})\.(\d{1,3})\.(\d{1,3})\.(\d{1,3})\b');
 final _dashedIpPlexDirect = RegExp(
   r'(\d{1,3}-\d{1,3}-\d{1,3}-\d{1,3})\.([0-9a-f]{6,})\.plex\.direct',
@@ -175,13 +202,7 @@ void _collect() {
           if (value.length >= 3 && !value.contains(' Library')) {
             _userMap[value] = '';
           }
-        case 'email':
-          if (value.contains('@')) _emailMap[value] = '';
-        case 'machine_id' ||
-            'machine_identifier' ||
-            'pms_identifier' ||
-            'identifier' ||
-            'server_id':
+        case final k when _idKey.hasMatch(k):
           if (value.length >= 16) _idMap[value] = '';
         case 'pms_name' || 'server_name':
           _serverName = value;
@@ -196,6 +217,10 @@ void _collect() {
   // anywhere in any body.
   for (final file in _stagingFiles()) {
     final text = file.readAsStringSync();
+    for (final m in _emailRx.allMatches(text)) {
+      final email = m.group(0)!;
+      if (!_safeEmailDomain.hasMatch(email)) _emailMap[email] = '';
+    }
     for (final m in _ipv4.allMatches(text)) {
       final ip = m.group(0)!;
       if (!_ipAllowlist.contains(ip) && _isValidIp(ip)) _ipMap[ip] = '';
@@ -329,6 +354,14 @@ String _textPass(String text) {
   if (_serverName.isNotEmpty) {
     out = out.replaceAll(_serverName, 'TestServer');
   }
+  // Emails first: a username is frequently the local part of an address, so
+  // rewriting usernames first would corrupt the address and leave the real
+  // domain behind. Longest-first for overlapping addresses.
+  final emails = _emailMap.keys.toList()
+    ..sort((a, b) => b.length.compareTo(a.length));
+  for (final email in emails) {
+    out = out.replaceAll(email, _emailMap[email]!);
+  }
   // Longest-first so overlapping values (e.g. a username that is a prefix of
   // another) resolve deterministically.
   final users = _userMap.keys.toList()
@@ -346,7 +379,6 @@ String _textPass(String text) {
   for (final host in hosts) {
     out = out.replaceAll(host, _hostMap[host]!);
   }
-  _emailMap.forEach((email, alias) => out = out.replaceAll(email, alias));
   _idMap.forEach((id, ph) => out = out.replaceAll(id, ph));
   out = out.replaceAllMapped(_plexTvAvatar, (m) {
     return 'plex.tv/users/${'0' * m.group(1)!.length}/avatar';
@@ -409,6 +441,13 @@ Future<int> _auditFixtures() async {
         hits++;
       }
     });
+    for (final m in _emailRx.allMatches(text)) {
+      final email = m.group(0)!;
+      if (!_safeEmailDomain.hasMatch(email)) {
+        stderr.writeln('LEAK [email] "$email" in ${file.path}');
+        hits++;
+      }
+    }
     for (final m in _ipv4.allMatches(text)) {
       final ip = m.group(0)!;
       if (_isValidIp(ip) &&

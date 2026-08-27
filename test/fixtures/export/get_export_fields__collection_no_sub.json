@@ -3,7 +3,8 @@
     "result": "success",
     "message": null,
     "data": {
-      "identifier": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee0a"
+      "metadata_fields": [],
+      "media_info_fields": []
     }
   }
 }

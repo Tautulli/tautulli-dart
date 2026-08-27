@@ -58,12 +58,6 @@
         "agent": "tv.plex.agents.movie"
       },
       {
-        "section_id": 25,
-        "section_name": "4K TV Shows",
-        "section_type": "show",
-        "agent": "tv.plex.agents.series"
-      },
-      {
         "section_id": 26,
         "section_name": "Photos",
         "section_type": "photo",

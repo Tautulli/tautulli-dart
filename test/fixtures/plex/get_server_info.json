@@ -4,14 +4,14 @@
     "message": null,
     "data": {
       "pms_name": "TestServer",
-      "pms_version": "1.43.3.10793-cd55560bb",
+      "pms_version": "1.43.4.10903-e5521bd8c",
       "pms_platform": "Linux",
       "pms_ip": "203.0.113.9",
       "pms_port": 32400,
       "pms_ssl": 1,
       "pms_url": "https://192-0-2-10.00000000000000000000000000000000.plex.direct:32400",
       "pms_url_manual": 0,
-      "pms_identifier": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee09",
+      "pms_identifier": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee0a",
       "pms_plexpass": 1
     }
   }
