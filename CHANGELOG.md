@@ -2,6 +2,20 @@
 
 ## 3.2.0-beta.2
 
+**Requires Tautulli v2.18.0 or newer.** Several parameters this package sent were removed
+from the server in v2.18.0, and the version-scoped workarounds for v2.17.2 and earlier are
+gone with them.
+
+- Breaking: removed parameters the server no longer accepts — `includeCloud` from
+  `getServerList`, `agentId` from `setNotifierConfig` and `setNewsletterConfig`, and
+  `syncId` from `getMetadata`
+- Fixed `getServerList(allServers: false)`, which was silently ignored on every server
+  version: Tautulli tests `not (all_servers == 'false')`, so the usual `1`/`0` encoding
+  always read as true. It is now sent as a literal string
+- `setNotifierConfig` and `setNewsletterConfig` are documented as partial updates, with a
+  warning against writing back a config map read from `getNotifierConfig` /
+  `getNewsletterConfig` — the server masks passwords as four spaces, and storing that mask
+  replaces the real password
 - Added `TautulliRedirectException` (a subtype of `TautulliConnectionException`) for
   redirect-limit / redirect-loop failures — most often a reverse proxy or access gateway
   (Cloudflare Access, Authelia, …) answering an unauthenticated request with a login
@@ -20,12 +34,15 @@
 - Removed the dead `RegisterDeviceResult.pmsIsCloud` field (dropped from the API)
 - Added the optional `pushToken` parameter to `registerDevice` (Tautulli Remote relay
   push transport on servers v2.18.0 and newer)
-- `getPlexLog` now parses both the old nested and the new flattened `get_plex_log`
-  response shapes
+- `getPlexLog` accepts both `get_plex_log` response shapes: the bare list that shipped in
+  v2.18.0, and the object nesting rows under `data.data` used by every later build (the
+  un-nesting was reverted upstream shortly after the release)
 - Removed `getSyncedItems` and `deleteSyncedItem` — Plex retired the Sync feature and
   Tautulli removed `get_synced_items` from the API
-- Documented that on newer servers `getMetadata` errors on an unknown `rating_key`,
-  and its `syncId` parameter is deprecated
+- `getMetadata` throws `TautulliServerException` for an unknown `rating_key`, matching the
+  error envelope the server now returns
+- `getPlexLog` throws `TautulliServerException` when the log cannot be read — a missing log
+  file, or no Plex log folder configured in Tautulli
 
 ## 3.2.0-beta.1
 
