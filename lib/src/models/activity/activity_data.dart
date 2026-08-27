@@ -86,8 +86,6 @@ class ActivitySession {
   final String? audioLanguage;
 
   /// Whether the source audio is Dolby Atmos.
-  ///
-  /// Only sent by Tautulli servers newer than v2.17.2; null on older servers.
   final bool? audioAtmos;
 
   /// Source audio encoding profile.
@@ -313,8 +311,6 @@ class ActivitySession {
   final String? streamAudioLanguageCode;
 
   /// Whether the streamed audio is Dolby Atmos.
-  ///
-  /// Only sent by Tautulli servers newer than v2.17.2; null on older servers.
   final bool? streamAudioAtmos;
 
   /// Streamed audio encoding profile.

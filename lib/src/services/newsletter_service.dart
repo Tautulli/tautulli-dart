@@ -80,14 +80,20 @@ class NewsletterService {
   /// Updates the configuration for the newsletter identified by [newsletterId].
   ///
   /// Agent-specific settings can be passed via [extraParams].
+  ///
+  /// Only the settings present in [extraParams] are changed; anything omitted
+  /// keeps its current value.
+  ///
+  /// **Never feed a config map straight back from `getNewsletterConfig`.**
+  /// The server masks password fields as four spaces when reading a
+  /// config, and writing that masked value back replaces the stored
+  /// password with it.
   Future<void> setNewsletterConfig({
     required int newsletterId,
-    required int agentId,
     Map<String, dynamic> extraParams = const {},
   }) async {
     final params = <String, dynamic>{
       'newsletter_id': newsletterId,
-      'agent_id': agentId,
       ...extraParams,
     };
     await _client.execute('set_newsletter_config', params: params);

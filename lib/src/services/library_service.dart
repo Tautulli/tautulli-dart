@@ -269,12 +269,6 @@ class LibraryService {
   ///
   /// Omitted (null) settings are left unchanged — `edit_library` performs a
   /// partial update. Pass an empty [customThumb] or [customArt] to clear it.
-  ///
-  /// **Warning — servers up to and including v2.17.2:** older `edit_library`
-  /// handlers are a full overwrite that **resets every omitted field to its
-  /// default** (`keep_history` → 0, custom thumb/art → ''). When targeting
-  /// those servers, read the current values with [getLibrary] first and pass
-  /// every setting back.
   Future<void> editLibrary({
     required int sectionId,
     String? customThumb,

@@ -11,15 +11,10 @@ class MediaService {
 
   /// Returns metadata for a single Plex item identified by [ratingKey].
   ///
-  /// An unknown [ratingKey] returns an empty [MediaItem] on servers up to
-  /// v2.17.2, but throws [TautulliServerException] on newer servers (they
-  /// return an error for an invalid rating key).
-  ///
-  /// [syncId] is deprecated: the parameter was removed from the server after
-  /// v2.17.2 and is silently ignored there.
-  Future<MediaItem> getMetadata({required int ratingKey, int? syncId}) async {
+  /// An unknown [ratingKey] throws [TautulliServerException] — the server
+  /// returns an error envelope for an invalid rating key.
+  Future<MediaItem> getMetadata({required int ratingKey}) async {
     final params = <String, dynamic>{'rating_key': ratingKey};
-    if (syncId != null) params['sync_id'] = syncId;
     final response = await _client.execute('get_metadata', params: params);
     return MediaItem.fromJson(Cast.dataMap(response['data'], 'get_metadata'));
   }
@@ -67,11 +62,6 @@ class MediaService {
   }
 
   /// Searches Plex for items matching [query], with an optional result [limit].
-  ///
-  /// Note: on Tautulli servers up to and including v2.17.2, omitting [limit]
-  /// makes the server's PMS query fail and the result is always empty (the
-  /// server sends `&limit=` with no value, which current PMS versions
-  /// reject) — pass a [limit] when targeting those servers.
   Future<Map<String, dynamic>> search({
     required String query,
     int? limit,

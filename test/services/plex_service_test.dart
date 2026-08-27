@@ -89,12 +89,19 @@ void main() {
   });
 
   group('PlexService.getServerList()', () {
-    test('sends include_cloud and all_servers', () async {
+    test('sends all_servers as a literal true/false string', () async {
       makeClient('plex/get_server_list.json');
-      await client.plex.getServerList(includeCloud: false, allServers: true);
-      final q = lastRequestUri.queryParameters;
-      expect(q['include_cloud'], '0');
-      expect(q['all_servers'], '1');
+      await client.plex.getServerList(allServers: true);
+      var q = lastRequestUri.queryParameters;
+      // The server tests `not (all_servers == 'false')`, so '1'/'0' would
+      // both read as true — the literal string is required.
+      expect(q['all_servers'], 'true');
+      expect(q.containsKey('include_cloud'), isFalse);
+
+      makeClient('plex/get_server_list.json');
+      await client.plex.getServerList(allServers: false);
+      q = lastRequestUri.queryParameters;
+      expect(q['all_servers'], 'false');
     });
   });
 }

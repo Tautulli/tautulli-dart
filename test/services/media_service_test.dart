@@ -115,12 +115,6 @@ void main() {
   });
 
   group('MediaService new params', () {
-    test('getMetadata sends sync_id', () async {
-      makeClient('media/get_metadata.json');
-      await client.media.getMetadata(ratingKey: 1, syncId: 9);
-      expect(lastRequestUri.queryParameters['sync_id'], '9');
-    });
-
     test('deleteLookupInfo sends delete_all', () async {
       makeClient('success_response.json');
       await client.media.deleteLookupInfo(

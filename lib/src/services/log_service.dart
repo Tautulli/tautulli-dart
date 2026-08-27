@@ -43,14 +43,19 @@ class LogService {
   ///
   /// [window] limits the number of tail lines returned. [logfile] selects the
   /// Plex log file by name (e.g. `'Plex Media Server'`, `'Plex Media Scanner'`).
+  ///
+  /// Throws [TautulliServerException] when the log cannot be read — a missing
+  /// log file, or no Plex log folder configured in Tautulli's settings.
   Future<List<LogEntry>> getPlexLog({int? window, String? logfile}) async {
     final params = <String, dynamic>{};
     if (window != null) params['window'] = window;
     if (logfile != null) params['logfile'] = logfile;
 
     final response = await _client.execute('get_plex_log', params: params);
-    // Rows are [timestamp, level, message]. Servers up to v2.17.2 nest them
-    // under `data.data`; newer servers return the bare list as `data`.
+    // Rows are [timestamp, level, message]. `data` is the bare list on
+    // v2.18.0, and an object nesting the rows under `data.data` on every
+    // later build — the un-nesting shipped in v2.18.0 was reverted right
+    // after it. Both shapes are live, so accept either.
     final data = response['data'];
     final rows = data is Map<String, dynamic> ? data['data'] : data;
     if (rows is! List) return [];

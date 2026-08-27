@@ -525,7 +525,6 @@ Future<void> _notifierLifecycle() async {
     );
     await pkg.notifications.setNotifierConfig(
       notifierId: notifierId,
-      agentId: sinkAgentId,
       extraParams: {'friendly_name': 'dart-live-capture-sink'},
     );
     _pkgLog('notifications.setNotifierConfig', 'OK');

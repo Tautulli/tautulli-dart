@@ -147,12 +147,6 @@ class UserService {
   /// Omitted (null) settings are left unchanged — `edit_user` performs a
   /// partial update. Pass an empty [friendlyName] or [customThumb] to clear it
   /// (an empty friendly name reverts to the Plex username).
-  ///
-  /// **Warning — servers up to and including v2.17.2:** older `edit_user`
-  /// handlers are a full overwrite that **resets every omitted field to its
-  /// default** (`keep_history` → 0, `allow_guest` → 0, `friendly_name` → '').
-  /// When targeting those servers, read the current values with [getUser]
-  /// first and pass every setting back.
   Future<void> editUser({
     required int userId,
     String? friendlyName,

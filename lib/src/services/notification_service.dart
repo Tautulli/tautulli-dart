@@ -87,16 +87,19 @@ class NotificationService {
   /// Updates the configuration for the notifier identified by [notifierId].
   ///
   /// Agent-specific settings can be passed via [extraParams].
+  ///
+  /// Only the settings present in [extraParams] are changed; anything omitted
+  /// keeps its current value.
+  ///
+  /// **Never feed a config map straight back from `getNotifierConfig`.**
+  /// The server masks password fields as four spaces when reading a
+  /// config, and writing that masked value back replaces the stored
+  /// password with it.
   Future<void> setNotifierConfig({
     required int notifierId,
-    required int agentId,
     Map<String, dynamic> extraParams = const {},
   }) async {
-    final params = <String, dynamic>{
-      'notifier_id': notifierId,
-      'agent_id': agentId,
-      ...extraParams,
-    };
+    final params = <String, dynamic>{'notifier_id': notifierId, ...extraParams};
     await _client.execute('set_notifier_config', params: params);
   }
 

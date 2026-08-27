@@ -48,15 +48,16 @@ class PlexService {
 
   /// Returns all Plex servers accessible to the account as a list of raw maps.
   ///
-  /// [includeCloud] includes Plex Cloud servers; [allServers] includes servers
-  /// owned by other accounts. Both default to true server-side.
-  Future<List<Map<String, dynamic>>> getServerList({
-    bool? includeCloud,
-    bool? allServers,
-  }) async {
+  /// [allServers] controls whether every published connection address is
+  /// returned for each server (the default) or just one; it does not filter by
+  /// account ownership.
+  Future<List<Map<String, dynamic>>> getServerList({bool? allServers}) async {
     final params = <String, dynamic>{};
-    if (includeCloud != null) params['include_cloud'] = includeCloud;
-    if (allServers != null) params['all_servers'] = allServers;
+    // Sent as a literal 'true'/'false' string, not the usual 1/0: the server
+    // tests `not (all_servers == 'false')`, so '0' would read as true.
+    if (allServers != null) {
+      params['all_servers'] = allServers ? 'true' : 'false';
+    }
     final response = await _client.execute('get_server_list', params: params);
     return Cast.dataList(
       response['data'],
