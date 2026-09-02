@@ -79,10 +79,8 @@ Always re-run `--check` after sanitizing, and treat any hit as a stop-the-line b
 2. `dart analyze` and `dart format --output=none --set-exit-if-changed .` must stay clean
    (`tool/` is analyzed too).
 3. Update the provenance line (server version, capture date) in `test/fixtures/README.md`.
-4. If the server version changed, cross-check the API surface first: shallow-clone Tautulli at the
-   server's exact commit (`get_tautulli_info` → `tautulli_commit`), extract the `@addtoapi` command
-   set from `plexpy/webserve.py` + the public methods of `API2` in `plexpy/api2.py`, and diff against
-   the previous version's set.
+4. If the server version changed, cross-check the API surface first:
+   `python3 tool/api_surface.py <previous-tag> <tag>` (see `MAINTAINING.md` §3).
 
 ## Known blockers (server-side)
 

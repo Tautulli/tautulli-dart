@@ -79,7 +79,13 @@ shapes — more reliable than the wiki, whose examples are sometimes stale or ab
 
 ## API Reference
 
-The primary reference for commands and parameters is the [Tautulli API Reference](https://github.com/Tautulli/Tautulli/wiki/Tautulli-API-Reference), **but the wiki contains known errors** — check `API_REFERENCE_INCONSISTENCIES.md` before trusting it on a disputed point. Precedence for resolving response-shape questions: `test/fixtures/` (real behavior) > Tautulli server source at the version tag (shallow-clone + AST-extract technique, see CODE_REVIEW.md appendix) > wiki. The package targets **Tautulli v2.18.0 and newer** and was last verified against **v2.18.1 (release tag `6d410e2`), across four live full-API test campaigns** (`LIVE_TEST_RESULTS.md`); the fix backlog is `CODE_REVIEW.md`.
+The primary reference for commands and parameters is the [Tautulli API Reference](https://github.com/Tautulli/Tautulli/wiki/Tautulli-API-Reference), **but the wiki contains known errors** — never let it outrank a fixture on a disputed point. Precedence for resolving response-shape questions: `test/fixtures/` (real behavior) > Tautulli server source at the version tag > wiki. Extract and diff the command surface at a tag with `python3 tool/api_surface.py <tag> [<tag>]`. The package targets **Tautulli v2.18.0 and newer** and was last verified end-to-end against **v2.18.1** (release tag `6d410e2`).
+
+## Tracking upstream
+
+`MAINTAINING.md` covers detecting Tautulli API changes, triaging what they mean here, and the
+changelog and commit style guides. Follow it before changing anything in response to an upstream
+release.
 
 ## Exception Hierarchy
 

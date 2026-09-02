@@ -21,7 +21,8 @@ through the deterministic sanitizer in
 4. `success_response.json` is a byte-copy of `tautulli/backup_config.json` (a real capture) used by
    tests that only need "any success envelope"; refresh the copy when regenerating.
 5. **Version-bound:** these reflect v2.18.1. When a new Tautulli release changes the API surface,
-   re-capture affected commands and update the provenance line above.
+   re-run the full capture sweep (never `--only`: aliases are deterministic only within one run, so a
+   partial re-capture creates a third alias namespace) and update the provenance line above.
 6. **Variant semantics worth knowing** (timing-sensitive captures):
    - `activity/get_activity.json` is the idle-server (zero sessions) case;
      `activity/get_activity__live.json` is the populated one. `terminate_session` is asynchronous —
@@ -36,8 +37,9 @@ through the deterministic sanitizer in
 Sanitizer aliases are deterministic **within one capture run**, not across runs: the alias assigned to a
 user depends on the set of users present in that corpus. The v2.18.1 re-capture therefore renumbered
 some aliases relative to the v2.17.2 files retained alongside it, so the same real user can appear under
-different aliases in the two batches. Every fixture a test reads comes from the v2.18.1 batch; the
-retained v2.17.2 files are unreferenced evidence. When comparing identities, compare within a batch.
+different aliases in the two batches. Apart from `activity/get_activity.json` and
+`library/get_library_user_stats.json` — two of the four retained files named below — every fixture a test
+reads comes from the v2.18.1 batch. When comparing identities, compare within a batch.
 
 A handful of v2.17.2 fixtures were deliberately kept rather than re-captured because the newer capture
 was *thinner*, not different in shape — `library/get_library_user_stats.json`,
