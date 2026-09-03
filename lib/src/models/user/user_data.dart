@@ -112,7 +112,10 @@ class UserData {
       sharedLibraries: _sharedLibrariesFromList(
         json['shared_libraries'] as List?,
       ),
-      userThumb: Cast.castToString(json['user_thumb']),
+      // get_user sends user_thumb; get_users sends the same value as thumb.
+      userThumb:
+          Cast.castToString(json['user_thumb']) ??
+          Cast.castToString(json['thumb']),
       userId: Cast.castToInt(json['user_id']),
       username: Cast.castToString(json['username']),
     );

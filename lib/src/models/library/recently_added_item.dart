@@ -181,7 +181,7 @@ class RecentlyAddedItem {
       banner: Cast.castToString(json['banner']),
       childCount: Cast.castToInt(json['child_count']),
       directors: _stringListFromList(json['directors'] as List?),
-      duration: _durationFromSecondsString(json['duration']),
+      duration: _durationFromMillisString(json['duration']),
       fullTitle: Cast.castToString(json['full_title']),
       genres: _stringListFromList(json['genres'] as List?),
       grandparentRatingKey: Cast.castToInt(json['grandparent_rating_key']),
@@ -229,9 +229,9 @@ class RecentlyAddedItem {
     return DateTime.tryParse(date);
   }
 
-  static Duration? _durationFromSecondsString(dynamic value) {
-    final seconds = Cast.castToInt(value);
-    if (seconds == null) return null;
-    return Duration(seconds: seconds);
+  static Duration? _durationFromMillisString(dynamic value) {
+    final ms = Cast.castToInt(value);
+    if (ms == null) return null;
+    return Duration(milliseconds: ms);
   }
 }

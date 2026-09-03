@@ -137,6 +137,9 @@ void main() {
       // string-list parsing path for directors.
       expect(result.first.genres, isEmpty);
       expect(result[1].directors, contains('Anna Dokoza'));
+      // Plex sends milliseconds: 2701888 is a 45-minute episode.
+      expect(result[1].duration, const Duration(milliseconds: 2701888));
+      expect(result.first.duration, isNull); // the season row sends ''
     });
   });
 

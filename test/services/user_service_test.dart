@@ -131,6 +131,11 @@ void main() {
       expect(result, hasLength(51));
       expect(result.first.userId, 0);
       expect(result.first.deletedUser, isNull); // not sent by get_users
+      // get_users sends the avatar as thumb, not user_thumb.
+      expect(
+        result[1].userThumb,
+        'https://plex.tv/users/0000000000000000/avatar?c=1788139852',
+      );
     });
 
     test('sends grouping param', () async {

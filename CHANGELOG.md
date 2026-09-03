@@ -1,5 +1,15 @@
 # Changelog
 
+## 3.3.0-wip
+
+### Fixed
+
+- Parsed `RecentlyAddedItem.duration` as milliseconds. The server sends Plex durations in
+  milliseconds, so the value came out a thousand times too long.
+- Read `UserData.userThumb` from the `thumb` key when `user_thumb` is absent. `get_users` sends the
+  avatar as `thumb` and only `get_user` uses `user_thumb`, so the field was always null from
+  `getUsers()`.
+
 ## 3.2.0
 
 **Requires Tautulli v2.18.0 or newer.** Verified end-to-end against a live v2.18.1 server. The test
