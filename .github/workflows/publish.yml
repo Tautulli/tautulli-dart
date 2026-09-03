@@ -1,0 +1,37 @@
+name: Publish
+
+on:
+  push:
+    tags:
+      # Must mirror the tag pattern configured on pub.dev: 'v{{version}}'.
+      - 'v[0-9]+.[0-9]+.[0-9]+'
+      - 'v[0-9]+.[0-9]+.[0-9]+-*' # prereleases, e.g. v3.3.0-beta.1
+
+jobs:
+  # Byte-identical to the test job in ci.yml, which does not run on tag pushes.
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        sdk: ['3.8.0', stable]
+    steps:
+      - uses: actions/checkout@v7
+      - uses: dart-lang/setup-dart@v1
+        with:
+          sdk: ${{ matrix.sdk }}
+      - run: dart pub get
+      - name: Verify formatting
+        if: matrix.sdk == 'stable'
+        run: dart format --output=none --set-exit-if-changed .
+      - run: dart analyze
+      - run: dart test
+      - name: Publish dry-run
+        if: matrix.sdk == 'stable'
+        run: dart pub publish --dry-run
+
+  publish:
+    needs: test
+    permissions:
+      id-token: write # OIDC token for pub.dev; no secrets involved
+    uses: dart-lang/setup-dart/.github/workflows/publish.yml@v1

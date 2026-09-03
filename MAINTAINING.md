@@ -16,16 +16,19 @@ example commands are the values current when this file was last updated; substit
 
 1. Pin every upstream fetch to a **release tag** (`vX.Y.Z`), never `master`, `nightly` or `beta`. All
    three branches can point at the same commit, and `plexpy/version.py` cannot tell them apart.
+   A requested beta pins a nightly SHA instead, never the branch name (§8).
 2. Evidence precedence: `test/fixtures/` (real captured behavior) > server source at the exact tag >
    wiki. The wiki has known errors; it never outranks a fixture.
 3. Nightly is a heads-up, never an implementation target. Shape changes have shipped and been reverted
    within one release — `get_plex_log` nested rows under `data.data`, un-nested them in v2.18.0, and
-   re-nested them in v2.18.1. The one exception is a requested beta (§7).
+   re-nested them in v2.18.1. The one exception is a requested beta (§8).
 4. No fixture, no model change. Never author or hand-edit a fixture to match code.
 5. Never state a behavior in dartdoc, `README.md` or `CHANGELOG.md` that you have not traced yourself to
    source at a pinned tag, or to a fixture. A subagent's summary is not a trace.
 6. Never `git commit`, `git push`, `git tag` or `dart pub publish` unprompted; each is a separate
    approval. Stage, propose a message, wait. One commit at a time.
+   Pushing a `vX.Y.Z` tag **is** the publish (§7.4), so propose it as "push the tag, which publishes
+   X.Y.Z to pub.dev", never as a bare tag push.
 7. Never cite an internal review doc (`CODE_REVIEW.md`, `LIVE_TEST_RESULTS.md`,
    `API_REFERENCE_INCONSISTENCIES.md`) in code, comments or commits — state the constraint directly.
    All three are gitignored local notes a fresh clone does not have.
@@ -111,7 +114,7 @@ here:
 
 - Before the sweep, `tautulli_commit` from `get_tautulli_info` must start with
   `gh api repos/Tautulli/Tautulli/commits/vX.Y.Z --jq '.sha[:7]'`, the SHA provenance lines record;
-  otherwise the server is on a branch — **STOP**.
+  otherwise the server is on a branch — **STOP**. A §8 beta capture replaces this check with §8's.
 - Keep the staging tree until **after** `sanitize.dart --check`. It rebuilds its needle list from
   `$TAUTULLI_STAGING_DIR` on every run: a deleted directory crashes it (exit 255) and an empty one prints
   `audit clean` (exit 0) having searched only the env-var literals and its own email/private-IP
@@ -138,6 +141,8 @@ CI (`.github/workflows/ci.yml`, on push and PR to `main`) runs the pubspec minim
 raise both together; `format` and `publish --dry-run` run on `stable` only. Read the dry-run's file
 tree, not only its exit code: a new repo-root file ships unless listed in `.pubignore`, and
 `example/main.dart` and `README.md` always ship — placeholder hosts and keys only.
+`publish.yml`'s `test` job is a byte copy of `ci.yml`'s, because a tag push does not run `ci.yml`; a
+matrix change lands in both files.
 
 What green does **not** prove:
 
@@ -160,15 +165,14 @@ package-initiated redesign.
 stops sending what it needs, and earns a `### Breaking` bullet; it normally sits below the audited tag.
 `Last audited` (README, `pubspec.yaml`, this file's tag examples) moves after a §3 source diff.
 "Verified end-to-end", the provenance lines and `api_surface.py`'s "Validated at" (`CLAUDE.md`,
-`test/fixtures/README.md`, `tool/api_surface.py`) move only after a §5 capture.
+`test/fixtures/README.md`, `tool/api_surface.py`) move only after a §5 capture at a release tag; a §8
+beta capture moves the provenance line alone.
 
-**Prereleases.** Only when asked. A beta cannot pin to a release tag, so it pins to one nightly commit
-instead: record the 7-char SHA in the changelog preamble and the provenance line, and re-capture against
-the release tag before the final version. That pin is why it is a beta and not a release (rule 3).
+**Prereleases.** Only when asked; §8 is the whole path.
 
 1. Bump `pubspec.yaml` and rename the top `## <next>-wip` heading to the bare `## <version>` in the same
    commit. `dart pub publish --dry-run` exits 65 when `CHANGELOG.md` does not contain the pubspec version
-   string anywhere — a substring check, so `-wip` satisfies it mid-cycle; the bare heading is §8's rule.
+   string anywhere — a substring check, so `-wip` satisfies it mid-cycle; the bare heading is §9's rule.
 2. Every hit below is a place to decide whether the audited version, tag SHA or capture date moves;
    `test/` assertions are fixture-bound and reconcile through `dart test` instead:
 
@@ -180,17 +184,87 @@ git ls-files | grep -E '\.(md|yaml|py)$' | xargs grep -nE 'v?2\.18\.1|6d410e2|20
 3. Before a `### Breaking` release, check the raw calls in Tautulli Remote — `dart analyze` covers the
    typed surface, but `client.execute('<cmd>', …)` carries command strings and parameter keys the
    compiler cannot flag: `grep -rnE "\.execute\(\s*'[a-z_0-9]+'" ../Tautulli-Remote/lib`.
-4. Push, then wait for **both** matrix legs before anything irreversible:
+4. Push, then wait for **both** matrix legs:
    `gh run watch $(gh run list --workflow=ci.yml --commit $(git rev-parse HEAD) --json databaseId --jq '.[0].databaseId') --exit-status`.
-   Then `dart pub publish`, tag lightweight `vX.Y.Z`, push the tag — each a separate approval (rule 6).
-   The release index is pub.dev, not `git tag` (42 versions, 5 tags):
-   `curl -s https://pub.dev/api/packages/tautulli | jq -r '.versions[].version'`.
+   Then tag lightweight `vX.Y.Z` on that commit and push the tag, each its own approval. **The tag push
+   is the publish** (rule 6): `.github/workflows/publish.yml` reruns the matrix on the tag and, only when
+   both legs are green, calls `dart-lang/setup-dart`'s reusable publish workflow, authenticated by a
+   GitHub-signed OIDC token, so no secret exists anywhere. pub.dev accepts the upload only from a tag
+   push on `Tautulli/tautulli-dart` named exactly `v` + the pubspec `version`. Watch the run
+   (`--workflow=publish.yml` in the command above), then confirm on pub.dev, the release index (42
+   versions, 5 tags): `curl -s https://pub.dev/api/packages/tautulli | jq -r '.versions[].version'`.
+   A red `test` leg skips `publish`; a red publish step was refused. Check pub.dev before any retry:
+   re-run a transient failure from the Actions UI (same commit, same ref), but a fix that needs a commit
+   needs the tag moved (`git tag -d vX.Y.Z && git push origin :refs/tags/vX.Y.Z`, re-tag, push), and
+   once the version is on pub.dev the fix is the next version (item 6). If the workflow itself is
+   broken, `dart pub publish` by hand after green `ci.yml` legs, then tag and push; the tag's run fails
+   at the publish step (the version exists) and uploads nothing.
 5. No `-beta` heading survives into a release entry; merge it into the final version's section.
 6. Bugs never retract a published version; the fix ships as the next version (3.0.x stands). Retract,
    within pub.dev's 7-day window, only when the tarball itself is the problem: a leaked secret or real
    host in `example/` or `README.md`, or a version that cannot resolve.
 
-## 8. Changelog style
+**Automated publishing, one-time setup (maintainer only).** The package belongs to the `tautulli.com`
+publisher, so this needs a publisher admin. On `pub.dev/packages/tautulli/admin` → **Automated
+publishing** → **Enable publishing from GitHub Actions**: repository `Tautulli/tautulli-dart`, tag
+pattern `v{{version}}`. Leave "Require GitHub Actions environment" off; if the tab offers a manual
+publishing switch, leave it on (step 4's fallback). GitHub needs no secret and no environment; the
+tagged commit must contain `publish.yml`. Until this is enabled, and for a prerelease tag until the
+first beta proves it, expect the tag's run to fail at the publish step and upload nothing: step 4's
+fallback applies.
+
+## 8. Nightly and betas
+
+Only `tautulli_commit` identifies a nightly server: nightly's `version.py` still says
+`PLEXPY_BRANCH = "master"` and the release version, and the v2.18.1 corpus server reported
+`tautulli_branch: nightly` at the release SHA.
+
+**Scan** when §2's heads-up fires: run §3 at the nightly head, with the SHA in place of `<new-tag>`.
+A hit is recorded nowhere: no code, no bullet, no `-wip` heading (rule 3).
+
+```bash
+sha=$(gh api repos/Tautulli/Tautulli/commits/nightly --jq '.sha[:7]'); python3 tool/api_surface.py v2.18.1 $sha
+```
+
+**Decide.** A beta starts with a request naming the consumer, the upstream commit it cannot wait
+for, and a disposable server on `tautulli/tautulli:nightly`. Docker Hub publishes only that moving
+tag, so the pin is whatever the server reports, never a SHA chosen up front. Either missing →
+**STOP**.
+
+**Capture.** §5 in full, with this in place of its pre-check:
+
+```bash
+pin=$(curl -s "$TAUTULLI_BASE_URL/api/v2?apikey=$TAUTULLI_API_KEY&cmd=get_tautulli_info" | jq -r '.response.data.tautulli_commit[:7]')
+gh api repos/Tautulli/Tautulli/compare/<wanted-commit>...$pin --jq .status   # ahead or identical, else STOP
+```
+
+Record `$pin` when first read; every later phase must read the same value back (a re-pulled `nightly`
+image is a different server) or **STOP** and restart the sweep. Run §3 with `$pin` in place of
+`<new-tag>`; the tool and the raw-file URLs both take a 7-char SHA. The pin appears in the changelog
+preamble, in the provenance line ("captured <date> from a live **Tautulli nightly** server, commit
+`<pin>`; replaced by a release-tag corpus before <version>") and inside `test/fixtures/`;
+`git grep -n <pin>` finds nothing else. README `Requires`/`Last audited`, `pubspec.yaml`, `CLAUDE.md`
+and "Validated at" keep their release values: they describe the stable line, and pub.dev shows the
+stable README for a prerelease.
+
+**Before the final version**, re-capture at the release tag (§5's own pre-check) and shape-diff against
+the beta corpus. A shape only the beta corpus held has no fixture afterwards: rule 4 removes its model
+code and its bullet, and the final entry names the drop under `### Behavior notes`. A shape any release
+tag shipped stays, reverted or not (§5, `get_plex_log`). An abandoned beta line gets the same treatment
+at whatever stable ships next. After the release commit, `git grep -n <pin>` hits only fixtures listed
+under "Two capture batches" in `test/fixtures/README.md`.
+
+**Version.** `X.Y.Z-beta.N`, N from 1, never reset, never another word. Each beta is §7.1 with
+`X.Y.Z-beta.N` as the version: `pubspec.yaml` bumped and `## X.Y.Z-wip` renamed to `## X.Y.Z-beta.N`
+in one commit, because the dry-run's substring check needs that literal. The preamble carries the pin
+and "stay on <stable> for release servers". A later beta keeps the pin or re-captures at a new one,
+never edits it. `## X.Y.Z-wip` reopens on top between betas; the release commit merges every `-beta.N`
+section into `## X.Y.Z` (§7.5). Ship by §7.4 with tag `vX.Y.Z-beta.N` (`publish.yml`'s second glob).
+A consumer pins the exact version in its own `pubspec.yaml`, `tautulli: 3.3.0-beta.1`, bumped per
+beta; that file is the only record of who runs a beta. pub gives `^3.2.0` the latest stable while one
+satisfies it, and `^3.3.0-beta.1` flips to `3.3.0` the moment it exists.
+
+## 9. Changelog style
 
 **Structure.** One `# Changelog`. Versions newest-first as bare `## <version>` — no dates, no links, no
 `[Unreleased]`. Released versions plus at most one `## <next>-wip` heading at the top, opened by the
@@ -247,7 +321,7 @@ tooling, dartdoc fixes.
 conformance only, never a reworded mechanism or an added fact: the server it was verified against is out
 of range and cannot be re-captured (rule 5).
 
-## 9. Commit style
+## 10. Commit style
 
 - Imperative, sentence-capitalized, **no trailing period** (the convention changed on 2026-08-11; follow
   the newer form). No Conventional Commits prefix. Aim for ≤72 characters; join multiple lanes with "and".
@@ -257,12 +331,17 @@ of range and cannot be re-captured (rule 5).
 - Reasoning, ordering constraints and migration detail live here, never in the changelog.
 - Close with the `Co-Authored-By:` trailer.
 
-## 10. Stop-and-verify checkpoints
+## 11. Stop-and-verify checkpoints
 
-1. Claiming a version behavior — did you read source at the **tag**, not a branch?
+1. Claiming a version behavior — did you read source at the **tag** (or the §8 pin), not a branch?
 2. Claiming a response shape — is there a **fixture**, or only a wiki/docstring line?
 3. Reading a handler — did you resolve the command through `--map` rather than grepping `def`?
 4. A test went green — does a test actually **read** the fixture you added?
 5. After sanitizing — did independent sweeps run, with the staging tree still present and non-empty?
 6. Before committing, pushing, tagging or publishing — proposed, and waiting for approval?
 7. Any unresolved uncertainty — **STOP** and report it rather than picking the likely answer.
+8. A beta pin — read from the capture server's `tautulli_commit`, present in the changelog preamble,
+   the provenance line and `test/fixtures/`, and nowhere else?
+9. The first release after a beta — does `git grep -n <pin>` hit only fixtures listed under "Two
+   capture batches", and is every model change that arrived in a beta backed by a release-tag fixture
+   or removed with a bullet?
