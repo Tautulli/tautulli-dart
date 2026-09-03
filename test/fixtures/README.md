@@ -75,8 +75,8 @@ only look for values the collector already knows about, so anything the collecto
 it. Pair it with independent sweeps that do not depend on the collector — bare regex passes for email
 addresses, IPv4/IPv6 literals, URL hosts, home-directory paths, and high-entropy token-shaped strings.
 
-Two rounds of exactly that found leaks the keyed collector had missed, and the sanitizer was corrected
-for each:
+Two rounds of exactly that, and a later review of the settings captures, found leaks the keyed
+collector had missed, and the sanitizer was corrected for each:
 
 - Emails were only collected under a key literally named `email`, so addresses embedded in other
   settings survived. Collection is now a regex sweep over whole bodies, and email replacement runs
@@ -87,8 +87,10 @@ for each:
 - Notifier credentials under keys no pattern reached (`maxmind_license_key`, `pushover_keys`,
   `cloudinary_cloud_name`) are now named explicitly in the credential list. They cannot be caught by a
   generic `key` rule without also swallowing `rating_key`/`rating_keys`/`session_key`.
+- Settings paths under keys with no `_dir`/`_path` suffix (`https_cert`, `https_key`, `geoip_db`,
+  `scripts_on_*_script`) escaped the `/config/redacted` rule; they are now named explicitly.
 
-The already-published captures for those last two were re-redacted in place with the corrected
+The already-published captures for the identity and credential cases were re-redacted in place with the corrected
 sanitizer's own conventions rather than re-captured, because the staging tree was gone by then. That is
 the one sanctioned exception to "never hand-edit a fixture": it replaced secret *values* only, changing
 no key, shape, or type. A few v2.17.2 mutation-state captures were deleted instead of repaired, since

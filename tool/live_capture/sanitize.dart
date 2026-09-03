@@ -85,7 +85,12 @@ final _idKey = RegExp(
   r'machine_id|identifier|server_id|uuid',
   caseSensitive: false,
 );
-final _pathKey = RegExp(r'(_dir|_path|_folder|^log_dir$|^backup_dir$)');
+// Settings paths whose key carries no `_dir`/`_path` suffix are named
+// explicitly: TLS cert and key files, the GeoIP database and script hooks.
+final _pathKey = RegExp(
+  r'(_dir|_path|_folder|^log_dir$|^backup_dir$'
+  r'|^https_cert$|^https_key$|^geoip_db$|^scripts_on_\w+_script$)',
+);
 
 /// Any email address anywhere in a body, not just under a key named `email`.
 final _emailRx = RegExp(r'[\w.+%-]+@[\w-]+(?:\.[\w-]+)+');

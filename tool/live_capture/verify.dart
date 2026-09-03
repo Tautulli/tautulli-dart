@@ -1,10 +1,12 @@
 /// Package-path verification sweep (read-only).
 ///
-/// Calls every read-only service method against the live server through
-/// `TautulliClient` and reports OK / typed-exception per method, with a short
-/// parsed-value summary so results can be eyeballed against the raw captures
-/// from `capture.dart`. Mutating methods are exercised by the lifecycle
-/// phases in `capture.dart`, not here — this sweep is always safe to run.
+/// Calls a representative set of read-only service methods against the live
+/// server through `TautulliClient` and reports OK / typed-exception per
+/// method, with a short parsed-value summary so results can be eyeballed
+/// against the raw captures from `capture.dart`. It is not exhaustive: most
+/// graph methods, the rating-key lookups, `sql`, `getNotifierConfig` and
+/// `downloadExport` are covered only by `capture.dart`, as are all mutating
+/// methods — this sweep is always safe to run.
 ///
 /// Requires TAUTULLI_BASE_URL, TAUTULLI_API_KEY, TAUTULLI_DEVICE_TOKEN.
 /// Usage: dart run tool/live_capture/verify.dart

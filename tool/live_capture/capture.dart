@@ -246,6 +246,31 @@ Future<Map<String, dynamic>?> _rawData(
   return (body['response'] as Map<String, dynamic>?);
 }
 
+/// Reads an integer id from a captured envelope's `data` map.
+int? _dataInt(Map<String, dynamic>? envelope, String key) {
+  final data = (envelope?['response'] as Map?)?['data'];
+  return data is Map ? (data[key] as num?)?.toInt() : null;
+}
+
+/// Polls get_exports_table until [exportId] reports complete (up to 60 s).
+Future<bool> _waitForExport(String sectionId, int exportId) async {
+  for (var i = 0; i < 30; i++) {
+    await Future<void>.delayed(const Duration(seconds: 2));
+    final table = await _rawData('get_exports_table', {
+      'section_id': sectionId,
+    });
+    final rows =
+        ((table?['data'] as Map<String, dynamic>?)?['data'] as List? ?? [])
+            .cast<Map<String, dynamic>>();
+    for (final row in rows) {
+      if (row['export_id'] == exportId && '${row['complete']}' == '1') {
+        return true;
+      }
+    }
+  }
+  return false;
+}
+
 Future<void> _discover() async {
   // PMS connection details.
   final serverInfo = await _rawData('get_server_info');
@@ -555,8 +580,19 @@ Future<void> _notifierLifecycle() async {
     'get_notification_log',
     params: {'length': '5'},
   );
+  // Raw add: the package call above discards the returned notifier_id.
+  final added = await _capture(
+    'notification',
+    'add_notifier_config',
+    'add_notifier_config',
+    params: {'agent_id': '$sinkAgentId'},
+  );
+  final rawNotifierId = _dataInt(added, 'notifier_id');
   try {
     await pkg.notifications.deleteNotifier(notifierId: notifierId);
+    if (rawNotifierId != null) {
+      await pkg.notifications.deleteNotifier(notifierId: rawNotifierId);
+    }
     _pkgLog('notifications.deleteNotifier', 'OK');
   } on TautulliException catch (e) {
     _pkgLog('notifications.deleteNotifier', 'FAIL', '$e');
@@ -615,8 +651,19 @@ Future<void> _newsletterLifecycle() async {
     'notify_newsletter',
     params: {'newsletter_id': '$newsletterId'},
   );
+  // Raw add: the package call above discards the returned newsletter_id.
+  final added = await _capture(
+    'newsletter',
+    'add_newsletter_config',
+    'add_newsletter_config',
+    params: {'agent_id': '$newsletterAgentId'},
+  );
+  final rawNewsletterId = _dataInt(added, 'newsletter_id');
   try {
     await pkg.newsletters.deleteNewsletter(newsletterId: newsletterId);
+    if (rawNewsletterId != null) {
+      await pkg.newsletters.deleteNewsletter(newsletterId: rawNewsletterId);
+    }
     _pkgLog('newsletters.deleteNewsletter', 'OK');
   } on TautulliException catch (e) {
     _pkgLog('newsletters.deleteNewsletter', 'FAIL', '$e');
@@ -634,6 +681,38 @@ Future<void> _exportLifecycle() async {
   if (sectionId == null) {
     _pkgLog('export lifecycle', 'SKIP', 'no movie section discovered');
     return;
+  }
+  // Raw export first: the package call below discards the returned
+  // export_id, and download_export needs a finished export to record.
+  final started = await _capture(
+    'export',
+    'export_metadata',
+    'export_metadata',
+    params: {
+      'section_id': sectionId,
+      'file_format': 'csv',
+      'metadata_level': '1',
+      'media_info_level': '0',
+      'thumb_level': '0',
+      'art_level': '0',
+    },
+  );
+  final rawExportId = _dataInt(started, 'export_id');
+  if (rawExportId != null && await _waitForExport(sectionId, rawExportId)) {
+    await _capture(
+      'export',
+      'download_export',
+      'download_export',
+      params: {'export_id': '$rawExportId'},
+      binary: true,
+    );
+    try {
+      await pkg.exports.deleteExport(exportId: rawExportId);
+    } on TautulliException catch (e) {
+      _pkgLog('exports.deleteExport (raw export)', 'FAIL', '$e');
+    }
+  } else {
+    _pkgLog('export lifecycle', 'FAIL', 'raw export never completed');
   }
   try {
     await pkg.exports.exportMetadata(

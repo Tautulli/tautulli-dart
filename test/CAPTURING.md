@@ -44,7 +44,8 @@ Notes:
 
 - `capture.dart` performs **raw HTTP GETs** (ground truth) and writes them to the staging dir;
   mutation *verbs* go **through `TautulliClient`** so the package itself is exercised end-to-end.
-  `verify.dart` runs every read method through the package and prints OK/FAIL per method.
+  `verify.dart` runs a representative set of read methods through the package and prints OK/FAIL
+  per method.
 - `--only <substring>` filters entries (reads) or lifecycles (mutations) for re-runs.
 - Placeholders like `{sectionId}`/`{ratingKey}` in `manifest.dart` are resolved automatically from
   server discovery at startup; entries with unresolvable placeholders are skipped and logged.
@@ -86,8 +87,5 @@ Always re-run `--check` after sanitizing, and treat any hit as a stop-the-line b
 
 - `download_database` / `download_plex_log` intermittently return **HTTP 500** ("returned more bytes
   than the declared Content-Length") when the file grows while being served — retry in a quiet moment.
-- `search` without `limit` always returns `data: []` on current PMS versions (the server sends an
-  empty `&limit=` that the PMS rejects).
-- `get_export_fields` 500s unless `sub_media_type` is sent (empty string is accepted).
 - A reverse-proxy `401` + HTML "Authorization Required" page cannot be captured from bare Tautulli
   (auth failures are 400 JSON) — the client-test coverage for that path uses synthetic responses.

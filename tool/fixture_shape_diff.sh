@@ -15,6 +15,8 @@ ref="${1:-HEAD}"
 keys='import json, sys
 def k(o, p=""):
     if isinstance(o, dict):
+        if not o:
+            print(p)
         for x, v in o.items():
             k(v, p + "/" + x)
     elif isinstance(o, list) and o:

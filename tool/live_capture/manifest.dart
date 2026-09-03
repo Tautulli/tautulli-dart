@@ -143,6 +143,18 @@ const readEntries = <CaptureEntry>[
     'get_server_id',
     params: {'hostname': '{pmsHost}', 'port': '{pmsPort}'},
   ),
+  // get_url adds `url`, test_websocket fills `ws` (null without it).
+  CaptureEntry(
+    'plex',
+    'get_server_id__get_url',
+    'get_server_id',
+    params: {
+      'hostname': '{pmsHost}',
+      'port': '{pmsPort}',
+      'get_url': '1',
+      'test_websocket': '1',
+    },
+  ),
   CaptureEntry('plex', 'get_server_list', 'get_server_list'),
   CaptureEntry(
     'plex',
@@ -461,8 +473,8 @@ const readEntries = <CaptureEntry>[
     'get_old_rating_keys',
     params: {'rating_key': '{showRatingKey}', 'media_type': 'show'},
   ),
-  // Canonical search sends a limit: omitting it hits a server-side bug
-  // (empty `&limit=` rejected by the PMS) that always yields empty results.
+  // Canonical search sends a limit; `search__no_limit` keeps the no-limit
+  // request on record (populated at v2.18.1).
   CaptureEntry(
     'media',
     'search',
@@ -534,6 +546,14 @@ const readEntries = <CaptureEntry>[
     'get_whois_lookup',
     params: {'ip_address': '8.8.8.8'},
   ),
+  // A reserved address: the server still answers `success`, with `nets: []`
+  // and an `error` string instead of an error envelope.
+  CaptureEntry(
+    'network',
+    'get_whois_lookup__error',
+    'get_whois_lookup',
+    params: {'ip_address': '192.0.2.1'},
+  ),
 
   // --- notifications (reads) --------------------------------------------------
   CaptureEntry('notification', 'get_notifiers', 'get_notifiers'),
@@ -559,8 +579,9 @@ const readEntries = <CaptureEntry>[
   ),
 
   // --- exports (reads) ---------------------------------------------------------
-  // get_export_fields 500s when sub_media_type is omitted (server bug), so
-  // the canonical success captures send an explicit empty sub_media_type.
+  // The `_no_sub` variants omit sub_media_type and matched the canonical
+  // responses byte for byte at v2.18.1; the canonical entries keep sending
+  // the empty string only so their requests stay stable across sweeps.
   CaptureEntry(
     'export',
     'get_export_fields',
