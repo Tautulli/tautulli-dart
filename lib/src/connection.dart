@@ -33,7 +33,8 @@ class TautulliConnection {
   /// How the [apiKey] is transmitted. Defaults to [ApiKeyLocation.query],
   /// which works on every server version. Opt in to [ApiKeyLocation.header]
   /// on servers v2.18.0 or newer to keep the key out of URLs and access
-  /// logs.
+  /// logs. `ImageService.buildImageUrl` ignores this setting and always embeds
+  /// the key as a query parameter, since an image tag cannot send headers.
   final ApiKeyLocation apiKeyLocation;
 
   const TautulliConnection({

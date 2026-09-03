@@ -2,13 +2,27 @@
 
 ## 3.3.0-wip
 
+### Breaking
+
+- Changed `buildImageUrl`'s `background` parameter from `int?` to `String?`. The server expects a hex
+  color string such as `'282828'`, and the integer went out through `toString()` as a decimal the
+  server could not use.
+
 ### Fixed
 
+- Stopped sending `refresh=0` and `return_hash=0` from `buildImageUrl` when the flags are false. The
+  server reads `refresh` by truthiness, so the string `'0'` bypassed the image cache on every
+  request, and it switches to a JSON response whenever `return_hash` is present at all, which broke
+  the image bytes.
 - Parsed `RecentlyAddedItem.duration` as milliseconds. The server sends Plex durations in
   milliseconds, so the value came out a thousand times too long.
 - Read `UserData.userThumb` from the `thumb` key when `user_thumb` is absent. `get_users` sends the
   avatar as `thumb` and only `get_user` uses `user_thumb`, so the field was always null from
   `getUsers()`.
+
+### Added
+
+- Added `clip` to `buildImageUrl`, matching the handler's parameter.
 
 ## 3.2.0
 

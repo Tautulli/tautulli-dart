@@ -921,5 +921,48 @@ void main() {
       expect(uri.queryParameters['fallback'], equals('poster'));
       expect(uri.queryParameters.containsKey('image_fallback'), isFalse);
     });
+
+    test('sends background as the literal hex string', () {
+      final client = TautulliClient(
+        connection: connection,
+        httpClient: MockClient((_) async => http.Response('', 200)),
+      );
+
+      final uri = client.images.buildImageUrl(
+        ratingKey: 456,
+        background: '282828',
+      );
+
+      expect(uri.queryParameters['background'], equals('282828'));
+    });
+
+    test('emits the flags only when true', () {
+      final client = TautulliClient(
+        connection: connection,
+        httpClient: MockClient((_) async => http.Response('', 200)),
+      );
+
+      // The server reads refresh and clip by truthiness and switches to a
+      // JSON response whenever return_hash is present, so false is omitted.
+      final off = client.images.buildImageUrl(
+        ratingKey: 456,
+        refresh: false,
+        returnHash: false,
+        clip: false,
+      );
+      expect(off.queryParameters.containsKey('refresh'), isFalse);
+      expect(off.queryParameters.containsKey('return_hash'), isFalse);
+      expect(off.queryParameters.containsKey('clip'), isFalse);
+
+      final on = client.images.buildImageUrl(
+        ratingKey: 456,
+        refresh: true,
+        returnHash: true,
+        clip: true,
+      );
+      expect(on.queryParameters['refresh'], equals('1'));
+      expect(on.queryParameters['return_hash'], equals('1'));
+      expect(on.queryParameters['clip'], equals('1'));
+    });
   });
 }
