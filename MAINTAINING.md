@@ -208,14 +208,15 @@ git ls-files | grep -E '\.(md|yaml|py)$' | xargs grep -nE 'v?2\.18\.1|6d410e2|20
    within pub.dev's 7-day window, only when the tarball itself is the problem: a leaked secret or real
    host in `example/` or `README.md`, or a version that cannot resolve.
 
-**Automated publishing, one-time setup (maintainer only).** The package belongs to the `tautulli.com`
-publisher, so this needs a publisher admin. On `pub.dev/packages/tautulli/admin` → **Automated
-publishing** → **Enable publishing from GitHub Actions**: repository `Tautulli/tautulli-dart`, tag
-pattern `v{{version}}`. Leave "Require GitHub Actions environment" off; if the tab offers a manual
-publishing switch, leave it on (step 4's fallback). GitHub needs no secret and no environment; the
-tagged commit must contain `publish.yml`. Until this is enabled, and for a prerelease tag until the
-first beta proves it, expect the tag's run to fail at the publish step and upload nothing: step 4's
-fallback applies.
+**Automated publishing (maintainer only).** Enabled 2026-09-02. The package belongs to the
+`tautulli.com` publisher, so changing it needs a publisher admin. On
+`pub.dev/packages/tautulli/admin` → **Automated publishing**: repository `Tautulli/tautulli-dart`,
+tag pattern `v{{version}}`. Under GitHub Actions only **Enable publishing from push events** is
+checked; workflow_dispatch and "Require GitHub Actions environment" stay off. **Enable manual
+publishing** stays checked, because step 4's fallback depends on it. GitHub needs no secret and no
+environment; the tagged commit must contain `publish.yml`. If tag publishing is ever disabled there,
+or for a prerelease tag until the first beta proves it, expect the tag's run to fail at the publish
+step and upload nothing: step 4's fallback applies.
 
 ## 8. Nightly and betas
 
