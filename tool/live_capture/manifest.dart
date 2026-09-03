@@ -143,17 +143,14 @@ const readEntries = <CaptureEntry>[
     'get_server_id',
     params: {'hostname': '{pmsHost}', 'port': '{pmsPort}'},
   ),
-  // get_url adds `url`, test_websocket fills `ws` (null without it).
+  // get_url is unreachable through the API at v2.18.1: the branch calls
+  // self.get_server_resources, which only WebInterface defines, so the API2
+  // object raises AttributeError and the call answers 500.
   CaptureEntry(
     'plex',
-    'get_server_id__get_url',
+    'get_server_id__get_url_error',
     'get_server_id',
-    params: {
-      'hostname': '{pmsHost}',
-      'port': '{pmsPort}',
-      'get_url': '1',
-      'test_websocket': '1',
-    },
+    params: {'hostname': '{pmsHost}', 'port': '{pmsPort}', 'get_url': '1'},
   ),
   CaptureEntry('plex', 'get_server_list', 'get_server_list'),
   CaptureEntry(

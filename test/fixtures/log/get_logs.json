@@ -4,64 +4,64 @@
     "message": null,
     "data": [
       {
-        "time": "2026-08-27 16:31:54 ",
+        "time": "2026-09-03 15:21:45 ",
         "loglevel": "WARNING",
         "msg": "Tautulli Pmsconnect :: Failed to terminate session: Invalid session_key (999999) or session_id ().",
-        "thread": "CP Server Thread-11"
+        "thread": "CP Server Thread-16"
       },
       {
-        "time": "2026-08-27 16:31:52 ",
+        "time": "2026-09-03 15:21:44 ",
         "loglevel": "WARNING",
         "msg": "Unable to retrieve data for get_metadata_details.",
-        "thread": "CP Server Thread-11"
+        "thread": "CP Server Thread-16"
       },
       {
-        "time": "2026-08-27 16:31:52 ",
+        "time": "2026-09-03 15:21:44 ",
         "loglevel": "WARNING",
         "msg": "Tautulli Pmsconnect :: Unable to parse XML for get_metadata_details: 'NoneType' object has no attribute 'getElementsByTagName'.",
-        "thread": "CP Server Thread-11"
+        "thread": "CP Server Thread-16"
       },
       {
-        "time": "2026-08-27 16:31:52 ",
+        "time": "2026-09-03 15:21:44 ",
         "loglevel": "ERROR",
         "msg": "Failed to access uri endpoint /library/metadata/999999999?includeMarkers=1. Status code 404 Client Error: Not Found for url: https://192-0-2-10.00000000000000000000000000000000.plex.direct:32400/library/metadata/999999999?includeMarkers=1",
-        "thread": "CP Server Thread-11"
+        "thread": "CP Server Thread-16"
       },
       {
-        "time": "2026-08-27 16:31:48 ",
+        "time": "2026-09-03 15:21:39 ",
         "loglevel": "WARNING",
-        "msg": "Tautulli Users :: Unable to retrieve user 999999999 from database. Returning 'user50' user.",
-        "thread": "CP Server Thread-17"
+        "msg": "Tautulli Users :: Unable to retrieve user 999999999 from database. Returning 'user51' user.",
+        "thread": "CP Server Thread-9"
       },
       {
-        "time": "2026-08-27 16:31:48 ",
+        "time": "2026-09-03 15:21:39 ",
         "loglevel": "INFO",
         "msg": "Tautulli Users :: Users list refreshed.",
-        "thread": "CP Server Thread-17"
+        "thread": "CP Server Thread-9"
       },
       {
-        "time": "2026-08-27 16:31:47 ",
+        "time": "2026-09-03 15:21:38 ",
         "loglevel": "INFO",
         "msg": "Tautulli Users :: Requesting users list refresh...",
-        "thread": "CP Server Thread-17"
+        "thread": "CP Server Thread-9"
       },
       {
-        "time": "2026-08-27 16:31:47 ",
+        "time": "2026-09-03 15:21:38 ",
         "loglevel": "WARNING",
         "msg": "Tautulli Users :: Unable to retrieve user 999999999 from database. Requesting user list refresh.",
-        "thread": "CP Server Thread-17"
+        "thread": "CP Server Thread-9"
       },
       {
-        "time": "2026-08-27 16:31:46 ",
+        "time": "2026-09-03 15:21:38 ",
         "loglevel": "WARNING",
         "msg": "Unable to retrieve data for get_library_user_stats.",
-        "thread": "CP Server Thread-17"
+        "thread": "CP Server Thread-9"
       },
       {
-        "time": "2026-08-27 16:31:46 ",
+        "time": "2026-09-03 15:21:38 ",
         "loglevel": "DEBUG",
         "msg": "Tautulli Libraries :: Loaded media info from cache for section_id 24 (4 items).",
-        "thread": "CP Server Thread-16"
+        "thread": "CP Server Thread-8"
       }
     ]
   }

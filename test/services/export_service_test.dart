@@ -34,7 +34,7 @@ void main() {
       expect(entry.complete, true);
       expect(entry.sectionId, 24);
       expect(entry.ratingKey, isNull);
-      expect(entry.fileSize, 2603);
+      expect(entry.fileSize, 2607);
       expect(entry.thumbLevel, 0);
       expect(entry.exists, true);
       expect(result.recordsTotal, 1);

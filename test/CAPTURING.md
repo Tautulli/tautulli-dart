@@ -36,6 +36,7 @@ dart run tool/live_capture/capture.dart --phase auth         # 6-state auth matr
 dart run tool/live_capture/capture.dart --phase reads        # ~110 read commands + variants
 dart run tool/live_capture/verify.dart                       # package-path read sweep (~70 checks)
 dart run tool/live_capture/capture.dart --phase stream       # needs an active throwaway stream; terminates it
+#   add --session-key <key> when other sessions are active, so only the throwaway one is terminated
 dart run tool/live_capture/capture.dart --phase mutations    # reversible lifecycles (create→verify→cleanup)
 dart run tool/live_capture/capture.dart --phase destructive  # deletes/purges; ends with restart
 ```

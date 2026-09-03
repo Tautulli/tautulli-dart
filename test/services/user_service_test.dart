@@ -33,7 +33,7 @@ void main() {
     test('parses user data', () async {
       makeClient('user/get_user.json');
       final user = await client.users.getUser(userId: 7);
-      expect(user.username, 'user65');
+      expect(user.username, 'user66');
       expect(user.friendlyName, 'liam');
       expect(user.isActive, isTrue);
       expect(user.userId, 2535039);
@@ -58,7 +58,7 @@ void main() {
       final names = await client.users.getUserNames();
       expect(names, hasLength(51));
       expect(names.first.userId, 0);
-      expect(names.first.friendlyName, 'user50');
+      expect(names.first.friendlyName, 'user51');
       expect(names.last.friendlyName, 'nina');
     });
   });
@@ -76,7 +76,7 @@ void main() {
       final stats = await client.users.getUserPlayerStats(userId: 7);
       expect(stats, hasLength(16));
       expect(stats.first.platform, 'Firefox');
-      expect(stats.first.totalPlays, 2949);
+      expect(stats.first.totalPlays, 2987);
     });
   });
 
@@ -117,7 +117,7 @@ void main() {
       final result = await client.users.getUsersTable();
       expect(result.recordsTotal, 64);
       expect(result.data, hasLength(25));
-      expect(result.data.first.username, 'user101');
+      expect(result.data.first.username, 'user103');
       expect(result.data.first.plays, 159);
       expect(result.data.first.historyRowId, 84598);
     });

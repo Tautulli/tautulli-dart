@@ -62,6 +62,10 @@ Future<void> main() async {
 
   try {
     await _run();
+  } on Object catch (e) {
+    // Without this the exit() in finally hides a discovery failure.
+    _fail++;
+    stdout.writeln('FAIL sweep aborted — $e');
   } finally {
     pkg.close();
     pkgToken.close();
@@ -106,9 +110,11 @@ Future<void> _run() async {
   );
   final sectionId = movieLib.sectionId!;
   final history = await pkg.history.getHistory(length: 30);
-  final movieRow = history.data.firstWhere(
+  // A session still playing is listed first with a null rowId; skip it.
+  final rows = history.data.where((h) => h.rowId != null);
+  final movieRow = rows.firstWhere(
     (h) => h.mediaType?.name == 'movie',
-    orElse: () => history.data.first,
+    orElse: () => rows.first,
   );
   final episodeRows = history.data.where((h) => h.mediaType?.name == 'episode');
   final ratingKey = movieRow.ratingKey!;

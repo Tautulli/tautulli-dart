@@ -48,8 +48,8 @@ void main() {
         version: '3.5.1',
       );
       expect(result.pmsName, 'TestServer');
-      expect(result.serverId, 'eeeeeeeeeeeeeeeeeeeeeeeeeeeeee08');
-      expect(result.tautulliVersion, 'v2.17.2');
+      expect(result.serverId, 'eeeeeeeeeeeeeeeeeeeeeeeeeeeeee0e');
+      expect(result.tautulliVersion, 'v2.18.1');
       expect(result.pmsPlexpass, isTrue);
     });
 

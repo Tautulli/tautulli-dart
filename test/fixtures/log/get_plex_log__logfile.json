@@ -5,29 +5,29 @@
     "data": {
       "data": [
         [
-          "Aug 27, 2026 16:31:54.033",
+          "Sep 03, 2026 15:21:45.378",
           "DEBUG",
-          "Audio Stream: 1291924, Subtitle Stream: -1\n"
+          "Audio Stream: 617069, Subtitle Stream: -1\n"
         ],
         [
-          "Aug 27, 2026 16:31:54.035",
+          "Sep 03, 2026 15:21:45.379",
           "DEBUG",
-          "Completed: [192.0.2.12:32786] 200 GET /library/metadata/153110?includeMarkers=1 (34 live) #b0f217 TLS GZIP 5ms 6453 bytes (pipelined: 2)\n"
+          "Completed: [192.0.2.12:44316] 200 GET /library/metadata/80808?includeMarkers=1 (25 live) #af2366 TLS GZIP 4ms 5621 bytes (pipelined: 3)\n"
         ],
         [
-          "Aug 27, 2026 16:31:54.095",
+          "Sep 03, 2026 15:21:45.427",
           "DEBUG",
-          "Request: [192.0.2.12:32802 (WAN)] GET /status/sessions (34 live) #b0f213 TLS GZIP Signed-in Token (TheMeanCanEHdian)\n"
+          "Request: [192.0.2.12:44332 (WAN)] GET /status/sessions (25 live) #af2361 TLS GZIP Signed-in Token (user69)\n"
         ],
         [
-          "Aug 27, 2026 16:31:54.095",
+          "Sep 03, 2026 15:21:45.427",
           "DEBUG",
-          "[Req#b0f213] [Now] Adding 1 sessions.\n"
+          "[Req#af2361] [Now] Adding 1 sessions.\n"
         ],
         [
-          "Aug 27, 2026 16:31:54.096",
+          "Sep 03, 2026 15:21:45.428",
           "DEBUG",
-          "Completed: [192.0.2.12:32802] 200 GET /status/sessions (34 live) #b0f213 TLS GZIP 0ms 4313 bytes (pipelined: 1)\n"
+          "Completed: [192.0.2.12:44332] 200 GET /status/sessions (25 live) #af2361 TLS GZIP 0ms 2693 bytes (pipelined: 1)\n"
         ]
       ]
     }

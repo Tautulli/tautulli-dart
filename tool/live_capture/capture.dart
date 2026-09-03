@@ -14,7 +14,7 @@
 /// Usage:
 ///   dart run tool/live_capture/capture.dart --phase auth
 ///   dart run tool/live_capture/capture.dart --phase reads [--only substring]
-///   dart run tool/live_capture/capture.dart --phase stream
+///   dart run tool/live_capture/capture.dart --phase stream [--session-key key]
 ///   dart run tool/live_capture/capture.dart --phase mutations
 ///   dart run tool/live_capture/capture.dart --phase destructive
 library;
@@ -47,9 +47,13 @@ final _placeholders = <String, String>{};
 Future<void> main(List<String> args) async {
   String? phase;
   String? only;
+  String? sessionKey;
   for (var i = 0; i < args.length; i++) {
     if (args[i] == '--phase' && i + 1 < args.length) phase = args[++i];
     if (args[i] == '--only' && i + 1 < args.length) only = args[++i];
+    if (args[i] == '--session-key' && i + 1 < args.length) {
+      sessionKey = args[++i];
+    }
   }
   if (phase == null) {
     stderr.writeln('usage: --phase auth|reads|stream|mutations|destructive');
@@ -70,7 +74,7 @@ Future<void> main(List<String> args) async {
             await _runEntries(readEntries, phase!, only);
           case 'stream':
             await _discover();
-            await _phaseStream();
+            await _phaseStream(sessionKey);
           case 'mutations':
             await _discover();
             await _phaseMutations(only);
@@ -301,7 +305,8 @@ Future<void> _discover() async {
   for (final row in rows) {
     final r = row as Map<String, dynamic>;
     final mediaType = '${r['media_type']}';
-    if (!_placeholders.containsKey('historyRowId')) {
+    // A session still playing appears in history with a null row_id.
+    if (r['row_id'] != null && !_placeholders.containsKey('historyRowId')) {
       _placeholders['historyRowId'] = '${r['row_id']}';
       _placeholders['userId'] = '${r['user_id']}';
       _placeholders['username'] = '${r['user']}';
@@ -381,8 +386,13 @@ Future<void> _runEntries(
         binary: e.binary,
       );
     } on Exception catch (err) {
-      _log({'name': '${e.domain}/${e.name}', 'error': '$err'});
-      stdout.writeln('  [${e.domain}/${e.name}] ERROR $err');
+      // A ClientException echoes the request URI, credential included.
+      final msg = '$err'.replaceAll(
+        RegExp(r'apikey=[^&\s]+'),
+        'apikey=REDACTED',
+      );
+      _log({'name': '${e.domain}/${e.name}', 'error': msg});
+      stdout.writeln('  [${e.domain}/${e.name}] ERROR $msg');
     }
   }
   if (skipped > 0) stdout.writeln('skipped $skipped entries');
@@ -392,18 +402,33 @@ Future<void> _runEntries(
 // Phase: stream (requires a user-coordinated throwaway stream)
 // ---------------------------------------------------------------------------
 
-Future<void> _phaseStream() async {
+/// Captures the live-session shapes and terminates the throwaway stream:
+/// the session whose key is [wantedKey], or the only active session.
+Future<void> _phaseStream(String? wantedKey) async {
   final activity = await _rawData('get_activity');
   final sessions =
-      ((activity?['data'] as Map<String, dynamic>?)?['sessions'] as List? ??
-      []);
+      ((activity?['data'] as Map<String, dynamic>?)?['sessions'] as List? ?? [])
+          .cast<Map<String, dynamic>>();
   if (sessions.isEmpty) {
     stderr.writeln(
       'No active sessions. Start a throwaway stream and re-run --phase stream.',
     );
     exit(2);
   }
-  final s = sessions.first as Map<String, dynamic>;
+  if (wantedKey == null && sessions.length > 1) {
+    stderr.writeln(
+      'Several sessions are active; pass --session-key <key> to name the '
+      'throwaway one.',
+    );
+    exit(2);
+  }
+  final s = sessions.firstWhere(
+    (x) => wantedKey == null || '${x['session_key']}' == wantedKey,
+    orElse: () {
+      stderr.writeln('No active session has session_key $wantedKey.');
+      exit(2);
+    },
+  );
   final sessionKey = '${s['session_key']}';
   final sessionId = '${s['session_id']}';
   stdout.writeln('active session: key=$sessionKey');

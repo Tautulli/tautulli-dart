@@ -36,7 +36,7 @@ void main() {
       expect(result.data, hasLength(14));
       expect(result.data.first.sectionName, 'TV Shows');
       expect(result.data.first.sectionType, SectionType.show);
-      expect(result.data.first.plays, 47976);
+      expect(result.data.first.plays, 48137);
     });
   });
 
@@ -130,12 +130,13 @@ void main() {
       makeClient('library/get_recently_added.json');
       final result = await client.libraries.getRecentlyAdded(count: 10);
       expect(result, hasLength(5));
-      expect(result.first.title, 'Off-Hour');
-      expect(result.first.mediaType, MediaType.episode);
-      // This capture holds only episodes, whose genres list is empty; the
-      // directors list covers the same string-list parsing path.
+      expect(result.first.title, 'Season 2');
+      expect(result.first.mediaType, MediaType.season);
+      // This capture's first row (a season) has an empty genres list and no
+      // directors; row 1, an episode, still exercises the non-empty
+      // string-list parsing path for directors.
       expect(result.first.genres, isEmpty);
-      expect(result.first.directors, contains('Dan Liu'));
+      expect(result[1].directors, contains('Anna Dokoza'));
     });
   });
 

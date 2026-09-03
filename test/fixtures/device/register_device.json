@@ -3,28 +3,27 @@
     "result": "success",
     "message": "Device registration successful.",
     "data": {
-      "server_id": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeee08",
+      "server_id": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeee0e",
       "pms_name": "TestServer",
-      "pms_version": "1.43.3.10793-cd55560bb",
+      "pms_version": "1.43.4.10903-e5521bd8c",
       "pms_platform": "Linux",
       "pms_ip": "203.0.113.9",
       "pms_port": 32400,
       "pms_ssl": 1,
-      "pms_is_cloud": 0,
       "pms_url": "https://192-0-2-10.00000000000000000000000000000000.plex.direct:32400",
       "pms_url_manual": 0,
-      "pms_identifier": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee09",
+      "pms_identifier": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee10",
       "pms_plexpass": 1,
       "tautulli_install_type": "docker",
-      "tautulli_version": "v2.17.2",
-      "tautulli_branch": "nightly",
-      "tautulli_commit": "5a39bac6f524a23ab79cef8b08f8126f5134a99e",
+      "tautulli_version": "v2.18.1",
+      "tautulli_branch": "master",
+      "tautulli_commit": "6d410e2a64a39af2c436df34f281ead858c06029",
       "tautulli_platform": "Linux",
       "tautulli_platform_release": "6.12.54-Unraid",
       "tautulli_platform_version": "#1 SMP PREEMPT_DYNAMIC Tue Oct 21 15:58:46 PDT 2025",
       "tautulli_platform_linux_distro": "Debian GNU/Linux 13 trixie",
-      "tautulli_platform_device_name": "f23a6f252bfb",
-      "tautulli_python_version": "3.13.14"
+      "tautulli_platform_device_name": "326e83009d26",
+      "tautulli_python_version": "3.13.15"
     }
   }
 }

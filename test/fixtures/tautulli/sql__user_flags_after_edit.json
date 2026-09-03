@@ -4,9 +4,9 @@
     "message": null,
     "data": [
       {
+        "friendly_name": "dart-edit-check",
         "keep_history": 1,
-        "allow_guest": 0,
-        "do_notify": 0
+        "allow_guest": 0
       }
     ]
   }

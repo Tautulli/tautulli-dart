@@ -12,15 +12,15 @@
         {
           "name": "Direct Play",
           "data": [
-            801,
-            23,
+            655,
+            32,
             1
           ]
         },
         {
           "name": "Direct Stream",
           "data": [
-            2,
+            4,
             0,
             0
           ]
@@ -28,7 +28,7 @@
         {
           "name": "Transcode",
           "data": [
-            265,
+            258,
             2,
             0
           ]

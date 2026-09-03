@@ -4,15 +4,15 @@
     "message": null,
     "data": [
       {
-        "player_name": "Firefox",
+        "player_name": "Player 13",
         "platform": "Firefox",
         "platform_name": "firefox",
-        "total_plays": 2949,
-        "total_time": 7270290,
+        "total_plays": 2987,
+        "total_time": 7380281,
         "result_id": 0
       },
       {
-        "player_name": "Chrome",
+        "player_name": "Player 10",
         "platform": "Chrome",
         "platform_name": "chrome",
         "total_plays": 1844,
@@ -20,7 +20,7 @@
         "result_id": 1
       },
       {
-        "player_name": "Living Room TV",
+        "player_name": "Player 21",
         "platform": "Roku",
         "platform_name": "roku",
         "total_plays": 465,
@@ -28,7 +28,7 @@
         "result_id": 2
       },
       {
-        "player_name": "BRAVIA VH22",
+        "player_name": "Player 7",
         "platform": "Android",
         "platform_name": "android",
         "total_plays": 341,
@@ -36,7 +36,7 @@
         "result_id": 3
       },
       {
-        "player_name": "Chromecast",
+        "player_name": "Player 11",
         "platform": "Chromecast",
         "platform_name": "chromecast",
         "total_plays": 217,
@@ -44,7 +44,7 @@
         "result_id": 4
       },
       {
-        "player_name": "BRAVIA 4K UR3",
+        "player_name": "Player 4",
         "platform": "Android",
         "platform_name": "android",
         "total_plays": 111,
@@ -52,7 +52,7 @@
         "result_id": 5
       },
       {
-        "player_name": "Beardroom",
+        "player_name": "Player 8",
         "platform": "Roku",
         "platform_name": "roku",
         "total_plays": 40,
@@ -60,7 +60,7 @@
         "result_id": 6
       },
       {
-        "player_name": "Galaxy S8+",
+        "player_name": "Player 15",
         "platform": "Android",
         "platform_name": "android",
         "total_plays": 32,
@@ -68,7 +68,7 @@
         "result_id": 7
       },
       {
-        "player_name": "Pixel 9a",
+        "player_name": "Player 26",
         "platform": "Android",
         "platform_name": "android",
         "total_plays": 27,
@@ -76,7 +76,7 @@
         "result_id": 8
       },
       {
-        "player_name": "Pixel 5",
+        "player_name": "Player 25",
         "platform": "Android",
         "platform_name": "android",
         "total_plays": 6,
@@ -84,7 +84,7 @@
         "result_id": 9
       },
       {
-        "player_name": "TCLRoku TV - YK001V781196",
+        "player_name": "Player 33",
         "platform": "Roku",
         "platform_name": "roku",
         "total_plays": 4,
@@ -92,7 +92,7 @@
         "result_id": 10
       },
       {
-        "player_name": "BRAVIA VH21",
+        "player_name": "Player 6",
         "platform": "Android",
         "platform_name": "android",
         "total_plays": 4,
@@ -100,7 +100,7 @@
         "result_id": 11
       },
       {
-        "player_name": "TV UN60KU630D",
+        "player_name": "Player 35",
         "platform": "Tizen",
         "platform_name": "samsung",
         "total_plays": 3,
@@ -108,7 +108,7 @@
         "result_id": 12
       },
       {
-        "player_name": "Plex Web (Chrome)",
+        "player_name": "Player 27",
         "platform": "Chrome",
         "platform_name": "chrome",
         "total_plays": 3,
@@ -116,7 +116,7 @@
         "result_id": 13
       },
       {
-        "player_name": "Pixel",
+        "player_name": "Player 23",
         "platform": "Android",
         "platform_name": "android",
         "total_plays": 1,
@@ -124,7 +124,7 @@
         "result_id": 14
       },
       {
-        "player_name": "Josh’s iPhone",
+        "player_name": "Player 17",
         "platform": "iOS",
         "platform_name": "ios",
         "total_plays": 1,

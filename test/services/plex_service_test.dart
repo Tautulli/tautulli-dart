@@ -33,7 +33,7 @@ void main() {
       makeClient('plex/get_server_info.json');
       final info = await client.plex.getServerInfo();
       expect(info.pmsName, 'TestServer');
-      expect(info.pmsIdentifier, 'eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee0a');
+      expect(info.pmsIdentifier, 'eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee10');
       expect(info.pmsPlexpass, isTrue);
       expect(info.pmsPort, 32400);
       expect(info.pmsVersion, '1.43.4.10903-e5521bd8c');
@@ -64,7 +64,7 @@ void main() {
       expect(lastRequestUri.queryParameters['cmd'], 'get_server_identity');
       expect(
         result['machine_identifier'],
-        'eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee0a',
+        'eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee10',
       );
     });
   });
@@ -84,7 +84,7 @@ void main() {
       expect(q['ssl'], '1');
       expect(q.containsKey('remote'), isFalse);
       // The identifier is nested under data.identifier, not a bare string.
-      expect(id, 'eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee0a');
+      expect(id, 'eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee10');
     });
   });
 

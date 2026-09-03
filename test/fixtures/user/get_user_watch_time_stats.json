@@ -5,23 +5,23 @@
     "data": [
       {
         "query_days": 1,
-        "total_time": 3701,
-        "total_plays": 1
+        "total_time": 18747,
+        "total_plays": 12
       },
       {
         "query_days": 7,
-        "total_time": 22459,
-        "total_plays": 5
+        "total_time": 113692,
+        "total_plays": 39
       },
       {
         "query_days": 30,
-        "total_time": 264308,
-        "total_plays": 87
+        "total_time": 326717,
+        "total_plays": 113
       },
       {
         "query_days": 0,
-        "total_time": 14728877,
-        "total_plays": 5833
+        "total_time": 14838868,
+        "total_plays": 5871
       }
     ]
   }

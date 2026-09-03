@@ -8,7 +8,7 @@
         "agent_id": 15,
         "agent_name": "scripts",
         "agent_label": "Script",
-        "friendly_name": "user64",
+        "friendly_name": "user65",
         "last_triggered": null,
         "last_success": null,
         "active": 0
@@ -18,7 +18,7 @@
         "agent_id": 15,
         "agent_name": "scripts",
         "agent_label": "Script",
-        "friendly_name": "user45",
+        "friendly_name": "user46",
         "last_triggered": 1787028836,
         "last_success": 0,
         "active": 1
@@ -58,7 +58,7 @@
         "agent_id": 15,
         "agent_name": "scripts",
         "agent_label": "Script",
-        "friendly_name": "user44",
+        "friendly_name": "user45",
         "last_triggered": null,
         "last_success": null,
         "active": 0
@@ -68,7 +68,7 @@
         "agent_id": 15,
         "agent_name": "scripts",
         "agent_label": "Script",
-        "friendly_name": "user46",
+        "friendly_name": "user47",
         "last_triggered": null,
         "last_success": null,
         "active": 0
@@ -79,7 +79,7 @@
         "agent_name": "remoteapp",
         "agent_label": "Tautulli Remote App",
         "friendly_name": "",
-        "last_triggered": 1787864595,
+        "last_triggered": 1788426179,
         "last_success": 0,
         "active": 1
       },
@@ -88,7 +88,7 @@
         "agent_id": 15,
         "agent_name": "scripts",
         "agent_label": "Script",
-        "friendly_name": "user58",
+        "friendly_name": "user59",
         "last_triggered": null,
         "last_success": null,
         "active": 0

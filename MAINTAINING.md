@@ -179,7 +179,7 @@ beta capture moves the provenance line alone.
    `test/` assertions are fixture-bound and reconcile through `dart test` instead:
 
 ```bash
-git ls-files | grep -E '\.(md|yaml|py)$' | xargs grep -nE 'v?2\.18\.1|6d410e2|2026-08-27' | grep -v '^CHANGELOG.md'
+git ls-files | grep -E '\.(md|yaml|py)$' | xargs grep -nE 'v?2\.18\.1|6d410e2|2026-09-03' | grep -v '^CHANGELOG.md'
 ```
 
    `grep -n 'tautulli: \^' README.md` moves on every package release.

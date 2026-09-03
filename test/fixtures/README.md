@@ -1,9 +1,9 @@
 # Fixtures — real, sanitized Tautulli API responses
 
-**Provenance:** the read-only corpus was captured 2026-08-27 from a live **Tautulli v2.18.1** server
-(release tag `6d410e2`, Docker). A smaller set of mutation-state, auth and stream fixtures dates from
-the 2026-07-04 campaign against **v2.17.2** (nightly `5a39bac6`) and is kept as evidence of those
-sequences — see "Two capture batches" below. Every file is a complete, unmodified server response run
+**Provenance:** the corpus was captured 2026-09-03 from a live **Tautulli v2.18.1** server (release
+tag `6d410e2`, Docker image `tautulli/tautulli:v2.18.1`), all phases included. Four files date from
+the 2026-07-04 campaign against **v2.17.2** (nightly `5a39bac6`) and are kept because the newer
+capture was thinner — see "Two capture batches" below. Every file is a complete, unmodified server response run
 through the deterministic sanitizer in
 [`tool/live_capture/sanitize.dart`](../../tool/live_capture/sanitize.dart) — see
 [`test/CAPTURING.md`](../CAPTURING.md) for the full reproducible process.
@@ -29,8 +29,9 @@ through the deterministic sanitizer in
      a terminated session lingers in `get_activity` for several seconds while it drains.
    - There is deliberately no "after logout" capture: `logout_user_session` NULLs a column that
      `get_user_logins` doesn't expose, so the table is unchanged by design.
-   - Some mutation-state captures from the v2.17.2 batch were removed because they carried
-     partially-sanitized operator email addresses; no test referenced them.
+   - Three mutation-state captures were dropped from the 2026-08-27 batch because they carried
+     partially-sanitized operator email addresses; the 2026-09-03 sweep regenerated them with the
+     corrected sanitizer.
 
 ## Two capture batches
 
@@ -59,6 +60,7 @@ capture batch** — see above):
   dash-encoded `*.plex.direct` hosts and their cert hashes
 - Usernames / friendly names → `alice`, `bob`, … then `userN`; emails → `<alias>@example.com`
 - Non-generic (personal) library names → `Library N`
+- Player and device names (`player`, `player_name`) → `Player N` (they carry serials and room names)
 - Machine ids / PMS identifiers / plex.tv avatar hashes → fixed hex placeholders
 - File-system paths (settings dirs → `/config/redacted`; media file paths → `/media/<basename>`)
 - Geo-lookup results → fixed fake coordinates (Springfield, IL)

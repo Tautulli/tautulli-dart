@@ -65,9 +65,9 @@ Tests use `MockClient` from `package:http/testing.dart` (ships with `http` — n
 
 ## Fixtures (ground truth)
 
-`test/fixtures/` holds ~150 **full sanitized real responses**, the read-only corpus captured 2026-08-27
-from a live Tautulli v2.18.1 server (release tag `6d410e2`), with some mutation-state/auth/stream files
-retained from the earlier v2.17.2 campaign (see `test/fixtures/README.md` for provenance, the two-batch
+`test/fixtures/` holds ~160 **full sanitized real responses**, the corpus captured 2026-09-03 from a
+live Tautulli v2.18.1 server (release tag `6d410e2`), with four files retained from the earlier
+v2.17.2 campaign (see `test/fixtures/README.md` for provenance, the two-batch
 alias caveat and sanitization, and `test/CAPTURING.md` for the reproducible capture process using
 `tool/live_capture/`). They are the authoritative source for response
 shapes — more reliable than the wiki, whose examples are sometimes stale or abbreviated:

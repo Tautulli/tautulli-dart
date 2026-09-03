@@ -33,7 +33,13 @@ final _outDir =
     Platform.environment['TAUTULLI_FIXTURES_DIR'] ?? 'test/fixtures';
 
 /// IPs the campaign itself sends as test inputs — not server data.
-const _ipAllowlist = {'8.8.8.8', '127.0.0.1', '0.0.0.0', '8.8.4.4'};
+const _ipAllowlist = {
+  '8.8.8.8',
+  '127.0.0.1',
+  '0.0.0.0',
+  '8.8.4.4',
+  '192.0.2.1',
+};
 
 /// URL hostname suffixes that are not operator-identifying: Plex/public
 /// services and the fictional hosts used in Tautulli's own API docs. Any
@@ -133,6 +139,7 @@ bool _isGenericLibraryName(String name) => name
 // Deterministic value → placeholder maps, built in the collect pass.
 final _userMap = <String, String>{}; // username/friendly_name → alias
 final _libraryMap = <String, String>{}; // personal library names → Library N
+final _playerMap = <String, String>{}; // player/device names → Player N
 final _hostMap = <String, String>{}; // operator hostnames → hostN.example.com
 final _emailMap = <String, String>{};
 final _idMap =
@@ -208,11 +215,18 @@ void _collect() {
             _userMap[value] = '';
           }
         case final k when _idKey.hasMatch(k):
-          if (value.length >= 16) _idMap[value] = '';
+          // A player's machine_id is identity at any length (Plex Web
+          // issues 15-character ids); the floor only guards the substring
+          // matches such as newsletter run uuids.
+          if (value.length >= 16 || k == 'machine_id') _idMap[value] = '';
         case 'pms_name' || 'server_name':
           _serverName = value;
         case 'section_name' || 'library_name':
           if (!_isGenericLibraryName(value)) _libraryMap[value] = '';
+        // Device names carry serials and room names; aliased by key only,
+        // since the same words appear under `platform` and `product`.
+        case 'player' || 'player_name':
+          _playerMap[value] = '';
         case 'ip_address' || 'ip_address_public' || 'lan_ip' || 'ip':
           if (_ipv4.hasMatch(value)) _ipMap[value] = '';
       }
@@ -264,6 +278,10 @@ void _assignPlaceholders() {
   var lib = 0;
   for (final name in _libraryMap.keys.toList()..sort()) {
     _libraryMap[name] = 'Library ${++lib}';
+  }
+  var pl = 0;
+  for (final name in _playerMap.keys.toList()..sort()) {
+    _playerMap[name] = 'Player ${++pl}';
   }
   var h = 0;
   for (final host in _hostMap.keys.toList()..sort()) {
@@ -321,6 +339,10 @@ Object? _structural(String rel, Object? node) {
           value is String &&
           value.isNotEmpty) {
         out[key] = '/config/redacted';
+      } else if ((key == 'player' || key == 'player_name') &&
+          value is String &&
+          _playerMap.containsKey(value)) {
+        out[key] = _playerMap[value];
       } else if (key == 'file' && value is String && value.startsWith('/')) {
         // Media file path: keep the basename (title is kept anyway),
         // genericize the directory.
@@ -406,6 +428,7 @@ void _writeMapReport() {
       'note': 'REAL VALUES — never commit this file',
       'server_name': _serverName,
       'users': _userMap,
+      'players': _playerMap,
       'libraries': _libraryMap,
       'hosts': _hostMap,
       'emails': _emailMap,

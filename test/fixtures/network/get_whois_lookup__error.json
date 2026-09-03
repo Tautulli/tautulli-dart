@@ -1,0 +1,11 @@
+{
+  "response": {
+    "result": "success",
+    "message": null,
+    "data": {
+      "host": "Not available",
+      "nets": [],
+      "error": "IPv4 address 192.0.2.1 is already defined as TEST-NET-1 via RFC 5737."
+    }
+  }
+}

@@ -34,13 +34,13 @@ void main() {
     test('parses metadata fields', () async {
       makeClient('media/get_metadata.json');
       final item = await client.media.getMetadata(ratingKey: 1001);
-      expect(item.title, "Harry Potter and the Sorcerer's Stone");
+      expect(item.title, 'Aladdin');
       expect(item.mediaType, MediaType.movie);
-      expect(item.year, 2001);
+      expect(item.year, 1992);
       // The captured item has no critic rating (`rating` is `""`); the
       // audience score covers the double coercion.
       expect(item.rating, isNull);
-      expect(item.audienceRating, closeTo(7.7, 0.01));
+      expect(item.audienceRating, closeTo(8.0, 0.01));
     });
 
     test('parses nested media_info', () async {
@@ -55,7 +55,7 @@ void main() {
       makeClient('media/get_metadata.json');
       final item = await client.media.getMetadata(ratingKey: 1001);
       expect(item.genres, contains('Fantasy'));
-      expect(item.actors, contains('Daniel Radcliffe'));
+      expect(item.actors, contains('Scott Weinger'));
     });
   });
 
@@ -77,13 +77,10 @@ void main() {
         ratingKey: 2000,
         mediaType: 'show',
       );
-      expect(items, hasLength(2));
-      expect(
-        items.first.title,
-        'Demon Slayer -Kimetsu no Yaiba- The Movie: Mugen Train',
-      );
+      expect(items, hasLength(10));
+      expect(items.first.title, 'The Big Bang');
       expect(items.first.mediaType, MediaType.episode);
-      expect(items.first.mediaIndex, 2);
+      expect(items.first.mediaIndex, 1);
     });
   });
 

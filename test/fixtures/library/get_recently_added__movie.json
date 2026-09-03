@@ -6,6 +6,63 @@
       "recently_added": [
         {
           "media_type": "movie",
+          "section_id": "28",
+          "library_name": "Library 1",
+          "rating_key": "169078",
+          "parent_rating_key": "",
+          "grandparent_rating_key": "",
+          "title": "Crawl",
+          "parent_title": "",
+          "grandparent_title": "",
+          "original_title": "",
+          "sort_title": "",
+          "media_index": "",
+          "parent_media_index": "",
+          "studio": "Raimi Productions",
+          "content_rating": "R",
+          "summary": "When a huge hurricane hits her hometown in Florida, Haley ignores evacuation orders to look for her father. After finding him badly wounded, both are trapped by the flood. With virtually no time to escape the storm, they discover that rising water levels are the least of their problems.",
+          "tagline": "If the storm doesn't get you... they will",
+          "rating": "8.4",
+          "rating_image": "rottentomatoes://image.rating.ripe",
+          "audience_rating": "7.5",
+          "audience_rating_image": "rottentomatoes://image.rating.upright",
+          "user_rating": "",
+          "duration": "5324864",
+          "year": "2019",
+          "thumb": "/library/metadata/169078/thumb/1788378188",
+          "parent_thumb": "",
+          "grandparent_thumb": "",
+          "art": "/library/metadata/169078/art/1788378188",
+          "banner": "",
+          "originally_available_at": "2019-07-10",
+          "added_at": "1788378187",
+          "updated_at": "1788378188",
+          "last_viewed_at": "",
+          "guid": "plex://movie/5d777048f617c9002019ce14",
+          "directors": [
+            "Alexandre Aja"
+          ],
+          "writers": [
+            "Shawn Rasmussen",
+            "Michael Rasmussen"
+          ],
+          "actors": [
+            "Kaya Scodelario",
+            "Barry Pepper",
+            "Morfydd Clark"
+          ],
+          "genres": [
+            "Horror",
+            "Thriller"
+          ],
+          "labels": [],
+          "collections": [],
+          "guids": [],
+          "full_title": "Crawl",
+          "child_count": ""
+        },
+        {
+          "media_type": "movie",
           "section_id": "12",
           "library_name": "Movies",
           "rating_key": "169021",
@@ -231,62 +288,6 @@
           "collections": [],
           "guids": [],
           "full_title": "Not Just a Goof",
-          "child_count": ""
-        },
-        {
-          "media_type": "movie",
-          "section_id": "12",
-          "library_name": "Movies",
-          "rating_key": "169009",
-          "parent_rating_key": "",
-          "grandparent_rating_key": "",
-          "title": "Ne Zha II",
-          "parent_title": "",
-          "grandparent_title": "",
-          "original_title": "哪吒之魔童闹海",
-          "sort_title": "",
-          "media_index": "",
-          "parent_media_index": "",
-          "studio": "Chengdu Coco Cartoon",
-          "content_rating": "Not Rated",
-          "summary": "A rebellious young boy, Ne Zha, is feared by the gods and born to mortal parents with wild, uncontrolled powers. Now that he's faced with an ancient force intent on destroying humanity, he must grow up to become the hero the world needs. ",
-          "tagline": "Witness a hero reborn.",
-          "rating": "",
-          "rating_image": "",
-          "audience_rating": "7.9",
-          "audience_rating_image": "imdb://image.rating",
-          "user_rating": "",
-          "duration": "8678432",
-          "year": "2025",
-          "thumb": "/library/metadata/169009/thumb/1787651635",
-          "parent_thumb": "",
-          "grandparent_thumb": "",
-          "art": "/library/metadata/169009/art/1787651635",
-          "banner": "",
-          "originally_available_at": "2025-01-29",
-          "added_at": "1787588045",
-          "updated_at": "1787651635",
-          "last_viewed_at": "",
-          "guid": "plex://movie/6290f7b790e5db37d904100b",
-          "directors": [
-            "Jiao Zi"
-          ],
-          "writers": [
-            "Jiao Zi"
-          ],
-          "actors": [
-            "Lu Yanting",
-            "Joseph",
-            "Han Mo"
-          ],
-          "genres": [
-            "Animation",
-            "Fantasy"
-          ],
-          "labels": [],
-          "collections": [],
-          "guids": [],
-          "full_title": "Ne Zha II",
           "child_count": ""
         }
       ]

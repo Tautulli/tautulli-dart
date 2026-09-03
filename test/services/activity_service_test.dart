@@ -42,16 +42,16 @@ void main() {
     test('parses core session and identity fields', () async {
       makeClient('activity/get_activity__live.json');
       final data = await client.activity.getActivity();
-      expect(data.sessions, hasLength(1));
+      expect(data.sessions, hasLength(2));
       final s = data.sessions.first;
-      expect(s.title, 'Demon Slayer: Kimetsu no Yaiba - Infinity Castle');
+      expect(s.title, 'Juneteenth');
       expect(s.mediaType, MediaType.episode);
       expect(s.state, PlaybackState.playing);
       expect(s.sectionId, 1);
-      expect(s.machineId, 'eeeeeeeeeeeeeeeeeeeeee0e');
-      expect(s.actors, contains('Natsuki Hanae'));
-      expect(data.lanBandwidth, 0);
-      expect(data.wanBandwidth, 10135);
+      expect(s.machineId, 'eeeeeeeeeeeeeeeeeeeeee14');
+      expect(s.actors, contains('Donald Glover'));
+      expect(data.lanBandwidth, 3641);
+      expect(data.wanBandwidth, 15754);
     });
 
     test('relayed replaces the old relay key', () async {
@@ -65,9 +65,9 @@ void main() {
       final s = (await client.activity.getActivity()).sessions.first;
       expect(s.videoWidth, 1920);
       expect(s.videoHeight, 1080);
-      expect(s.bitrate, 8179);
-      expect(s.fileSize, 9490516707);
-      expect(s.streamVideoBitrate, 8179);
+      expect(s.bitrate, 14747);
+      expect(s.fileSize, 2687798850);
+      expect(s.streamVideoBitrate, 14107);
       expect(s.videoFramerate, '24p'); // label, not numeric
       expect(s.videoDoviPresent, isFalse);
     });
@@ -75,26 +75,27 @@ void main() {
     test('parses extended metadata list and string fields', () async {
       makeClient('activity/get_activity__live.json');
       final s = (await client.activity.getActivity()).sessions.first;
-      expect(s.guids, contains('tvdb://11573737'));
-      expect(s.grandparentGuids, contains('imdb://tt9335498'));
-      expect(s.genres, contains('Sci-Fi & Fantasy'));
-      // The server returns an empty director list for this episode.
-      expect(s.directors, isEmpty);
+      expect(s.guids, contains('tvdb://5742282'));
+      expect(s.grandparentGuids, contains('imdb://tt4288182'));
+      expect(s.genres, contains('Comedy'));
+      expect(s.directors, contains('Janicza Bravo'));
       expect(s.contentRating, 'TV-MA');
-      expect(s.studio, 'ufotable');
+      expect(s.studio, 'FX Productions');
       expect(s.libraryName, 'TV Shows');
-      expect(s.user, 'user65');
+      expect(s.user, 'user66');
     });
 
     test('parses markers into typed Marker objects', () async {
       makeClient('activity/get_activity__live.json');
-      final s = (await client.activity.getActivity()).sessions.first;
+      // The first session now carries only one marker; the second session
+      // still has two, so it's the one that exercises first-vs-final.
+      final s = (await client.activity.getActivity()).sessions.last;
       expect(s.markers, isNotNull);
       expect(s.markers, hasLength(2));
       final m = s.markers!.first;
       expect(m.id, 118638);
       expect(m.type, 'credits');
-      expect(m.startTimeOffset, const Duration(milliseconds: 8922995));
+      expect(m.startTimeOffset, const Duration(milliseconds: 6234773));
       expect(m.isFinal, isFalse);
       expect(s.markers!.last.isFinal, isTrue);
     });
@@ -103,12 +104,9 @@ void main() {
       makeClient('activity/get_activity__by_session_key.json');
       final data = await client.activity.getActivity(sessionKey: 18);
       expect(data.sessions, hasLength(1));
-      expect(data.sessions.first.sessionKey, 18);
-      expect(
-        data.sessions.first.title,
-        'Demon Slayer: Kimetsu no Yaiba - Infinity Castle',
-      );
-      expect(data.sessions.first.state, PlaybackState.playing);
+      expect(data.sessions.first.sessionKey, 9);
+      expect(data.sessions.first.title, 'Ne Zha');
+      expect(data.sessions.first.state, PlaybackState.paused);
     });
 
     test('passes optional params', () async {
@@ -164,7 +162,7 @@ void main() {
       final data = await client.activity.getStreamData(sessionKey: 42);
       expect(lastRequestUri.queryParameters['cmd'], 'get_stream_data');
       expect(lastRequestUri.queryParameters['session_key'], '42');
-      expect(data['title'], 'Episode 31');
+      expect(data['title'], 'The Club');
     });
 
     test('sends row_id for a historical entry, no phantom params', () async {

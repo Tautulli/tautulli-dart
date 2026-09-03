@@ -3,42 +3,12 @@
     "result": "success",
     "message": null,
     "data": {
-      "recordsFiltered": 208,
-      "recordsTotal": 208,
+      "recordsFiltered": 243,
+      "recordsTotal": 243,
       "data": [
         {
-          "id": 96052,
-          "timestamp": 1787864595,
-          "session_key": 18,
-          "rating_key": 168633,
-          "user_id": 2535039,
-          "user": "user65",
-          "notifier_id": 12,
-          "agent_id": 21,
-          "agent_name": "remoteapp",
-          "notify_action": "on_newdevice",
-          "subject_text": "Tautulli (TestServer)",
-          "body_text": "liam is streaming from a new device: Firefox.",
-          "success": 0
-        },
-        {
-          "id": 96051,
-          "timestamp": 1787859556,
-          "session_key": 15,
-          "rating_key": 168633,
-          "user_id": 2535039,
-          "user": "user65",
-          "notifier_id": 12,
-          "agent_id": 21,
-          "agent_name": "remoteapp",
-          "notify_action": "on_newdevice",
-          "subject_text": "Tautulli (TestServer)",
-          "body_text": "liam is streaming from a new device: Firefox.",
-          "success": 0
-        },
-        {
-          "id": 96050,
-          "timestamp": 1787821375,
+          "id": 96087,
+          "timestamp": 1788426179,
           "session_key": null,
           "rating_key": null,
           "user_id": null,
@@ -52,8 +22,8 @@
           "success": 0
         },
         {
-          "id": 96049,
-          "timestamp": 1787819485,
+          "id": 96086,
+          "timestamp": 1788424289,
           "session_key": null,
           "rating_key": null,
           "user_id": null,
@@ -67,8 +37,23 @@
           "success": 0
         },
         {
-          "id": 96048,
-          "timestamp": 1787735037,
+          "id": 96085,
+          "timestamp": 1788409228,
+          "session_key": 12,
+          "rating_key": 169076,
+          "user_id": 11376685,
+          "user": "user78",
+          "notifier_id": 12,
+          "agent_id": 21,
+          "agent_name": "remoteapp",
+          "notify_action": "on_buffer",
+          "subject_text": "Tautulli (TestServer)",
+          "body_text": "oscar (Chrome) is buffering Reacher - Plum Out of Luck.",
+          "success": 0
+        },
+        {
+          "id": 96084,
+          "timestamp": 1788399412,
           "session_key": null,
           "rating_key": null,
           "user_id": null,
@@ -79,6 +64,21 @@
           "notify_action": "on_intup",
           "subject_text": "Tautulli (TestServer)",
           "body_text": "The Plex Media Server is back up.",
+          "success": 0
+        },
+        {
+          "id": 96083,
+          "timestamp": 1788399352,
+          "session_key": null,
+          "rating_key": null,
+          "user_id": null,
+          "user": null,
+          "notifier_id": 12,
+          "agent_id": 21,
+          "agent_name": "remoteapp",
+          "notify_action": "on_intdown",
+          "subject_text": "Tautulli (TestServer)",
+          "body_text": "The Plex Media Server is down.",
           "success": 0
         }
       ],

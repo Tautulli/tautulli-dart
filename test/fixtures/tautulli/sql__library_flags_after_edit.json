@@ -4,9 +4,9 @@
     "message": null,
     "data": [
       {
-        "keep_history": 1,
-        "do_notify": 0,
-        "do_notify_created": 0
+        "custom_thumb_url": "",
+        "custom_art_url": "",
+        "keep_history": 0
       }
     ]
   }

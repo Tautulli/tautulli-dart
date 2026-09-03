@@ -5,13 +5,13 @@
     "data": {
       "tautulli_install_type": "docker",
       "tautulli_version": "v2.18.1",
-      "tautulli_branch": "nightly",
+      "tautulli_branch": "master",
       "tautulli_commit": "6d410e2a64a39af2c436df34f281ead858c06029",
       "tautulli_platform": "Linux",
       "tautulli_platform_release": "6.12.54-Unraid",
       "tautulli_platform_version": "#1 SMP PREEMPT_DYNAMIC Tue Oct 21 15:58:46 PDT 2025",
       "tautulli_platform_linux_distro": "Debian GNU/Linux 13 trixie",
-      "tautulli_platform_device_name": "c593ffa447bf",
+      "tautulli_platform_device_name": "326e83009d26",
       "tautulli_python_version": "3.13.15"
     }
   }

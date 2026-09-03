@@ -37,13 +37,7 @@ void main() {
       makeClient('api/arnold.json');
       final result = await client.api.arnold();
       expect(lastRequestUri.queryParameters['cmd'], 'arnold');
-      expect(
-        result,
-        contains(
-          'To crush your enemies, see them driven before you, '
-          'and to hear the lamentation of their women!',
-        ),
-      );
+      expect(result, contains('See you at the party Richter!'));
     });
   });
 

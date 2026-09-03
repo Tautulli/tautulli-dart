@@ -20,7 +20,7 @@
         "agent": "tv.plex.agents.movie",
         "thumb": "",
         "art": "",
-        "count": "81",
+        "count": "82",
         "is_active": 1
       },
       {
@@ -95,7 +95,7 @@
         "count": "37",
         "is_active": 1,
         "parent_count": "72",
-        "child_count": "1369"
+        "child_count": "1376"
       },
       {
         "section_id": "31",
@@ -116,10 +116,10 @@
         "agent": "tv.plex.agents.series",
         "thumb": "",
         "art": "",
-        "count": "660",
+        "count": "661",
         "is_active": 1,
-        "parent_count": "2277",
-        "child_count": "33185"
+        "parent_count": "2280",
+        "child_count": "33216"
       },
       {
         "section_id": "27",

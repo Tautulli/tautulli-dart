@@ -5,7 +5,7 @@
     "data": [
       {
         "httpsRequired": "1",
-        "clientIdentifier": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee0a",
+        "clientIdentifier": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee10",
         "label": "TestServer",
         "ip": "192.0.2.13",
         "port": "32400",
@@ -15,7 +15,7 @@
       },
       {
         "httpsRequired": "1",
-        "clientIdentifier": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee0a",
+        "clientIdentifier": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee10",
         "label": "TestServer",
         "ip": "203.0.113.9",
         "port": "32400",
@@ -25,17 +25,17 @@
       },
       {
         "httpsRequired": "1",
-        "clientIdentifier": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee0a",
+        "clientIdentifier": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee10",
         "label": "TestServer",
-        "ip": "203.0.113.60",
+        "ip": "203.0.113.62",
         "port": "32400",
         "uri": "https://192-0-2-10.00000000000000000000000000000000.plex.direct:32400",
         "local": "0",
-        "value": "203.0.113.60:32400"
+        "value": "203.0.113.62:32400"
       },
       {
         "httpsRequired": "0",
-        "clientIdentifier": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee0b",
+        "clientIdentifier": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee03",
         "label": "tautulli-remote-demo",
         "ip": "192.0.2.15",
         "port": "32400",
@@ -45,13 +45,13 @@
       },
       {
         "httpsRequired": "0",
-        "clientIdentifier": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee0b",
+        "clientIdentifier": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee03",
         "label": "tautulli-remote-demo",
-        "ip": "203.0.113.60",
+        "ip": "203.0.113.62",
         "port": "32401",
         "uri": "https://192-0-2-10.00000000000000000000000000000000.plex.direct:32401",
         "local": "0",
-        "value": "203.0.113.60:32401"
+        "value": "203.0.113.62:32401"
       }
     ]
   }

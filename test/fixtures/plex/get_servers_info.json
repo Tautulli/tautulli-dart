@@ -5,7 +5,7 @@
     "data": [
       {
         "name": "TestServer",
-        "machine_identifier": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee0a",
+        "machine_identifier": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee10",
         "host": "203.0.113.9",
         "port": "32400",
         "version": "1.43.4.10903-e5521bd8c"
