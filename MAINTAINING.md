@@ -252,12 +252,16 @@ preamble, in the provenance line ("captured <date> from a live **Tautulli nightl
 and "Validated at" keep their release values: they describe the stable line, and pub.dev shows the
 stable README for a prerelease.
 
-**Before the final version**, re-capture at the release tag (§5's own pre-check) and shape-diff against
-the beta corpus. A shape only the beta corpus held has no fixture afterwards: rule 4 removes its model
-code and its bullet, and the final entry names the drop under `### Behavior notes`. A shape any release
-tag shipped stays, reverted or not (§5, `get_plex_log`). An abandoned beta line gets the same treatment
-at whatever stable ships next. After the release commit, `git grep -n <pin>` hits only fixtures listed
-under "Two capture batches" in `test/fixtures/README.md`.
+**Before the final version**, re-capture at the release tag (§5's own pre-check) and shape-diff
+against the beta corpus. A shape only the beta corpus held has no fixture afterwards: rule 4 removes
+its model code and its bullet, and the final entry names the drop under `### Behavior notes`. A
+shape any release tag shipped stays, reverted or not (§5, `get_plex_log`). The inverse holds for a
+command the beta deleted: if the release tag still has it, the re-capture returns its fixture
+(`fixture_shape_diff.sh` reports it as new), rule 4 restores the method and model, the beta's
+`### Breaking` bullet is dropped in the merge, and the final entry names the return under
+`### Behavior notes`. An abandoned beta line gets the same treatment at whatever stable ships next.
+After the release commit, `git grep -n <pin>` hits only fixtures listed under "Two capture batches"
+in `test/fixtures/README.md`.
 
 **Version.** `X.Y.Z-beta.N`, N from 1, never reset, never another word. Each beta is §7.1 with
 `X.Y.Z-beta.N` as the version: `pubspec.yaml` bumped and `## X.Y.Z-wip` renamed to `## X.Y.Z-beta.N`
@@ -349,4 +353,4 @@ of range and cannot be re-captured (rule 5).
    the provenance line and `test/fixtures/`, and nowhere else?
 9. The first release after a beta — does `git grep -n <pin>` hit only fixtures listed under "Two
    capture batches", and is every model change that arrived in a beta backed by a release-tag fixture
-   or removed with a bullet?
+   or reversed with a bullet?
