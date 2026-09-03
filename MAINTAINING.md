@@ -128,7 +128,9 @@ here:
   fixture, and earns a `### Breaking` bullet. Removals are deletions, not deprecations.
 - Send a parameter exactly as the handler compares it. Tautulli tests `not (all_servers == 'false')`, so
   the usual `1`/`0` encoding silently reads as true.
-- When a release shipped a shape and reverted it, accept both.
+- When a release shipped a shape and reverted it, accept both. `get_plex_log`'s v2.18.0 bare list is
+  the one shape held by an inline test response instead of a fixture, because no v2.18.0 corpus
+  exists; it is the documented rule-4 exception (`test/services/log_service_test.dart`).
 - Reconcile tests to fixtures, never the reverse.
 
 ## 6. Verification gates
@@ -193,12 +195,14 @@ git ls-files | grep -E '\.(md|yaml|py)$' | xargs grep -nE 'v?2\.18\.1|6d410e2|20
    push on `Tautulli/tautulli-dart` named exactly `v` + the pubspec `version`. Watch the run
    (`--workflow=publish.yml` in the command above), then confirm on pub.dev, the release index (42
    versions, 5 tags): `curl -s https://pub.dev/api/packages/tautulli | jq -r '.versions[].version'`.
-   A red `test` leg skips `publish`; a red publish step was refused. Check pub.dev before any retry:
-   re-run a transient failure from the Actions UI (same commit, same ref), but a fix that needs a commit
-   needs the tag moved (`git tag -d vX.Y.Z && git push origin :refs/tags/vX.Y.Z`, re-tag, push), and
-   once the version is on pub.dev the fix is the next version (item 6). If the workflow itself is
-   broken, `dart pub publish` by hand after green `ci.yml` legs, then tag and push; the tag's run fails
-   at the publish step (the version exists) and uploads nothing.
+   A red `test` leg skips `publish`. The reusable workflow runs its own `dart pub publish --dry-run`
+   before `dart pub publish -f`, so a red publish job is either a pub warning or a pub.dev refusal:
+   read which step failed. Check pub.dev before any retry: re-run a transient failure from the
+   Actions UI (same commit, same ref), but a fix that needs a commit needs the tag moved
+   (`git tag -d vX.Y.Z && git push origin :refs/tags/vX.Y.Z`, re-tag, push), and once the version is
+   on pub.dev the fix is the next version (item 6). If the workflow itself is broken,
+   `dart pub publish` by hand after green `ci.yml` legs, then tag and push; the tag's run fails at
+   the publish step (the version exists) and uploads nothing.
 5. No `-beta` heading survives into a release entry; merge it into the final version's section.
 6. Bugs never retract a published version; the fix ships as the next version (3.0.x stands). Retract,
    within pub.dev's 7-day window, only when the tarball itself is the problem: a leaked secret or real
