@@ -43,8 +43,8 @@ void main() {
 
   group('ExportService.exportMetadata()', () {
     test('sends real params (levels), no phantom mediaType', () async {
-      makeClient('success_response.json');
-      await client.exports.exportMetadata(
+      makeClient('export/export_metadata.json');
+      final exportId = await client.exports.exportMetadata(
         ratingKey: 4017,
         fileFormat: 'json',
         thumbLevel: 1,
@@ -61,6 +61,7 @@ void main() {
       expect(q['individual_files'], '1');
       expect(q.containsKey('media_type'), isFalse);
       expect(q.containsKey('include_images'), isFalse);
+      expect(exportId, 2); // data.export_id in the capture
     });
   });
 

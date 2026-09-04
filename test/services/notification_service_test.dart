@@ -117,4 +117,14 @@ void main() {
       expect(entry.success, isFalse);
     });
   });
+
+  group('NotificationService.addNotifierConfig()', () {
+    test('sends agent_id and returns the new notifier_id', () async {
+      makeClient('notification/add_notifier_config.json');
+      final id = await client.notifications.addNotifierConfig(agentId: 17);
+      expect(lastRequestUri.queryParameters['cmd'], 'add_notifier_config');
+      expect(lastRequestUri.queryParameters['agent_id'], '17');
+      expect(id, 23);
+    });
+  });
 }

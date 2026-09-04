@@ -79,9 +79,14 @@ class NotificationService {
     );
   }
 
-  /// Adds a new notifier configuration for the given [agentId].
-  Future<void> addNotifierConfig({required int agentId}) async {
-    await _client.execute('add_notifier_config', params: {'agent_id': agentId});
+  /// Adds a new notifier configuration for the given [agentId] and returns
+  /// its `notifier_id`, which [setNotifierConfig] and [deleteNotifier] take.
+  Future<int> addNotifierConfig({required int agentId}) async {
+    final response = await _client.execute(
+      'add_notifier_config',
+      params: {'agent_id': agentId},
+    );
+    return Cast.dataInt(response['data'], 'notifier_id', 'add_notifier_config');
   }
 
   /// Updates the configuration for the notifier identified by [notifierId].

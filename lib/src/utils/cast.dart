@@ -95,6 +95,17 @@ class Cast {
     );
   }
 
+  /// Returns the integer under [key] in the [dataMap] of [data], throwing a
+  /// [TautulliBadResponseException] (naming [context]) when it is absent: the
+  /// id a create-style command promises on success.
+  static int dataInt(Object? data, String key, String context) {
+    final value = castToInt(dataMap(data, context)[key]);
+    if (value == null) {
+      throw TautulliBadResponseException(message: '$context: missing $key');
+    }
+    return value;
+  }
+
   /// Returns [data] as a `List`.
   ///
   /// Yields an empty list when [data] is `null`, but throws a

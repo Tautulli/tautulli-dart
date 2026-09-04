@@ -54,4 +54,14 @@ void main() {
       expect(entry.success, isTrue);
     });
   });
+
+  group('NewsletterService.addNewsletterConfig()', () {
+    test('sends agent_id and returns the new newsletter_id', () async {
+      makeClient('newsletter/add_newsletter_config.json');
+      final id = await client.newsletters.addNewsletterConfig(agentId: 0);
+      expect(lastRequestUri.queryParameters['cmd'], 'add_newsletter_config');
+      expect(lastRequestUri.queryParameters['agent_id'], '0');
+      expect(id, 6);
+    });
+  });
 }

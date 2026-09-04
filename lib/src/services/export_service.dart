@@ -68,14 +68,15 @@ class ExportService {
     );
   }
 
-  /// Queues a metadata export job.
+  /// Queues a metadata export job and returns its `export_id`, which
+  /// [downloadExport] and [deleteExport] take.
   ///
   /// Provide exactly one target: [sectionId] (a library), [userId] (a user's
   /// playlists), or [ratingKey] (a single item). [fileFormat] is `csv`
   /// (default), `json`, `xml`, or `m3u`. The `*Level` parameters control how
   /// much metadata / media info / imagery is exported (0 disables); pass
   /// [exportType] `'collection'` or `'playlist'` for library/user exports.
-  Future<void> exportMetadata({
+  Future<int> exportMetadata({
     int? sectionId,
     int? userId,
     int? ratingKey,
@@ -106,7 +107,8 @@ class ExportService {
     if (customFields != null) params['custom_fields'] = customFields;
     if (exportType != null) params['export_type'] = exportType;
     if (individualFiles != null) params['individual_files'] = individualFiles;
-    await _client.execute('export_metadata', params: params);
+    final response = await _client.execute('export_metadata', params: params);
+    return Cast.dataInt(response['data'], 'export_id', 'export_metadata');
   }
 
   /// Deletes the export job identified by [exportId].

@@ -15,6 +15,9 @@
 - Removed `username` from `deleteAllUserHistory` and changed `rowIds` to `List<int>?`. The handler
   forwards only `user_id` and `row_ids`.
 - Removed `ms` from `getLogs`. The handler never reads it.
+- Changed `exportMetadata`, `addNotifierConfig` and `addNewsletterConfig` to return the new export,
+  notifier and newsletter id as `Future<int>`. The server sends it as `export_id`, `notifier_id`
+  and `newsletter_id` in `data`, and the delete and configure calls need it.
 
 ### Fixed
 
@@ -31,6 +34,12 @@
 ### Added
 
 - Added `clip` to `buildImageUrl`, matching the handler's parameter.
+
+### Behavior notes
+
+- `get_server_id` with `get_url` or `test_websocket` answers HTTP 500 through the API on v2.18.1.
+  The branch calls `self.get_server_resources`, which only the web interface class defines, so the
+  API object raises. `getServerId` offers neither option and exposes no `url` or `ws`.
 
 ## 3.2.0
 

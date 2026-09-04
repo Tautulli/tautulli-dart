@@ -118,4 +118,27 @@ void main() {
       expect(q['all_servers'], 'false');
     });
   });
+
+  group('PlexService.getServerId() get_url branch', () {
+    test('the v2.18.1 server answers 500, surfaced as a server error', () {
+      // plex/get_server_id__get_url_error.json is the captured envelope.
+      client = TautulliClient(
+        connection: const TautulliConnection(
+          protocol: 'http',
+          domain: 'tautulli.local',
+          apiKey: 'abc123',
+        ),
+        httpClient: MockClient(
+          (_) async => fixtureResponse(
+            'plex/get_server_id__get_url_error.json',
+            statusCode: 500,
+          ),
+        ),
+      );
+      expect(
+        () => client.plex.getServerId(hostname: 'localhost', port: 32400),
+        throwsA(isA<TautulliServerException>()),
+      );
+    });
+  });
 }

@@ -30,6 +30,11 @@ class PlexService {
   }
 
   /// Returns the Plex server ID (machine identifier) for the given [hostname] and [port].
+  ///
+  /// The server also accepts `get_url` and `test_websocket`, which add `url`
+  /// and `ws` to the result. They are not offered here: through the API they
+  /// answer HTTP 500 on v2.18.1, because that code path calls a method only
+  /// the web interface class defines.
   Future<String> getServerId({
     required String hostname,
     required int port,

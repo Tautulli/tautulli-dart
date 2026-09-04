@@ -69,11 +69,18 @@ class NewsletterService {
     );
   }
 
-  /// Adds a new newsletter configuration for the given [agentId].
-  Future<void> addNewsletterConfig({required int agentId}) async {
-    await _client.execute(
+  /// Adds a new newsletter configuration for the given [agentId] and returns
+  /// its `newsletter_id`, which [setNewsletterConfig] and [deleteNewsletter]
+  /// take.
+  Future<int> addNewsletterConfig({required int agentId}) async {
+    final response = await _client.execute(
       'add_newsletter_config',
       params: {'agent_id': agentId},
+    );
+    return Cast.dataInt(
+      response['data'],
+      'newsletter_id',
+      'add_newsletter_config',
     );
   }
 

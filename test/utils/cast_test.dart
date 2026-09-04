@@ -114,4 +114,15 @@ void main() {
       },
     );
   });
+
+  group('Cast.dataInt', () {
+    test('returns the id and throws when it is missing', () {
+      expect(Cast.dataInt({'export_id': 2}, 'export_id', 'x'), 2);
+      expect(Cast.dataInt({'export_id': '7'}, 'export_id', 'x'), 7);
+      expect(
+        () => Cast.dataInt({'message': 'ok'}, 'export_id', 'x'),
+        throwsA(isA<TautulliBadResponseException>()),
+      );
+    });
+  });
 }
