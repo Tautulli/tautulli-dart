@@ -1,4 +1,5 @@
 sealed class TautulliException implements Exception {
+  /// Human-readable detail, when the failure carries one.
   final String? message;
   const TautulliException({this.message});
 
@@ -40,6 +41,7 @@ final class TautulliInvalidApiKeyException extends TautulliException {
 
 /// Thrown when the server returns a non-200, non-401 HTTP status.
 final class TautulliServerException extends TautulliException {
+  /// The HTTP status the server answered with.
   final int? statusCode;
   const TautulliServerException({this.statusCode, super.message});
 }
@@ -75,7 +77,8 @@ final class TautulliCertVerificationException extends TautulliException {
   const TautulliCertVerificationException({super.message});
 }
 
-/// Thrown when the connection protocol is not 'http' or 'https'.
+/// Thrown when the connection protocol is not 'http' or 'https', or when the
+/// domain already carries a scheme (`://`).
 final class TautulliProtocolException extends TautulliException {
   const TautulliProtocolException({super.message});
 }

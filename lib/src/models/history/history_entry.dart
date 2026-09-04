@@ -11,7 +11,8 @@ class HistoryEntry {
   /// display).
   final DateTime? date;
 
-  /// Total duration of the media item.
+  /// Time played in this session, not the item's runtime: the server sends
+  /// `play_duration` under this key for backwards compatibility.
   final Duration? duration;
 
   /// User-configured display name for the watching user.

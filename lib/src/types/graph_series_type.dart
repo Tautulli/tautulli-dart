@@ -26,7 +26,8 @@ enum GraphSeriesType {
   /// Maximum concurrent streams.
   concurrent('max. concurrent streams'),
 
-  /// Total count across all stream types.
+  /// The sum of the other series, emitted by `get_plays_by_date` only. With
+  /// `PlayMetricType.duration` its values are seconds of playback, not plays.
   total('total'),
 
   /// Unrecognized series type.

@@ -11,7 +11,20 @@ void main() {
     });
 
     test('falsy strings coerce to false (case-insensitive)', () {
-      for (final v in ['', '0', 'false', 'FALSE', 'no', 'No', 'off', 'OFF']) {
+      final falsy = [
+        '',
+        '0',
+        'false',
+        'FALSE',
+        'no',
+        'No',
+        'off',
+        'OFF',
+        'n',
+        'N',
+        'f',
+      ];
+      for (final v in falsy) {
         expect(Cast.castToBool(v), isFalse, reason: 'expected "$v" -> false');
       }
     });

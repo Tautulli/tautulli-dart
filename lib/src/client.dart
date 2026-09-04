@@ -80,7 +80,8 @@ class TautulliClient implements TautulliExecutor {
   /// Service for Plex Media Server info endpoints (`get_server_info`, `server_status`, etc.).
   late final PlexService plex = PlexService(this);
 
-  /// Service for Tautulli management commands (`get_settings`, `restart`, `backup_config`, etc.).
+  /// Service for Tautulli management commands (`get_settings`, `status`, `sql`, `restart`,
+  /// `backup_config`, etc.).
   late final TautulliService tautulli = TautulliService(this);
 
   /// Service for user endpoints (`get_user`, `get_users`, `get_user_watch_time_stats`, etc.).

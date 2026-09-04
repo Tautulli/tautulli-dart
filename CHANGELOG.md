@@ -58,6 +58,8 @@
 
 ### Behavior notes
 
+- `regroupHistory` returns as soon as the server has started the regrouping on a background thread.
+  Success means accepted, not finished.
 - `get_server_id` with `get_url` or `test_websocket` answers HTTP 500 through the API on v2.18.1.
   The branch calls `self.get_server_resources`, which only the web interface class defines, so the
   API object raises. `getServerId` offers neither option and exposes no `url` or `ws`.

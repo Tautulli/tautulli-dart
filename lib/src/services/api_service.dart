@@ -14,7 +14,8 @@ class ApiService {
     return Cast.dataMap(response['data'], 'docs');
   }
 
-  /// Returns the Tautulli API documentation as Markdown text.
+  /// Returns the Tautulli API documentation as the server sends it: Markdown
+  /// wrapped in a `<pre>` element, with a `text/html` content type.
   ///
   /// `docs_md` returns a raw (non-JSON) body, so it is fetched as bytes with
   /// `allowNonBinary` set (its `text/html` body is expected, not an error).

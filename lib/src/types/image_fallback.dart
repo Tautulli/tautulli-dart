@@ -1,7 +1,9 @@
 /// Fallback image type passed to the `pms_image_proxy` endpoint.
 ///
 /// When the requested image is unavailable, Tautulli returns a placeholder
-/// image matching the specified fallback type.
+/// image matching the specified fallback type. With a rating key and no
+/// image path, an `art`-prefixed fallback also switches the requested image
+/// from the item's `/thumb` to its `/art`.
 enum ImageFallback {
   /// Poster-style fallback (portrait artwork).
   poster('poster'),

@@ -10,8 +10,8 @@ class Cast {
 
   static const _falsyStrings = {'', '0', 'false', 'no', 'off', 'n', 'f'};
 
-  /// `0`, `""`, `"0"`, `"false"`, `"no"`, `"off"` (case-insensitive) → `false`;
-  /// any other truthy value → `true`.
+  /// `0`, `""`, `"0"`, `"false"`, `"no"`, `"off"`, `"n"`, `"f"` (case-insensitive)
+  /// → `false`; any other truthy value → `true`.
   static bool? castToBool(dynamic value) {
     return switch (value) {
       final num v => v != 0,

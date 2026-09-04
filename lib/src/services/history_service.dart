@@ -124,6 +124,9 @@ class HistoryService {
   }
 
   /// Regroups watch history entries that may have been split incorrectly.
+  ///
+  /// The server starts the regrouping on a background thread and answers
+  /// success at once, so this returning does not mean the work has finished.
   Future<void> regroupHistory() async {
     await _client.execute('regroup_history');
   }

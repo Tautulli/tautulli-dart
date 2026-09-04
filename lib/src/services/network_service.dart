@@ -19,6 +19,10 @@ class NetworkService {
   }
 
   /// Returns WHOIS registration data for the given [ipAddress] as a raw map.
+  ///
+  /// A failed lookup does not throw: the server still answers success, with
+  /// `host` set to `'Not available'`, an empty `nets` list and an `error`
+  /// string describing the failure. Check for the `error` key.
   Future<Map<String, dynamic>> getWhoisLookup({
     required String ipAddress,
   }) async {

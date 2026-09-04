@@ -26,10 +26,10 @@ class GeoIpData {
   /// Geographic longitude.
   final num? longitude;
 
-  /// Accuracy radius of the location estimate in kilometres.
+  /// Always `null`: the server hardcodes it for GeoLite2 compatibility.
   final num? accuracy;
 
-  /// Continent name (e.g. `'North America'`).
+  /// Two-letter continent code (e.g. `'NA'`).
   final String? continent;
 
   const GeoIpData({
