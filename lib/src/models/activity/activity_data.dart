@@ -252,9 +252,6 @@ class ActivitySession {
   /// Display title of the playing item.
   final String? title;
 
-  /// Raw media type string from the API.
-  final String? type;
-
   /// Plex user ID of the watching user.
   final int? userId;
 
@@ -544,8 +541,8 @@ class ActivitySession {
   /// Session field `aspect_ratio` from `get_activity`.
   final String? aspectRatio;
 
-  /// Session field `audience_rating` from `get_activity`.
-  final String? audienceRating;
+  /// Audience rating score; `null` when the server sends an empty string.
+  final num? audienceRating;
 
   /// Session field `audience_rating_image` from `get_activity`.
   final String? audienceRatingImage;
@@ -697,8 +694,8 @@ class ActivitySession {
   /// Session field `protocol` from `get_activity`.
   final String? protocol;
 
-  /// Session field `rating` from `get_activity`.
-  final String? rating;
+  /// Critic rating score; `null` when the server sends an empty string.
+  final num? rating;
 
   /// Session field `rating_image` from `get_activity`.
   final String? ratingImage;
@@ -790,8 +787,8 @@ class ActivitySession {
   /// Session field `user` from `get_activity`.
   final String? user;
 
-  /// Session field `user_rating` from `get_activity`.
-  final String? userRating;
+  /// The user's own rating; `null` when the server sends an empty string.
+  final num? userRating;
 
   /// Session field `username` from `get_activity`.
   final String? username;
@@ -895,7 +892,6 @@ class ActivitySession {
     this.state,
     this.thumb,
     this.title,
-    this.type,
     this.userId,
     this.userThumb,
     this.width,
@@ -1164,7 +1160,6 @@ class ActivitySession {
       state: PlaybackState.fromString(Cast.castToString(json['state'])),
       thumb: Cast.castToString(json['thumb']),
       title: Cast.castToString(json['title']),
-      type: Cast.castToString(json['type']),
       userId: Cast.castToInt(json['user_id']),
       userThumb: Cast.castToString(json['user_thumb']),
       width: Cast.castToInt(json['width']),
@@ -1320,7 +1315,7 @@ class ActivitySession {
 
       // Extended fields
       aspectRatio: Cast.castToString(json['aspect_ratio']),
-      audienceRating: Cast.castToString(json['audience_rating']),
+      audienceRating: Cast.castToNum(json['audience_rating']),
       audienceRatingImage: Cast.castToString(json['audience_rating_image']),
       audioBitrateMode: Cast.castToString(json['audio_bitrate_mode']),
       audioLanguageCode: Cast.castToString(json['audio_language_code']),
@@ -1379,7 +1374,7 @@ class ActivitySession {
       parentYear: Cast.castToString(json['parent_year']),
       profile: Cast.castToString(json['profile']),
       protocol: Cast.castToString(json['protocol']),
-      rating: Cast.castToString(json['rating']),
+      rating: Cast.castToNum(json['rating']),
       ratingImage: Cast.castToString(json['rating_image']),
       rowId: Cast.castToInt(json['row_id']),
       selected: Cast.castToBool(json['selected']),
@@ -1430,7 +1425,7 @@ class ActivitySession {
       transcodeVideoCodec: Cast.castToString(json['transcode_video_codec']),
       updatedAt: Cast.castToInt(json['updated_at']),
       user: Cast.castToString(json['user']),
-      userRating: Cast.castToString(json['user_rating']),
+      userRating: Cast.castToNum(json['user_rating']),
       username: Cast.castToString(json['username']),
       videoBitrate: Cast.castToInt(json['video_bitrate']),
       videoChromaSubsampling: Cast.castToString(

@@ -13,7 +13,7 @@ class MediaItem {
   final DateTime? addedAt;
 
   /// Audience rating score (e.g. from Rotten Tomatoes).
-  final double? audienceRating;
+  final num? audienceRating;
 
   /// Plex collection names this item belongs to.
   final List<String>? collections;
@@ -88,7 +88,7 @@ class MediaItem {
   final int? parentYear;
 
   /// Critic rating score.
-  final double? rating;
+  final num? rating;
 
   /// Plex rating key identifying this item.
   final int? ratingKey;
@@ -118,7 +118,7 @@ class MediaItem {
   final DateTime? updatedAt;
 
   /// User's personal rating score.
-  final double? userRating;
+  final num? userRating;
 
   /// Writers credited for this item.
   final List<String>? writers;
@@ -174,7 +174,7 @@ class MediaItem {
     return MediaItem(
       actors: _stringListFromList(json['actors'] as List?),
       addedAt: Cast.dateTimeFromEpochSeconds(json['added_at']),
-      audienceRating: Cast.castToDouble(json['audience_rating']),
+      audienceRating: Cast.castToNum(json['audience_rating']),
       collections: _stringListFromList(json['collections'] as List?),
       contentRating: Cast.castToString(json['content_rating']),
       directors: _stringListFromList(json['directors'] as List?),
@@ -201,7 +201,7 @@ class MediaItem {
       parentThumb: Cast.castToString(json['parent_thumb']),
       parentTitle: Cast.castToString(json['parent_title']),
       parentYear: Cast.castToInt(json['parent_year']),
-      rating: Cast.castToDouble(json['rating']),
+      rating: Cast.castToNum(json['rating']),
       ratingKey: Cast.castToInt(json['rating_key']),
       sectionId: Cast.castToInt(json['section_id']),
       sortTitle: Cast.castToString(json['sort_title']),
@@ -211,7 +211,7 @@ class MediaItem {
       thumb: Cast.castToString(json['thumb']),
       title: Cast.castToString(json['title']),
       updatedAt: Cast.dateTimeFromEpochSeconds(json['updated_at']),
-      userRating: Cast.castToDouble(json['user_rating']),
+      userRating: Cast.castToNum(json['user_rating']),
       writers: _stringListFromList(json['writers'] as List?),
       year: Cast.castToInt(json['year']),
     );

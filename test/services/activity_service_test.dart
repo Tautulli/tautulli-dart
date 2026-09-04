@@ -70,6 +70,8 @@ void main() {
       expect(s.streamVideoBitrate, 14107);
       expect(s.videoFramerate, '24p'); // label, not numeric
       expect(s.videoDoviPresent, isFalse);
+      expect(s.audienceRating, 8.0);
+      expect(s.rating, isNull); // sent as ''
     });
 
     test('parses extended metadata list and string fields', () async {

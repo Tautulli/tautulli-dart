@@ -20,6 +20,13 @@
   and `newsletter_id` in `data`, and the delete and configure calls need it.
 - Changed `UserTableEntry.duration` from `int?` seconds to `Duration?`, matching
   `LibraryTableEntry.duration` for the same column.
+- Removed `VideoDynamicRange`. No model used it, and the server joins `Dolby Vision`, `HLG`, `HDR10`
+  and `HDR` with `/`, which the two `String` fields on `ActivitySession` already carry.
+- Changed `rating`, `audienceRating` and `userRating` to `num?` on `ActivitySession` and
+  `MediaItem`, matching `RecentlyAddedItem` and `HomeStat`. An empty string parses to `null`.
+- Removed `ActivitySession.type`. It held the `streamType` of the last stream-detail dict Tautulli
+  merges into a session (`3` when a subtitle stream is selected, empty otherwise), never the media
+  type.
 
 ### Fixed
 

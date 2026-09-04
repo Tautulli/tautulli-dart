@@ -41,7 +41,6 @@ export 'src/types/section_type.dart';
 export 'src/types/stat_id_type.dart';
 export 'src/types/stream_decision.dart';
 export 'src/types/subtitle_decision.dart';
-export 'src/types/video_dynamic_range.dart';
 export 'src/types/watched_status.dart';
 
 // Models
