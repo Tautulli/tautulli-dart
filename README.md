@@ -42,7 +42,9 @@ void main() async {
       print('${entry.title} watched by ${entry.friendlyName}');
     }
   } on TautulliAuthException {
-    print('Invalid API key or authorization required');
+    print('Authorization required');
+  } on TautulliInvalidApiKeyException {
+    print('Tautulli rejected the API key');
   } on TautulliConnectionException {
     print('Could not reach Tautulli server');
   } finally {
@@ -150,6 +152,7 @@ All exceptions extend the sealed `TautulliException` class:
 | Exception | Thrown when |
 |---|---|
 | `TautulliConnectionException` | Network unreachable or socket error |
+| `TautulliRedirectException` | The redirect limit was hit while following the server's redirects; a subtype of `TautulliConnectionException` |
 | `TautulliAuthException` | HTTP 401 or "Authorization Required" response |
 | `TautulliInvalidApiKeyException` | Tautulli returns "Invalid apikey" |
 | `TautulliServerException` | Non-200, non-401 HTTP status |
@@ -158,7 +161,8 @@ All exceptions extend the sealed `TautulliException` class:
 | `TautulliVersionException` | Server rejects `register_device` for being below the requested `min_version` |
 | `TautulliCertExpiredException` | TLS certificate has expired |
 | `TautulliCertVerificationException` | TLS certificate verification failed |
-| `TautulliProtocolException` | Protocol is not `http` or `https` |
+| `TautulliProtocolException` | Protocol is not `http` or `https`, or the domain carries a scheme |
+| `TautulliRequestException` | The request cannot be built, most often a custom header with an invalid name or value |
 | `TautulliTerminateStreamException` | Stream termination command failed |
 
 ## Testing
@@ -195,8 +199,8 @@ All commands are documented in the [Tautulli API Reference](https://github.com/T
 - Requires Tautulli **v2.18.0 or newer**
 - Last audited against: **v2.18.1**
 
-Older servers are not supported: v2.18.0 removed several parameters this client
-sends.
+Older servers are not supported: v2.18.0 removed several parameters that earlier
+releases of this client sent.
 
 `importConfig()` and `importDatabase()` are not implemented and throw
 `UnimplementedError`.

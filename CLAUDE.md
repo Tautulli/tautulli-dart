@@ -16,11 +16,13 @@ lib/src/
 ├── client.dart          # TautulliClient — HTTP core, service accessors
 ├── connection.dart      # TautulliConnection — immutable config value object
 ├── executor.dart        # TautulliExecutor — interface all services depend on
-├── exceptions.dart      # Sealed TautulliException hierarchy (11 subtypes)
+├── exceptions.dart      # Sealed TautulliException hierarchy (13 subtypes)
+├── net/                 # URI builder and platform-specific error mapping
 ├── services/            # 16 service classes, one per API domain
 ├── models/              # Hand-written fromJson models, organized by domain
 ├── types/               # Domain enums (MediaType, PlaybackState, etc.)
-└── utils/cast.dart      # Type coercion helpers for API response quirks
+├── utils/cast.dart      # Type coercion helpers for API response quirks
+└── utils/redact.dart    # Strips the API key from error text and logs
 ```
 
 Services depend on `TautulliExecutor`, not `TautulliClient` directly. This is the seam that makes `MockClient`-based testing work without any mocking library.
@@ -61,7 +63,8 @@ Tests use `MockClient` from `package:http/testing.dart` (ships with `http` — n
 - Constructs a `TautulliClient` with a `MockClient` that returns a fixture via `fixtureResponse()` (from `test/helpers/fixture_reader.dart` — UTF-8 bytes with the real `application/json;charset=UTF-8` content type)
 - Captures the request URI via closure to assert query parameters
 - Asserts the `cmd` query parameter and key model fields
-- Tests at least one error case (401 → `TautulliAuthException`)
+- The 401 → `TautulliAuthException` path is covered once, at the client level in
+  `test/tautulli_client_test.dart`, because every service shares the executor
 
 ## Fixtures (ground truth)
 
@@ -89,7 +92,7 @@ release.
 
 ## Exception Hierarchy
 
-`sealed class TautulliException` with 11 `final class` subtypes — see `lib/src/exceptions.dart`.
+`sealed class TautulliException` with 13 `final class` subtypes — see `lib/src/exceptions.dart`.
 
 ## Recurring Pitfalls
 

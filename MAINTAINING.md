@@ -31,7 +31,8 @@ example commands are the values current when this file was last updated; substit
    X.Y.Z to pub.dev", never as a bare tag push.
 7. Never cite an internal review doc (`CODE_REVIEW.md`, `LIVE_TEST_RESULTS.md`,
    `API_REFERENCE_INCONSISTENCIES.md`) in code, comments or commits — state the constraint directly.
-   All three are gitignored local notes a fresh clone does not have.
+   They and the other files in `.gitignore`'s development-notes block are local notes a fresh clone
+   does not have.
 
 ## 2. Detect
 
@@ -128,9 +129,11 @@ here:
   fixture, and earns a `### Breaking` bullet. Removals are deletions, not deprecations.
 - Send a parameter exactly as the handler compares it. Tautulli tests `not (all_servers == 'false')`, so
   the usual `1`/`0` encoding silently reads as true.
-- When a release shipped a shape and reverted it, accept both. `get_plex_log`'s v2.18.0 bare list is
-  the one shape held by an inline test response instead of a fixture, because no v2.18.0 corpus
-  exists; it is the documented rule-4 exception (`test/services/log_service_test.dart`).
+- When a release shipped a shape and reverted it, accept both. Two shapes live in inline test
+  responses instead of fixtures, because no capture can hold them: `get_plex_log`'s v2.18.0 bare
+  list (`test/services/log_service_test.dart`) and `search`'s bare-list reply when the PMS query
+  fails (`test/services/media_service_test.dart`), which the v2.18.1 capture without `limit` no
+  longer reproduces. They are the documented rule-4 exceptions.
 - Reconcile tests to fixtures, never the reverse.
 
 ## 6. Verification gates
@@ -179,7 +182,7 @@ beta capture moves the provenance line alone.
    `test/` assertions are fixture-bound and reconcile through `dart test` instead:
 
 ```bash
-git ls-files | grep -E '\.(md|yaml|py)$' | xargs grep -nE 'v?2\.18\.1|6d410e2|2026-09-03' | grep -v '^CHANGELOG.md'
+git ls-files | grep -E '\.(md|ya?ml|py)$' | xargs grep -nE 'v?2\.18\.1|6d410e2|2026-09-03' | grep -v '^CHANGELOG.md'
 ```
 
    `grep -n 'tautulli: \^' README.md` moves on every package release.
@@ -193,8 +196,8 @@ git ls-files | grep -E '\.(md|yaml|py)$' | xargs grep -nE 'v?2\.18\.1|6d410e2|20
    both legs are green, calls `dart-lang/setup-dart`'s reusable publish workflow, authenticated by a
    GitHub-signed OIDC token, so no secret exists anywhere. pub.dev accepts the upload only from a tag
    push on `Tautulli/tautulli-dart` named exactly `v` + the pubspec `version`. Watch the run
-   (`--workflow=publish.yml` in the command above), then confirm on pub.dev, the release index (42
-   versions, 5 tags): `curl -s https://pub.dev/api/packages/tautulli | jq -r '.versions[].version'`.
+   (`--workflow=publish.yml` in the command above), then confirm on pub.dev, the release index,
+   which must now end with the new version: `curl -s https://pub.dev/api/packages/tautulli | jq -r '.versions[].version'`.
    A red `test` leg skips `publish`. The reusable workflow runs its own `dart pub publish --dry-run`
    before `dart pub publish -f`, so a red publish job is either a pub warning or a pub.dev refusal:
    read which step failed. Check pub.dev before any retry: re-run a transient failure from the

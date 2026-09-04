@@ -67,7 +67,7 @@
 ## 3.2.0
 
 **Requires Tautulli v2.18.0 or newer.** Verified end-to-end against a live v2.18.1 server. The test
-fixtures are full sanitized captures from that release.
+fixtures are full sanitized captures from that release, with a few files retained from v2.17.2.
 
 ### Breaking
 

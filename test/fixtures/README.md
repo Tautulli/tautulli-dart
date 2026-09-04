@@ -20,7 +20,8 @@ through the deterministic sanitizer in
    status/content-type/size for binary download endpoints instead of file bytes.
 4. `success_response.json` is a byte-copy of `tautulli/backup_config.json` (a real capture) used by
    tests that only need "any success envelope"; refresh the copy when regenerating.
-5. **Version-bound:** these reflect v2.18.1. When a new Tautulli release changes the API surface,
+5. **Version-bound:** these reflect v2.18.1, apart from the four retained v2.17.2 files named below.
+   When a new Tautulli release changes the API surface,
    re-run the full capture sweep (never `--only`: aliases are deterministic only within one run, so a
    partial re-capture creates a third alias namespace) and update the provenance line above.
 6. **Variant semantics worth knowing** (timing-sensitive captures):

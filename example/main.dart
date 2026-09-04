@@ -33,7 +33,9 @@ Future<void> main() async {
       print('  ${session.friendlyName} — ${session.title}');
     }
   } on TautulliAuthException {
-    print('Invalid API key or device token.');
+    print('Authorization required.');
+  } on TautulliInvalidApiKeyException {
+    print('Tautulli rejected the API key or device token.');
   } on TautulliConnectionException catch (e) {
     print('Could not reach server: ${e.message}');
   } on TautulliTimeoutException {
