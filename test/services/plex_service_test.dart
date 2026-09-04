@@ -119,6 +119,51 @@ void main() {
     });
   });
 
+  group('PlexService.getServerFriendlyName()', () {
+    test('sends correct cmd and parses name', () async {
+      makeClient('plex/get_server_friendly_name.json');
+      final name = await client.plex.getServerFriendlyName();
+      expect(lastRequestUri.queryParameters['cmd'], 'get_server_friendly_name');
+      expect(name, 'TestServer');
+    });
+  });
+
+  group('PlexService.getServerPref()', () {
+    test('sends cmd and pref, parses value', () async {
+      makeClient('plex/get_server_pref.json');
+      final value = await client.plex.getServerPref(pref: 'FriendlyName');
+      final q = lastRequestUri.queryParameters;
+      expect(q['cmd'], 'get_server_pref');
+      expect(q['pref'], 'FriendlyName');
+      expect(value, 'TestServer');
+    });
+  });
+
+  group('PlexService.getServersInfo()', () {
+    test('sends correct cmd and parses server list', () async {
+      makeClient('plex/get_servers_info.json');
+      final result = await client.plex.getServersInfo();
+      expect(lastRequestUri.queryParameters['cmd'], 'get_servers_info');
+      expect(result, hasLength(1));
+      expect(result.first['name'], 'TestServer');
+      expect(
+        result.first['machine_identifier'],
+        'eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee10',
+      );
+    });
+  });
+
+  group('PlexService.getPmsUpdate()', () {
+    test('sends correct cmd and parses update info', () async {
+      makeClient('plex/get_pms_update.json');
+      final result = await client.plex.getPmsUpdate();
+      expect(lastRequestUri.queryParameters['cmd'], 'get_pms_update');
+      expect(result['update_available'], false);
+      expect(result['version'], '1.43.4.10903-e5521bd8c');
+      expect(result['platform'], 'Linux');
+    });
+  });
+
   group('PlexService.getServerId() get_url branch', () {
     test('the v2.18.1 server answers 500, surfaced as a server error', () {
       // plex/get_server_id__get_url_error.json is the captured envelope.

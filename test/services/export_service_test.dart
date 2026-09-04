@@ -1,3 +1,6 @@
+import 'dart:convert';
+
+import 'package:http/http.dart' as http;
 import 'package:http/testing.dart';
 import 'package:test/test.dart';
 import 'package:tautulli/tautulli.dart';
@@ -72,19 +75,52 @@ void main() {
       expect(lastRequestUri.queryParameters['user_id'], '5');
     });
 
-    test('getExportFields sends sub_media_type', () async {
+    test('getExportFields sends media_type and sub_media_type', () async {
       makeClient('export/get_export_fields.json');
       await client.exports.getExportFields(
         mediaType: 'collection',
         subMediaType: 'movie',
       );
-      expect(lastRequestUri.queryParameters['sub_media_type'], 'movie');
+      final q = lastRequestUri.queryParameters;
+      expect(q['cmd'], 'get_export_fields');
+      expect(q['media_type'], 'collection');
+      expect(q['sub_media_type'], 'movie');
     });
 
     test('deleteExport sends delete_all', () async {
       makeClient('success_response.json');
       await client.exports.deleteExport(exportId: 1, deleteAll: true);
       expect(lastRequestUri.queryParameters['delete_all'], '1');
+    });
+  });
+
+  group('ExportService.downloadExport()', () {
+    test('sends export_id and returns the raw bytes', () async {
+      final meta =
+          jsonDecode(fixture('export/download_export.meta.json'))
+              as Map<String, dynamic>;
+      client = TautulliClient(
+        connection: const TautulliConnection(
+          protocol: 'http',
+          domain: 'tautulli.local',
+          apiKey: 'abc123',
+        ),
+        httpClient: MockClient((request) async {
+          lastRequestUri = request.url;
+          return http.Response.bytes(
+            [1, 2, 3],
+            meta['status'] as int,
+            headers: {'content-type': meta['content_type'] as String},
+          );
+        }),
+      );
+
+      final bytes = await client.exports.downloadExport(exportId: 7);
+
+      expect(bytes, [1, 2, 3]);
+      final q = lastRequestUri.queryParameters;
+      expect(q['cmd'], 'download_export');
+      expect(q['export_id'], '7');
     });
   });
 }

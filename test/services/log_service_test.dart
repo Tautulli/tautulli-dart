@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:http/http.dart' as http;
 import 'package:http/testing.dart';
 import 'package:test/test.dart';
@@ -114,6 +116,40 @@ void main() {
       );
       await client.logs.downloadPlexLog(logfile: 'Plex Media Server');
       expect(lastRequestUri.queryParameters['logfile'], 'Plex Media Server');
+    });
+  });
+
+  group('LogService.downloadLog()', () {
+    test('sends cmd and returns bytes', () async {
+      final meta =
+          json.decode(fixture('log/download_log.meta.json'))
+              as Map<String, dynamic>;
+      client = TautulliClient(
+        connection: const TautulliConnection(
+          protocol: 'http',
+          domain: 'tautulli.local',
+          apiKey: 'abc123',
+        ),
+        httpClient: MockClient((request) async {
+          lastRequestUri = request.url;
+          return http.Response.bytes(
+            [1, 2, 3],
+            meta['status'] as int,
+            headers: {'content-type': meta['content_type'] as String},
+          );
+        }),
+      );
+      final result = await client.logs.downloadLog();
+      expect(lastRequestUri.queryParameters['cmd'], 'download_log');
+      expect(result, [1, 2, 3]);
+    });
+  });
+
+  group('LogService.deleteLoginLog()', () {
+    test('sends cmd with no extra params', () async {
+      makeClient('success_response.json');
+      await client.logs.deleteLoginLog();
+      expect(lastRequestUri.queryParameters['cmd'], 'delete_login_log');
     });
   });
 }

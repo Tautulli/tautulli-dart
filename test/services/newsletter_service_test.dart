@@ -64,4 +64,93 @@ void main() {
       expect(id, 6);
     });
   });
+
+  group('NewsletterService.getNewsletterConfig()', () {
+    test('sends newsletter_id and parses the config', () async {
+      makeClient('newsletter/get_newsletter_config__new.json');
+      final result = await client.newsletters.getNewsletterConfig(
+        newsletterId: 5,
+      );
+      expect(lastRequestUri.queryParameters['cmd'], 'get_newsletter_config');
+      expect(lastRequestUri.queryParameters['newsletter_id'], '5');
+      expect(result.newsletterId, 5);
+      expect(result.agentId, 0);
+      expect(result.agentName, 'recently_added');
+      expect(result.agentLabel, 'Recently Added');
+      expect(result.friendlyName, '');
+      expect(result.active, false);
+    });
+  });
+
+  group('NewsletterService.setNewsletterConfig()', () {
+    test('sends newsletter_id and extraParams with correct encoding', () async {
+      makeClient('success_response.json');
+      await client.newsletters.setNewsletterConfig(
+        newsletterId: 5,
+        extraParams: {
+          'friendly_name': 'My Newsletter',
+          'active': true,
+          'incl_libraries': [1, 2, 3],
+        },
+      );
+      final q = lastRequestUri.queryParameters;
+      expect(q['cmd'], 'set_newsletter_config');
+      expect(q['newsletter_id'], '5');
+      expect(q['friendly_name'], 'My Newsletter');
+      expect(q['active'], '1');
+      expect(q['incl_libraries'], '1,2,3');
+    });
+  });
+
+  group('NewsletterService.deleteNewsletter()', () {
+    test('sends newsletter_id', () async {
+      makeClient('success_response.json');
+      await client.newsletters.deleteNewsletter(newsletterId: 5);
+      final q = lastRequestUri.queryParameters;
+      expect(q['cmd'], 'delete_newsletter');
+      expect(q['newsletter_id'], '5');
+    });
+  });
+
+  group('NewsletterService.deleteNewsletterLog()', () {
+    test('sends the cmd with no extra params', () async {
+      makeClient('success_response.json');
+      await client.newsletters.deleteNewsletterLog();
+      expect(lastRequestUri.queryParameters['cmd'], 'delete_newsletter_log');
+    });
+  });
+
+  group('NewsletterService.notifyNewsletter()', () {
+    test('sends newsletter_id, subject, body, and message', () async {
+      makeClient('success_response.json');
+      await client.newsletters.notifyNewsletter(
+        newsletterId: 5,
+        subject: 'Test Subject',
+        body: 'Test Body',
+        message: 'Test Message',
+      );
+      final q = lastRequestUri.queryParameters;
+      expect(q['cmd'], 'notify_newsletter');
+      expect(q['newsletter_id'], '5');
+      expect(q['subject'], 'Test Subject');
+      expect(q['body'], 'Test Body');
+      expect(q['message'], 'Test Message');
+    });
+  });
+
+  group('NewsletterService.deleteHostedImages()', () {
+    test('sends rating_key, service, and delete_all', () async {
+      makeClient('success_response.json');
+      await client.newsletters.deleteHostedImages(
+        ratingKey: 4017,
+        service: 'imgur',
+        deleteAll: true,
+      );
+      final q = lastRequestUri.queryParameters;
+      expect(q['cmd'], 'delete_hosted_images');
+      expect(q['rating_key'], '4017');
+      expect(q['service'], 'imgur');
+      expect(q['delete_all'], '1');
+    });
+  });
 }

@@ -174,4 +174,14 @@ void main() {
       expect(q.containsKey('rating_key'), isFalse);
     });
   });
+
+  group('HistoryService.regroupHistory()', () {
+    test('sends correct cmd and no params', () async {
+      makeClient('history/regroup_history.json');
+      await client.history.regroupHistory();
+      final q = lastRequestUri.queryParameters;
+      expect(q['cmd'], 'regroup_history');
+      expect(q.containsKey('row_ids'), isFalse);
+    });
+  });
 }

@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:http/http.dart' as http;
 import 'package:http/testing.dart';
 import 'package:test/test.dart';
@@ -43,6 +45,8 @@ void main() {
 
   group('ApiService.docsMd()', () {
     test('decodes the raw (non-JSON) markdown body', () async {
+      final meta =
+          json.decode(fixture('api/docs_md.meta.json')) as Map<String, dynamic>;
       client = TautulliClient(
         connection: const TautulliConnection(
           protocol: 'http',
@@ -51,12 +55,16 @@ void main() {
         ),
         httpClient: MockClient((request) async {
           lastRequestUri = request.url;
-          return http.Response('# Tautulli API\n\n## General structure', 200);
+          return http.Response.bytes(
+            utf8.encode(meta['body_preview'] as String),
+            meta['status'] as int,
+            headers: {'content-type': meta['content_type'] as String},
+          );
         }),
       );
       final result = await client.api.docsMd();
       expect(lastRequestUri.queryParameters['cmd'], 'docs_md');
-      expect(result, contains('# Tautulli API'));
+      expect(result, startsWith('<pre>## General structure'));
     });
   });
 }

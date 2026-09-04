@@ -151,4 +151,55 @@ void main() {
       expect(id, 23);
     });
   });
+
+  group('NotificationService.setNotifierConfig()', () {
+    test('sends notifier_id plus extraParams, bools as 1/0', () async {
+      makeClient('success_response.json');
+      await client.notifications.setNotifierConfig(
+        notifierId: 22,
+        extraParams: {
+          'friendly_name': 'Sink',
+          'sink_enabled': true,
+          'sink_priority': false,
+          'sink_html_support': [1, 2],
+        },
+      );
+      final q = lastRequestUri.queryParameters;
+      expect(q['cmd'], 'set_notifier_config');
+      expect(q['notifier_id'], '22');
+      expect(q['friendly_name'], 'Sink');
+      expect(q['sink_enabled'], '1');
+      expect(q['sink_priority'], '0');
+      expect(q['sink_html_support'], '1,2');
+    });
+
+    test('sends only notifier_id when extraParams omitted', () async {
+      makeClient('success_response.json');
+      await client.notifications.setNotifierConfig(notifierId: 5);
+      final q = lastRequestUri.queryParameters;
+      expect(q['cmd'], 'set_notifier_config');
+      expect(q['notifier_id'], '5');
+      expect(q.keys.toSet(), {'cmd', 'apikey', 'notifier_id'});
+    });
+  });
+
+  group('NotificationService.deleteNotifier()', () {
+    test('sends notifier_id', () async {
+      makeClient('success_response.json');
+      await client.notifications.deleteNotifier(notifierId: 22);
+      final q = lastRequestUri.queryParameters;
+      expect(q['cmd'], 'delete_notifier');
+      expect(q['notifier_id'], '22');
+    });
+  });
+
+  group('NotificationService.deleteNotificationLog()', () {
+    test('sends cmd with no extra params', () async {
+      makeClient('success_response.json');
+      await client.notifications.deleteNotificationLog();
+      final q = lastRequestUri.queryParameters;
+      expect(q['cmd'], 'delete_notification_log');
+      expect(q.keys.toSet(), {'cmd', 'apikey'});
+    });
+  });
 }

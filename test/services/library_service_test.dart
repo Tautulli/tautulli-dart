@@ -265,7 +265,62 @@ void main() {
     test('sends user_id', () async {
       makeClient('library/get_playlists_table.json');
       await client.libraries.getPlaylistsTable(userId: 5);
+      expect(lastRequestUri.queryParameters['cmd'], 'get_playlists_table');
       expect(lastRequestUri.queryParameters['user_id'], '5');
+    });
+  });
+
+  group('LibraryService.getCollectionsTable()', () {
+    test('sends correct cmd and parses paged result', () async {
+      makeClient('library/get_collections_table.json');
+      final result = await client.libraries.getCollectionsTable();
+      expect(lastRequestUri.queryParameters['cmd'], 'get_collections_table');
+      // This capture's server has no collections configured for Tautulli to
+      // track: the fixture's data array is genuinely empty (recordsTotal
+      // and recordsFiltered are both 0), not a partial capture.
+      expect(result.recordsTotal, 0);
+      expect(result.recordsFiltered, 0);
+      expect(result.data, isEmpty);
+    });
+  });
+
+  group('LibraryService.deleteRecentlyAdded()', () {
+    test('sends correct cmd', () async {
+      makeClient('success_response.json');
+      await client.libraries.deleteRecentlyAdded();
+      expect(lastRequestUri.queryParameters['cmd'], 'delete_recently_added');
+    });
+  });
+
+  group('LibraryService.refreshLibrariesList()', () {
+    test('sends correct cmd', () async {
+      makeClient('library/refresh_libraries_list.json');
+      await client.libraries.refreshLibrariesList();
+      expect(lastRequestUri.queryParameters['cmd'], 'refresh_libraries_list');
+    });
+  });
+
+  group('LibraryService.undeleteLibrary()', () {
+    test('sends section_id and section_name', () async {
+      makeClient('success_response.json');
+      await client.libraries.undeleteLibrary(
+        sectionId: 3,
+        sectionName: 'Movies',
+      );
+      final q = lastRequestUri.queryParameters;
+      expect(q['cmd'], 'undelete_library');
+      expect(q['section_id'], '3');
+      expect(q['section_name'], 'Movies');
+    });
+  });
+
+  group('LibraryService.deleteMediaInfoCache()', () {
+    test('sends section_id', () async {
+      makeClient('success_response.json');
+      await client.libraries.deleteMediaInfoCache(sectionId: 3);
+      final q = lastRequestUri.queryParameters;
+      expect(q['cmd'], 'delete_media_info_cache');
+      expect(q['section_id'], '3');
     });
   });
 }

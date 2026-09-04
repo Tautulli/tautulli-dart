@@ -106,4 +106,177 @@ void main() {
       expect(q.containsKey('row_id'), isFalse);
     });
   });
+
+  group('TautulliService.status()', () {
+    test('sends correct cmd', () async {
+      makeClient('tautulli/status.json');
+      final result = await client.tautulli.status();
+      expect(lastRequestUri.queryParameters['cmd'], 'status');
+      expect(result, isEmpty);
+    });
+
+    test('sends check param and parses result', () async {
+      makeClient('tautulli/status__check_database.json');
+      final result = await client.tautulli.status(check: 'database');
+      expect(lastRequestUri.queryParameters['check'], 'database');
+      expect(result['integrity_check'], 'ok');
+    });
+  });
+
+  group('TautulliService.updateCheck()', () {
+    test('sends correct cmd and parses result', () async {
+      makeClient('tautulli/update_check.json');
+      final result = await client.tautulli.updateCheck();
+      expect(lastRequestUri.queryParameters['cmd'], 'update_check');
+      expect(result['update'], isTrue);
+      expect(
+        result['current_version'],
+        '5a39bac6f524a23ab79cef8b08f8126f5134a99e',
+      );
+      expect(result['commits_behind'], 3);
+    });
+  });
+
+  group('TautulliService.sql()', () {
+    test('sends query param and parses rows', () async {
+      makeClient('tautulli/sql__select1.json');
+      final result = await client.tautulli.sql(query: 'SELECT 1 AS one');
+      expect(lastRequestUri.queryParameters['cmd'], 'sql');
+      expect(lastRequestUri.queryParameters['query'], 'SELECT 1 AS one');
+      expect(result, [
+        {'one': 1},
+      ]);
+    });
+
+    test('parses multi-column rows from a different query shape', () async {
+      makeClient('tautulli/sql__user_flags_after_edit.json');
+      final result = await client.tautulli.sql(
+        query:
+            'SELECT friendly_name, keep_history, allow_guest FROM users '
+            'WHERE user_id = 1',
+      );
+      expect(result.single['friendly_name'], 'dart-edit-check');
+      expect(result.single['keep_history'], 1);
+    });
+  });
+
+  group('TautulliService.downloadConfig()', () {
+    test('sends cmd and returns bytes', () async {
+      final meta =
+          json.decode(fixture('tautulli/download_config.meta.json'))
+              as Map<String, dynamic>;
+      client = TautulliClient(
+        connection: const TautulliConnection(
+          protocol: 'http',
+          domain: 'tautulli.local',
+          apiKey: 'abc123',
+        ),
+        httpClient: MockClient((request) async {
+          lastRequestUri = request.url;
+          return http.Response.bytes(
+            [1, 2, 3],
+            meta['status'] as int,
+            headers: {'content-type': meta['content_type'] as String},
+          );
+        }),
+      );
+      final result = await client.tautulli.downloadConfig();
+      expect(lastRequestUri.queryParameters['cmd'], 'download_config');
+      expect(result, [1, 2, 3]);
+    });
+  });
+
+  group('TautulliService.downloadDatabase()', () {
+    test('sends cmd and returns bytes', () async {
+      final meta =
+          json.decode(fixture('tautulli/download_database.meta.json'))
+              as Map<String, dynamic>;
+      client = TautulliClient(
+        connection: const TautulliConnection(
+          protocol: 'http',
+          domain: 'tautulli.local',
+          apiKey: 'abc123',
+        ),
+        httpClient: MockClient((request) async {
+          lastRequestUri = request.url;
+          return http.Response.bytes(
+            [1, 2, 3],
+            meta['status'] as int,
+            headers: {'content-type': meta['content_type'] as String},
+          );
+        }),
+      );
+      final result = await client.tautulli.downloadDatabase();
+      expect(lastRequestUri.queryParameters['cmd'], 'download_database');
+      expect(result, [1, 2, 3]);
+    });
+  });
+
+  group('TautulliService.update()', () {
+    test('sends correct cmd', () async {
+      makeClient('success_response.json');
+      await client.tautulli.update();
+      expect(lastRequestUri.queryParameters['cmd'], 'update');
+    });
+  });
+
+  group('TautulliService.restart()', () {
+    test('sends correct cmd', () async {
+      makeClient('success_response.json');
+      await client.tautulli.restart();
+      expect(lastRequestUri.queryParameters['cmd'], 'restart');
+    });
+  });
+
+  group('TautulliService.backupConfig()', () {
+    test('sends correct cmd', () async {
+      makeClient('success_response.json');
+      await client.tautulli.backupConfig();
+      expect(lastRequestUri.queryParameters['cmd'], 'backup_config');
+    });
+  });
+
+  group('TautulliService.backupDb()', () {
+    test('sends correct cmd', () async {
+      makeClient('success_response.json');
+      await client.tautulli.backupDb();
+      expect(lastRequestUri.queryParameters['cmd'], 'backup_db');
+    });
+  });
+
+  group('TautulliService.deleteCache()', () {
+    test('sends correct cmd', () async {
+      makeClient('success_response.json');
+      await client.tautulli.deleteCache();
+      expect(lastRequestUri.queryParameters['cmd'], 'delete_cache');
+    });
+  });
+
+  group('TautulliService.deleteTempSessions()', () {
+    test('sends correct cmd', () async {
+      makeClient('success_response.json');
+      await client.tautulli.deleteTempSessions();
+      expect(lastRequestUri.queryParameters['cmd'], 'delete_temp_sessions');
+    });
+  });
+
+  group('TautulliService.importConfig()', () {
+    test('throws UnimplementedError', () async {
+      makeClient('success_response.json');
+      expect(
+        () => client.tautulli.importConfig(),
+        throwsA(isA<UnimplementedError>()),
+      );
+    });
+  });
+
+  group('TautulliService.importDatabase()', () {
+    test('throws UnimplementedError', () async {
+      makeClient('success_response.json');
+      expect(
+        () => client.tautulli.importDatabase(),
+        throwsA(isA<UnimplementedError>()),
+      );
+    });
+  });
 }

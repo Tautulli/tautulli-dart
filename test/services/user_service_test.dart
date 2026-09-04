@@ -193,4 +193,60 @@ void main() {
       expect(q.containsKey('username'), isFalse);
     });
   });
+
+  group('UserService.getUserIps()', () {
+    test('sends correct cmd and user_id', () async {
+      makeClient('user/get_user_ips.json');
+      await client.users.getUserIps(userId: 2535039);
+      expect(lastRequestUri.queryParameters['cmd'], 'get_user_ips');
+      expect(lastRequestUri.queryParameters['user_id'], '2535039');
+    });
+
+    test('parses paged result', () async {
+      makeClient('user/get_user_ips.json');
+      final result = await client.users.getUserIps(userId: 2535039);
+      expect(result.recordsTotal, 76038);
+      expect(result.recordsFiltered, 51);
+      expect(result.data, hasLength(25));
+      expect(result.data.first['ip_address'], '203.0.113.37');
+      expect(result.data.first['play_count'], 581);
+    });
+  });
+
+  group('UserService.getUserLogins()', () {
+    test('sends correct cmd', () async {
+      makeClient('user/get_user_logins.json');
+      await client.users.getUserLogins();
+      expect(lastRequestUri.queryParameters['cmd'], 'get_user_logins');
+    });
+
+    test('parses paged result', () async {
+      makeClient('user/get_user_logins.json');
+      final result = await client.users.getUserLogins();
+      expect(result.recordsTotal, 210);
+      expect(result.recordsFiltered, 210);
+      expect(result.data, hasLength(25));
+      expect(result.data.first['ip_address'], '192.0.2.12');
+      expect(result.data.first['friendly_name'], 'user24');
+    });
+  });
+
+  group('UserService.undeleteUser()', () {
+    test('sends user_id and username', () async {
+      makeClient('success_response.json');
+      await client.users.undeleteUser(userId: 7, username: 'liam');
+      final q = lastRequestUri.queryParameters;
+      expect(q['cmd'], 'undelete_user');
+      expect(q['user_id'], '7');
+      expect(q['username'], 'liam');
+    });
+  });
+
+  group('UserService.refreshUsersList()', () {
+    test('sends correct cmd', () async {
+      makeClient('user/refresh_users_list.json');
+      await client.users.refreshUsersList();
+      expect(lastRequestUri.queryParameters['cmd'], 'refresh_users_list');
+    });
+  });
 }
