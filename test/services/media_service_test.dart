@@ -41,6 +41,12 @@ void main() {
       // audience score covers the double coercion.
       expect(item.rating, isNull);
       expect(item.audienceRating, closeTo(8.0, 0.01));
+      expect(item.markers, hasLength(1));
+      expect(item.markers!.single.type, 'credits');
+      expect(
+        item.markers!.single.startTimeOffset,
+        const Duration(milliseconds: 5159884),
+      );
     });
 
     test('parses nested media_info', () async {

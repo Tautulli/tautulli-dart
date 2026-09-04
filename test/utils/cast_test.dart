@@ -125,4 +125,15 @@ void main() {
       );
     });
   });
+
+  group('Cast.durationFromSeconds, mapOrNull, listOrNull', () {
+    test('coerce or yield null', () {
+      expect(Cast.durationFromSeconds('90'), const Duration(seconds: 90));
+      expect(Cast.durationFromSeconds(''), isNull);
+      expect(Cast.mapOrNull({'a': 1}), {'a': 1});
+      expect(Cast.mapOrNull([]), isNull);
+      expect(Cast.listOrNull([1]), [1]);
+      expect(Cast.listOrNull('x'), isNull);
+    });
+  });
 }

@@ -1,5 +1,6 @@
 import '../../types/media_type.dart';
 import '../../utils/cast.dart';
+import '../marker.dart';
 import 'media_info.dart';
 
 /// Metadata for a single Plex item returned by `get_metadata` or
@@ -52,6 +53,9 @@ class MediaItem {
 
   /// Whether this is a live TV item.
   final bool? live;
+
+  /// Chapter markers (intro, credits) for this item.
+  final List<Marker>? markers;
 
   /// Episode or track index within its parent.
   final int? mediaIndex;
@@ -139,6 +143,7 @@ class MediaItem {
     this.lastViewedAt,
     this.libraryName,
     this.live,
+    this.markers,
     this.mediaIndex,
     this.mediaInfo,
     this.mediaType,
@@ -183,6 +188,7 @@ class MediaItem {
       lastViewedAt: Cast.dateTimeFromEpochSeconds(json['last_viewed_at']),
       libraryName: Cast.castToString(json['library_name']),
       live: Cast.castToBool(json['live']),
+      markers: Marker.listFromJson(json['markers'] as List?),
       mediaIndex: Cast.castToInt(json['media_index']),
       mediaInfo: _mediaInfoFromList(json['media_info'] as List?),
       mediaType: MediaType.fromString(Cast.castToString(json['media_type'])),

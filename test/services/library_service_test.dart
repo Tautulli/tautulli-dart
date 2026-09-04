@@ -139,6 +139,8 @@ void main() {
       expect(result[1].directors, contains('Anna Dokoza'));
       // Plex sends milliseconds: 2701888 is a 45-minute episode.
       expect(result[1].duration, const Duration(milliseconds: 2701888));
+      expect(result[1].contentRating, 'TV-14');
+      expect(result[1].collections, isEmpty);
       expect(result.first.duration, isNull); // the season row sends ''
     });
   });

@@ -24,6 +24,12 @@ class RecentlyAddedItem {
   /// Number of child items (episodes for a season, tracks for an album).
   final int? childCount;
 
+  /// Collections this item belongs to.
+  final List<String>? collections;
+
+  /// Content rating (e.g. `'PG-13'`, `'TV-MA'`).
+  final String? contentRating;
+
   /// Directors credited for this item.
   final List<String>? directors;
 
@@ -134,6 +140,8 @@ class RecentlyAddedItem {
     this.audienceRatingImage,
     this.banner,
     this.childCount,
+    this.collections,
+    this.contentRating,
     this.directors,
     this.duration,
     this.fullTitle,
@@ -180,6 +188,8 @@ class RecentlyAddedItem {
       audienceRatingImage: Cast.castToString(json['audience_rating_image']),
       banner: Cast.castToString(json['banner']),
       childCount: Cast.castToInt(json['child_count']),
+      collections: _stringListFromList(json['collections'] as List?),
+      contentRating: Cast.castToString(json['content_rating']),
       directors: _stringListFromList(json['directors'] as List?),
       duration: _durationFromMillisString(json['duration']),
       fullTitle: Cast.castToString(json['full_title']),

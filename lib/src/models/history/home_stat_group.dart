@@ -10,15 +10,29 @@ class HomeStatGroup {
   /// The stat category this group represents.
   final StatIdType statId;
 
+  /// Display title of the group, such as `'Most Watched Movies'`.
+  final String? statTitle;
+
+  /// What the rows are ranked by, `'total_plays'` or `'total_duration'`;
+  /// `null` for groups that are not ranked that way.
+  final String? statType;
+
   /// The ranked items in this stat group.
   final List<HomeStat> rows;
 
-  const HomeStatGroup({required this.statId, this.rows = const []});
+  const HomeStatGroup({
+    required this.statId,
+    this.statTitle,
+    this.statType,
+    this.rows = const [],
+  });
 
   /// Parses a [HomeStatGroup] from a Tautulli API JSON map.
   factory HomeStatGroup.fromJson(Map<String, dynamic> json) {
     return HomeStatGroup(
       statId: StatIdType.fromString(Cast.castToString(json['stat_id'])),
+      statTitle: Cast.castToString(json['stat_title']),
+      statType: Cast.castToString(json['stat_type']),
       rows: (json['rows'] as List? ?? [])
           .whereType<Map<String, dynamic>>()
           .map(HomeStat.fromJson)
@@ -65,6 +79,12 @@ class HomeStat {
   /// Timestamp of the last watch event for this item.
   final DateTime? lastWatch;
 
+  /// Background art path of the library, for `top_libraries` rows.
+  final String? libraryArt;
+
+  /// Thumbnail path of the library, for `top_libraries` rows.
+  final String? libraryThumb;
+
   /// Whether this is a live TV item.
   final bool? live;
 
@@ -103,6 +123,9 @@ class HomeStat {
 
   /// When the most recent session started.
   final DateTime? started;
+
+  /// When the concurrent-stream window ended, for `most_concurrent` rows.
+  final DateTime? stopped;
 
   /// Thumbnail path for this item.
   final String? thumb;
@@ -144,6 +167,8 @@ class HomeStat {
     this.labels,
     this.lastPlay,
     this.lastWatch,
+    this.libraryArt,
+    this.libraryThumb,
     this.live,
     this.mediaIndex,
     this.mediaType,
@@ -157,6 +182,7 @@ class HomeStat {
     this.sectionName,
     this.sectionType,
     this.started,
+    this.stopped,
     this.thumb,
     this.title,
     this.totalDuration,
@@ -183,6 +209,8 @@ class HomeStat {
       labels: (json['labels'] as List?)?.whereType<String>().toList(),
       lastPlay: Cast.dateTimeFromEpochSeconds(json['last_play']),
       lastWatch: Cast.dateTimeFromEpochSeconds(json['last_watch']),
+      libraryArt: Cast.castToString(json['library_art']),
+      libraryThumb: Cast.castToString(json['library_thumb']),
       live: Cast.castToBool(json['live']),
       mediaIndex: Cast.castToInt(json['media_index']),
       mediaType: MediaType.fromString(Cast.castToString(json['media_type'])),
@@ -198,11 +226,10 @@ class HomeStat {
         Cast.castToString(json['section_type']),
       ),
       started: Cast.dateTimeFromEpochSeconds(json['started']),
+      stopped: Cast.dateTimeFromEpochSeconds(json['stopped']),
       thumb: Cast.castToString(json['thumb']),
       title: Cast.castToString(json['title']),
-      totalDuration: _durationFromSeconds(
-        Cast.castToInt(json['total_duration']),
-      ),
+      totalDuration: Cast.durationFromSeconds(json['total_duration']),
       totalPlays: Cast.castToInt(json['total_plays']),
       user: Cast.castToString(json['user']),
       userId: Cast.castToInt(json['user_id']),
@@ -210,10 +237,5 @@ class HomeStat {
       userThumb: Cast.castToString(json['user_thumb']),
       year: Cast.castToInt(json['year']),
     );
-  }
-
-  static Duration? _durationFromSeconds(int? seconds) {
-    if (seconds == null) return null;
-    return Duration(seconds: seconds);
   }
 }

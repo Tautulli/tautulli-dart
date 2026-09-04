@@ -15,7 +15,7 @@ class LibraryTableEntry {
   /// Number of top-level items in this library (movies, shows, or artists).
   final int? count;
 
-  /// Total watch duration for the most recently played item.
+  /// Total watch time summed over all plays in this library.
   final Duration? duration;
 
   /// Plex GUID of the most recently played item.

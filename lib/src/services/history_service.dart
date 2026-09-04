@@ -71,6 +71,8 @@ class HistoryService {
       data: entries,
       recordsTotal: Cast.castToInt(data['recordsTotal']),
       recordsFiltered: Cast.castToInt(data['recordsFiltered']),
+      totalDuration: Cast.castToString(data['total_duration']),
+      filterDuration: Cast.castToString(data['filter_duration']),
     );
   }
 

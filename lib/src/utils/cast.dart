@@ -79,6 +79,21 @@ class Cast {
     return DateTime.fromMillisecondsSinceEpoch(seconds * 1000, isUtc: true);
   }
 
+  /// Seconds as a [Duration]; `null` for anything [castToInt] rejects.
+  static Duration? durationFromSeconds(dynamic value) {
+    final seconds = castToInt(value);
+    return seconds == null ? null : Duration(seconds: seconds);
+  }
+
+  /// [value] when it is a JSON object, else `null`. For raw sub-maps a model
+  /// passes through untyped.
+  static Map<String, dynamic>? mapOrNull(dynamic value) =>
+      value is Map<String, dynamic> ? value : null;
+
+  /// [value] when it is a JSON array, else `null`.
+  static List<dynamic>? listOrNull(dynamic value) =>
+      value is List ? value : null;
+
   /// Returns [data] as a `Map<String, dynamic>`.
   ///
   /// Yields an empty map when [data] is `null`, but throws a

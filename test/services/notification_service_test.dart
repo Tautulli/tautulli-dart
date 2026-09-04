@@ -31,6 +31,30 @@ void main() {
       expect(result.first.agentName, 'scripts');
       expect(result.first.notifierId, 3);
       expect(result.first.active, false);
+      expect(result.first.lastTriggered, isNull);
+      expect(
+        result[1].lastTriggered?.millisecondsSinceEpoch,
+        1787028836 * 1000,
+      );
+      expect(result[1].lastSuccess, isFalse);
+      expect(result.first.config, isNull); // get_notifier_config only
+    });
+  });
+
+  group('NotificationService.getNotifierConfig()', () {
+    test('parses the full configuration of one notifier', () async {
+      makeClient('notification/get_notifier_config__sink.json');
+      final cfg = await client.notifications.getNotifierConfig(notifierId: 22);
+      expect(lastRequestUri.queryParameters['cmd'], 'get_notifier_config');
+      expect(lastRequestUri.queryParameters['notifier_id'], '22');
+      expect(cfg.notifierId, 22);
+      expect(cfg.config, {'auto_hide_delay': 5});
+      expect(cfg.configOptions, hasLength(3));
+      expect(cfg.actions!['on_play'], 0);
+      expect(cfg.notifyText, hasLength(22));
+      expect(cfg.customConditions, hasLength(1));
+      expect(cfg.customConditionsLogic, '');
+      expect(cfg.active, isNull); // get_notifiers only
     });
   });
 

@@ -34,6 +34,8 @@ void main() {
       final result = await client.history.getHistory();
       expect(result.recordsTotal, 76038);
       expect(result.recordsFiltered, 60137);
+      expect(result.totalDuration, '1643 days 10 hrs 26 mins');
+      expect(result.filterDuration, '4 hrs 10 mins 6 secs');
       expect(result.data, hasLength(10));
       final first = result.data.first;
       expect(first.title, 'Juneteenth');
@@ -96,6 +98,25 @@ void main() {
       expect(topMovies.rows, isNotEmpty);
       expect(topMovies.rows.first.title, 'The Death of Robin Hood');
       expect(topMovies.rows.first.totalPlays, 3);
+      expect(topMovies.statTitle, 'Most Watched Movies');
+      expect(topMovies.statType, 'total_plays');
+      final concurrent = result.firstWhere(
+        (g) => g.statId == StatIdType.mostConcurrent,
+      );
+      expect(concurrent.statType, isNull);
+      expect(concurrent.rows.first.started, isNotNull);
+      expect(
+        concurrent.rows.first.stopped?.millisecondsSinceEpoch,
+        1788309157 * 1000,
+      );
+      final libraries = result.firstWhere(
+        (g) => g.statId == StatIdType.topLibraries,
+      );
+      expect(
+        libraries.rows.first.libraryThumb,
+        'interfaces/default/images/cover.png',
+      );
+      expect(libraries.rows.first.libraryArt, '/:/resources/show-fanart.jpg');
     });
 
     test('parses a single-stat (bare object) response', () async {

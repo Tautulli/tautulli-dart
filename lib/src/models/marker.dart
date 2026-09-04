@@ -42,6 +42,10 @@ class Marker {
     isFinal: Cast.castToBool(json['final']),
   );
 
+  /// Parses a `markers` list; `null` when the key is absent.
+  static List<Marker>? listFromJson(List? markers) =>
+      markers?.whereType<Map<String, dynamic>>().map(Marker.fromJson).toList();
+
   static Duration? _ms(dynamic value) {
     final ms = Cast.castToInt(value);
     return ms == null ? null : Duration(milliseconds: ms);

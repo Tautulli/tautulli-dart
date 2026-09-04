@@ -1370,7 +1370,7 @@ class ActivitySession {
       lastSeen: Cast.castToInt(json['last_seen']),
       lastViewedAt: Cast.castToInt(json['last_viewed_at']),
       libraryName: Cast.castToString(json['library_name']),
-      markers: _markersFromList(json['markers'] as List?),
+      markers: Marker.listFromJson(json['markers'] as List?),
       parentGuid: Cast.castToString(json['parent_guid']),
       parentGuids: (json['parent_guids'] as List?)
           ?.map((e) => e.toString())
@@ -1460,13 +1460,5 @@ class ActivitySession {
     final ms = Cast.castToInt(value);
     if (ms == null) return null;
     return Duration(milliseconds: ms);
-  }
-
-  static List<Marker>? _markersFromList(List? markers) {
-    if (markers == null) return null;
-    return markers
-        .whereType<Map<String, dynamic>>()
-        .map(Marker.fromJson)
-        .toList();
   }
 }

@@ -120,6 +120,7 @@ void main() {
       expect(result.data.first.username, 'user103');
       expect(result.data.first.plays, 159);
       expect(result.data.first.historyRowId, 84598);
+      expect(result.data.first.duration, const Duration(seconds: 282933));
     });
   });
 

@@ -10,8 +10,8 @@ class UserTableEntry {
   /// Whether this user is allowed to access Plex as a guest.
   final bool? allowGuest;
 
-  /// Total watch duration for the most recently played item in seconds.
-  final int? duration;
+  /// Total watch time summed over all of this user's plays.
+  final Duration? duration;
 
   /// User's email address.
   final String? email;
@@ -130,7 +130,7 @@ class UserTableEntry {
   factory UserTableEntry.fromJson(Map<String, dynamic> json) {
     return UserTableEntry(
       allowGuest: Cast.castToBool(json['allow_guest']),
-      duration: Cast.castToInt(json['duration']),
+      duration: Cast.durationFromSeconds(json['duration']),
       email: Cast.castToString(json['email']),
       friendlyName: Cast.castToString(json['friendly_name']),
       guid: Cast.castToString(json['guid']),

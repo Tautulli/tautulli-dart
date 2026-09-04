@@ -18,6 +18,8 @@
 - Changed `exportMetadata`, `addNotifierConfig` and `addNewsletterConfig` to return the new export,
   notifier and newsletter id as `Future<int>`. The server sends it as `export_id`, `notifier_id`
   and `newsletter_id` in `data`, and the delete and configure calls need it.
+- Changed `UserTableEntry.duration` from `int?` seconds to `Duration?`, matching
+  `LibraryTableEntry.duration` for the same column.
 
 ### Fixed
 
@@ -34,6 +36,15 @@
 ### Added
 
 - Added `clip` to `buildImageUrl`, matching the handler's parameter.
+- Added `totalDuration` and `filterDuration` to `PagedResult`, the human-readable watch times
+  `get_history` sends next to its record counts. Other paged commands leave them null.
+- Added `lastTriggered` and `lastSuccess` to `NotifierConfig` from `get_notifiers`, and `config`,
+  `configOptions`, `actions`, `notifyText`, `customConditions` and `customConditionsLogic` from
+  `get_notifier_config`, which sends no `active`.
+- Added `statTitle` and `statType` to `HomeStatGroup`, and `stopped`, `libraryThumb` and
+  `libraryArt` to `HomeStat` for the `most_concurrent` and `top_libraries` rows that carry them.
+- Added `contentRating` and `collections` to `RecentlyAddedItem`.
+- Added `markers` to `MediaItem`, the chapter markers `get_metadata` returns.
 
 ### Behavior notes
 
