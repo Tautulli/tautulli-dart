@@ -131,7 +131,7 @@ class LibraryTableEntry {
       childCount: Cast.castToInt(json['child_count']),
       contentRating: Cast.castToString(json['content_rating']),
       count: Cast.castToInt(json['count']),
-      duration: _durationFromSeconds(Cast.castToInt(json['duration'])),
+      duration: Cast.durationFromSeconds(json['duration']),
       guid: Cast.castToString(json['guid']),
       historyRowId: Cast.castToInt(json['history_row_id']),
       isActive: Cast.castToBool(json['is_active']),
@@ -144,8 +144,8 @@ class LibraryTableEntry {
       live: Cast.castToBool(json['live']),
       mediaIndex: Cast.castToInt(json['media_index']),
       mediaType: MediaType.fromString(Cast.castToString(json['media_type'])),
-      originallyAvailableAt: _dateTimeFromString(
-        Cast.castToString(json['originally_available_at']),
+      originallyAvailableAt: Cast.dateTimeFromDateString(
+        json['originally_available_at'],
       ),
       parentCount: Cast.castToInt(json['parent_count']),
       parentMediaIndex: Cast.castToInt(json['parent_media_index']),
@@ -162,15 +162,5 @@ class LibraryTableEntry {
       thumb: Cast.castToString(json['thumb']),
       year: Cast.castToInt(json['year']),
     );
-  }
-
-  static DateTime? _dateTimeFromString(String? date) {
-    if (date == null) return null;
-    return DateTime.tryParse(date);
-  }
-
-  static Duration? _durationFromSeconds(int? seconds) {
-    if (seconds == null) return null;
-    return Duration(seconds: seconds);
   }
 }

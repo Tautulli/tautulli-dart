@@ -178,7 +178,7 @@ class MediaItem {
       collections: _stringListFromList(json['collections'] as List?),
       contentRating: Cast.castToString(json['content_rating']),
       directors: _stringListFromList(json['directors'] as List?),
-      duration: _durationFromMillisString(json['duration']),
+      duration: Cast.durationFromMillis(json['duration']),
       fullTitle: Cast.castToString(json['full_title']),
       genres: _stringListFromList(json['genres'] as List?),
       grandparentRatingKey: Cast.castToInt(json['grandparent_rating_key']),
@@ -193,8 +193,8 @@ class MediaItem {
       mediaInfo: _mediaInfoFromList(json['media_info'] as List?),
       mediaType: MediaType.fromString(Cast.castToString(json['media_type'])),
       originalTitle: Cast.castToString(json['original_title']),
-      originallyAvailableAt: _dateTimeFromString(
-        Cast.castToString(json['originally_available_at']),
+      originallyAvailableAt: Cast.dateTimeFromDateString(
+        json['originally_available_at'],
       ),
       parentMediaIndex: Cast.castToInt(json['parent_media_index']),
       parentRatingKey: Cast.castToInt(json['parent_rating_key']),
@@ -220,17 +220,6 @@ class MediaItem {
   static List<String>? _stringListFromList(List? list) {
     if (list == null || list.isEmpty) return null;
     return list.map((item) => item.toString()).toList();
-  }
-
-  static DateTime? _dateTimeFromString(String? date) {
-    if (date == null) return null;
-    return DateTime.tryParse(date);
-  }
-
-  static Duration? _durationFromMillisString(dynamic value) {
-    final ms = Cast.castToInt(value);
-    if (ms == null) return null;
-    return Duration(milliseconds: ms);
   }
 
   static MediaInfo? _mediaInfoFromList(List? list) {

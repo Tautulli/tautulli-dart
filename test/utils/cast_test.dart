@@ -136,4 +136,17 @@ void main() {
       expect(Cast.listOrNull('x'), isNull);
     });
   });
+
+  group('Cast.durationFromMillis and dateTimeFromDateString', () {
+    test('coerce or yield null', () {
+      expect(
+        Cast.durationFromMillis('2701888'),
+        const Duration(milliseconds: 2701888),
+      );
+      expect(Cast.durationFromMillis(''), isNull);
+      expect(Cast.dateTimeFromDateString('2016-04-24'), DateTime(2016, 4, 24));
+      expect(Cast.dateTimeFromDateString(''), isNull);
+      expect(Cast.dateTimeFromDateString(null), isNull);
+    });
+  });
 }

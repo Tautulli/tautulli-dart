@@ -85,6 +85,20 @@ class Cast {
     return seconds == null ? null : Duration(seconds: seconds);
   }
 
+  /// Milliseconds as a [Duration]; `null` for anything [castToInt] rejects.
+  /// Plex item and stream durations arrive in milliseconds.
+  static Duration? durationFromMillis(dynamic value) {
+    final ms = castToInt(value);
+    return ms == null ? null : Duration(milliseconds: ms);
+  }
+
+  /// An ISO-8601 date or date-time string (`originally_available_at`) as a
+  /// [DateTime]; `null` when absent, empty or unparseable.
+  static DateTime? dateTimeFromDateString(dynamic value) {
+    final text = castToString(value);
+    return text == null ? null : DateTime.tryParse(text);
+  }
+
   /// [value] when it is a JSON object, else `null`. For raw sub-maps a model
   /// passes through untyped.
   static Map<String, dynamic>? mapOrNull(dynamic value) =>

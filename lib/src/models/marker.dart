@@ -36,8 +36,8 @@ class Marker {
   factory Marker.fromJson(Map<String, dynamic> json) => Marker(
     id: Cast.castToInt(json['id']),
     type: Cast.castToString(json['type']),
-    startTimeOffset: _ms(json['start_time_offset']),
-    endTimeOffset: _ms(json['end_time_offset']),
+    startTimeOffset: Cast.durationFromMillis(json['start_time_offset']),
+    endTimeOffset: Cast.durationFromMillis(json['end_time_offset']),
     isFirst: Cast.castToBool(json['first']),
     isFinal: Cast.castToBool(json['final']),
   );
@@ -45,9 +45,4 @@ class Marker {
   /// Parses a `markers` list; `null` when the key is absent.
   static List<Marker>? listFromJson(List? markers) =>
       markers?.whereType<Map<String, dynamic>>().map(Marker.fromJson).toList();
-
-  static Duration? _ms(dynamic value) {
-    final ms = Cast.castToInt(value);
-    return ms == null ? null : Duration(milliseconds: ms);
-  }
 }

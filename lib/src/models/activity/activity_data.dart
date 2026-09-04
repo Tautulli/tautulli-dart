@@ -1106,7 +1106,7 @@ class ActivitySession {
       ),
 
       // Duration / progress
-      duration: _durationFromMillisString(json['duration']),
+      duration: Cast.durationFromMillis(json['duration']),
       progressPercent: Cast.castToInt(json['progress_percent']),
       viewOffset: Cast.castToInt(json['view_offset']),
 
@@ -1147,7 +1147,7 @@ class ActivitySession {
         json['optimized_version_profile'],
       ),
       optimizedVersionTitle: Cast.castToString(json['optimized_version_title']),
-      originallyAvailableAt: _dateTimeFromString(
+      originallyAvailableAt: Cast.dateTimeFromDateString(
         json['originally_available_at'],
       ),
       originalTitle: Cast.castToString(json['original_title']),
@@ -1173,7 +1173,7 @@ class ActivitySession {
       streamContainerDecision: StreamDecision.fromString(
         Cast.castToString(json['stream_container_decision']),
       ),
-      streamDuration: _durationFromMillisString(json['stream_duration']),
+      streamDuration: Cast.durationFromMillis(json['stream_duration']),
 
       // Stream audio
       streamAudioBitrate: Cast.castToInt(json['stream_audio_bitrate']),
@@ -1443,17 +1443,5 @@ class ActivitySession {
       videoWidth: Cast.castToInt(json['video_width']),
       writers: (json['writers'] as List?)?.map((e) => e.toString()).toList(),
     );
-  }
-
-  static DateTime? _dateTimeFromString(dynamic value) {
-    final s = Cast.castToString(value);
-    if (s == null) return null;
-    return DateTime.tryParse(s);
-  }
-
-  static Duration? _durationFromMillisString(dynamic value) {
-    final ms = Cast.castToInt(value);
-    if (ms == null) return null;
-    return Duration(milliseconds: ms);
   }
 }

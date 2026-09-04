@@ -187,7 +187,7 @@ class HistoryEntry {
   factory HistoryEntry.fromJson(Map<String, dynamic> json) {
     return HistoryEntry(
       date: Cast.dateTimeFromEpochSeconds(json['date']),
-      duration: _durationFromSeconds(Cast.castToInt(json['duration'])),
+      duration: Cast.durationFromSeconds(json['duration']),
       friendlyName: Cast.castToString(json['friendly_name']),
       fullTitle: Cast.castToString(json['full_title']),
       grandparentRatingKey: Cast.castToInt(json['grandparent_rating_key']),
@@ -202,16 +202,14 @@ class HistoryEntry {
       machineId: Cast.castToString(json['machine_id']),
       mediaIndex: Cast.castToInt(json['media_index']),
       mediaType: MediaType.fromString(Cast.castToString(json['media_type'])),
-      originallyAvailableAt: _dateTimeFromString(
-        Cast.castToString(json['originally_available_at']),
+      originallyAvailableAt: Cast.dateTimeFromDateString(
+        json['originally_available_at'],
       ),
       originalTitle: Cast.castToString(json['original_title']),
       parentMediaIndex: Cast.castToInt(json['parent_media_index']),
       parentRatingKey: Cast.castToInt(json['parent_rating_key']),
       parentTitle: Cast.castToString(json['parent_title']),
-      pausedCounter: _durationFromSeconds(
-        Cast.castToInt(json['paused_counter']),
-      ),
+      pausedCounter: Cast.durationFromSeconds(json['paused_counter']),
       percentComplete: Cast.castToInt(json['percent_complete']),
       platform: Cast.castToString(json['platform']),
       player: Cast.castToString(json['player']),
@@ -238,16 +236,6 @@ class HistoryEntry {
       ),
       year: Cast.castToInt(json['year']),
     );
-  }
-
-  static DateTime? _dateTimeFromString(String? date) {
-    if (date == null) return null;
-    return DateTime.tryParse(date);
-  }
-
-  static Duration? _durationFromSeconds(int? seconds) {
-    if (seconds == null) return null;
-    return Duration(seconds: seconds);
   }
 
   static List<int>? _groupIdsFromString(String? groupIds) {
