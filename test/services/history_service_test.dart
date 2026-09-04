@@ -69,9 +69,15 @@ void main() {
 
     test('sends optional params', () async {
       makeClient('history/get_history.json');
-      await client.history.getHistory(userId: 7, length: 25, start: 0);
+      await client.history.getHistory(
+        userId: 7,
+        length: 25,
+        start: 0,
+        referenceId: 5,
+      );
       expect(lastRequestUri.queryParameters['user_id'], '7');
       expect(lastRequestUri.queryParameters['length'], '25');
+      expect(lastRequestUri.queryParameters['reference_id'], '5');
     });
 
     test('formats DateTime params as y-MM-dd', () async {

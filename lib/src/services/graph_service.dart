@@ -16,10 +16,10 @@ class GraphService {
   /// Returns concurrent stream counts broken down by stream type over [timeRange] days.
   Future<GraphData> getConcurrentStreamsByStreamType({
     required int timeRange,
-    int? userId,
+    List<int>? userIds,
   }) async {
     final params = <String, dynamic>{'time_range': timeRange};
-    if (userId != null) params['user_id'] = userId;
+    if (userIds != null) params['user_id'] = userIds;
     return _graphData('get_concurrent_streams_by_stream_type', params);
   }
 
@@ -27,13 +27,13 @@ class GraphService {
   Future<GraphData> getPlaysByDate({
     required PlayMetricType yAxis,
     required int timeRange,
-    int? userId,
+    List<int>? userIds,
     bool? grouping,
   }) => _graphMethodWithYAxis(
     'get_plays_by_date',
     yAxis,
     timeRange,
-    userId,
+    userIds,
     grouping,
   );
 
@@ -41,13 +41,13 @@ class GraphService {
   Future<GraphData> getPlaysByDayOfWeek({
     required PlayMetricType yAxis,
     required int timeRange,
-    int? userId,
+    List<int>? userIds,
     bool? grouping,
   }) => _graphMethodWithYAxis(
     'get_plays_by_dayofweek',
     yAxis,
     timeRange,
-    userId,
+    userIds,
     grouping,
   );
 
@@ -55,13 +55,13 @@ class GraphService {
   Future<GraphData> getPlaysByHourOfDay({
     required PlayMetricType yAxis,
     required int timeRange,
-    int? userId,
+    List<int>? userIds,
     bool? grouping,
   }) => _graphMethodWithYAxis(
     'get_plays_by_hourofday',
     yAxis,
     timeRange,
-    userId,
+    userIds,
     grouping,
   );
 
@@ -69,13 +69,13 @@ class GraphService {
   Future<GraphData> getPlaysBySourceResolution({
     required PlayMetricType yAxis,
     required int timeRange,
-    int? userId,
+    List<int>? userIds,
     bool? grouping,
   }) => _graphMethodWithYAxis(
     'get_plays_by_source_resolution',
     yAxis,
     timeRange,
-    userId,
+    userIds,
     grouping,
   );
 
@@ -83,13 +83,13 @@ class GraphService {
   Future<GraphData> getPlaysByStreamResolution({
     required PlayMetricType yAxis,
     required int timeRange,
-    int? userId,
+    List<int>? userIds,
     bool? grouping,
   }) => _graphMethodWithYAxis(
     'get_plays_by_stream_resolution',
     yAxis,
     timeRange,
-    userId,
+    userIds,
     grouping,
   );
 
@@ -97,13 +97,13 @@ class GraphService {
   Future<GraphData> getPlaysByStreamType({
     required PlayMetricType yAxis,
     required int timeRange,
-    int? userId,
+    List<int>? userIds,
     bool? grouping,
   }) => _graphMethodWithYAxis(
     'get_plays_by_stream_type',
     yAxis,
     timeRange,
-    userId,
+    userIds,
     grouping,
   );
 
@@ -111,13 +111,13 @@ class GraphService {
   Future<GraphData> getPlaysByTop10Platforms({
     required PlayMetricType yAxis,
     required int timeRange,
-    int? userId,
+    List<int>? userIds,
     bool? grouping,
   }) => _graphMethodWithYAxis(
     'get_plays_by_top_10_platforms',
     yAxis,
     timeRange,
-    userId,
+    userIds,
     grouping,
   );
 
@@ -125,13 +125,13 @@ class GraphService {
   Future<GraphData> getPlaysByTop10Users({
     required PlayMetricType yAxis,
     required int timeRange,
-    int? userId,
+    List<int>? userIds,
     bool? grouping,
   }) => _graphMethodWithYAxis(
     'get_plays_by_top_10_users',
     yAxis,
     timeRange,
-    userId,
+    userIds,
     grouping,
   );
 
@@ -139,13 +139,13 @@ class GraphService {
   Future<GraphData> getPlaysByMonth({
     required PlayMetricType yAxis,
     required int timeRange,
-    int? userId,
+    List<int>? userIds,
     bool? grouping,
   }) => _graphMethodWithYAxis(
     'get_plays_per_month',
     yAxis,
     timeRange,
-    userId,
+    userIds,
     grouping,
   );
 
@@ -153,13 +153,13 @@ class GraphService {
   Future<GraphData> getStreamTypeByTop10Platforms({
     required PlayMetricType yAxis,
     required int timeRange,
-    int? userId,
+    List<int>? userIds,
     bool? grouping,
   }) => _graphMethodWithYAxis(
     'get_stream_type_by_top_10_platforms',
     yAxis,
     timeRange,
-    userId,
+    userIds,
     grouping,
   );
 
@@ -167,13 +167,13 @@ class GraphService {
   Future<GraphData> getStreamTypeByTop10Users({
     required PlayMetricType yAxis,
     required int timeRange,
-    int? userId,
+    List<int>? userIds,
     bool? grouping,
   }) => _graphMethodWithYAxis(
     'get_stream_type_by_top_10_users',
     yAxis,
     timeRange,
-    userId,
+    userIds,
     grouping,
   );
 
@@ -181,14 +181,14 @@ class GraphService {
     String cmd,
     PlayMetricType yAxis,
     int timeRange,
-    int? userId,
+    List<int>? userIds,
     bool? grouping,
   ) {
     final params = <String, dynamic>{
       'y_axis': yAxis.value,
       'time_range': timeRange,
     };
-    if (userId != null) params['user_id'] = userId;
+    if (userIds != null) params['user_id'] = userIds;
     if (grouping != null) params['grouping'] = grouping;
     return _graphData(cmd, params);
   }

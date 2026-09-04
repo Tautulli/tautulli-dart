@@ -27,6 +27,8 @@
 - Removed `ActivitySession.type`. It held the `streamType` of the last stream-detail dict Tautulli
   merges into a session (`3` when a subtitle stream is selected, empty otherwise), never the media
   type.
+- Renamed `userId` to `userIds` (`List<int>?`) on every `GraphService` method. Each graph handler
+  passes `user_id` through a condition builder that expects a comma-separated list.
 
 ### Fixed
 
@@ -52,6 +54,7 @@
   `libraryArt` to `HomeStat` for the `most_concurrent` and `top_libraries` rows that carry them.
 - Added `contentRating` and `collections` to `RecentlyAddedItem`.
 - Added `markers` to `MediaItem`, the chapter markers `get_metadata` returns.
+- Added `referenceId` to `getHistory`, the grouped-play filter the handler already applies.
 
 ### Behavior notes
 

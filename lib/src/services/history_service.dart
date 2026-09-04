@@ -23,6 +23,7 @@ class HistoryService {
     int? ratingKey,
     int? parentRatingKey,
     int? grandparentRatingKey,
+    int? referenceId,
     DateTime? startDate,
     DateTime? before,
     DateTime? after,
@@ -46,6 +47,7 @@ class HistoryService {
     if (grandparentRatingKey != null) {
       params['grandparent_rating_key'] = grandparentRatingKey;
     }
+    if (referenceId != null) params['reference_id'] = referenceId;
     if (startDate != null) params['start_date'] = _formatDate(startDate);
     if (before != null) params['before'] = _formatDate(before);
     if (after != null) params['after'] = _formatDate(after);

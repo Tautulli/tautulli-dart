@@ -28,10 +28,12 @@ void main() {
       await client.graphs.getPlaysByDate(
         yAxis: PlayMetricType.plays,
         timeRange: 30,
+        userIds: [1, 2],
       );
       expect(lastRequestUri.queryParameters['cmd'], 'get_plays_by_date');
       expect(lastRequestUri.queryParameters['y_axis'], 'plays');
       expect(lastRequestUri.queryParameters['time_range'], '30');
+      expect(lastRequestUri.queryParameters['user_id'], '1,2');
     });
 
     test('parses categories and series', () async {
