@@ -7,13 +7,21 @@
 - Changed `buildImageUrl`'s `background` parameter from `int?` to `String?`. The server expects a hex
   color string such as `'282828'`, and the integer went out through `toString()` as a decimal the
   server could not use.
+- Made `friendlyName` required on `setMobileDeviceConfig`. The server writes the name
+  unconditionally, so a request without it stored an empty name.
+- Removed `sessionKey` and `sessionId` from `serverStatus`. The handler reads no arguments and
+  answers with the global connection flag.
+- Removed `grouping` from `getUsers`. The handler builds the user list without arguments.
+- Removed `username` from `deleteAllUserHistory` and changed `rowIds` to `List<int>?`. The handler
+  forwards only `user_id` and `row_ids`.
+- Removed `ms` from `getLogs`. The handler never reads it.
 
 ### Fixed
 
 - Stopped sending `refresh=0` and `return_hash=0` from `buildImageUrl` when the flags are false. The
-  server reads `refresh` by truthiness, so the string `'0'` bypassed the image cache on every
-  request, and it switches to a JSON response whenever `return_hash` is present at all, which broke
-  the image bytes.
+  handler reads `refresh` by bare truthiness, so the string `'0'` bypassed the image cache on every
+  request, and the API layer returns raw image bytes only when `return_hash` is absent from the
+  request, so `return_hash=0` sent the bytes through the JSON encoder.
 - Parsed `RecentlyAddedItem.duration` as milliseconds. The server sends Plex durations in
   milliseconds, so the value came out a thousand times too long.
 - Read `UserData.userThumb` from the `thumb` key when `user_thumb` is absent. `get_users` sends the

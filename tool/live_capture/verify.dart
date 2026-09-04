@@ -311,7 +311,6 @@ Future<void> _run() async {
     final h = await pkg.history.getHistory(
       userId: userId,
       mediaType: 'movie',
-      grouping: true,
       length: 5,
     );
     return '${h.data.length} rows';

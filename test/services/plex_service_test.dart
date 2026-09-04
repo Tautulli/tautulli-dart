@@ -88,6 +88,20 @@ void main() {
     });
   });
 
+  group('PlexService.serverStatus()', () {
+    test('sends only cmd and parses connected', () async {
+      makeClient('plex/server_status.json');
+      final result = await client.plex.serverStatus();
+      expect(
+        lastRequestUri.queryParameters.keys,
+        containsAll(['cmd', 'apikey']),
+      );
+      expect(lastRequestUri.queryParameters.length, 2);
+      expect(lastRequestUri.queryParameters['cmd'], 'server_status');
+      expect(result['connected'], true);
+    });
+  });
+
   group('PlexService.getServerList()', () {
     test('sends all_servers as a literal true/false string', () async {
       makeClient('plex/get_server_list.json');

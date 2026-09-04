@@ -97,6 +97,20 @@ void main() {
     });
   });
 
+  group('DeviceService.setMobileDeviceConfig()', () {
+    test('always sends friendly_name', () async {
+      makeClient('success_response.json');
+      await client.devices.setMobileDeviceConfig(
+        mobileDeviceId: 3,
+        friendlyName: 'Kitchen tablet',
+      );
+      final q = lastRequestUri.queryParameters;
+      expect(q['cmd'], 'set_mobile_device_config');
+      expect(q['mobile_device_id'], '3');
+      expect(q['friendly_name'], 'Kitchen tablet');
+    });
+  });
+
   group('DeviceService.deleteMobileDevice()', () {
     test('sends device_id (alternative identifier)', () async {
       makeClient('success_response.json');

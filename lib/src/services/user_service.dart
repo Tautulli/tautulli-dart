@@ -75,10 +75,8 @@ class UserService {
   }
 
   /// Returns profile data for all Tautulli users.
-  Future<List<UserData>> getUsers({bool? grouping}) async {
-    final params = <String, dynamic>{};
-    if (grouping != null) params['grouping'] = grouping;
-    final response = await _client.execute('get_users', params: params);
+  Future<List<UserData>> getUsers() async {
+    final response = await _client.execute('get_users');
     return Cast.dataList(
       response['data'],
       'get_users',
@@ -168,7 +166,8 @@ class UserService {
 
   /// Marks the user identified by [userId] as deleted in Tautulli's database.
   ///
-  /// Optionally limit the deletion to specific history [rowIds].
+  /// [rowIds] are row ids of Tautulli's users table, not history rows. When
+  /// given, the server deletes each matching user and ignores [userId].
   Future<void> deleteUser({required int userId, List<int>? rowIds}) async {
     final params = <String, dynamic>{'user_id': userId};
     if (rowIds != null) params['row_ids'] = rowIds;
@@ -187,12 +186,15 @@ class UserService {
   }
 
   /// Deletes all watch history entries for the given user.
+  ///
+  /// [rowIds] are row ids of Tautulli's users table, as for [deleteUser]; when
+  /// given, the server purges each matching user's history and ignores
+  /// [userId].
   Future<void> deleteAllUserHistory({
     required int userId,
-    required String username,
-    String? rowIds,
+    List<int>? rowIds,
   }) async {
-    final params = <String, dynamic>{'user_id': userId, 'username': username};
+    final params = <String, dynamic>{'user_id': userId};
     if (rowIds != null) params['row_ids'] = rowIds;
     await _client.execute('delete_all_user_history', params: params);
   }

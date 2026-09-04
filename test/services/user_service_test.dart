@@ -137,12 +137,6 @@ void main() {
         'https://plex.tv/users/0000000000000000/avatar?c=1788139852',
       );
     });
-
-    test('sends grouping param', () async {
-      makeClient('user/get_users.json');
-      await client.users.getUsers(grouping: true);
-      expect(lastRequestUri.queryParameters['grouping'], '1');
-    });
   });
 
   group('UserService.editUser()', () {
@@ -181,6 +175,18 @@ void main() {
       await client.users.deleteUser(userId: 7, rowIds: [2, 3]);
       final q = lastRequestUri.queryParameters;
       expect(q['cmd'], 'delete_user');
+      expect(q['user_id'], '7');
+      expect(q['row_ids'], '2,3');
+      expect(q.containsKey('username'), isFalse);
+    });
+  });
+
+  group('UserService.deleteAllUserHistory()', () {
+    test('sends user_id and comma-joined row_ids, no username', () async {
+      makeClient('success_response.json');
+      await client.users.deleteAllUserHistory(userId: 7, rowIds: [2, 3]);
+      final q = lastRequestUri.queryParameters;
+      expect(q['cmd'], 'delete_all_user_history');
       expect(q['user_id'], '7');
       expect(q['row_ids'], '2,3');
       expect(q.containsKey('username'), isFalse);

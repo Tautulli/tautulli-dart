@@ -9,15 +9,21 @@ class DeviceService {
 
   /// Updates the configuration for a registered mobile device.
   ///
-  /// [mobileDeviceId] identifies the device; [friendlyName] overrides
-  /// the display name shown in Tautulli's mobile devices list.
+  /// [mobileDeviceId] identifies the device; [friendlyName] is the display
+  /// name shown in Tautulli's mobile devices list. It is required because the
+  /// server writes it unconditionally: a request without it stores an empty
+  /// name.
   Future<void> setMobileDeviceConfig({
     required int mobileDeviceId,
-    String? friendlyName,
+    required String friendlyName,
   }) async {
-    final params = <String, dynamic>{'mobile_device_id': mobileDeviceId};
-    if (friendlyName != null) params['friendly_name'] = friendlyName;
-    await _client.execute('set_mobile_device_config', params: params);
+    await _client.execute(
+      'set_mobile_device_config',
+      params: {
+        'mobile_device_id': mobileDeviceId,
+        'friendly_name': friendlyName,
+      },
+    );
   }
 
   /// Removes a mobile device registration from Tautulli.

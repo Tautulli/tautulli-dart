@@ -1146,10 +1146,7 @@ Future<void> _phaseDestructive() async {
   final username2 = _placeholders['username2'];
   if (userId2 != null && username2 != null) {
     try {
-      await pkg.users.deleteAllUserHistory(
-        userId: int.parse(userId2),
-        username: username2,
-      );
+      await pkg.users.deleteAllUserHistory(userId: int.parse(userId2));
       _pkgLog('users.deleteAllUserHistory', 'OK');
       await pkg.users.deleteUser(userId: int.parse(userId2));
       _pkgLog('users.deleteUser (final)', 'OK');

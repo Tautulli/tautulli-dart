@@ -13,7 +13,6 @@ class LogService {
   /// Returns Tautulli log entries, optionally filtered and paginated.
   ///
   /// Use [search] or [regex] to filter by content, and [start]/[end] for row offsets.
-  /// Set [ms] to `true` to include milliseconds in timestamps.
   Future<List<LogEntry>> getLogs({
     String? sort,
     String? search,
@@ -21,7 +20,6 @@ class LogService {
     String? regex,
     int? start,
     int? end,
-    bool? ms,
   }) async {
     final params = <String, dynamic>{};
     if (sort != null) params['sort'] = sort;
@@ -30,7 +28,6 @@ class LogService {
     if (regex != null) params['regex'] = regex;
     if (start != null) params['start'] = start;
     if (end != null) params['end'] = end;
-    if (ms != null) params['ms'] = ms;
 
     final response = await _client.execute('get_logs', params: params);
     return Cast.dataList(

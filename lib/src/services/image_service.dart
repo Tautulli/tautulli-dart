@@ -14,11 +14,12 @@ class ImageService {
   ///
   /// Provide either [img] (Plex image path) or [ratingKey], or both.
   /// [background] is a hex color without `#`, such as `'282828'`. The three
-  /// flags are sent only when true: the server reads `refresh` and `clip` by
-  /// truthiness, so `'0'` would count as set, and the mere presence of
-  /// `return_hash` switches the response to JSON. With [returnHash] the URI
-  /// therefore answers `{"response": ...}` carrying the image hash, not image
-  /// bytes, and must not be handed to an image widget.
+  /// flags are sent as `1` only when true. The handler reads `refresh` by
+  /// bare truthiness, so a `'0'` would count as set, and the API layer returns
+  /// raw image bytes only when `return_hash` is absent from the request. `clip`
+  /// is normalized server-side and is omitted when false for consistency.
+  /// With [returnHash] the URI answers `{"response": ...}` carrying the image
+  /// hash, not image bytes, and must not be handed to an image widget.
   Uri buildImageUrl({
     String? img,
     int? ratingKey,

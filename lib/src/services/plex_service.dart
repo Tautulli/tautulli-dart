@@ -89,17 +89,10 @@ class PlexService {
     return Cast.dataMap(response['data'], 'get_pms_update');
   }
 
-  /// Returns the current status of the Plex Media Server.
-  ///
-  /// Optionally filter to a specific session with [sessionKey] or [sessionId].
-  Future<Map<String, dynamic>> serverStatus({
-    int? sessionKey,
-    String? sessionId,
-  }) async {
-    final params = <String, dynamic>{};
-    if (sessionKey != null) params['session_key'] = sessionKey;
-    if (sessionId != null) params['session_id'] = sessionId;
-    final response = await _client.execute('server_status', params: params);
+  /// Returns whether Tautulli is connected to the Plex Media Server, as
+  /// `{'connected': bool}`.
+  Future<Map<String, dynamic>> serverStatus() async {
+    final response = await _client.execute('server_status');
     return Cast.dataMap(response['data'], 'server_status');
   }
 }

@@ -942,8 +942,9 @@ void main() {
         httpClient: MockClient((_) async => http.Response('', 200)),
       );
 
-      // The server reads refresh and clip by truthiness and switches to a
-      // JSON response whenever return_hash is present, so false is omitted.
+      // refresh is read by bare truthiness and the API layer serves image
+      // bytes only while return_hash is absent, so false is omitted; clip
+      // follows the same encoding for consistency.
       final off = client.images.buildImageUrl(
         ratingKey: 456,
         refresh: false,
