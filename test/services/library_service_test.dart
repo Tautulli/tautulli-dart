@@ -140,6 +140,8 @@ void main() {
       expect(result[2].directors, contains('Geeta Patel'));
       // Plex sends milliseconds: 2369088 is row 1's duration.
       expect(result[1].duration, const Duration(milliseconds: 2369088));
+      // v2.18.2 sends edition_title on every row, empty without an edition.
+      expect(result.first.editionTitle, '');
       expect(result[1].contentRating, 'TV-MA');
       expect(result[1].collections, isEmpty);
     });

@@ -36,6 +36,10 @@ class RecentlyAddedItem {
   /// Total duration of this item.
   final Duration? duration;
 
+  /// Edition title of the item, such as `'Director's Cut'`. Sent by Tautulli
+  /// v2.18.2 and newer, as an empty string when the item has no edition.
+  final String? editionTitle;
+
   /// Full hierarchical title (e.g. `'Show - Season Title'`).
   final String? fullTitle;
 
@@ -144,6 +148,7 @@ class RecentlyAddedItem {
     this.contentRating,
     this.directors,
     this.duration,
+    this.editionTitle,
     this.fullTitle,
     this.genres,
     this.grandparentRatingKey,
@@ -192,6 +197,7 @@ class RecentlyAddedItem {
       contentRating: Cast.castToString(json['content_rating']),
       directors: _stringListFromList(json['directors'] as List?),
       duration: Cast.durationFromMillis(json['duration']),
+      editionTitle: Cast.castToString(json['edition_title']),
       fullTitle: Cast.castToString(json['full_title']),
       genres: _stringListFromList(json['genres'] as List?),
       grandparentRatingKey: Cast.castToInt(json['grandparent_rating_key']),

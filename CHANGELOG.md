@@ -1,5 +1,21 @@
 # Changelog
 
+## 3.4.0-wip
+
+### Added
+
+- Added `editionTitle` to `RecentlyAddedItem` and `MediaItem`. `get_metadata` already sent
+  `edition_title`, and `get_recently_added` sends it from Tautulli v2.18.2 on.
+
+### Behavior notes
+
+- `logoutUserSession` succeeds on Tautulli v2.18.2 and newer. Earlier servers answer `result: error`
+  even after logging the session out, because the users-table helper fell through to `return False`
+  on success, so the call throws `TautulliServerException` there.
+- `downloadDatabase` waits while the server copies the whole database before the first byte is
+  sent, and v2.18.2 writes that copy to the data directory instead of the cache directory. A large
+  database can exceed the default 30-second timeout. Set `TautulliConnection.downloadTimeout`.
+
 ## 3.3.0
 
 **Requires Tautulli v2.18.0 or newer.** Verified end-to-end against a live v2.18.1 server, with the

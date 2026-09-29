@@ -112,6 +112,9 @@ class TautulliService {
   ///
   /// [rowIds] are login-log row IDs (see `UserService.getUserLogins`); pass at
   /// least one.
+  ///
+  /// Needs Tautulli v2.18.2: earlier servers answer `result: error` even after
+  /// logging the session out, so this throws [TautulliServerException] there.
   Future<void> logoutUserSession({required List<int> rowIds}) async {
     await _client.execute('logout_user_session', params: {'row_ids': rowIds});
   }

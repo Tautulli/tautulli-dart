@@ -36,6 +36,7 @@ void main() {
       final item = await client.media.getMetadata(ratingKey: 1001);
       expect(item.title, 'Black Widow');
       expect(item.mediaType, MediaType.movie);
+      expect(item.editionTitle, ''); // sent empty without an edition
       expect(item.year, 2021);
       // The captured item has no critic rating (`rating` is `""`); the
       // audience score covers the double coercion.

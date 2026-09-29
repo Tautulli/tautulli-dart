@@ -98,7 +98,7 @@ void main() {
 
   group('TautulliService.logoutUserSession()', () {
     test('sends row_ids (plural) as a comma-separated list', () async {
-      makeClient('success_response.json');
+      makeClient('tautulli/logout_user_session.json');
       await client.tautulli.logoutUserSession(rowIds: [2, 3]);
       final q = lastRequestUri.queryParameters;
       expect(q['cmd'], 'logout_user_session');
