@@ -8,27 +8,27 @@
       "rows": [
         {
           "title": "Concurrent Streams",
-          "count": 5,
-          "started": "1788309101",
-          "stopped": "1788309157"
+          "count": 6,
+          "started": "1789774740",
+          "stopped": "1789774910"
         },
         {
           "title": "Concurrent Transcodes",
           "count": 4,
-          "started": "1788407635",
-          "stopped": "1788407819"
+          "started": "1789769666",
+          "stopped": "1789773171"
         },
         {
           "title": "Concurrent Direct Streams",
-          "count": 2,
-          "started": "1788127112",
-          "stopped": "1788128523"
+          "count": 1,
+          "started": "1789688461",
+          "stopped": "1789689950"
         },
         {
           "title": "Concurrent Direct Plays",
           "count": 4,
-          "started": "1788309101",
-          "stopped": "1788309157"
+          "started": "1788896441",
+          "stopped": "1788896793"
         }
       ]
     }

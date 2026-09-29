@@ -36,7 +36,7 @@ void main() {
       expect(result.data, hasLength(14));
       expect(result.data.first.sectionName, 'TV Shows');
       expect(result.data.first.sectionType, SectionType.show);
-      expect(result.data.first.plays, 48137);
+      expect(result.data.first.plays, 46957);
     });
   });
 
@@ -130,18 +130,18 @@ void main() {
       makeClient('library/get_recently_added.json');
       final result = await client.libraries.getRecentlyAdded(count: 10);
       expect(result, hasLength(5));
-      expect(result.first.title, 'Season 2');
-      expect(result.first.mediaType, MediaType.season);
-      // This capture's first row (a season) has an empty genres list and no
-      // directors; row 1, an episode, still exercises the non-empty
-      // string-list parsing path for directors.
+      expect(result.first.title, 'Timber');
+      expect(result.first.mediaType, MediaType.episode);
+      // This capture's rows are episodes and one movie (no season row); row
+      // 0 (Timber) has an empty genres list and no directors. Row 2, another
+      // episode, still exercises the non-empty string-list parsing path for
+      // directors.
       expect(result.first.genres, isEmpty);
-      expect(result[1].directors, contains('Anna Dokoza'));
-      // Plex sends milliseconds: 2701888 is a 45-minute episode.
-      expect(result[1].duration, const Duration(milliseconds: 2701888));
-      expect(result[1].contentRating, 'TV-14');
+      expect(result[2].directors, contains('Geeta Patel'));
+      // Plex sends milliseconds: 2369088 is row 1's duration.
+      expect(result[1].duration, const Duration(milliseconds: 2369088));
+      expect(result[1].contentRating, 'TV-MA');
       expect(result[1].collections, isEmpty);
-      expect(result.first.duration, isNull); // the season row sends ''
     });
   });
 

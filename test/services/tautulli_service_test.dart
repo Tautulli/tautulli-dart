@@ -82,7 +82,7 @@ void main() {
       makeClient('tautulli/get_tautulli_info.json');
       final result = await client.tautulli.getTautulliInfo();
       expect(lastRequestUri.queryParameters['cmd'], 'get_tautulli_info');
-      expect(result['tautulli_version'], 'v2.18.1');
+      expect(result['tautulli_version'], 'v2.18.2');
       expect(result['tautulli_platform'], 'Linux');
     });
   });

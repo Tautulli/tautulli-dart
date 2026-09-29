@@ -3,7 +3,7 @@
     "result": "success",
     "message": null,
     "data": {
-      "id": 5,
+      "id": 7,
       "agent_id": 0,
       "agent_name": "recently_added",
       "agent_label": "Recently Added",
@@ -134,200 +134,196 @@
           "input_type": "selectize",
           "select_options": [
             {
-              "value": "kara@example.com",
-              "text": "user56"
+              "value": "mona@example.com",
+              "text": "carol"
             },
             {
               "value": "oscar@example.com",
-              "text": "dave"
+              "text": "henry"
             },
             {
               "value": "alice@example.com",
-              "text": "ivy"
-            },
-            {
-              "value": "carol@example.com",
-              "text": "user37"
-            },
-            {
-              "value": "dave@example.com",
-              "text": "oscar"
-            },
-            {
-              "value": "liam@example.com",
-              "text": "user54"
-            },
-            {
-              "value": "frank@example.com",
-              "text": "user19"
-            },
-            {
-              "value": "kara@example.com",
-              "text": "user21"
-            },
-            {
-              "value": "grace@example.com",
-              "text": "user23"
+              "text": "user36"
             },
             {
               "value": "bob@example.com",
-              "text": "pete"
+              "text": "nina"
             },
             {
-              "value": "oscar@example.com",
-              "text": "user33"
-            },
-            {
-              "value": "henry@example.com",
-              "text": "user27"
-            },
-            {
-              "value": "nina@example.com",
-              "text": "grace"
+              "value": "ivy@example.com",
+              "text": "user53"
             },
             {
               "value": "dave@example.com",
-              "text": "user63"
+              "text": "user18"
+            },
+            {
+              "value": "ivy@example.com",
+              "text": "user20"
+            },
+            {
+              "value": "erin@example.com",
+              "text": "user22"
+            },
+            {
+              "value": "oscar@example.com",
+              "text": "oscar"
             },
             {
               "value": "mona@example.com",
               "text": "user32"
             },
             {
-              "value": "henry@example.com",
-              "text": "user67"
-            },
-            {
-              "value": "alice@example.com",
-              "text": "user35"
-            },
-            {
-              "value": "bob@example.com",
-              "text": "user41"
-            },
-            {
               "value": "frank@example.com",
-              "text": "user43"
-            },
-            {
-              "value": "oscar@example.com",
-              "text": "user58"
-            },
-            {
-              "value": "grace@example.com",
-              "text": "user36"
-            },
-            {
-              "value": "jack@example.com",
-              "text": "user55"
-            },
-            {
-              "value": "carol@example.com",
-              "text": "user62"
+              "text": "user26"
             },
             {
               "value": "liam@example.com",
-              "text": "carol"
-            },
-            {
-              "value": "erin@example.com",
-              "text": "user42"
-            },
-            {
-              "value": "grace@example.com",
-              "text": "user61"
-            },
-            {
-              "value": "jack@example.com",
-              "text": "user71"
-            },
-            {
-              "value": "bob@example.com",
-              "text": "liam"
-            },
-            {
-              "value": "henry@example.com",
-              "text": "user50"
-            },
-            {
-              "value": "pete@example.com",
-              "text": "user34"
-            },
-            {
-              "value": "frank@example.com",
-              "text": "user48"
-            },
-            {
-              "value": "jack@example.com",
-              "text": "erin"
-            },
-            {
-              "value": "pete@example.com",
-              "text": "henry"
-            },
-            {
-              "value": "pete@example.com",
-              "text": "jack"
-            },
-            {
-              "value": "ivy@example.com",
-              "text": "user39"
-            },
-            {
-              "value": "nina@example.com",
-              "text": "user64"
-            },
-            {
-              "value": "ivy@example.com",
-              "text": "user31"
-            },
-            {
-              "value": "ivy@example.com",
-              "text": "user22"
-            },
-            {
-              "value": "erin@example.com",
-              "text": "user102"
-            },
-            {
-              "value": "mona@example.com",
               "text": "frank"
             },
             {
-              "value": "nina@example.com",
-              "text": "user40"
-            },
-            {
-              "value": "liam@example.com",
-              "text": "kara"
-            },
-            {
-              "value": "henry@example.com",
-              "text": "user25"
-            },
-            {
-              "value": "ivy@example.com",
-              "text": "user52"
+              "value": "alice@example.com",
+              "text": "user61"
             },
             {
               "value": "kara@example.com",
-              "text": "alice"
-            },
-            {
-              "value": "dave@example.com",
-              "text": "user38"
-            },
-            {
-              "value": "mona@example.com",
-              "text": "user99"
+              "text": "user31"
             },
             {
               "value": "erin@example.com",
-              "text": "mona"
+              "text": "user65"
+            },
+            {
+              "value": "oscar@example.com",
+              "text": "user34"
+            },
+            {
+              "value": "pete@example.com",
+              "text": "user40"
+            },
+            {
+              "value": "dave@example.com",
+              "text": "user42"
+            },
+            {
+              "value": "liam@example.com",
+              "text": "user56"
+            },
+            {
+              "value": "erin@example.com",
+              "text": "user35"
+            },
+            {
+              "value": "henry@example.com",
+              "text": "user54"
+            },
+            {
+              "value": "pete@example.com",
+              "text": "user60"
+            },
+            {
+              "value": "jack@example.com",
+              "text": "bob"
             },
             {
               "value": "carol@example.com",
-              "text": "nina"
+              "text": "user41"
+            },
+            {
+              "value": "dave@example.com",
+              "text": "user59"
+            },
+            {
+              "value": "grace@example.com",
+              "text": "user69"
+            },
+            {
+              "value": "pete@example.com",
+              "text": "kara"
+            },
+            {
+              "value": "frank@example.com",
+              "text": "user49"
+            },
+            {
+              "value": "nina@example.com",
+              "text": "user33"
+            },
+            {
+              "value": "carol@example.com",
+              "text": "user47"
+            },
+            {
+              "value": "henry@example.com",
+              "text": "dave"
+            },
+            {
+              "value": "mona@example.com",
+              "text": "grace"
+            },
+            {
+              "value": "nina@example.com",
+              "text": "ivy"
+            },
+            {
+              "value": "grace@example.com",
+              "text": "user38"
+            },
+            {
+              "value": "kara@example.com",
+              "text": "user62"
+            },
+            {
+              "value": "frank@example.com",
+              "text": "user30"
+            },
+            {
+              "value": "grace@example.com",
+              "text": "user21"
+            },
+            {
+              "value": "bob@example.com",
+              "text": "user100"
+            },
+            {
+              "value": "kara@example.com",
+              "text": "erin"
+            },
+            {
+              "value": "liam@example.com",
+              "text": "user39"
+            },
+            {
+              "value": "jack@example.com",
+              "text": "jack"
+            },
+            {
+              "value": "frank@example.com",
+              "text": "user24"
+            },
+            {
+              "value": "grace@example.com",
+              "text": "user51"
+            },
+            {
+              "value": "ivy@example.com",
+              "text": "alice"
+            },
+            {
+              "value": "bob@example.com",
+              "text": "user37"
+            },
+            {
+              "value": "jack@example.com",
+              "text": "user97"
+            },
+            {
+              "value": "carol@example.com",
+              "text": "liam"
+            },
+            {
+              "value": "alice@example.com",
+              "text": "mona"
             }
           ],
           "select_all": true
@@ -340,200 +336,196 @@
           "input_type": "selectize",
           "select_options": [
             {
-              "value": "kara@example.com",
-              "text": "user56"
+              "value": "mona@example.com",
+              "text": "carol"
             },
             {
               "value": "oscar@example.com",
-              "text": "dave"
+              "text": "henry"
             },
             {
               "value": "alice@example.com",
-              "text": "ivy"
-            },
-            {
-              "value": "carol@example.com",
-              "text": "user37"
-            },
-            {
-              "value": "dave@example.com",
-              "text": "oscar"
-            },
-            {
-              "value": "liam@example.com",
-              "text": "user54"
-            },
-            {
-              "value": "frank@example.com",
-              "text": "user19"
-            },
-            {
-              "value": "kara@example.com",
-              "text": "user21"
-            },
-            {
-              "value": "grace@example.com",
-              "text": "user23"
+              "text": "user36"
             },
             {
               "value": "bob@example.com",
-              "text": "pete"
+              "text": "nina"
             },
             {
-              "value": "oscar@example.com",
-              "text": "user33"
-            },
-            {
-              "value": "henry@example.com",
-              "text": "user27"
-            },
-            {
-              "value": "nina@example.com",
-              "text": "grace"
+              "value": "ivy@example.com",
+              "text": "user53"
             },
             {
               "value": "dave@example.com",
-              "text": "user63"
+              "text": "user18"
+            },
+            {
+              "value": "ivy@example.com",
+              "text": "user20"
+            },
+            {
+              "value": "erin@example.com",
+              "text": "user22"
+            },
+            {
+              "value": "oscar@example.com",
+              "text": "oscar"
             },
             {
               "value": "mona@example.com",
               "text": "user32"
             },
             {
-              "value": "henry@example.com",
-              "text": "user67"
-            },
-            {
-              "value": "alice@example.com",
-              "text": "user35"
-            },
-            {
-              "value": "bob@example.com",
-              "text": "user41"
-            },
-            {
               "value": "frank@example.com",
-              "text": "user43"
-            },
-            {
-              "value": "oscar@example.com",
-              "text": "user58"
-            },
-            {
-              "value": "grace@example.com",
-              "text": "user36"
-            },
-            {
-              "value": "jack@example.com",
-              "text": "user55"
-            },
-            {
-              "value": "carol@example.com",
-              "text": "user62"
+              "text": "user26"
             },
             {
               "value": "liam@example.com",
-              "text": "carol"
-            },
-            {
-              "value": "erin@example.com",
-              "text": "user42"
-            },
-            {
-              "value": "grace@example.com",
-              "text": "user61"
-            },
-            {
-              "value": "jack@example.com",
-              "text": "user71"
-            },
-            {
-              "value": "bob@example.com",
-              "text": "liam"
-            },
-            {
-              "value": "henry@example.com",
-              "text": "user50"
-            },
-            {
-              "value": "pete@example.com",
-              "text": "user34"
-            },
-            {
-              "value": "frank@example.com",
-              "text": "user48"
-            },
-            {
-              "value": "jack@example.com",
-              "text": "erin"
-            },
-            {
-              "value": "pete@example.com",
-              "text": "henry"
-            },
-            {
-              "value": "pete@example.com",
-              "text": "jack"
-            },
-            {
-              "value": "ivy@example.com",
-              "text": "user39"
-            },
-            {
-              "value": "nina@example.com",
-              "text": "user64"
-            },
-            {
-              "value": "ivy@example.com",
-              "text": "user31"
-            },
-            {
-              "value": "ivy@example.com",
-              "text": "user22"
-            },
-            {
-              "value": "erin@example.com",
-              "text": "user102"
-            },
-            {
-              "value": "mona@example.com",
               "text": "frank"
             },
             {
-              "value": "nina@example.com",
-              "text": "user40"
-            },
-            {
-              "value": "liam@example.com",
-              "text": "kara"
-            },
-            {
-              "value": "henry@example.com",
-              "text": "user25"
-            },
-            {
-              "value": "ivy@example.com",
-              "text": "user52"
+              "value": "alice@example.com",
+              "text": "user61"
             },
             {
               "value": "kara@example.com",
-              "text": "alice"
-            },
-            {
-              "value": "dave@example.com",
-              "text": "user38"
-            },
-            {
-              "value": "mona@example.com",
-              "text": "user99"
+              "text": "user31"
             },
             {
               "value": "erin@example.com",
-              "text": "mona"
+              "text": "user65"
+            },
+            {
+              "value": "oscar@example.com",
+              "text": "user34"
+            },
+            {
+              "value": "pete@example.com",
+              "text": "user40"
+            },
+            {
+              "value": "dave@example.com",
+              "text": "user42"
+            },
+            {
+              "value": "liam@example.com",
+              "text": "user56"
+            },
+            {
+              "value": "erin@example.com",
+              "text": "user35"
+            },
+            {
+              "value": "henry@example.com",
+              "text": "user54"
+            },
+            {
+              "value": "pete@example.com",
+              "text": "user60"
+            },
+            {
+              "value": "jack@example.com",
+              "text": "bob"
             },
             {
               "value": "carol@example.com",
-              "text": "nina"
+              "text": "user41"
+            },
+            {
+              "value": "dave@example.com",
+              "text": "user59"
+            },
+            {
+              "value": "grace@example.com",
+              "text": "user69"
+            },
+            {
+              "value": "pete@example.com",
+              "text": "kara"
+            },
+            {
+              "value": "frank@example.com",
+              "text": "user49"
+            },
+            {
+              "value": "nina@example.com",
+              "text": "user33"
+            },
+            {
+              "value": "carol@example.com",
+              "text": "user47"
+            },
+            {
+              "value": "henry@example.com",
+              "text": "dave"
+            },
+            {
+              "value": "mona@example.com",
+              "text": "grace"
+            },
+            {
+              "value": "nina@example.com",
+              "text": "ivy"
+            },
+            {
+              "value": "grace@example.com",
+              "text": "user38"
+            },
+            {
+              "value": "kara@example.com",
+              "text": "user62"
+            },
+            {
+              "value": "frank@example.com",
+              "text": "user30"
+            },
+            {
+              "value": "grace@example.com",
+              "text": "user21"
+            },
+            {
+              "value": "bob@example.com",
+              "text": "user100"
+            },
+            {
+              "value": "kara@example.com",
+              "text": "erin"
+            },
+            {
+              "value": "liam@example.com",
+              "text": "user39"
+            },
+            {
+              "value": "jack@example.com",
+              "text": "jack"
+            },
+            {
+              "value": "frank@example.com",
+              "text": "user24"
+            },
+            {
+              "value": "grace@example.com",
+              "text": "user51"
+            },
+            {
+              "value": "ivy@example.com",
+              "text": "alice"
+            },
+            {
+              "value": "bob@example.com",
+              "text": "user37"
+            },
+            {
+              "value": "jack@example.com",
+              "text": "user97"
+            },
+            {
+              "value": "carol@example.com",
+              "text": "liam"
+            },
+            {
+              "value": "alice@example.com",
+              "text": "mona"
             }
           ],
           "select_all": true
@@ -546,200 +538,196 @@
           "input_type": "selectize",
           "select_options": [
             {
-              "value": "kara@example.com",
-              "text": "user56"
+              "value": "mona@example.com",
+              "text": "carol"
             },
             {
               "value": "oscar@example.com",
-              "text": "dave"
+              "text": "henry"
             },
             {
               "value": "alice@example.com",
-              "text": "ivy"
-            },
-            {
-              "value": "carol@example.com",
-              "text": "user37"
-            },
-            {
-              "value": "dave@example.com",
-              "text": "oscar"
-            },
-            {
-              "value": "liam@example.com",
-              "text": "user54"
-            },
-            {
-              "value": "frank@example.com",
-              "text": "user19"
-            },
-            {
-              "value": "kara@example.com",
-              "text": "user21"
-            },
-            {
-              "value": "grace@example.com",
-              "text": "user23"
+              "text": "user36"
             },
             {
               "value": "bob@example.com",
-              "text": "pete"
+              "text": "nina"
             },
             {
-              "value": "oscar@example.com",
-              "text": "user33"
-            },
-            {
-              "value": "henry@example.com",
-              "text": "user27"
-            },
-            {
-              "value": "nina@example.com",
-              "text": "grace"
+              "value": "ivy@example.com",
+              "text": "user53"
             },
             {
               "value": "dave@example.com",
-              "text": "user63"
+              "text": "user18"
+            },
+            {
+              "value": "ivy@example.com",
+              "text": "user20"
+            },
+            {
+              "value": "erin@example.com",
+              "text": "user22"
+            },
+            {
+              "value": "oscar@example.com",
+              "text": "oscar"
             },
             {
               "value": "mona@example.com",
               "text": "user32"
             },
             {
-              "value": "henry@example.com",
-              "text": "user67"
-            },
-            {
-              "value": "alice@example.com",
-              "text": "user35"
-            },
-            {
-              "value": "bob@example.com",
-              "text": "user41"
-            },
-            {
               "value": "frank@example.com",
-              "text": "user43"
-            },
-            {
-              "value": "oscar@example.com",
-              "text": "user58"
-            },
-            {
-              "value": "grace@example.com",
-              "text": "user36"
-            },
-            {
-              "value": "jack@example.com",
-              "text": "user55"
-            },
-            {
-              "value": "carol@example.com",
-              "text": "user62"
+              "text": "user26"
             },
             {
               "value": "liam@example.com",
-              "text": "carol"
-            },
-            {
-              "value": "erin@example.com",
-              "text": "user42"
-            },
-            {
-              "value": "grace@example.com",
-              "text": "user61"
-            },
-            {
-              "value": "jack@example.com",
-              "text": "user71"
-            },
-            {
-              "value": "bob@example.com",
-              "text": "liam"
-            },
-            {
-              "value": "henry@example.com",
-              "text": "user50"
-            },
-            {
-              "value": "pete@example.com",
-              "text": "user34"
-            },
-            {
-              "value": "frank@example.com",
-              "text": "user48"
-            },
-            {
-              "value": "jack@example.com",
-              "text": "erin"
-            },
-            {
-              "value": "pete@example.com",
-              "text": "henry"
-            },
-            {
-              "value": "pete@example.com",
-              "text": "jack"
-            },
-            {
-              "value": "ivy@example.com",
-              "text": "user39"
-            },
-            {
-              "value": "nina@example.com",
-              "text": "user64"
-            },
-            {
-              "value": "ivy@example.com",
-              "text": "user31"
-            },
-            {
-              "value": "ivy@example.com",
-              "text": "user22"
-            },
-            {
-              "value": "erin@example.com",
-              "text": "user102"
-            },
-            {
-              "value": "mona@example.com",
               "text": "frank"
             },
             {
-              "value": "nina@example.com",
-              "text": "user40"
-            },
-            {
-              "value": "liam@example.com",
-              "text": "kara"
-            },
-            {
-              "value": "henry@example.com",
-              "text": "user25"
-            },
-            {
-              "value": "ivy@example.com",
-              "text": "user52"
+              "value": "alice@example.com",
+              "text": "user61"
             },
             {
               "value": "kara@example.com",
-              "text": "alice"
-            },
-            {
-              "value": "dave@example.com",
-              "text": "user38"
-            },
-            {
-              "value": "mona@example.com",
-              "text": "user99"
+              "text": "user31"
             },
             {
               "value": "erin@example.com",
-              "text": "mona"
+              "text": "user65"
+            },
+            {
+              "value": "oscar@example.com",
+              "text": "user34"
+            },
+            {
+              "value": "pete@example.com",
+              "text": "user40"
+            },
+            {
+              "value": "dave@example.com",
+              "text": "user42"
+            },
+            {
+              "value": "liam@example.com",
+              "text": "user56"
+            },
+            {
+              "value": "erin@example.com",
+              "text": "user35"
+            },
+            {
+              "value": "henry@example.com",
+              "text": "user54"
+            },
+            {
+              "value": "pete@example.com",
+              "text": "user60"
+            },
+            {
+              "value": "jack@example.com",
+              "text": "bob"
             },
             {
               "value": "carol@example.com",
-              "text": "nina"
+              "text": "user41"
+            },
+            {
+              "value": "dave@example.com",
+              "text": "user59"
+            },
+            {
+              "value": "grace@example.com",
+              "text": "user69"
+            },
+            {
+              "value": "pete@example.com",
+              "text": "kara"
+            },
+            {
+              "value": "frank@example.com",
+              "text": "user49"
+            },
+            {
+              "value": "nina@example.com",
+              "text": "user33"
+            },
+            {
+              "value": "carol@example.com",
+              "text": "user47"
+            },
+            {
+              "value": "henry@example.com",
+              "text": "dave"
+            },
+            {
+              "value": "mona@example.com",
+              "text": "grace"
+            },
+            {
+              "value": "nina@example.com",
+              "text": "ivy"
+            },
+            {
+              "value": "grace@example.com",
+              "text": "user38"
+            },
+            {
+              "value": "kara@example.com",
+              "text": "user62"
+            },
+            {
+              "value": "frank@example.com",
+              "text": "user30"
+            },
+            {
+              "value": "grace@example.com",
+              "text": "user21"
+            },
+            {
+              "value": "bob@example.com",
+              "text": "user100"
+            },
+            {
+              "value": "kara@example.com",
+              "text": "erin"
+            },
+            {
+              "value": "liam@example.com",
+              "text": "user39"
+            },
+            {
+              "value": "jack@example.com",
+              "text": "jack"
+            },
+            {
+              "value": "frank@example.com",
+              "text": "user24"
+            },
+            {
+              "value": "grace@example.com",
+              "text": "user51"
+            },
+            {
+              "value": "ivy@example.com",
+              "text": "alice"
+            },
+            {
+              "value": "bob@example.com",
+              "text": "user37"
+            },
+            {
+              "value": "jack@example.com",
+              "text": "user97"
+            },
+            {
+              "value": "carol@example.com",
+              "text": "liam"
+            },
+            {
+              "value": "alice@example.com",
+              "text": "mona"
             }
           ],
           "select_all": true

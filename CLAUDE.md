@@ -68,8 +68,8 @@ Tests use `MockClient` from `package:http/testing.dart` (ships with `http` — n
 
 ## Fixtures (ground truth)
 
-`test/fixtures/` holds ~160 **full sanitized real responses**, the corpus captured 2026-09-03 from a
-live Tautulli v2.18.1 server (release tag `6d410e2`), with four files retained from the earlier
+`test/fixtures/` holds ~160 **full sanitized real responses**, the corpus captured 2026-09-28 from a
+live Tautulli v2.18.2 server (release tag `9484667`), with four files retained from the earlier
 v2.17.2 campaign (see `test/fixtures/README.md` for provenance, the two-batch
 alias caveat and sanitization, and `test/CAPTURING.md` for the reproducible capture process using
 `tool/live_capture/`). They are the authoritative source for response
@@ -82,7 +82,7 @@ shapes — more reliable than the wiki, whose examples are sometimes stale or ab
 
 ## API Reference
 
-The primary reference for commands and parameters is the [Tautulli API Reference](https://github.com/Tautulli/Tautulli/wiki/Tautulli-API-Reference), **but the wiki contains known errors** — never let it outrank a fixture on a disputed point. Precedence for resolving response-shape questions: `test/fixtures/` (real behavior) > Tautulli server source at the version tag > wiki. Extract and diff the command surface at a tag with `python3 tool/api_surface.py <tag> [<tag>]`. The package targets **Tautulli v2.18.0 and newer** and was last verified end-to-end against **v2.18.1** (release tag `6d410e2`).
+The primary reference for commands and parameters is the [Tautulli API Reference](https://github.com/Tautulli/Tautulli/wiki/Tautulli-API-Reference), **but the wiki contains known errors** — never let it outrank a fixture on a disputed point. Precedence for resolving response-shape questions: `test/fixtures/` (real behavior) > Tautulli server source at the version tag > wiki. Extract and diff the command surface at a tag with `python3 tool/api_surface.py <tag> [<tag>]`. The package targets **Tautulli v2.18.0 and newer** and was last verified end-to-end against **v2.18.2** (release tag `9484667`).
 
 ## Tracking upstream
 

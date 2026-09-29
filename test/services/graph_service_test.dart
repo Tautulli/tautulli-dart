@@ -43,13 +43,13 @@ void main() {
         timeRange: 30,
       );
       expect(data.categories, hasLength(30));
-      expect(data.categories.first, '2026-08-05');
+      expect(data.categories.first, '2026-08-30');
       expect(data.series, hasLength(4));
       expect(data.series.first.seriesType, GraphSeriesType.tv);
       expect(data.series.first.data, hasLength(30));
-      expect(data.series.first.data.take(3), [35, 34, 42]);
+      expect(data.series.first.data.take(3), [26, 23, 36]);
       expect(data.series[1].seriesType, GraphSeriesType.movies);
-      expect(data.series[1].data.take(3), [2, 2, 2]);
+      expect(data.series[1].data.take(3), [4, 2, 1]);
     });
   });
 
@@ -86,7 +86,7 @@ void main() {
       expect(data.categories.first, 'Sunday');
       expect(data.series, hasLength(3));
       expect(data.series.first.seriesType, GraphSeriesType.tv);
-      expect(data.series.first.data.take(3), [133, 123, 124]);
+      expect(data.series.first.data.take(3), [99, 112, 96]);
       expect(
         data.series.any((s) => s.seriesType == GraphSeriesType.total),
         isFalse,
@@ -118,9 +118,9 @@ void main() {
       expect(data.categories.first, '00');
       expect(data.series, hasLength(3));
       expect(data.series.first.seriesType, GraphSeriesType.tv);
-      expect(data.series.first.data.take(3), [21, 12, 4]);
+      expect(data.series.first.data.take(3), [36, 10, 3]);
       expect(data.series[1].seriesType, GraphSeriesType.movies);
-      expect(data.series[1].data.take(3), [4, 2, 1]);
+      expect(data.series[1].data.take(3), [1, 0, 0]);
     });
   });
 
@@ -147,13 +147,13 @@ void main() {
         yAxis: PlayMetricType.plays,
         timeRange: 30,
       );
-      expect(data.categories, hasLength(3));
-      expect(data.categories, ['1080p', '720p', '480p']);
+      expect(data.categories, hasLength(5));
+      expect(data.categories, ['1080p', '720p', 'SD', '576i', '480p']);
       expect(data.series, hasLength(3));
       expect(data.series.first.seriesType, GraphSeriesType.directPlay);
-      expect(data.series.first.data, [655, 32, 1]);
+      expect(data.series.first.data, [288, 17, 0, 4, 3]);
       expect(data.series[2].seriesType, GraphSeriesType.transcode);
-      expect(data.series[2].data, [258, 2, 0]);
+      expect(data.series[2].data, [326, 1, 10, 0, 0]);
     });
   });
 
@@ -180,13 +180,13 @@ void main() {
         yAxis: PlayMetricType.plays,
         timeRange: 30,
       );
-      expect(data.categories, hasLength(4));
-      expect(data.categories, ['1080p', '720p', 'SD', '480p']);
+      expect(data.categories, hasLength(5));
+      expect(data.categories, ['1080p', 'SD', '720p', '576i', '480p']);
       expect(data.series, hasLength(3));
       expect(data.series.first.seriesType, GraphSeriesType.directPlay);
-      expect(data.series.first.data, [655, 32, 0, 1]);
+      expect(data.series.first.data, [288, 0, 17, 4, 3]);
       expect(data.series[2].seriesType, GraphSeriesType.transcode);
-      expect(data.series[2].data, [231, 1, 25, 3]);
+      expect(data.series[2].data, [274, 60, 3, 0, 0]);
     });
   });
 
@@ -211,12 +211,12 @@ void main() {
         timeRange: 30,
       );
       expect(data.categories, hasLength(30));
-      expect(data.categories.first, '2026-08-05');
+      expect(data.categories.first, '2026-08-30');
       expect(data.series, hasLength(3));
       expect(data.series.first.seriesType, GraphSeriesType.directPlay);
-      expect(data.series.first.data.take(3), [28, 31, 27]);
+      expect(data.series.first.data.take(3), [13, 17, 26]);
       expect(data.series[2].seriesType, GraphSeriesType.transcode);
-      expect(data.series[2].data.take(3), [9, 5, 16]);
+      expect(data.series[2].data.take(3), [16, 8, 11]);
     });
   });
 
@@ -243,13 +243,13 @@ void main() {
         yAxis: PlayMetricType.plays,
         timeRange: 30,
       );
-      expect(data.categories, hasLength(9));
+      expect(data.categories, hasLength(8));
       expect(data.categories.first, 'Android');
       expect(data.series, hasLength(3));
       expect(data.series.first.seriesType, GraphSeriesType.tv);
-      expect(data.series.first.data.take(3), [551, 121, 74]);
+      expect(data.series.first.data.take(3), [205, 175, 79]);
       expect(data.series[1].seriesType, GraphSeriesType.movies);
-      expect(data.series[1].data.take(3), [14, 11, 12]);
+      expect(data.series[1].data.take(3), [15, 12, 15]);
     });
   });
 
@@ -277,12 +277,12 @@ void main() {
         timeRange: 30,
       );
       expect(data.categories, hasLength(10));
-      expect(data.categories.first, 'user25');
+      expect(data.categories.first, 'kara');
       expect(data.series, hasLength(3));
       expect(data.series.first.seriesType, GraphSeriesType.tv);
-      expect(data.series.first.data.take(3), [476, 101, 81]);
+      expect(data.series.first.data.take(3), [136, 132, 82]);
       expect(data.series[1].seriesType, GraphSeriesType.movies);
-      expect(data.series[1].data.take(3), [12, 12, 2]);
+      expect(data.series[1].data.take(3), [11, 3, 16]);
     });
   });
 
@@ -310,9 +310,9 @@ void main() {
       expect(data.categories.first, 'Oct 2025');
       expect(data.series, hasLength(3));
       expect(data.series.first.seriesType, GraphSeriesType.tv);
-      expect(data.series.first.data.take(3), [1291, 1123, 1005]);
+      expect(data.series.first.data.take(3), [1273, 1123, 1003]);
       expect(data.series[1].seriesType, GraphSeriesType.movies);
-      expect(data.series[1].data.take(3), [43, 63, 60]);
+      expect(data.series[1].data.take(3), [42, 62, 59]);
     });
   });
 
@@ -339,13 +339,13 @@ void main() {
         yAxis: PlayMetricType.plays,
         timeRange: 30,
       );
-      expect(data.categories, hasLength(9));
+      expect(data.categories, hasLength(8));
       expect(data.categories.first, 'Android');
       expect(data.series, hasLength(3));
       expect(data.series.first.seriesType, GraphSeriesType.directPlay);
-      expect(data.series.first.data.take(3), [535, 2, 80]);
+      expect(data.series.first.data.take(3), [158, 3, 83]);
       expect(data.series[2].seriesType, GraphSeriesType.transcode);
-      expect(data.series[2].data.take(3), [30, 129, 6]);
+      expect(data.series[2].data.take(3), [62, 178, 11]);
     });
   });
 
@@ -373,12 +373,12 @@ void main() {
         timeRange: 30,
       );
       expect(data.categories, hasLength(10));
-      expect(data.categories.first, 'user25');
+      expect(data.categories.first, 'kara');
       expect(data.series, hasLength(3));
       expect(data.series.first.seriesType, GraphSeriesType.directPlay);
-      expect(data.series.first.data.take(3), [484, 5, 34]);
+      expect(data.series.first.data.take(3), [8, 38, 48]);
       expect(data.series[2].seriesType, GraphSeriesType.transcode);
-      expect(data.series[2].data.take(3), [3, 108, 48]);
+      expect(data.series[2].data.take(3), [134, 96, 50]);
     });
   });
 }

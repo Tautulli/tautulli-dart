@@ -53,18 +53,18 @@ For early warning only, list the handler files nightly has touched since the aud
 heads-up, nothing more (rule 3):
 
 ```bash
-gh api repos/Tautulli/Tautulli/compare/v2.18.1...nightly --jq '.files[].filename' | grep -E 'webserve|api2'
+gh api repos/Tautulli/Tautulli/compare/v2.18.2...nightly --jq '.files[].filename' | grep -E 'webserve|api2'
 ```
 
 ## 3. Diff the real surface
 
 ```bash
-python3 tool/api_surface.py v2.18.1 <new-tag>
+python3 tool/api_surface.py v2.18.2 <new-tag>
 ```
 
 Left operand is the audited tag; `v2.17.2 v2.18.1` is the diff that produced 3.2.0 (two removals). The
 tool reads `@addtoapi` in `plexpy/webserve.py` plus the public `API2` methods in `plexpy/api2.py`. At
-v2.18.1 it emits 123 commands, byte-identical to what a live server reports — verify that for free, with
+v2.18.2 it emits 123 commands, byte-identical to what a live server reports — verify that for free, with
 no server, against two fixtures that are themselves live captures (both print 123):
 
 ```bash
@@ -76,20 +76,20 @@ python3 -c "import json;m=json.load(open('test/fixtures/errors/unknown_command.j
 few hundred. Parameter and response-shape changes are invisible to it, so diff the handler files:
 
 ```bash
-for t in v2.18.1 <new-tag>; do for f in webserve.py api2.py; do
+for t in v2.18.2 <new-tag>; do for f in webserve.py api2.py; do
   curl -sSL "https://raw.githubusercontent.com/Tautulli/Tautulli/$t/plexpy/$f" -o "/tmp/$t-$f"; done; done
-diff -u /tmp/v2.18.1-webserve.py /tmp/<new-tag>-webserve.py; diff -u /tmp/v2.18.1-api2.py /tmp/<new-tag>-api2.py
+diff -u /tmp/v2.18.2-webserve.py /tmp/<new-tag>-webserve.py; diff -u /tmp/v2.18.2-api2.py /tmp/<new-tag>-api2.py
 ```
 
 Not `gh api …/compare`: it drops the patch for large diffs and reports the file as `changes=0` —
 across v2.17.2…v2.18.1 it showed `webserve.py` as unchanged.
 
-**Never grep `def <command>` to find a handler.** At v2.18.1, 18 of its 123 commands are registered
+**Never grep `def <command>` to find a handler.** At v2.18.2, 18 of its 123 commands are registered
 under a name that differs from their function, and for `get_stream_data` and `pms_image_proxy` an
 unrelated function with the bare command name also exists — a grep silently reads the wrong one. Use:
 
 ```bash
-python3 tool/api_surface.py v2.18.1 --map
+python3 tool/api_surface.py v2.18.2 --map
 ```
 
 ## 4. Triage — what a hit means
@@ -132,8 +132,8 @@ here:
 - When a release shipped a shape and reverted it, accept both. Two shapes live in inline test
   responses instead of fixtures, because no capture can hold them: `get_plex_log`'s v2.18.0 bare
   list (`test/services/log_service_test.dart`) and `search`'s bare-list reply when the PMS query
-  fails (`test/services/media_service_test.dart`), which the v2.18.1 capture without `limit` no
-  longer reproduces. They are the documented rule-4 exceptions.
+  fails (`test/services/media_service_test.dart`), which neither the v2.18.1 nor the v2.18.2 capture
+  without `limit` reproduces. They are the documented rule-4 exceptions.
 - Reconcile tests to fixtures, never the reverse.
 
 ## 6. Verification gates
@@ -182,7 +182,7 @@ beta capture moves the provenance line alone.
    `test/` assertions are fixture-bound and reconcile through `dart test` instead:
 
 ```bash
-git ls-files | grep -E '\.(md|ya?ml|py)$' | xargs grep -nE 'v?2\.18\.1|6d410e2|2026-09-03' | grep -v '^CHANGELOG.md'
+git ls-files | grep -E '\.(md|ya?ml|py)$' | xargs grep -nE 'v?2\.18\.2|9484667|2026-09-28' | grep -v '^CHANGELOG.md'
 ```
 
    `grep -n 'tautulli: \^' README.md` moves on every package release.
@@ -231,7 +231,7 @@ Only `tautulli_commit` identifies a nightly server: nightly's `version.py` still
 A hit is recorded nowhere: no code, no bullet, no `-wip` heading (rule 3).
 
 ```bash
-sha=$(gh api repos/Tautulli/Tautulli/commits/nightly --jq '.sha[:7]'); python3 tool/api_surface.py v2.18.1 $sha
+sha=$(gh api repos/Tautulli/Tautulli/commits/nightly --jq '.sha[:7]'); python3 tool/api_surface.py v2.18.2 $sha
 ```
 
 **Decide.** A beta starts with a request naming the consumer, the upstream commit it cannot wait

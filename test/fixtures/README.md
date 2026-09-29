@@ -1,7 +1,7 @@
 # Fixtures — real, sanitized Tautulli API responses
 
-**Provenance:** the corpus was captured 2026-09-03 from a live **Tautulli v2.18.1** server (release
-tag `6d410e2`, Docker image `tautulli/tautulli:v2.18.1`), all phases included. Four files date from
+**Provenance:** the corpus was captured 2026-09-28 from a live **Tautulli v2.18.2** server (release
+tag `9484667`, Docker image `tautulli/tautulli:v2.18.2`), all phases included. Four files date from
 the 2026-07-04 campaign against **v2.17.2** (nightly `5a39bac6`) and are kept because the newer
 capture was thinner — see "Two capture batches" below. Every file is a complete, unmodified server response run
 through the deterministic sanitizer in
@@ -20,7 +20,7 @@ through the deterministic sanitizer in
    status/content-type/size for binary download endpoints instead of file bytes.
 4. `success_response.json` is a byte-copy of `tautulli/backup_config.json` (a real capture) used by
    tests that only need "any success envelope"; refresh the copy when regenerating.
-5. **Version-bound:** these reflect v2.18.1, apart from the four retained v2.17.2 files named below.
+5. **Version-bound:** these reflect v2.18.2, apart from the four retained v2.17.2 files named below.
    When a new Tautulli release changes the API surface,
    re-run the full capture sweep (never `--only`: aliases are deterministic only within one run, so a
    partial re-capture creates a third alias namespace) and update the provenance line above.
@@ -37,11 +37,11 @@ through the deterministic sanitizer in
 ## Two capture batches
 
 Sanitizer aliases are deterministic **within one capture run**, not across runs: the alias assigned to a
-user depends on the set of users present in that corpus. The v2.18.1 re-capture therefore renumbered
+user depends on the set of users present in that corpus. Each v2.18.x re-capture therefore renumbered
 some aliases relative to the v2.17.2 files retained alongside it, so the same real user can appear under
 different aliases in the two batches. Apart from `activity/get_activity.json` and
 `library/get_library_user_stats.json` — two of the four retained files named below — every fixture a test
-reads comes from the v2.18.1 batch. When comparing identities, compare within a batch.
+reads comes from the v2.18.2 batch. When comparing identities, compare within a batch.
 
 A handful of v2.17.2 fixtures were deliberately kept rather than re-captured because the newer capture
 was *thinner*, not different in shape — `library/get_library_user_stats.json`,
@@ -55,13 +55,15 @@ Replaced with stable placeholders (same input → same alias everywhere **within
 capture batch** — see above):
 
 - API key / device token literals; any value under a credential-looking key
-  (`*password*`, `*token*`, `*api_key*`, `*secret*`, `*hook*`, …) → `REDACTED`
-- Server host and name → `192.0.2.10` / `TestServer`; operator hostnames in URLs → `hostN.example.com`
+  (`*password*`, `*token*`, `*api_key*`, `*secret*`, `*hook*`, `http_username`, …) → `REDACTED`
+- Server host and name → `192.0.2.10` / `TestServer`; operator hostnames in URLs → `hostN.example.com`;
+  the Tautulli host's own name (`tautulli_platform_device_name`) → `tautulli-host`
 - All IPv4s: private → `192.0.2.x`, public → `203.0.113.x` (except campaign inputs like `8.8.8.8`);
   dash-encoded `*.plex.direct` hosts and their cert hashes
 - Usernames / friendly names → `alice`, `bob`, … then `userN`; emails → `<alias>@example.com`
 - Non-generic (personal) library names → `Library N`
-- Player and device names (`player`, `player_name`) → `Player N` (they carry serials and room names)
+- Player and device names (`player`, `player_name`) → `Player N` (they carry serials and room names),
+  also inside rendered notification `subject_text`/`body_text`, which embed the player name
 - Machine ids / PMS identifiers / plex.tv avatar hashes → fixed hex placeholders
 - File-system paths (settings dirs → `/config/redacted`; media file paths → `/media/<basename>`)
 - Geo-lookup results → fixed fake coordinates (Springfield, IL)
@@ -92,6 +94,9 @@ collector had missed, and the sanitizer was corrected for each:
   generic `key` rule without also swallowing `rating_key`/`rating_keys`/`session_key`.
 - Settings paths under keys with no `_dir`/`_path` suffix (`https_cert`, `https_key`, `geoip_db`,
   `scripts_on_*_script`) escaped the `/config/redacted` rule; they are now named explicitly.
+- The web UI login name under `http_username` and the container hostname under
+  `tautulli_platform_device_name` matched no rule. The first is now redacted like its password, the
+  second replaced by `tautulli-host`; the 3.2.0 and 3.3.0 corpora carry the earlier container's id.
 
 The already-published captures for the identity and credential cases were re-redacted in place with the corrected
 sanitizer's own conventions rather than re-captured, because the staging tree was gone by then. That is

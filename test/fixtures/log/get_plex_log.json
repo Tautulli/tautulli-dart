@@ -5,54 +5,54 @@
     "data": {
       "data": [
         [
-          "Sep 03, 2026 15:21:45.375",
+          "Sep 28, 2026 20:00:04.880",
           "DEBUG",
-          "Request: [192.0.2.12:44316 (WAN)] GET /library/metadata/80808?includeMarkers=1 (25 live) #af2366 TLS GZIP Signed-in Token (user69)\n"
+          "[Req#1ab6] [Now] Adding 4 sessions.\n"
         ],
         [
-          "Sep 03, 2026 15:21:45.377",
+          "Sep 28, 2026 20:00:04.883",
           "DEBUG",
-          "[Req#af2366] It took 10.000000 ms to retrieve 113 items.\n"
+          "Completed: [192.0.2.13:32926] 200 GET /status/sessions (40 live) #1ab6 TLS GZIP 3ms 12279 bytes (pipelined: 1)\n"
         ],
         [
-          "Sep 03, 2026 15:21:45.378",
+          "Sep 28, 2026 20:00:04.884",
           "DEBUG",
-          "We're going to try to auto-select an audio stream for account 1.\n"
+          "Request: [192.0.2.14:42274 (WAN)] GET /status/sessions (40 live) #1ac6 TLS GZIP Signed-in Token (user67)\n"
         ],
         [
-          "Sep 03, 2026 15:21:45.378",
+          "Sep 28, 2026 20:00:04.884",
           "DEBUG",
-          "Selecting best audio stream for part ID 240803 (language: en)\n"
+          "[Req#1ac6] [Now] Adding 4 sessions.\n"
         ],
         [
-          "Sep 03, 2026 15:21:45.378",
+          "Sep 28, 2026 20:00:04.886",
           "DEBUG",
-          "We're going to try to auto-select a subtitle for account 1.\n"
+          "Request: [192.0.2.12:53930 (WAN)] GET /status/sessions (40 live) #1ac7 TLS GZIP Signed-in Token (user67)\n"
         ],
         [
-          "Sep 03, 2026 15:21:45.378",
+          "Sep 28, 2026 20:00:04.886",
           "DEBUG",
-          "Audio Stream: 617069, Subtitle Stream: -1\n"
+          "[Req#1ac7] [Now] Adding 4 sessions.\n"
         ],
         [
-          "Sep 03, 2026 15:21:45.379",
+          "Sep 28, 2026 20:00:04.887",
           "DEBUG",
-          "Completed: [192.0.2.12:44316] 200 GET /library/metadata/80808?includeMarkers=1 (25 live) #af2366 TLS GZIP 4ms 5621 bytes (pipelined: 3)\n"
+          "Completed: [192.0.2.14:42274] 200 GET /status/sessions (40 live) #1ac6 TLS GZIP 3ms 12279 bytes (pipelined: 1)\n"
         ],
         [
-          "Sep 03, 2026 15:21:45.427",
+          "Sep 28, 2026 20:00:04.889",
           "DEBUG",
-          "Request: [192.0.2.12:44332 (WAN)] GET /status/sessions (25 live) #af2361 TLS GZIP Signed-in Token (user69)\n"
+          "Completed: [192.0.2.12:53930] 200 GET /status/sessions (40 live) #1ac7 TLS GZIP 3ms 12279 bytes (pipelined: 1)\n"
         ],
         [
-          "Sep 03, 2026 15:21:45.427",
+          "Sep 28, 2026 20:00:05.764",
           "DEBUG",
-          "[Req#af2361] [Now] Adding 1 sessions.\n"
+          "Request: [192.0.2.14:42280 (WAN)] GET /hubs/home/recentlyAdded?type=2 (36 live) #1ac8 TLS Page 0-9 GZIP Signed-in Token (user67)\n"
         ],
         [
-          "Sep 03, 2026 15:21:45.428",
+          "Sep 28, 2026 20:00:05.766",
           "DEBUG",
-          "Completed: [192.0.2.12:44332] 200 GET /status/sessions (25 live) #af2361 TLS GZIP 0ms 2693 bytes (pipelined: 1)\n"
+          "[Req#1ac8] It took 0.000000 ms to retrieve 200 items.\n"
         ]
       ]
     }

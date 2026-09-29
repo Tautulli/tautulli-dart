@@ -119,6 +119,7 @@ void _initEnv() {
       domain: base.hasPort ? '${base.host}:${base.port}' : base.host,
       path: base.path.isEmpty ? null : base.path,
       apiKey: apiKey,
+      downloadTimeout: const Duration(minutes: 5),
     ),
   );
 }
@@ -1012,6 +1013,14 @@ Future<void> _logoutUserSession() async {
     return;
   }
   final rowId = (rows.first as Map<String, dynamic>)['row_id'] as int;
+  // Raw envelope first: v2.18.1 answered result error even when the logout
+  // succeeded, so the success shape needs a capture of its own.
+  await _capture(
+    'tautulli',
+    'logout_user_session',
+    'logout_user_session',
+    params: {'row_ids': '$rowId'},
+  );
   try {
     await pkg.tautulli.logoutUserSession(rowIds: [rowId]);
     _pkgLog('tautulli.logoutUserSession', 'OK', '(§ row_ids fix verified)');

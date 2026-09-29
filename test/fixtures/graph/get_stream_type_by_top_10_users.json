@@ -4,41 +4,41 @@
     "message": null,
     "data": {
       "categories": [
-        "user25",
-        "liam",
-        "user48",
-        "dave",
-        "user19",
-        "pete",
-        "alice",
-        "oscar",
         "kara",
-        "user62"
+        "user47",
+        "user18",
+        "jack",
+        "user24",
+        "carol",
+        "nina",
+        "oscar",
+        "user60",
+        "alice"
       ],
       "series": [
         {
           "name": "Direct Play",
           "data": [
-            484,
-            5,
-            34,
-            74,
-            3,
+            8,
+            38,
+            48,
+            77,
+            38,
+            32,
+            9,
             0,
-            29,
-            10,
-            18,
-            9
+            11,
+            16
           ]
         },
         {
           "name": "Direct Stream",
           "data": [
+            5,
             1,
             0,
-            1,
             0,
-            1,
+            0,
             0,
             0,
             0,
@@ -49,16 +49,16 @@
         {
           "name": "Transcode",
           "data": [
-            3,
-            108,
-            48,
+            134,
+            96,
+            50,
             1,
-            37,
-            30,
             0,
-            18,
             1,
-            3
+            14,
+            21,
+            9,
+            0
           ]
         }
       ]

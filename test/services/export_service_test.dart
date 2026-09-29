@@ -64,7 +64,7 @@ void main() {
       expect(q['individual_files'], '1');
       expect(q.containsKey('media_type'), isFalse);
       expect(q.containsKey('include_images'), isFalse);
-      expect(exportId, 2); // data.export_id in the capture
+      expect(exportId, 4); // data.export_id in the capture
     });
   });
 

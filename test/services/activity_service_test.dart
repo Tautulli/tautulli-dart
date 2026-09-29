@@ -42,16 +42,16 @@ void main() {
     test('parses core session and identity fields', () async {
       makeClient('activity/get_activity__live.json');
       final data = await client.activity.getActivity();
-      expect(data.sessions, hasLength(2));
+      expect(data.sessions, hasLength(4));
       final s = data.sessions.first;
-      expect(s.title, 'Juneteenth');
-      expect(s.mediaType, MediaType.episode);
+      expect(s.title, 'Black Widow');
+      expect(s.mediaType, MediaType.movie);
       expect(s.state, PlaybackState.playing);
-      expect(s.sectionId, 1);
-      expect(s.machineId, 'eeeeeeeeeeeeeeeeeeeeee14');
-      expect(s.actors, contains('Donald Glover'));
-      expect(data.lanBandwidth, 3641);
-      expect(data.wanBandwidth, 15754);
+      expect(s.sectionId, 12);
+      expect(s.machineId, 'eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee05');
+      expect(s.actors, contains('Scarlett Johansson'));
+      expect(data.lanBandwidth, 0);
+      expect(data.wanBandwidth, 72519);
     });
 
     test('relayed replaces the old relay key', () async {
@@ -64,50 +64,54 @@ void main() {
       makeClient('activity/get_activity__live.json');
       final s = (await client.activity.getActivity()).sessions.first;
       expect(s.videoWidth, 1920);
-      expect(s.videoHeight, 1080);
-      expect(s.bitrate, 14747);
-      expect(s.fileSize, 2687798850);
-      expect(s.streamVideoBitrate, 14107);
+      expect(s.videoHeight, 804);
+      expect(s.bitrate, 11671);
+      expect(s.fileSize, 11709994914);
+      expect(s.streamVideoBitrate, 11671);
       expect(s.videoFramerate, '24p'); // label, not numeric
       expect(s.videoDoviPresent, isFalse);
-      expect(s.audienceRating, 8.0);
+      expect(s.audienceRating, 6.6);
       expect(s.rating, isNull); // sent as ''
     });
 
     test('parses extended metadata list and string fields', () async {
       makeClient('activity/get_activity__live.json');
-      final s = (await client.activity.getActivity()).sessions.first;
-      expect(s.guids, contains('tvdb://5742282'));
-      expect(s.grandparentGuids, contains('imdb://tt4288182'));
-      expect(s.genres, contains('Comedy'));
-      expect(s.directors, contains('Janicza Bravo'));
-      expect(s.contentRating, 'TV-MA');
-      expect(s.studio, 'FX Productions');
+      // Session 0 is a movie, which has no grandparent, so grandparentGuids
+      // is always empty there; session 1 is an episode and still exercises
+      // that parsing path.
+      final s = (await client.activity.getActivity()).sessions[1];
+      expect(s.guids, contains('tvdb://60'));
+      expect(s.grandparentGuids, contains('tvdb://70327'));
+      expect(s.genres, contains('Drama'));
+      expect(s.directors, contains('James A. Contner'));
+      expect(s.contentRating, 'TV-14');
+      expect(s.studio, 'Mutant Enemy Productions');
       expect(s.libraryName, 'TV Shows');
-      expect(s.user, 'user66');
+      expect(s.user, 'user80');
     });
 
     test('parses markers into typed Marker objects', () async {
       makeClient('activity/get_activity__live.json');
-      // The first session now carries only one marker; the second session
-      // still has two, so it's the one that exercises first-vs-final.
-      final s = (await client.activity.getActivity()).sessions.last;
+      // Session 1 is the only one that carries two markers in this capture
+      // (credits + intro), so it's the one that exercises a multi-marker
+      // list; the others each have a single credits marker.
+      final s = (await client.activity.getActivity()).sessions[1];
       expect(s.markers, isNotNull);
       expect(s.markers, hasLength(2));
       final m = s.markers!.first;
       expect(m.id, 118638);
       expect(m.type, 'credits');
-      expect(m.startTimeOffset, const Duration(milliseconds: 6234773));
-      expect(m.isFinal, isFalse);
-      expect(s.markers!.last.isFinal, isTrue);
+      expect(m.startTimeOffset, const Duration(milliseconds: 2613206));
+      expect(m.isFinal, isTrue);
+      expect(s.markers!.last.isFinal, isNull); // intro marker sends no flag
     });
 
     test('wraps a single-session (bare object) response', () async {
       makeClient('activity/get_activity__by_session_key.json');
       final data = await client.activity.getActivity(sessionKey: 18);
       expect(data.sessions, hasLength(1));
-      expect(data.sessions.first.sessionKey, 9);
-      expect(data.sessions.first.title, 'Ne Zha');
+      expect(data.sessions.first.sessionKey, 6);
+      expect(data.sessions.first.title, 'Permanent Uncertainty');
       expect(data.sessions.first.state, PlaybackState.paused);
     });
 
@@ -164,7 +168,7 @@ void main() {
       final data = await client.activity.getStreamData(sessionKey: 42);
       expect(lastRequestUri.queryParameters['cmd'], 'get_stream_data');
       expect(lastRequestUri.queryParameters['session_key'], '42');
-      expect(data['title'], 'The Club');
+      expect(data['title'], 'The Harsh Light of Day');
     });
 
     test('sends row_id for a historical entry, no phantom params', () async {

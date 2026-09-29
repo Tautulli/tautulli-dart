@@ -12,7 +12,7 @@ topics:
 
 # API compatibility:
 # Written against: https://github.com/Tautulli/Tautulli/wiki/Tautulli-API-Reference
-# Requires Tautulli v2.18.0 or newer; last audited against v2.18.1
+# Requires Tautulli v2.18.0 or newer; last audited against v2.18.2
 
 environment:
   sdk: '>=3.8.0 <4.0.0'

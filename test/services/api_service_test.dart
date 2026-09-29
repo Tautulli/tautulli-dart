@@ -39,7 +39,7 @@ void main() {
       makeClient('api/arnold.json');
       final result = await client.api.arnold();
       expect(lastRequestUri.queryParameters['cmd'], 'arnold');
-      expect(result, contains('See you at the party Richter!'));
+      expect(result, contains("It's not a tumor!"));
     });
   });
 

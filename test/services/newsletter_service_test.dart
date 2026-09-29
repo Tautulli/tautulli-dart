@@ -39,18 +39,18 @@ void main() {
       makeClient('newsletter/get_newsletter_log.json');
       final result = await client.newsletters.getNewsletterLog();
       expect(lastRequestUri.queryParameters['cmd'], 'get_newsletter_log');
-      expect(result.recordsTotal, 1429);
+      expect(result.recordsTotal, 605);
       final entry = result.data.first;
-      expect(entry.id, 69369);
+      expect(entry.id, 69975);
       expect(entry.newsletterId, 1);
       expect(entry.agentId, 0);
       expect(entry.agentName, 'recently_added');
       expect(entry.notifyAction, 'on_cron');
-      expect(entry.subjectText, 'Recently Added to TestServer! (2026-09-03)');
-      expect(entry.bodyText, contains('newsletter/6ffc1fb7'));
-      expect(entry.startDate, '2026-08-27');
-      expect(entry.endDate, '2026-09-03');
-      expect(entry.uuid, '6ffc1fb7');
+      expect(entry.subjectText, 'Recently Added to TestServer! (2026-09-28)');
+      expect(entry.bodyText, contains('newsletter/159318c8'));
+      expect(entry.startDate, '2026-09-21');
+      expect(entry.endDate, '2026-09-28');
+      expect(entry.uuid, '159318c8');
       expect(entry.success, isTrue);
     });
   });
@@ -61,7 +61,7 @@ void main() {
       final id = await client.newsletters.addNewsletterConfig(agentId: 0);
       expect(lastRequestUri.queryParameters['cmd'], 'add_newsletter_config');
       expect(lastRequestUri.queryParameters['agent_id'], '0');
-      expect(id, 6);
+      expect(id, 8);
     });
   });
 
@@ -73,7 +73,7 @@ void main() {
       );
       expect(lastRequestUri.queryParameters['cmd'], 'get_newsletter_config');
       expect(lastRequestUri.queryParameters['newsletter_id'], '5');
-      expect(result.newsletterId, 5);
+      expect(result.newsletterId, 7);
       expect(result.agentId, 0);
       expect(result.agentName, 'recently_added');
       expect(result.agentLabel, 'Recently Added');

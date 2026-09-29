@@ -34,7 +34,7 @@ void main() {
       expect(result.first.lastTriggered, isNull);
       expect(
         result[1].lastTriggered?.millisecondsSinceEpoch,
-        1787028836 * 1000,
+        1790224925 * 1000,
       );
       expect(result[1].lastSuccess, isFalse);
       expect(result.first.config, isNull); // get_notifier_config only
@@ -47,7 +47,7 @@ void main() {
       final cfg = await client.notifications.getNotifierConfig(notifierId: 22);
       expect(lastRequestUri.queryParameters['cmd'], 'get_notifier_config');
       expect(lastRequestUri.queryParameters['notifier_id'], '22');
-      expect(cfg.notifierId, 22);
+      expect(cfg.notifierId, 24);
       expect(cfg.config, {'auto_hide_delay': 5});
       expect(cfg.configOptions, hasLength(3));
       expect(cfg.actions!['on_play'], 0);
@@ -129,15 +129,18 @@ void main() {
       makeClient('notification/get_notification_log.json');
       final result = await client.notifications.getNotificationLog();
       expect(lastRequestUri.queryParameters['cmd'], 'get_notification_log');
-      expect(result.recordsTotal, 243);
+      expect(result.recordsTotal, 75);
       final entry = result.data.first;
-      expect(entry.id, 96087);
+      expect(entry.id, 96164);
       expect(entry.notifierId, 12);
       expect(entry.agentId, 21);
       expect(entry.agentName, 'remoteapp');
-      expect(entry.notifyAction, 'on_intup');
+      expect(entry.notifyAction, 'on_plexpyupdate');
       expect(entry.subjectText, 'Tautulli (TestServer)');
-      expect(entry.bodyText, 'The Plex Media Server is back up.');
+      expect(
+        entry.bodyText,
+        'An update is available for Tautulli (version v2.18.2).',
+      );
       expect(entry.success, isFalse);
     });
   });
@@ -148,7 +151,7 @@ void main() {
       final id = await client.notifications.addNotifierConfig(agentId: 17);
       expect(lastRequestUri.queryParameters['cmd'], 'add_notifier_config');
       expect(lastRequestUri.queryParameters['agent_id'], '17');
-      expect(id, 23);
+      expect(id, 25);
     });
   });
 

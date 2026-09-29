@@ -5,17 +5,17 @@
     "data": [
       {
         "httpsRequired": "1",
-        "clientIdentifier": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee10",
+        "clientIdentifier": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee0e",
         "label": "TestServer",
-        "ip": "192.0.2.13",
+        "ip": "192.0.2.15",
         "port": "32400",
         "uri": "https://192-0-2-10.00000000000000000000000000000000.plex.direct:32400",
         "local": "1",
-        "value": "192.0.2.13:32400"
+        "value": "192.0.2.15:32400"
       },
       {
         "httpsRequired": "1",
-        "clientIdentifier": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee10",
+        "clientIdentifier": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee0e",
         "label": "TestServer",
         "ip": "203.0.113.9",
         "port": "32400",
@@ -25,33 +25,33 @@
       },
       {
         "httpsRequired": "1",
-        "clientIdentifier": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee10",
+        "clientIdentifier": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee0e",
         "label": "TestServer",
-        "ip": "203.0.113.62",
+        "ip": "203.0.113.41",
         "port": "32400",
         "uri": "https://192-0-2-10.00000000000000000000000000000000.plex.direct:32400",
         "local": "0",
-        "value": "203.0.113.62:32400"
+        "value": "203.0.113.41:32400"
       },
       {
         "httpsRequired": "0",
-        "clientIdentifier": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee03",
+        "clientIdentifier": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee02",
         "label": "tautulli-remote-demo",
-        "ip": "192.0.2.15",
+        "ip": "192.0.2.17",
         "port": "32400",
         "uri": "https://192-0-2-10.00000000000000000000000000000000.plex.direct:32400",
         "local": "1",
-        "value": "192.0.2.15:32400"
+        "value": "192.0.2.17:32400"
       },
       {
         "httpsRequired": "0",
-        "clientIdentifier": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee03",
+        "clientIdentifier": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee02",
         "label": "tautulli-remote-demo",
-        "ip": "203.0.113.62",
+        "ip": "203.0.113.41",
         "port": "32401",
         "uri": "https://192-0-2-10.00000000000000000000000000000000.plex.direct:32401",
         "local": "0",
-        "value": "203.0.113.62:32401"
+        "value": "203.0.113.41:32401"
       }
     ]
   }

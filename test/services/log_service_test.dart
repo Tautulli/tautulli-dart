@@ -37,8 +37,8 @@ void main() {
         'Tautulli Pmsconnect :: Failed to terminate session: '
         'Invalid session_key (999999) or session_id ().',
       );
-      expect(result.first.thread, 'CP Server Thread-16');
-      expect(result.first.timestamp, '2026-09-03 15:21:45 ');
+      expect(result.first.thread, 'CP Server Thread-15');
+      expect(result.first.timestamp, '2026-09-28 20:00:05 ');
     });
 
     test('sends order and regex params', () async {
@@ -62,12 +62,9 @@ void main() {
       expect(q['logfile'], 'Plex Media Server');
       // Rows are [timestamp, level, message] nested under data.data.
       expect(result, hasLength(10));
-      expect(result.first.timestamp, 'Sep 03, 2026 15:21:45.375');
+      expect(result.first.timestamp, 'Sep 28, 2026 20:00:04.880');
       expect(result.first.level, 'DEBUG');
-      expect(
-        result.first.message,
-        contains('GET /library/metadata/80808?includeMarkers=1'),
-      );
+      expect(result.first.message, contains('Adding 4 sessions'));
       expect(result.first.thread, isNull);
     });
 

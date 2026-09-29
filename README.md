@@ -197,7 +197,7 @@ final client = TautulliClient(
 All commands are documented in the [Tautulli API Reference](https://github.com/Tautulli/Tautulli/wiki/Tautulli-API-Reference).
 
 - Requires Tautulli **v2.18.0 or newer**
-- Last audited against: **v2.18.1**
+- Last audited against: **v2.18.2**
 
 Older servers are not supported: v2.18.0 removed several parameters that earlier
 releases of this client sent.

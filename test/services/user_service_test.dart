@@ -33,10 +33,10 @@ void main() {
     test('parses user data', () async {
       makeClient('user/get_user.json');
       final user = await client.users.getUser(userId: 7);
-      expect(user.username, 'user66');
-      expect(user.friendlyName, 'liam');
+      expect(user.username, 'user80');
+      expect(user.friendlyName, 'jack');
       expect(user.isActive, isTrue);
-      expect(user.userId, 2535039);
+      expect(user.userId, 8883082);
     });
 
     test('parses shared_libraries list', () async {
@@ -56,10 +56,10 @@ void main() {
     test('parses user name list', () async {
       makeClient('user/get_user_names.json');
       final names = await client.users.getUserNames();
-      expect(names, hasLength(51));
+      expect(names, hasLength(50));
       expect(names.first.userId, 0);
-      expect(names.first.friendlyName, 'user51');
-      expect(names.last.friendlyName, 'nina');
+      expect(names.first.friendlyName, 'user50');
+      expect(names.last.friendlyName, 'mona');
     });
   });
 
@@ -74,9 +74,9 @@ void main() {
     test('parses player stats', () async {
       makeClient('user/get_user_player_stats.json');
       final stats = await client.users.getUserPlayerStats(userId: 7);
-      expect(stats, hasLength(16));
-      expect(stats.first.platform, 'Firefox');
-      expect(stats.first.totalPlays, 2987);
+      expect(stats, hasLength(3));
+      expect(stats.first.platform, 'Android');
+      expect(stats.first.totalPlays, 148);
     });
   });
 
@@ -117,10 +117,10 @@ void main() {
       final result = await client.users.getUsersTable();
       expect(result.recordsTotal, 64);
       expect(result.data, hasLength(25));
-      expect(result.data.first.username, 'user103');
-      expect(result.data.first.plays, 159);
-      expect(result.data.first.historyRowId, 84598);
-      expect(result.data.first.duration, const Duration(seconds: 282933));
+      expect(result.data.first.username, 'user101');
+      expect(result.data.first.plays, 160);
+      expect(result.data.first.historyRowId, 86264);
+      expect(result.data.first.duration, const Duration(seconds: 284654));
     });
   });
 
@@ -129,13 +129,13 @@ void main() {
       makeClient('user/get_users.json');
       final result = await client.users.getUsers();
       expect(lastRequestUri.queryParameters['cmd'], 'get_users');
-      expect(result, hasLength(51));
+      expect(result, hasLength(50));
       expect(result.first.userId, 0);
       expect(result.first.deletedUser, isNull); // not sent by get_users
       // get_users sends the avatar as thumb, not user_thumb.
       expect(
         result[1].userThumb,
-        'https://plex.tv/users/0000000000000000/avatar?c=1788139852',
+        'https://plex.tv/users/0000000000000000/avatar?c=1788586179',
       );
     });
   });
@@ -205,11 +205,11 @@ void main() {
     test('parses paged result', () async {
       makeClient('user/get_user_ips.json');
       final result = await client.users.getUserIps(userId: 2535039);
-      expect(result.recordsTotal, 76038);
-      expect(result.recordsFiltered, 51);
-      expect(result.data, hasLength(25));
-      expect(result.data.first['ip_address'], '203.0.113.37');
-      expect(result.data.first['play_count'], 581);
+      expect(result.recordsTotal, 74065);
+      expect(result.recordsFiltered, 3);
+      expect(result.data, hasLength(3));
+      expect(result.data.first['ip_address'], '203.0.113.35');
+      expect(result.data.first['play_count'], 160);
     });
   });
 

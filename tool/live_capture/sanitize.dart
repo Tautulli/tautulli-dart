@@ -79,7 +79,9 @@ const _userAliases = [
 // when a new notification agent stores a credential.
 final _credentialKey = RegExp(
   r'password|passwd|secret|token|api_key|apikey|client_id|hook'
-  r'|license_key|ifttt_key|prowl_keys|pushover_keys|cloud_name',
+  r'|license_key|ifttt_key|prowl_keys|pushover_keys|cloud_name'
+  // The web UI login name is the other half of http_password.
+  r'|http_username',
   caseSensitive: false,
 );
 
@@ -146,6 +148,8 @@ final _idMap =
     <String, String>{}; // machine ids / identifiers → hex placeholder
 final _ipMap = <String, String>{};
 var _serverName = '';
+// The Tautulli host's own name: a Docker container id on the test server.
+var _tautulliHost = '';
 
 Future<void> main(List<String> args) async {
   String req(String name) {
@@ -221,6 +225,8 @@ void _collect() {
           if (value.length >= 16 || k == 'machine_id') _idMap[value] = '';
         case 'pms_name' || 'server_name':
           _serverName = value;
+        case 'tautulli_platform_device_name':
+          _tautulliHost = value;
         case 'section_name' || 'library_name':
           if (!_isGenericLibraryName(value)) _libraryMap[value] = '';
         // Device names carry serials and room names; aliased by key only,
@@ -343,6 +349,18 @@ Object? _structural(String rel, Object? node) {
           value is String &&
           _playerMap.containsKey(value)) {
         out[key] = _playerMap[value];
+      } else if ((key == 'body_text' || key == 'subject_text') &&
+          value is String) {
+        // Rendered notification text embeds the raw player name ("alice
+        // (Living Room TV) started playing"); alias it like the player key.
+        // Longest name first so "Chromecast" is not eaten by "Chrome".
+        out[key] =
+            (_playerMap.keys.toList()
+                  ..sort((a, b) => b.length.compareTo(a.length)))
+                .fold(
+                  value,
+                  (t, name) => t.replaceAll(name, _playerMap[name]!),
+                );
       } else if (key == 'file' && value is String && value.startsWith('/')) {
         // Media file path: keep the basename (title is kept anyway),
         // genericize the directory.
@@ -380,6 +398,9 @@ String _textPass(String text) {
   out = out.replaceAll(serverHost, '192.0.2.10');
   if (_serverName.isNotEmpty) {
     out = out.replaceAll(_serverName, 'TestServer');
+  }
+  if (_tautulliHost.isNotEmpty) {
+    out = out.replaceAll(_tautulliHost, 'tautulli-host');
   }
   // Emails first: a username is frequently the local part of an address, so
   // rewriting usernames first would corrupt the address and leave the real
@@ -427,6 +448,7 @@ void _writeMapReport() {
     const JsonEncoder.withIndent('  ').convert({
       'note': 'REAL VALUES — never commit this file',
       'server_name': _serverName,
+      'tautulli_host': _tautulliHost,
       'users': _userMap,
       'players': _playerMap,
       'libraries': _libraryMap,
@@ -449,6 +471,7 @@ Future<int> _auditFixtures() async {
     deviceToken: 'device token',
     serverHost: 'server host',
     if (_serverName.isNotEmpty) _serverName: 'server name',
+    if (_tautulliHost.isNotEmpty) _tautulliHost: 'tautulli host',
     for (final u in _userMap.keys) u: 'username',
     for (final l in _libraryMap.keys) l: 'library name',
     for (final h in _hostMap.keys) h: 'hostname',

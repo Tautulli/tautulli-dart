@@ -4,45 +4,45 @@
     "message": null,
     "data": {
       "categories": [
-        "user25",
-        "liam",
-        "user48",
-        "dave",
-        "user19",
-        "pete",
-        "alice",
-        "oscar",
         "kara",
-        "user62"
+        "user47",
+        "user18",
+        "jack",
+        "user24",
+        "carol",
+        "nina",
+        "oscar",
+        "user60",
+        "alice"
       ],
       "series": [
         {
           "name": "TV",
           "data": [
-            476,
-            101,
-            81,
-            74,
-            31,
-            27,
-            29,
+            136,
+            132,
+            82,
+            77,
+            34,
+            32,
             22,
-            17,
-            10
+            20,
+            13,
+            14
           ]
         },
         {
           "name": "Movies",
           "data": [
-            12,
-            12,
-            2,
-            1,
-            10,
+            11,
             3,
-            0,
-            6,
-            2,
+            16,
+            1,
+            4,
+            1,
+            1,
+            1,
+            7,
             2
           ]
         },

@@ -47,6 +47,9 @@ Future<void> main() async {
       path: base.path.isEmpty ? null : base.path,
       apiKey: req('TAUTULLI_API_KEY'),
       apiKeyLocation: keyLocation,
+      // download_database copies a 250 MB file before serving it; v2.18.2
+      // writes that copy to the data directory, which took 49 s here.
+      downloadTimeout: const Duration(minutes: 5),
     ),
   );
   pkgToken = TautulliClient(
@@ -57,6 +60,9 @@ Future<void> main() async {
       apiKey: req('TAUTULLI_DEVICE_TOKEN'),
       useDeviceToken: true,
       apiKeyLocation: keyLocation,
+      // download_database copies a 250 MB file before serving it; v2.18.2
+      // writes that copy to the data directory, which took 49 s here.
+      downloadTimeout: const Duration(minutes: 5),
     ),
   );
 

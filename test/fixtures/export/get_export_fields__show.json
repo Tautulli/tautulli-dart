@@ -273,6 +273,10 @@
           "level": 1
         },
         {
+          "field": "seasons.episodes.canNormalizeLoudness",
+          "level": 3
+        },
+        {
           "field": "seasons.episodes.chapterSource",
           "level": 3
         },
@@ -1007,6 +1011,10 @@
           "level": 9
         },
         {
+          "field": "seasons.episodes.media.parts.audioStreams.canNormalizeLoudness",
+          "level": 9
+        },
+        {
           "field": "seasons.episodes.media.parts.audioStreams.channels",
           "level": 3
         },
@@ -1029,6 +1037,10 @@
         {
           "field": "seasons.episodes.media.parts.audioStreams.extendedDisplayTitle",
           "level": 3
+        },
+        {
+          "field": "seasons.episodes.media.parts.audioStreams.gainOffset",
+          "level": 9
         },
         {
           "field": "seasons.episodes.media.parts.audioStreams.id",
@@ -1055,6 +1067,22 @@
           "level": 9
         },
         {
+          "field": "seasons.episodes.media.parts.audioStreams.loudness",
+          "level": 9
+        },
+        {
+          "field": "seasons.episodes.media.parts.audioStreams.loudnessAnalysisVersion",
+          "level": 9
+        },
+        {
+          "field": "seasons.episodes.media.parts.audioStreams.lra",
+          "level": 9
+        },
+        {
+          "field": "seasons.episodes.media.parts.audioStreams.peak",
+          "level": 9
+        },
+        {
           "field": "seasons.episodes.media.parts.audioStreams.profile",
           "level": 3
         },
@@ -1076,6 +1104,10 @@
         },
         {
           "field": "seasons.episodes.media.parts.audioStreams.streamType",
+          "level": 9
+        },
+        {
+          "field": "seasons.episodes.media.parts.audioStreams.threshold",
           "level": 9
         },
         {

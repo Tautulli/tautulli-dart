@@ -20,7 +20,7 @@
         "agent": "tv.plex.agents.movie",
         "thumb": "",
         "art": "",
-        "count": "82",
+        "count": "83",
         "is_active": 1
       },
       {
@@ -40,7 +40,7 @@
         "agent": "tv.plex.agents.movie",
         "thumb": "",
         "art": "",
-        "count": "55",
+        "count": "56",
         "is_active": 1
       },
       {
@@ -50,7 +50,7 @@
         "agent": "tv.plex.agents.movie",
         "thumb": "",
         "art": "",
-        "count": "1680",
+        "count": "1691",
         "is_active": 1
       },
       {
@@ -94,8 +94,8 @@
         "art": "",
         "count": "37",
         "is_active": 1,
-        "parent_count": "72",
-        "child_count": "1376"
+        "parent_count": "75",
+        "child_count": "1385"
       },
       {
         "section_id": "31",
@@ -118,8 +118,8 @@
         "art": "",
         "count": "661",
         "is_active": 1,
-        "parent_count": "2280",
-        "child_count": "33216"
+        "parent_count": "2287",
+        "child_count": "33270"
       },
       {
         "section_id": "27",

@@ -34,18 +34,18 @@ void main() {
     test('parses metadata fields', () async {
       makeClient('media/get_metadata.json');
       final item = await client.media.getMetadata(ratingKey: 1001);
-      expect(item.title, 'Aladdin');
+      expect(item.title, 'Black Widow');
       expect(item.mediaType, MediaType.movie);
-      expect(item.year, 1992);
+      expect(item.year, 2021);
       // The captured item has no critic rating (`rating` is `""`); the
       // audience score covers the double coercion.
       expect(item.rating, isNull);
-      expect(item.audienceRating, closeTo(8.0, 0.01));
+      expect(item.audienceRating, closeTo(6.6, 0.01));
       expect(item.markers, hasLength(1));
       expect(item.markers!.single.type, 'credits');
       expect(
         item.markers!.single.startTimeOffset,
-        const Duration(milliseconds: 5159884),
+        const Duration(milliseconds: 7470099),
       );
     });
 
@@ -53,15 +53,15 @@ void main() {
       makeClient('media/get_metadata.json');
       final item = await client.media.getMetadata(ratingKey: 1001);
       expect(item.mediaInfo, isNotNull);
-      expect(item.mediaInfo!.videoCodec, 'h264');
-      expect(item.mediaInfo!.audioChannels, 6);
+      expect(item.mediaInfo!.videoCodec, 'hevc');
+      expect(item.mediaInfo!.audioChannels, 8);
     });
 
     test('parses string lists', () async {
       makeClient('media/get_metadata.json');
       final item = await client.media.getMetadata(ratingKey: 1001);
-      expect(item.genres, contains('Fantasy'));
-      expect(item.actors, contains('Scott Weinger'));
+      expect(item.genres, contains('Science Fiction'));
+      expect(item.actors, contains('Scarlett Johansson'));
     });
   });
 
@@ -83,8 +83,8 @@ void main() {
         ratingKey: 2000,
         mediaType: 'show',
       );
-      expect(items, hasLength(10));
-      expect(items.first.title, 'The Big Bang');
+      expect(items, hasLength(25));
+      expect(items.first.title, 'January 5, 2026 - Sen. Mark Kelly');
       expect(items.first.mediaType, MediaType.episode);
       expect(items.first.mediaIndex, 1);
     });
@@ -186,8 +186,8 @@ void main() {
         expect(lastRequestUri.queryParameters['cmd'], 'get_old_rating_keys');
         expect(lastRequestUri.queryParameters['rating_key'], '19197');
         expect(lastRequestUri.queryParameters['media_type'], 'show');
-        expect(result['0']['rating_key'], 19197);
-        expect(result['0']['children']['1']['rating_key'], 19198);
+        expect(result['0']['rating_key'], 155981);
+        expect(result['0']['children']['30']['rating_key'], 160505);
       },
     );
   });
@@ -204,9 +204,9 @@ void main() {
         expect(lastRequestUri.queryParameters['cmd'], 'get_item_user_stats');
         expect(lastRequestUri.queryParameters['rating_key'], '1001');
         expect(lastRequestUri.queryParameters['grouping'], '1');
-        expect(result, hasLength(3));
-        expect(result.first['friendly_name'], 'user35');
-        expect(result.first['total_plays'], 3);
+        expect(result, hasLength(11));
+        expect(result.first['friendly_name'], 'nina');
+        expect(result.first['total_plays'], 2);
       },
     );
   });
@@ -228,7 +228,7 @@ void main() {
         expect(q['query_days'], '1,7,30,0');
         expect(result, hasLength(4));
         expect(result.first['query_days'], 1);
-        expect(result.first['total_time'], 1437);
+        expect(result.first['total_time'], 1721);
       },
     );
   });

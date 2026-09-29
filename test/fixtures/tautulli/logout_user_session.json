@@ -1,0 +1,7 @@
+{
+  "response": {
+    "result": "success",
+    "message": "Users session logged out.",
+    "data": {}
+  }
+}

@@ -6,10 +6,10 @@
       "host": "Not available",
       "nets": [
         {
-          "cidr": "203.0.113.68/24",
+          "cidr": "203.0.113.46/24",
           "name": "GOGL",
           "handle": "NET-8-8-8-0-2",
-          "range": "203.0.113.68 - 203.0.113.69",
+          "range": "203.0.113.46 - 203.0.113.47",
           "description": "Google LLC",
           "country": "United States",
           "state": "CA",
@@ -17,8 +17,8 @@
           "address": "1600 Amphitheatre Parkway",
           "postal_code": "94043",
           "emails": [
-            "arin-contact@google.com",
-            "network-abuse@google.com"
+            "network-abuse@google.com",
+            "arin-contact@google.com"
           ],
           "created": "2023-12-28",
           "updated": "2023-12-28"

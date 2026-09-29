@@ -1,19 +1,19 @@
 #!/usr/bin/env python3
 """Extract and diff Tautulli's API command surface at a release tag.
 
-    python3 tool/api_surface.py v2.18.1              # list commands (one per line)
-    python3 tool/api_surface.py v2.17.2 v2.18.1      # diff two tags
-    python3 tool/api_surface.py v2.18.1 --map        # command -> handler function
+    python3 tool/api_surface.py v2.18.2              # list commands (one per line)
+    python3 tool/api_surface.py v2.18.1 v2.18.2      # diff two tags
+    python3 tool/api_surface.py v2.18.2 --map        # command -> handler function
 
 Commands come from two places: the @addtoapi decorator in plexpy/webserve.py and
 the public methods of the API2 class in plexpy/api2.py.
 
 Read the handler through --map, never by grepping `def <command>`. 18 of the 123
-commands at v2.18.1 are registered under a name that differs from their function,
+commands at v2.18.2 are registered under a name that differs from their function,
 and for `get_stream_data` and `pms_image_proxy` an unrelated function with the
 bare command name also exists — grepping finds the wrong one silently.
 
-Validated at v2.18.1: output is byte-identical to the command list a live server
+Validated at v2.18.2: output is byte-identical to the command list a live server
 returns, both in test/fixtures/api/docs.json and in the "Possible commands are:"
 message of test/fixtures/errors/unknown_command.json (123 each).
 """
