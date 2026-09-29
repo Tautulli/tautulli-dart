@@ -1,6 +1,9 @@
 # Changelog
 
-## 3.4.0-wip
+## 3.4.0
+
+**Requires Tautulli v2.18.0 or newer.** Verified end-to-end against a live v2.18.2 server, with the
+test fixtures recaptured from that release on 2026-09-28.
 
 ### Added
 

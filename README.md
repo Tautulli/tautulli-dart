@@ -16,7 +16,7 @@ Or add manually to `pubspec.yaml`:
 
 ```yaml
 dependencies:
-  tautulli: ^3.3.0
+  tautulli: ^3.4.0
 ```
 
 ## Quick Start
